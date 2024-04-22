@@ -32,8 +32,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: PhotoScreen(
-      cameras: const [],
-    ));
+      home: PhotoScreen(
+        cameras: const [],
+      ),
+    );
   }
 }
