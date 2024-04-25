@@ -40,29 +40,29 @@ class _HomePageState extends State<NavigateBarScreen> {
                   cnr.setCurrentIndex(index);
                 },
                 items: [
-                  // SalomonBottomBarItem(
-                  //   selectedColor: Colors.green,
-                  //   unselectedColor: Colors.grey,
-                  //   icon: ShaderMask(
-                  //     shaderCallback: (Rect bounds) {
-                  //       return const LinearGradient(
-                  //         begin: Alignment.topCenter,
-                  //         end: Alignment.bottomCenter,
-                  //         colors: [Colors.black, Colors.black],
-                  //       ).createShader(bounds);
-                  //     },
-                  //     child: Icon(
-                  //       Icons.favorite,
-                  //       size: context.screenSize * 0.10,
-                  //       color: Colors.white,
-                  //     ),
-                  //   ),
-                  //   title: Text(
-                  //     "المفضله",
-                  //     style:
-                  //         TextStyle(fontSize: context.screenSize * threeFont),
-                  //   ),
-                  // ),
+                  SalomonBottomBarItem(
+                    selectedColor: Colors.green,
+                    unselectedColor: Colors.grey,
+                    icon: ShaderMask(
+                      shaderCallback: (Rect bounds) {
+                        return const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Colors.black, Colors.black],
+                        ).createShader(bounds);
+                      },
+                      child: Icon(
+                        Icons.favorite,
+                        size: context.screenSize * 0.10,
+                        color: Colors.white,
+                      ),
+                    ),
+                    title: Text(
+                      "المفضله",
+                      style:
+                          TextStyle(fontSize: context.screenSize * threeFont),
+                    ),
+                  ),
                   SalomonBottomBarItem(
                     selectedColor: Colors.green,
                     unselectedColor: Colors.grey,

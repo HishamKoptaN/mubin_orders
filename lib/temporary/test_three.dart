@@ -7,14 +7,14 @@ class MyAppSelectNumber extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('WhatsApp Contact Picker Example'),
+          title: const Text('WhatsApp Contact Picker Example'),
         ),
         body: Center(
           child: ElevatedButton(
             onPressed: () {
               _openWhatsAppContactPicker();
             },
-            child: Text('Open WhatsApp Contact Picker'),
+            child: const Text('Open WhatsApp Contact Picker'),
           ),
         ),
       ),

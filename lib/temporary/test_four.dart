@@ -8,14 +8,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
 
-void main() => runApp(MyAppWhatsApp());
-
 // ignore: must_be_immutable
-class MyAppWhatsApp extends StatelessWidget {
+class MyAppFour extends StatelessWidget {
   final _controller = ScreenshotController();
   File? _image;
 
-  MyAppWhatsApp({super.key});
+  MyAppFour({super.key});
 
   Future<void> share() async {
     await WhatsappShare.share(
@@ -26,7 +24,7 @@ class MyAppWhatsApp extends StatelessWidget {
   }
 
   Future<void> shareFile() async {
-    await getImage();
+    await getVideo();
     Directory? directory;
     if (Platform.isAndroid) {
       directory = await getExternalStorageDirectory();
@@ -34,7 +32,6 @@ class MyAppWhatsApp extends StatelessWidget {
       directory = await getApplicationDocumentsDirectory();
     }
     debugPrint('${directory?.path} / ${_image?.path}');
-
     await WhatsappShare.shareFile(
       phone: '911234567890',
       filePath: ["${_image?.path}"],
@@ -58,9 +55,7 @@ class MyAppWhatsApp extends StatelessWidget {
 
     await _controller.captureAndSave(localPath);
 
-    await Future.delayed(
-      const Duration(seconds: 1),
-    );
+    await Future.delayed(const Duration(seconds: 1));
 
     await WhatsappShare.shareFile(
       phone: '911234567890',
@@ -111,13 +106,30 @@ class MyAppWhatsApp extends StatelessWidget {
     try {
       XFile? pickedFile =
           // ignore: deprecated_member_use
-          await ImagePicker().pickVideo(source: ImageSource.gallery);
+          await ImagePicker().pickImage(source: ImageSource.gallery);
 
       if (pickedFile != null) {
         _image = File(pickedFile.path);
       } else {}
     } catch (er) {
       log(er.toString());
+    }
+  }
+
+  Future<XFile?> getVideo() async {
+    try {
+      XFile? pickedFile =
+          // ignore: deprecated_member_use
+          await ImagePicker().pickVideo(source: ImageSource.gallery);
+
+      if (pickedFile != null) {
+        return pickedFile;
+      } else {
+        return null;
+      }
+    } catch (er) {
+      print(er.toString());
+      return null;
     }
   }
 }

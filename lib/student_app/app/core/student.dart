@@ -2,15 +2,15 @@ class Student {
   late int? id;
   late String image;
   late String name;
-  late String course;
+  late String location;
 
-  Student(this.name, this.course, this.image, { this.id });
+  Student(this.name, this.image, this.location, {this.id});
 
   Student.fromMap(Map<String, dynamic> map) {
     id = map['id'];
     name = map['name'];
     image = map["image"];
-    course = map['course'];
+    location = map["course"];
   }
 
   Map<String, dynamic> toMap() {
@@ -18,7 +18,7 @@ class Student {
       'id': id,
       'name': name,
       'image': image,
-      'course': course,
+      'course': location,
     };
   }
 }

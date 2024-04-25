@@ -24,21 +24,23 @@ class HomePage extends StatelessWidget {
         title: const Text("Student app"),
         actions: [
           Switch(
-              value: Theme.of(context).brightness == Brightness.dark,
-              thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
-                  (Set<MaterialState> states) {
+            value: Theme.of(context).brightness == Brightness.dark,
+            thumbIcon: MaterialStateProperty.resolveWith<Icon?>(
+              (Set<MaterialState> states) {
                 if (states.contains(MaterialState.selected)) {
                   return const Icon(Icons.dark_mode_rounded);
                 }
 
                 return const Icon(Icons.sunny);
-              }),
-              onChanged: (val) async {
-                // Change theme
-                Get.changeThemeMode(val ? ThemeMode.dark : ThemeMode.light);
-                // Update darkmode in database
-                StudentDatabase.instance.updateDarkmode(val);
-              }),
+              },
+            ),
+            onChanged: (val) async {
+              // Change theme
+              Get.changeThemeMode(val ? ThemeMode.dark : ThemeMode.light);
+              // Update darkmode in database
+              StudentDatabase.instance.updateDarkmode(val);
+            },
+          ),
           IconButton(
             tooltip: "Add student",
             icon: const Icon(Icons.add),
@@ -73,33 +75,34 @@ class HomePage extends StatelessWidget {
                       // Otherwise, return list of students
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Obx(() => Get.find<StudentListController>()
-                                    .count >
-                                0
-                            ? StaggeredGridView.countBuilder(
-                                crossAxisCount: 2,
-                                crossAxisSpacing: 16,
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount:
-                                    Get.find<StudentListController>().count,
-                                itemBuilder: (context, index) {
-                                  // Return student card
-                                  return StudentCard(
-                                      student: Get.find<StudentListController>()
-                                          .at(index),
-                                      onDelete: (student) {
-                                        showDeleteConfirmation(student);
-                                      });
-                                },
-                                staggeredTileBuilder: (int index) =>
-                                    const StaggeredTile.fit(1))
-                            : const SizedBox(
-                                height: 50,
-                                child: Center(
-                                  child: Text("No students found"),
+                        child: Obx(
+                          () => Get.find<StudentListController>().count > 0
+                              ? StaggeredGridView.countBuilder(
+                                  crossAxisCount: 2,
+                                  crossAxisSpacing: 16,
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  itemCount:
+                                      Get.find<StudentListController>().count,
+                                  itemBuilder: (context, index) {
+                                    // Return student card
+                                    return StudentCard(
+                                        student:
+                                            Get.find<StudentListController>()
+                                                .at(index),
+                                        onDelete: (student) {
+                                          showDeleteConfirmation(student);
+                                        });
+                                  },
+                                  staggeredTileBuilder: (int index) =>
+                                      const StaggeredTile.fit(1))
+                              : const SizedBox(
+                                  height: 50,
+                                  child: Center(
+                                    child: Text("No students found"),
+                                  ),
                                 ),
-                              )),
+                        ),
                       );
                     }
 
@@ -186,7 +189,8 @@ class StudentSearchBar extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
                           color: Theme.of(context).colorScheme.onSurface,
-                          width: 1)),
+                          width: 1),
+                    ),
               label: const Text("Search student")),
           onChanged: (val) {
             onSearch(val);

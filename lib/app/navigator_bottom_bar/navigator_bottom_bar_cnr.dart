@@ -1,15 +1,25 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/strings.dart';
 import '../../student_app/app/views/home.dart';
+import '../../temporary/read_dir_data.dart';
+import '../../test.dart';
+import '../../test_seven.dart';
+import '../../test_six.dart';
+import '../../temporary/share_multi.dart';
+import '../../record_and_share.dart';
+import '../../video_player.dart';
 import '../camera/camera_view.dart';
 
 class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   final List<Widget> pages = [
-    const VideoRecordingScreen(),
+    const MyAppVideos(),
+    MyAppTwo(),
     const HomePage(),
-    const VideoRecordingScreen(),
+    MyAppTwo(),
   ];
   int currentIndex = 0;
   void setCurrentIndex(int index) async {
