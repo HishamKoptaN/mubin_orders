@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'student_app/app/controllers/student_list.dart';
-import 'student_app/app/core/student.dart';
-import 'student_app/app/db/students.dart';
-import 'student_app/app/global/util.dart';
+import 'temporary/student_app/app/controllers/student_list.dart';
+import 'temporary/student_app/app/core/student.dart';
+import 'temporary/student_app/app/db/students.dart';
+import 'temporary/student_app/app/global/util.dart';
 
 class MyAppSeven extends StatelessWidget {
   @override
@@ -29,6 +29,40 @@ class VideoRecorderPage extends StatefulWidget {
 
 class _VideoRecorderPageState extends State<VideoRecorderPage> {
   late File? _videoFile;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Video Recorder & Share'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+              onPressed: _recordVideo,
+              child: Text('Record Video'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                if (_videoFile != null) {
+                  _saveVideoToStorage(_videoFile!);
+                }
+              },
+              child: Text('Save Video to Storage'),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _shareVideo,
+              child: Text('Share Video'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   Future<void> _recordVideo() async {
     final pickedFile =
@@ -71,40 +105,6 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
     } else {
       print('Video file does not exist!');
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Video Recorder & Share'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: _recordVideo,
-              child: Text('Record Video'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                if (_videoFile != null) {
-                  _saveVideoToStorage(_videoFile!);
-                }
-              },
-              child: Text('Save Video to Storage'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _shareVideo,
-              child: Text('Share Video'),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 
   void addStudent(String name, String course, String imagePath) async {

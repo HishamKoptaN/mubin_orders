@@ -95,7 +95,8 @@ class AddStudentPage extends StatelessWidget {
                                         color: Theme.of(context)
                                             .colorScheme
                                             .onSurface,
-                                        width: 1)),
+                                        width: 1),
+                                  ),
                             errorText: errorType.value == 1
                                 ? errorMessage.value
                                 : null,

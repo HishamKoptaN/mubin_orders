@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../../helpers/constants.dart';
-import '../../temporary/save_video.dart';
+import '../save_video.dart';
 import 'navigator_bottom_bar_cnr.dart';
 
 class NavigateBarScreen extends StatefulWidget {

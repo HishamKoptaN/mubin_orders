@@ -1,23 +1,20 @@
 import 'dart:io';
+import 'package:docs_orders/helpers/constants.dart';
+import 'package:docs_orders/helpers/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
-
-import 'student_app/app/controllers/student_list.dart';
-import 'student_app/app/core/student.dart';
-import 'student_app/app/db/students.dart';
-import 'student_app/app/global/util.dart';
-import 'student_app/app/global/values.dart';
+import 'temporary/student_app/app/controllers/student_list.dart';
+import 'temporary/student_app/app/core/student.dart';
+import 'temporary/student_app/app/db/students.dart';
+import 'temporary/student_app/app/global/util.dart';
+import 'temporary/student_app/app/global/values.dart';
 
 class MyAppTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Video Recorder & Share',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: VideoRecorderPage(),
     );
   }
@@ -31,10 +28,120 @@ class VideoRecorderPage extends StatefulWidget {
 class _VideoRecorderPageState extends State<VideoRecorderPage> {
   late File? _videoFile;
   final RxString imagePath = "".obs;
-  final TextEditingController _nameController = TextEditingController();
   final RxString course = "".obs;
+  final TextEditingController palaceController = TextEditingController();
+  bool showPalaceDialoge = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: ElevatedButton(
+        onPressed: () {
+          defaultDial();
+        }
+        //  _recordVideo
+        ,
+        child: const Text('Record Video'),
+      ),
+      // body: Center(
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
 
-  Future<void> _recordVideo() async {
+      //       const SizedBox(height: 20),
+      //       ElevatedButton(
+      //         onPressed: _shareVideo,
+      //         child: const Text('Share Video'),
+      //       ),
+      //     ],
+      //   ),
+      // ),
+    );
+  }
+
+  void defaultDial() {
+    Get.defaultDialog(
+      title: "المكان",
+      backgroundColor: Colors.green,
+      titleStyle: const TextStyle(color: Colors.white),
+      middleTextStyle: const TextStyle(color: Colors.white),
+      content: SizedBox(
+        width: context.screenWidth * 75,
+        height: context.screenHeight * 20,
+        child: Column(
+          children: [
+            const Spacer(),
+            TextField(
+              autofocus: true,
+              controller: palaceController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.location_on),
+                filled: Get.theme.brightness == Brightness.dark,
+                border: Get.theme.brightness == Brightness.dark
+                    ? null
+                    : OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(
+                            color: Theme.of(context).colorScheme.onSurface,
+                            width: 1),
+                      ),
+                label: const Text(
+                  "المكان",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ),
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Text(
+                    'الغاء',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: context.screenSize * sixFont),
+                  ),
+                ),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () {
+                    palaceController.text == ''
+                        ? addPalaceSnackBar('ادخل المكان')
+                        : recordVideo();
+                  },
+                  child: Text(
+                    'تأكيد',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: context.screenSize * sixFont),
+                  ),
+                ),
+                const Spacer(),
+              ],
+            ),
+            const Spacer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void addPalaceSnackBar(String message) {
+    Get.showSnackbar(
+      GetSnackBar(
+        backgroundColor: Colors.red,
+        dismissDirection: DismissDirection.up,
+        message: message,
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
+
+  Future<void> recordVideo() async {
     final pickedFile =
         await ImagePicker().pickVideo(source: ImageSource.camera);
     if (pickedFile != null) {
@@ -44,7 +151,7 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
         },
       );
     }
-    addStudent(pickedFile!.path, '', '');
+    addorder(pickedFile!.path, '', '');
   }
 
   Future<void> _shareVideo() async {
@@ -55,61 +162,19 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Video Recorder & Share'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: _recordVideo,
-              child: const Text('Record Video'),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _shareVideo,
-              child: const Text('Share Video'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> addStudent(String name, String course, String imagePath) async {
+  Future<void> addorder(String name, String course, String imagePath) async {
     name = name.trim();
-
-    // showOverlay("Adding student...");
-    // Convert image to File
-    final File temp = File(imagePath);
-    // Move the image to the app's directory and get new name
-    // String? imgpath = await moveImage(temp);
-    // If path is null, just return
-    // if (imgpath == null) return;
-    // Clear image cache
     _clearImageCache();
-    // Create a student
-    Student student = Student(name, name, name);
-    // Add student to database
+    Student student = Student(palaceController.text, name, name);
     student.id = await StudentDatabase.instance.addStudent(student);
-    // Add student to list
     Get.find<StudentListController>().addStudent(student);
-    // Hide overlay loading
     Get.back();
-    // Show success dialog
     showSuccess(student.name);
   }
 
   void _clearImageCache() {
-    // If image path is empty, just return
     if (imagePath.isEmpty) return;
-    // Delete the image and its directory
     File(imagePath.value).parent.delete(recursive: true);
-    // Clear image path
     imagePath.value = "";
   }
 
@@ -138,7 +203,7 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
 
   void _clearInputs() {
     imagePath.value = "";
-    _nameController.clear();
+    palaceController.clear();
     course.value = "";
   }
 
@@ -166,6 +231,11 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
             child: const Text("Go to home"))
       ],
     );
+  }
+
+  void showInSnackBar(String message) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   void showOverlay(String message) {

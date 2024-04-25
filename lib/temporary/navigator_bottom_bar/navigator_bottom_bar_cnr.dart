@@ -3,12 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/strings.dart';
-import '../../student_app/app/views/home.dart';
-import '../../temporary/read_dir_data.dart';
+import '../student_app/app/views/home.dart';
+import '../read_dir_data.dart';
 import '../../test.dart';
+import '../../test_eight.dart';
 import '../../test_seven.dart';
 import '../../test_six.dart';
-import '../../temporary/share_multi.dart';
+import '../share_multi.dart';
 import '../../record_and_share.dart';
 import '../../video_player.dart';
 import '../camera/camera_view.dart';
@@ -16,9 +17,9 @@ import '../camera/camera_view.dart';
 class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   final List<Widget> pages = [
-    const MyAppVideos(),
+    HomePage(),
     MyAppTwo(),
-    const HomePage(),
+    MyAppTwo(),
     MyAppTwo(),
   ];
   int currentIndex = 0;
