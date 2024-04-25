@@ -16,7 +16,7 @@ import 'home_controller.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
-  HomeController homeController = Get.put(HomeController());
+  final studentListCnr = Get.put(StudentListController());
   @override
   Widget build(BuildContext context) {
     RxString searchString = "".obs;
