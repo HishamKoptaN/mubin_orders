@@ -1,32 +1,31 @@
 import 'package:get/get.dart';
 
-import '../core/student.dart';
+import '../core/order.dart';
 
 class StudentListController extends GetxController {
-  final RxList<Student> _students = <Student>[].obs;
+  final RxList<Order> _students = <Order>[].obs;
 
   int get count => _students.length;
 
-  List<Student> getStudents() {
+  List<Order> getStudents() {
     return _students;
   }
 
-  Student at(int index) {
+  Order at(int index) {
     return _students[index];
   }
 
-  void setStudents(List<Student> students) {
+  void setStudents(List<Order> students) {
     _students.assignAll(students);
     update();
   }
 
-  void addStudent(Student student) {
+  void addStudent(Order student) {
     _students.insert(0, student);
     update();
-
   }
 
-  void deleteStudent(Student student) {
+  void deleteStudent(Order student) {
     _students.remove(student);
     update();
   }

@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:share_plus/share_plus.dart';
-import 'temporary/student_app/app/controllers/student_list.dart';
-import 'temporary/student_app/app/core/student.dart';
-import 'temporary/student_app/app/db/students.dart';
-import 'temporary/student_app/app/global/util.dart';
-import 'temporary/student_app/app/global/values.dart';
+import 'student_app/app/controllers/student_list.dart';
+import 'student_app/app/core/order.dart';
+import 'student_app/app/db/orders.dart';
+import 'student_app/app/global/util.dart';
+import 'student_app/app/global/values.dart';
 
 class MyAppTwo extends StatelessWidget {
   @override
@@ -151,7 +151,7 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
         },
       );
     }
-    addorder(pickedFile!.path, '', '');
+    // addorder(pickedFile!.path, '', '');
   }
 
   Future<void> _shareVideo() async {
@@ -162,14 +162,27 @@ class _VideoRecorderPageState extends State<VideoRecorderPage> {
     }
   }
 
-  Future<void> addorder(String name, String course, String imagePath) async {
-    name = name.trim();
-    _clearImageCache();
-    Student student = Student(palaceController.text, name, name);
-    student.id = await StudentDatabase.instance.addStudent(student);
-    Get.find<StudentListController>().addStudent(student);
-    Get.back();
-    showSuccess(student.name);
+  Future<void> addorder(String place, String video, String firstImage,
+      String secondImage, double latitude, double longitude) async {
+    try {
+      place = place.trim();
+      _clearImageCache();
+      Order student = Order(
+        id: 4,
+        place: place,
+        video: video,
+        firstImage: firstImage,
+        secondImage: secondImage,
+        latitude: latitude,
+        longitude: longitude,
+      );
+      student.id = await OrderDatabase.instance.addOrder(student);
+      Get.find<StudentListController>().addStudent(student);
+      Get.back();
+      showSuccess(student.firstImage);
+    } catch (e) {
+      print(e);
+    }
   }
 
   void _clearImageCache() {

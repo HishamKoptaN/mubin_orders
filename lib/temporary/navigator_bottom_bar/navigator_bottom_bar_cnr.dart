@@ -3,7 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/strings.dart';
-import '../student_app/app/views/home.dart';
+import '../../student_app/app/views/home.dart';
+import '../../test_nine.dart';
 import '../read_dir_data.dart';
 import '../../test.dart';
 import '../../test_eight.dart';
@@ -18,8 +19,8 @@ class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   final List<Widget> pages = [
     HomePage(),
-    MyAppTwo(),
-    MyAppTwo(),
+    HomePageTwo(),
+    MyAppNine(),
     MyAppTwo(),
   ];
   int currentIndex = 0;
