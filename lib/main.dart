@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Student app',
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       home: HomePage(),
     );
   }

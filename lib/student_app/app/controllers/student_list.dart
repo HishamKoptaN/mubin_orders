@@ -29,4 +29,9 @@ class StudentListController extends GetxController {
     _students.remove(student);
     update();
   }
+
+  void updateStudent(int index, Order updatedStudent) {
+    _students[index] = updatedStudent;
+    update();
+  }
 }

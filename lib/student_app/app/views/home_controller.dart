@@ -12,65 +12,56 @@ import 'package:location/location.dart' as loc;
 import 'package:video_player/video_player.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:file_picker/file_picker.dart';
+import 'home.dart';
 
 class HomeController extends GetxController {
   final TextEditingController palaceController = TextEditingController();
   final loc.Location location = loc.Location();
   late VideoPlayerController? fileController;
-
-//  Get.find<StudentListController>().at(index),
   double latitude = 0;
   double longitude = 0;
-  // LatLng latitude = LatLng(latitude, longitude)
   late File? videoFile;
-  late File? imageFile;
+  late File? firstImageFile;
+  late File? secondImageFile;
+
   final RxString imagePath = "".obs;
-  final RxString course = "".obs;
   void defaultDialog() {
     Get.defaultDialog(
       title: "المكان",
-      backgroundColor: Colors.green,
-      titleStyle: const TextStyle(color: Colors.white),
-      middleTextStyle: const TextStyle(color: Colors.white),
       content: SizedBox(
-        width: 250,
-        height: 100,
+        width: 300,
+        height: 125,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Spacer(),
             Container(
-              width: 350,
-              height: 50,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                border: Border.all(),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(15),
-                ),
               ),
               child: TextField(
                 controller: palaceController,
                 style: const TextStyle(fontSize: 20, color: Colors.black),
               ),
             ),
-            const Spacer(
-              flex: 4,
-            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     Get.back();
                   },
-                  child: const Text(
-                    'الغاء',
-                    style: TextStyle(
-                        color: Color.fromARGB(255, 154, 22, 13), fontSize: 25),
+                  child: Container(
+                    width: 80,
+                    height: 40,
+                    color: Colors.green,
+                    child: const Center(
+                      child: Text(
+                        'الغاء',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                    ),
                   ),
                 ),
-                const Spacer(),
                 GestureDetector(
                   onTap: () async {
                     palaceController.text == ''
@@ -80,39 +71,110 @@ class HomeController extends GetxController {
                             recordVideo(),
                           };
                   },
-                  child: const Text(
-                    'تأكيد',
-                    style: TextStyle(color: Colors.black, fontSize: 25),
+                  child: Container(
+                    width: 100,
+                    height: 40,
+                    color: Colors.green,
+                    child: const Center(
+                      child: Text(
+                        'تأكيد',
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                    ),
                   ),
                 ),
-                const Spacer(),
               ],
             ),
-            const Spacer(),
           ],
         ),
       ),
     );
   }
 
-  Future<void> shareVideo(String path) async {
-    double latitude = 37.422;
-    double longitude = -122.084;
+  Future<void> recordVideo() async {
+    final pickedFile =
+        await ImagePicker().pickVideo(source: ImageSource.camera);
+    if (pickedFile != null) {
+      videoFile = File(pickedFile.path);
+      update();
+    }
+    await getCurrentLocation();
+    addorder(palaceController.text, pickedFile!.path, latitude, longitude);
+  }
 
-    // Prepare WhatsApp message
+  Future<void> addorder(
+      String place, String video, double latitude, double longitude) async {
+    try {
+      place = place.trim();
+      Order order = Order(
+        place: palaceController.text,
+        video: video,
+        firstImage: '',
+        secondImage: '',
+        latitude: latitude,
+        longitude: longitude,
+      );
+      order.id = await OrderDatabase.instance.addOrder(order);
+      order.latitude = latitude;
+      order.longitude = longitude;
+      Get.find<StudentListController>().addStudent(order);
+      Get.back();
+      update();
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  Future<void> shareOrderLocation(
+    String place,
+    String videoPath,
+    String firstImagePath,
+    String secondImagePath,
+    double latitude,
+    double longitude,
+  ) async {
+    var videoFile = File(videoPath);
+    var firstImageFile = File(firstImagePath);
+    var secondImageFile = File(secondImagePath);
+    String placeAddress = 'المكان : ${place.toString()}';
+    String location =
+        "Check location:\nhttps://maps.google.com/?q=$latitude,$longitude";
+    if (videoFile.existsSync() &&
+        firstImageFile.existsSync() &&
+        secondImageFile.existsSync()) {
+      await Share.shareFiles([videoPath, firstImagePath, secondImagePath],
+          text: 'المكان:$place'
+              '\n'
+              '$location');
+    } else {
+      print('One or more files do not exist!');
+    }
+  }
+
+  Future<void> shareVideo(
+    String place,
+    String videoPath,
+    String firstImagePath,
+    String secondImagePath,
+    double latitude,
+    double longitude,
+  ) async {
     String message =
         "Check out my location:\nhttps://maps.google.com/?q=$latitude,$longitude";
-    videoFile = File(path);
-    if (videoFile != null && videoFile!.existsSync()) {
+    var videoFile = File(videoPath);
+    var firstImageFile = File(firstImagePath);
+    var secondImageFile = File(secondImagePath);
+    String placeAddress = 'المكان : ${place.toString()}';
+    if (videoFile.existsSync() &&
+        firstImageFile.existsSync() &&
+        secondImageFile.existsSync()) {
       await Share.shareFiles(
-        [
-          videoFile!.path,
-          videoFile!.path,
-        ],
-        text: message,
+        [videoPath, firstImagePath, secondImagePath],
       );
     } else {
-      print('Video file does not exist!');
+      print('One or more files do not exist!');
     }
   }
 
@@ -156,69 +218,6 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> recordVideo() async {
-    final pickedFile =
-        await ImagePicker().pickVideo(source: ImageSource.camera);
-    if (pickedFile != null) {
-      videoFile = File(pickedFile.path);
-      update();
-    }
-    await getCurrentLocation();
-    addorder(palaceController.text, pickedFile!.path, latitude, longitude);
-  }
-
-  Future<void> addorder(
-      String place, String video, double latitude, double longitude) async {
-    try {
-      place = place.trim();
-      clearImageCache();
-      Order order = Order(
-        place: place,
-        video: video,
-        firstImage: '',
-        secondImage: '',
-        latitude: latitude,
-        longitude: longitude,
-      );
-      order.id = await OrderDatabase.instance.addOrder(order);
-      order.latitude = latitude;
-      order.longitude = longitude;
-      Get.find<StudentListController>().addStudent(order);
-      Get.back();
-      update();
-      showSuccess(order.firstImage);
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
-
-  void clearImageCache() {
-    if (imagePath.isEmpty) return;
-    File(imagePath.value).parent.delete(recursive: true);
-    imagePath.value = "";
-    imageFile = null;
-  }
-
-  void showSuccess(String name) {
-    // showCustomDialog(
-    //   "Success",
-    //   "$name added successfully!",
-    //   [
-    //     TextButton(
-    //       onPressed: () {
-    //         // Clear inputs
-    //         _clearInputs();
-    //         // Close this dialog
-    //         Get.back();
-    //       },
-    //       child: const Text("غلق"),
-    //     ),
-    //   ],
-    // );
-  }
-
   sendLocationOnWhatsApp() async {
     // Get current location
     double latitude = 37.422;
@@ -237,25 +236,11 @@ class HomeController extends GetxController {
     }
   }
 
-  void clearInputs() {
-    imagePath.value = "";
-    palaceController.clear();
-  }
-
   Future<void> pickImage() async {
     final pickedFile =
         await ImagePicker().pickImage(source: ImageSource.camera);
     if (pickedFile != null) {
-      imageFile = File(pickedFile.path);
-      update();
-    }
-  }
-
-  Future<void> pickNewVideo() async {
-    final pickedFile =
-        await ImagePicker().pickVideo(source: ImageSource.camera);
-    if (pickedFile != null) {
-      videoFile = File(pickedFile.path);
+      firstImageFile = File(pickedFile.path);
       update();
     }
   }
@@ -280,12 +265,22 @@ class HomeController extends GetxController {
         longitude: longitude,
       );
       await OrderDatabaseTwo.instance.updateOrder(updatedStudent);
-      Get.back();
+      Get.to(const HomePage());
       update();
     } catch (e) {
       if (kDebugMode) {
         print(e);
       }
+    }
+  }
+
+  Future<void> pickNewVideo() async {
+    Get.off(const HomePage());
+    final pickedFile =
+        await ImagePicker().pickVideo(source: ImageSource.camera);
+    if (pickedFile != null) {
+      videoFile = File(pickedFile.path);
+      update();
     }
   }
 
@@ -302,7 +297,7 @@ class HomeController extends GetxController {
       Student updatedStudent = Student(
         id: id,
         place: place,
-        firstImage: imageFile!.path,
+        firstImage: firstImageFile!.path,
         secondImage: secondImage,
         video: video,
         latitude: latitude,
@@ -331,7 +326,7 @@ class HomeController extends GetxController {
         id: id,
         place: place,
         firstImage: firstImage,
-        secondImage: imageFile!.path,
+        secondImage: firstImageFile!.path,
         video: video,
         latitude: latitude,
         longitude: longitude,
@@ -343,5 +338,91 @@ class HomeController extends GetxController {
         print(e);
       }
     }
+  }
+
+  void clearInputs() {}
+
+  void clearImageCache() {
+    // if (imagePath.isEmpty) return;
+    // File(imagePath.value).parent.delete(recursive: true);
+    // imagePath.value = "";
+    palaceController.clear();
+    // firstImageFile = null;
+  }
+
+  void showDeleteConfirmation(Order student) {
+    showCustomDialog(
+      "",
+      "              هل انت متأكد من مسح الفيديو ؟",
+      [
+        TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: const MyText(
+                fieldName: 'الغاء', fontSize: 20, color: Colors.black)),
+        TextButton(
+          onPressed: () async {
+            // Close dialog
+            Get.back();
+
+            // Check if student has an id
+            if (student.id == null) {
+              showDeleteError();
+              return;
+            }
+            // Delete student from database
+            await OrderDatabase.instance.deleteOrder(student);
+            // Delete student from list
+            Get.find<StudentListController>().deleteStudent(student);
+            // Delete student image
+            await File("${Values.appDirectory!.path}/${student.video}")
+                .delete();
+          },
+          child:
+              const MyText(fieldName: 'مسح', fontSize: 20, color: Colors.black),
+        ),
+      ],
+    );
+  }
+
+  void showDeleteError() {
+    showCustomDialog(
+      "خطأ",
+      'حدث خطأ اثناء مسح الفيديو',
+      [
+        TextButton(
+          style: TextButton.styleFrom(
+              foregroundColor: Get.theme.colorScheme.onErrorContainer),
+          onPressed: () {
+            Get.back();
+          },
+          child:
+              const MyText(fieldName: 'اوك', fontSize: 20, color: Colors.black),
+        ),
+      ],
+    );
+  }
+}
+
+class MyText extends StatelessWidget {
+  const MyText({
+    super.key,
+    required this.fieldName,
+    required this.fontSize,
+    required this.color,
+  });
+
+  final double fontSize;
+  final String fieldName;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      fieldName,
+      style: TextStyle(
+          fontSize: fontSize, fontWeight: FontWeight.bold, color: color),
+    );
   }
 }

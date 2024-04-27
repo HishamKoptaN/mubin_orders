@@ -3,16 +3,13 @@ import 'package:docs_orders/helpers/constants.dart';
 import 'package:docs_orders/helpers/media_query.dart';
 import 'package:dough/dough.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 import '../../../test_one.dart';
 import '../db/orders.dart';
 import '../views/home_controller.dart';
 import 'order.dart';
-import 'package:share_plus/share_plus.dart';
 
 late VideoPlayerController? fileController;
 late OrderDatabase dataCnr;
@@ -28,7 +25,8 @@ class StudentCard extends StatelessWidget {
 
   final Order student;
   final Function(Order) onDelete;
-  late File? _videoFile;
+  late File? videoFile;
+
   final controller;
   @override
   Widget build(BuildContext context) {
@@ -66,39 +64,38 @@ class StudentCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: context.screenWidth * 28,
-                            height: context.screenHeight * 20,
+                            width: context.screenWidth * 35,
+                            height: context.screenHeight * 26,
                             child: VideoScreen(
                               videoPath: student.video,
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () async {
-                              await cnr.replaceViedo(
-                                  student.id,
-                                  student.place,
-                                  student.firstImage,
-                                  student.secondImage,
-                                  student.video,
-                                  student.latitude,
-                                  student.latitude);
-                            },
-                            child: Icon(
-                              Icons.swap_horiz,
-                              size: context.screenSize * 0.15,
-                            ),
-                          ),
+                          // GestureDetector(
+                          //   onTap: () async {
+                          //     await cnr.replaceViedo(
+                          //         student.id,
+                          //         student.place,
+                          //         student.firstImage,
+                          //         student.secondImage,
+                          //         student.video,
+                          //         student.latitude,
+                          //         student.latitude);
+                          //   },
+                          //   child: Icon(
+                          //     Icons.swap_horiz,
+                          //     size: context.screenSize * 0.15,
+                          //   ),
+                          // ),
                         ],
                       ),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: context.screenWidth * 28,
-                            height: context.screenHeight * 20,
+                            width: context.screenWidth * 25,
+                            height: context.screenHeight * 19,
                             child: student.firstImage == ''
                                 ? IconButton(
                                     icon: Icon(
@@ -134,10 +131,14 @@ class StudentCard extends StatelessWidget {
                                   student.latitude,
                                   student.latitude);
                             },
-                            child: Icon(
-                              Icons.swap_horiz,
-                              size: context.screenSize * 0.15,
-                            ),
+                            child: student.firstImage.isEmpty
+                                ? SizedBox(
+                                    height: context.screenHeight * 4,
+                                  )
+                                : Icon(
+                                    Icons.swap_horiz,
+                                    size: context.screenSize * 0.15,
+                                  ),
                           ),
                         ],
                       ),
@@ -145,8 +146,8 @@ class StudentCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           SizedBox(
-                            width: context.screenWidth * 28,
-                            height: context.screenHeight * 20,
+                            width: context.screenWidth * 25,
+                            height: context.screenHeight * 19,
                             child: student.secondImage == ''
                                 ? IconButton(
                                     icon: Icon(
@@ -182,10 +183,14 @@ class StudentCard extends StatelessWidget {
                                   student.latitude,
                                   student.latitude);
                             },
-                            child: Icon(
-                              Icons.swap_horiz,
-                              size: context.screenSize * 0.15,
-                            ),
+                            child: student.secondImage.isEmpty
+                                ? SizedBox(
+                                    height: context.screenHeight * 4,
+                                  )
+                                : Icon(
+                                    Icons.swap_horiz,
+                                    size: context.screenSize * 0.15,
+                                  ),
                           ),
                         ],
                       ),
@@ -200,43 +205,91 @@ class StudentCard extends StatelessWidget {
                         },
                         child: Container(
                           height: context.screenHeight * 5,
-                          width: context.screenWidth * 20,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 162, 29, 29),
-                            border: Border.all(),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
+                          width: context.screenWidth * 15,
+                          decoration: const BoxDecoration(
+                            color: Colors.green,
                           ),
                           child: Center(
-                            child: MyText(
-                              fieldName: "مسح",
-                              fontSize: context.screenSize * sixFont,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Icon(
+                                  Icons.delete_forever,
+                                  size: context.screenSize * 0.10,
+                                  color: const Color.fromARGB(255, 116, 12, 5),
+                                ),
+                              ],
                             ),
                           ),
                         ),
                       ),
                       GestureDetector(
                         onTap: () async {
-                          // await _shareVideoAndImagesAndLocation(
+                          // await shareVideoAndImagesAndLocation(
                           //     student.video, student.video, student.video);
-                          // await _shareVideo(student.video);
+                          await cnr.shareOrderLocation(
+                              student.place,
+                              student.video,
+                              student.firstImage,
+                              student.secondImage,
+                              student.latitude,
+                              student.longitude);
                         },
                         child: Container(
                           height: context.screenHeight * 5,
                           width: context.screenWidth * 20,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 39, 124, 27),
+                            color: Colors.green,
                             border: Border.all(color: Colors.grey),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
                           ),
-                          child: Center(
-                            child: MyText(
-                              fieldName: 'مشاركة',
-                              fontSize: context.screenSize * sixFont,
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.share,
+                                size: context.screenSize * 0.10,
+                                color: Colors.white,
+                              ),
+                              MyText(
+                                fieldName: 'الموقع',
+                                fontSize: context.screenSize * fourFont,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          // await shareVideoAndImagesAndLocation(
+                          //     student.video, student.video, student.video);
+                          await cnr.shareVideo(
+                              student.place,
+                              student.video,
+                              student.firstImage,
+                              student.secondImage,
+                              student.latitude,
+                              student.longitude);
+                        },
+                        child: Container(
+                          height: context.screenHeight * 5,
+                          width: context.screenWidth * 25,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            border: Border.all(color: Colors.grey),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Icon(
+                                Icons.share,
+                                size: context.screenSize * 0.10,
+                                color: Colors.white,
+                              ),
+                              MyText(
+                                fieldName: 'مشاركة',
+                                fontSize: context.screenSize * fourFont,
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -289,26 +342,6 @@ class StudentCard extends StatelessWidget {
 //       }
 //     }
 //   }
-  Future<void> _shareVideo(String path) async {
-    double latitude = 37.422;
-    double longitude = -122.084;
-
-    // Prepare WhatsApp message
-    String message =
-        "Check out my location:\nhttps://maps.google.com/?q=$latitude,$longitude";
-    _videoFile = File(path);
-    if (_videoFile != null && _videoFile!.existsSync()) {
-      await Share.shareFiles(
-        [
-          _videoFile!.path,
-          _videoFile!.path,
-        ],
-        text: message,
-      );
-    } else {
-      print('Video file does not exist!');
-    }
-  }
 
   setVedioFile(String path) async {
     final file = File(path);
@@ -375,7 +408,7 @@ class MyText extends StatelessWidget {
     return Text(
       fieldName,
       style: TextStyle(
-          fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.black),
+          fontSize: fontSize, fontWeight: FontWeight.bold, color: Colors.white),
     );
   }
 }

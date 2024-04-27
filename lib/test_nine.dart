@@ -25,7 +25,6 @@ class MyAppNine extends StatelessWidget {
     // Get current location
     double latitude = 37.422;
     double longitude = -122.084;
-
     // Prepare WhatsApp message
     String message =
         "Check out my location:\nhttps://maps.google.com/?q=$latitude,$longitude";

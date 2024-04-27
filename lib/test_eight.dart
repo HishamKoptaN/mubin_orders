@@ -190,7 +190,7 @@ class HomePageTwo extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          child: const Text("اوك"),
+          child: const MyText(fieldName: 'اوك', fontSize: 15),
         ),
       ],
     );
