@@ -10,10 +10,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:video_player/video_player.dart';
-import 'temporary/test_one.dart';
-import 'package:share_plus/share_plus.dart';
 
 class HomePageTwo extends StatelessWidget {
   HomePageTwo({super.key});

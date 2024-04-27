@@ -1,27 +1,18 @@
-// ignore_for_file: unused_import
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../helpers/strings.dart';
-import '../../student_app/app/views/home.dart';
-import '../../test_nine.dart';
-import '../read_dir_data.dart';
-import '../../test.dart';
-import '../../test_eight.dart';
-import '../../test_seven.dart';
-import '../../test_six.dart';
-import '../share_multi.dart';
-import '../../record_and_share.dart';
-import '../../video_player.dart';
-import '../camera/camera_view.dart';
+import '../record_and_share.dart';
+import '../../app/views/home.dart';
+import '../test_nine.dart';
+import '../test_eight.dart';
 
 class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   final List<Widget> pages = [
     HomePage(),
     HomePageTwo(),
-    MyAppNine(),
-    MyAppTwo(),
+    HomePageTwo(),
+    HomePageTwo(),
   ];
   int currentIndex = 0;
   void setCurrentIndex(int index) async {

@@ -1,11 +1,11 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'student_app/app/views/home.dart';
+import 'app/views/home.dart';
 import 'temporary/navigator_bottom_bar/navigator_bottom_bar_view.dart';
-import 'student_app/app/controllers/student_list.dart';
-import 'student_app/app/theme/theme.dart';
-import 'test_eight.dart';
+import 'app/controllers/student_list.dart';
+import 'app/theme/theme.dart';
+import 'temporary/test_eight.dart';
 
 List<CameraDescription> cameras = [];
 

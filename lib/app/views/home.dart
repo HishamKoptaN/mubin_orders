@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_grid_view.dart';
 import 'package:staggered_grid_view_flutter/widgets/staggered_tile.dart';
-import '../../../helpers/constants.dart';
+import '../../helpers/constants.dart';
 import '../controllers/student_list.dart';
 import '../core/card.dart';
 import '../db/orders.dart';

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../test_eight.dart';
+import '../../test_eight.dart';
 import '../controllers/student_list.dart';
 import '../core/order.dart';
 import '../db/orders.dart';
@@ -18,8 +18,10 @@ class HomeController extends GetxController {
   final TextEditingController palaceController = TextEditingController();
   final loc.Location location = loc.Location();
   late VideoPlayerController? fileController;
+
   double latitude = 0;
   double longitude = 0;
+  // LatLng latitude = LatLng(latitude, longitude)
   late File? videoFile;
   late File? firstImageFile;
   late File? secondImageFile;
