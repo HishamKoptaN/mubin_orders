@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mbean_talabat/app/home/home_view.dart';
 import 'package:mbean_talabat/app/login/login_view.dart';
 import 'app/admin_navigator_bottom_bar/navigator_bottom_bar_view.dart';
 import 'firebase_options.dart';

@@ -14,7 +14,8 @@
     "login": "Login",
     "email_hint": "Email",
     "password_hint": "Password",
-    "remember_me": "Remember me"
+    "remember_me": "Remember me",
+    "log_out": "LogOut"
 
     
 }

@@ -66,7 +66,7 @@ class HomeView extends StatelessWidget {
                     return Center(
                       child: SizedBox(
                         width: context.screenWidth * 95,
-                        height: context.screenHeight * 79.5,
+                        height: context.screenHeight * 76,
                         child: ListView.builder(
                           itemCount: snapshot.data!.docs.length,
                           itemBuilder: (BuildContext context, int index) {

@@ -13,5 +13,7 @@
     "login": "دخول",
     "email_hint": "الايميل",
     "password_hint": "كلمة المرور ",
-    "remember_me": "تذكرني"
+    "remember_me": "تذكرني",
+    "log_out": "تسجيل خروج"
+
 }

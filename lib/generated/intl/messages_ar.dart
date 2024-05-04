@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ادخل رقم الطلب"),
         "home_title": MessageLookupByLibrary.simpleMessage("الرئيسيه"),
         "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل"),
+        "log_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "login": MessageLookupByLibrary.simpleMessage("دخول"),
         "login_text": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "order_id": MessageLookupByLibrary.simpleMessage("معرف الطلب"),

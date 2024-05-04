@@ -4,6 +4,7 @@ import 'package:mbean_talabat/global/media_query.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../../global/constants.dart';
 import '../../generated/l10n.dart';
+import '../drawer/my_drawer.dart';
 import 'navigator_bottom_bar_cnr.dart';
 
 class NavigateBarScreen extends StatefulWidget {
@@ -21,15 +22,6 @@ class _HomePageState extends State<NavigateBarScreen> {
         builder: (cnr) {
           return Scaffold(
             appBar: AppBar(
-              leading: GestureDetector(
-                child: IconButton(
-                  onPressed: () {
-                    cnr.logOut();
-                  },
-                  icon: const Icon(Icons.logout),
-                  iconSize: context.screenSize * 0.10,
-                ),
-              ),
               centerTitle: true,
               title: Text(
                 cnr.title,
@@ -39,16 +31,14 @@ class _HomePageState extends State<NavigateBarScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // Text(
-              //   cnr.title,
-              //   style: TextStyle(
-              //     color: Colors.black,
-              //     fontSize: context.screenSize * sevenFont,
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
             ),
-            body: SizedBox(child: cnr.pages[cnr.currentPagesIndex]),
+            drawer: const MyDrawer(),
+            body: Center(
+              child: SizedBox(
+                  height: context.screenHeight * 76,
+                  width: context.screenWidth * 95,
+                  child: cnr.pages[cnr.currentPagesIndex]),
+            ),
             bottomNavigationBar: Container(
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.grey),
@@ -80,7 +70,7 @@ class _HomePageState extends State<NavigateBarScreen> {
                       },
                       child: Icon(
                         Icons.home,
-                        size: context.screenSize * 0.10,
+                        size: context.screenSize * 0.13,
                         color: Colors.white,
                       ),
                     ),
@@ -103,7 +93,7 @@ class _HomePageState extends State<NavigateBarScreen> {
                       },
                       child: Icon(
                         Icons.add_circle,
-                        size: context.screenSize * 0.10,
+                        size: context.screenSize * 0.13,
                         color: Colors.white,
                       ),
                     ),

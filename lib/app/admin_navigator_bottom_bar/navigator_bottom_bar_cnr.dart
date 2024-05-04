@@ -2,11 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../add_data/controllers/admin_products.controller.dart';
 import '../add_data/views/admin_products.view.dart';
 import '../home/home_view.dart';
-import '../login/login_view.dart';
 import '../../generated/l10n.dart';
 
 class NavigatorBottomBarCnr extends GetxController {
@@ -58,13 +56,5 @@ class NavigatorBottomBarCnr extends GetxController {
     }
     currentPagesIndex = index;
     update();
-  }
-
-  Future<void> logOut() async {
-    await FirebaseAuth.instance.signOut();
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('email');
-    prefs.remove('password');
-    Get.to(const LoginView());
   }
 }

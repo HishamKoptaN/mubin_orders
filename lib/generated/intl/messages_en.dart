@@ -30,6 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_order_id": MessageLookupByLibrary.simpleMessage("Add order ID"),
         "home_title": MessageLookupByLibrary.simpleMessage("Home"),
         "loading": MessageLookupByLibrary.simpleMessage("loading....."),
+        "log_out": MessageLookupByLibrary.simpleMessage("LogOut"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "login_text": MessageLookupByLibrary.simpleMessage("Login"),
         "order_id": MessageLookupByLibrary.simpleMessage("Order Id"),

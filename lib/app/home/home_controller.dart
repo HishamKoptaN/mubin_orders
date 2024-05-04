@@ -2,7 +2,10 @@ import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../login/login_view.dart';
 
 class HomeController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -65,5 +68,13 @@ class HomeController extends GetxController {
     } else {
       throw 'Could not launch $whatsappUrl';
     }
+  }
+
+  Future<void> logOut() async {
+    await FirebaseAuth.instance.signOut();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('email');
+    prefs.remove('password');
+    Get.to(const LoginView());
   }
 }
