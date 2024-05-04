@@ -1,0 +1,20 @@
+{
+    "home_title": "Home",
+    "add_order": "Add order",
+    "order_place": "Place",
+    "order_id": "Order Id",
+    "enter_order_id": "Add order ID",
+    "place_hint": "Village/mosque/school",
+    "add_video": "Add video",
+    "add_picure": "Add picure",
+    "add": "Add",
+    "loading": "loading.....",
+
+    "login_text": "Login",
+    "login": "Login",
+    "email_hint": "Email",
+    "password_hint": "Password",
+    "remember_me": "Remember me"
+
+    
+}

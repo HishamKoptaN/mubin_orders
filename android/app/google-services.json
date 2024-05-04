@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "621278659042",
+    "project_id": "document-orders",
+    "storage_bucket": "document-orders.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621278659042:android:1004d3dc38b371d19df9bb",
+        "android_client_info": {
+          "package_name": "com.example.docs_orders"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBGCle-kLEq81WIg57t1KXT7MO8F4NrHMs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
