@@ -1,5 +1,6 @@
 package com.example.docs_orders
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity: FlutterActivity()
+class MainActivity: FlutterFragmentActivity() {
+}

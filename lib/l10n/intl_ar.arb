@@ -1,0 +1,15 @@
+{
+    "home_title": "المدير",
+    "order_place": "المكان",
+    "order_id": "معرف الطلب",
+    "kinia_name": "كينيا",
+    "smoal_name": "الصومال",
+    "tanzania": "تنزانيا",
+    "login_text": "تسجيل الدخول",
+    "login": "دخول",
+    "email_hint": "الايميل",
+    "password_hint": "كلمة المرور ",
+    "remember_me": "تذكرني",
+    "log_out": "تسجيل خروج"
+
+}
