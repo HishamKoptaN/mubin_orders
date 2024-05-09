@@ -10,7 +10,6 @@ import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 String languageCode = 'en';
 List<CameraDescription> cameras = [];
 Future<void> main() async {

@@ -10,7 +10,7 @@
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <application
-        android:label="Mbean Orders"
+        android:label="Mubin Orders"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBiQcIR9xJnzfl90_LpzJgZHneD5Ba9f6k"/>
