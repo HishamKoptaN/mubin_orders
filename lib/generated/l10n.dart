@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Kinia`
+  /// `Kenya`
   String get kinia_name {
     return Intl.message(
-      'Kinia',
+      'Kenya',
       name: 'kinia_name',
       desc: '',
       args: [],

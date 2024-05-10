@@ -10,18 +10,20 @@ import 'package:share_plus/share_plus.dart';
 import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../login/login_view.dart';
 
 class HomeController extends GetxController {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  late CachedVideoPlayerPlusController controller;
+  late CachedVideoPlayerPlusController videoController;
+  late CachedVideoPlayerPlusController videoPlayerController;
+
   bool isLoading = false;
   String videoUrl = '';
   int currentIndex = 1;
   String targetBranch = 'somal_orders';
   String currentLocale = '';
   bool isAraby = false;
+  bool iSvideoPlaying = false;
   @override
   void onInit() {
     super.onInit();
@@ -157,7 +159,7 @@ class HomeController extends GetxController {
   }
 
   Future<void> initVideo(videoUrl) async {
-    controller = CachedVideoPlayerPlusController.networkUrl(
+    videoController = CachedVideoPlayerPlusController.networkUrl(
       Uri.parse(
         videoUrl,
       ),
@@ -167,12 +169,94 @@ class HomeController extends GetxController {
       invalidateCacheIfOlderThan: const Duration(days: 2),
     )..initialize().then(
         (value) async {
-          await controller.setLooping(true);
+          await videoController.setLooping(false);
         },
       );
   }
 
+  Future<void> displayVideo(String urlVideo) async {
+    videoPlayerController = CachedVideoPlayerPlusController.networkUrl(
+      Uri.parse(
+        urlVideo,
+      ),
+      httpHeaders: {
+        'Connection': 'keep-alive',
+      },
+      invalidateCacheIfOlderThan: const Duration(days: 3),
+    )..initialize().then(
+        (value) async {
+          await videoPlayerController.setLooping(true);
+          await videoPlayerController.play();
+          iSvideoPlaying == true;
+        },
+      );
+  }
+
+  Future<void> playVideo() async {
+    await videoPlayerController.play();
+    iSvideoPlaying == true;
+    update();
+  }
+
+  Future<void> pauseVideo() async {
+    await videoPlayerController.pause();
+    iSvideoPlaying == false;
+    update();
+  }
+
+  Future<void> replayVideo() async {
+    await videoPlayerController.seekTo(Duration.zero);
+    await videoPlayerController.play();
+  }
+
   Future<void> shareOrder(collection, orderId, location) async {
+    showCustomSnackBar(
+        title: 'مشاركة الطلب',
+        message: 'جاري مشاركة الطلب',
+        duration: const Duration(seconds: 2));
+    Reference videoRef;
+    Reference firstImageRef;
+    Reference secondImageRef;
+    try {
+      final storageRef = FirebaseStorage.instance.ref();
+      videoRef = storageRef.child("$collection/$orderId/video.mp4");
+      firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
+      secondImageRef =
+          storageRef.child("$collection/$orderId/second_image.jpg");
+      final dir = await getApplicationDocumentsDirectory();
+      final videoFile = File('${dir.path}/${videoRef.name}.mp4');
+      final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
+      final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
+      await videoRef.writeToFile(videoFile);
+      await firstImageRef.writeToFile(firstImagFile);
+      await secondImageRef.writeToFile(secondImageFile);
+
+      await Share.shareFiles(
+        [
+          videoFile.path,
+          firstImagFile.path,
+          secondImageFile.path,
+        ],
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error occurred while downloading file: $e');
+      }
+    }
+  }
+
+  Future<void> shareLocationOnWhatsApp(
+      String orderPlace, GeoPoint location) async {
+    double latitude = location.latitude;
+    double longitude = location.longitude;
+    String locationUrl = "https://maps.google.com/?q=$latitude,$longitude";
+    String combinedMessage = "المكان :$orderPlace\n${locationUrl}";
+    await Share.share(
+      combinedMessage,
+    );
+  }
+
+  Future<void> shareOrderTwo(collection, orderId, location) async {
     showCustomSnackBar(
         title: 'مشاركة الطلب',
         message: 'جاري مشاركة الطلب',
@@ -197,9 +281,9 @@ class HomeController extends GetxController {
           "Check out place location:\nhttps://maps.google.com/?q=$location";
       await Share.shareFiles(
         [
-          videoFile.path,
-          firstImagFile.path,
-          secondImageFile.path,
+          // videoFile.path,
+          // firstImagFile.path,
+          // secondImageFile.path,
         ],
         text: orderLocation,
       );
@@ -230,30 +314,6 @@ class HomeController extends GetxController {
     );
   }
 
-  Future<void> shareVideo(
-    String place,
-    String videoPath,
-    String firstImagePath,
-    String secondImagePath,
-    double orderLocation,
-  ) async {
-    String message =
-        "Check out my location:\nhttps://maps.google.com/?q=$orderLocation";
-    var videoFile = File(videoPath);
-    var firstImageFile = File(firstImagePath);
-    var secondImageFile = File(secondImagePath);
-    String placeAddress = 'المكان : ${place.toString()}';
-    if (videoFile.existsSync() &&
-        firstImageFile.existsSync() &&
-        secondImageFile.existsSync()) {
-      await Share.shareFiles(
-        [videoPath, firstImagePath, secondImagePath],
-      );
-    } else {
-      print('One or more files do not exist!');
-    }
-  }
-
   void deleteFile(String path) async {
     try {
       Reference storageRef = FirebaseStorage.instance.ref().child(path);
@@ -279,6 +339,7 @@ class HomeController extends GetxController {
     prefs.remove('password');
     Get.off(const LoginView());
   }
+
   // Future<void> shareVideo(
   //   String place,
   //   String videoPath,

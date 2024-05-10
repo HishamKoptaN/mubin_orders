@@ -138,7 +138,7 @@ class _HomePageState extends State<HomePage> {
               value: _selectedLanguage,
               items: const [
                 DropdownMenuItem(value: 'en', child: Text('English')),
-                DropdownMenuItem(child: Text('العربية'), value: 'ar'),
+                DropdownMenuItem(value: 'ar', child: Text('العربية')),
               ],
               onChanged: (value) {
                 setState(() {

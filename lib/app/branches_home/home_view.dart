@@ -122,6 +122,7 @@ class HomeView extends StatelessWidget {
                         StreamBuilder(
                           stream: cnr.firestore
                               .collection(cnr.targetBranch)
+                              .orderBy('order_id')
                               .snapshots(),
                           builder: (BuildContext context,
                               AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -227,51 +228,136 @@ class HomeView extends StatelessWidget {
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
-                                                        .spaceEvenly,
+                                                        .spaceBetween,
                                                 children: [
-                                                  Text(
-                                                    '${S.of(context).order_id}: ${document['order_id']}',
-                                                    style: Get
-                                                        .textTheme.titleLarge,
+                                                  SizedBox(
+                                                    width:
+                                                        context.screenWidth * 1,
                                                   ),
-                                                  Text(
-                                                    '${S.of(context).order_place}: ${document['place_name']}',
-                                                    style: Get
-                                                        .textTheme.titleLarge,
-                                                  ),
-                                                  GestureDetector(
-                                                    onTap: () async {
-                                                      await cnr.shareOrder(
-                                                          'somal_orders',
-                                                          proId,
-                                                          document[
-                                                              'order_location']);
-                                                    },
-                                                    child: Container(
-                                                      height:
-                                                          context.screenHeight *
-                                                              5,
-                                                      width:
-                                                          context.screenWidth *
-                                                              20,
-                                                      decoration: BoxDecoration(
-                                                        border: Border.all(
-                                                            color:
-                                                                Colors.green),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .all(
-                                                          Radius.circular(50),
+                                                  SizedBox(
+                                                    width: context.screenWidth *
+                                                        50,
+                                                    height:
+                                                        context.screenHeight *
+                                                            8,
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        MyText(
+                                                          fieldName:
+                                                              '${S.of(context).order_id}: ${document['order_id']}',
+                                                          fontSize: context
+                                                                  .screenSize *
+                                                              fourFont,
+                                                          color: Colors.black,
                                                         ),
-                                                      ),
-                                                      child: Icon(
-                                                        Icons.share,
-                                                        size:
-                                                            context.screenSize *
-                                                                0.10,
-                                                        color: Colors.green,
-                                                      ),
+                                                        MyText(
+                                                          fieldName:
+                                                              '${S.of(context).order_place}: ${document['place_name']}',
+                                                          fontSize: context
+                                                                  .screenSize *
+                                                              threeFont,
+                                                          color: Colors.black,
+                                                        ),
+                                                      ],
                                                     ),
+                                                  ),
+                                                  Spacer(),
+                                                  SizedBox(
+                                                    width: context.screenWidth *
+                                                        30,
+                                                    height:
+                                                        context.screenHeight *
+                                                            8,
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        GestureDetector(
+                                                          onTap: () async {
+                                                            await cnr.shareOrder(
+                                                                cnr
+                                                                    .targetBranch,
+                                                                proId,
+                                                                document[
+                                                                    'order_location']);
+                                                          },
+                                                          child: Container(
+                                                            height: context
+                                                                    .screenHeight *
+                                                                3.5,
+                                                            width: context
+                                                                    .screenWidth *
+                                                                10,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .green),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    50),
+                                                              ),
+                                                            ),
+                                                            child: Icon(
+                                                              Icons.share,
+                                                              size: context
+                                                                      .screenSize *
+                                                                  0.10,
+                                                              color:
+                                                                  Colors.green,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Spacer(),
+                                                        GestureDetector(
+                                                          onTap: () async {
+                                                            cnr.shareLocationOnWhatsApp(
+                                                                document[
+                                                                    'place_name'],
+                                                                document[
+                                                                    'order_location']);
+                                                          },
+                                                          child: Container(
+                                                            height: context
+                                                                    .screenHeight *
+                                                                3.5,
+                                                            width: context
+                                                                    .screenWidth *
+                                                                10,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              border: Border.all(
+                                                                  color: Colors
+                                                                      .green),
+                                                              borderRadius:
+                                                                  const BorderRadius
+                                                                      .all(
+                                                                Radius.circular(
+                                                                    50),
+                                                              ),
+                                                            ),
+                                                            child: Icon(
+                                                              Icons.location_on,
+                                                              size: context
+                                                                      .screenSize *
+                                                                  0.10,
+                                                              color:
+                                                                  Colors.green,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                        context.screenWidth * 2,
                                                   ),
                                                 ],
                                               ),
@@ -284,15 +370,128 @@ class HomeView extends StatelessWidget {
                                                     MainAxisAlignment
                                                         .spaceEvenly,
                                                 children: [
-                                                  SizedBox(
-                                                    width: context.screenWidth *
-                                                        35,
-                                                    height:
-                                                        context.screenHeight *
-                                                            17,
-                                                    child:
-                                                        CachedVideoPlayerPlus(
-                                                            cnr.controller),
+                                                  GestureDetector(
+                                                    onTap: () async {
+                                                      await cnr.displayVideo(
+                                                          await document[
+                                                              'order_video']);
+                                                      await Get.dialog(
+                                                        Dialog(
+                                                          child: SizedBox(
+                                                            width: context
+                                                                    .screenWidth *
+                                                                100,
+                                                            height: context
+                                                                    .screenHeight *
+                                                                45,
+                                                            child: Stack(
+                                                              children: [
+                                                                Center(
+                                                                  child:
+                                                                      AspectRatio(
+                                                                    aspectRatio: cnr
+                                                                        .videoPlayerController
+                                                                        .value
+                                                                        .aspectRatio,
+                                                                    child: CachedVideoPlayerPlus(
+                                                                        cnr.videoPlayerController),
+                                                                  ),
+                                                                ),
+                                                                Positioned(
+                                                                  bottom: context
+                                                                          .screenHeight *
+                                                                      0.5,
+                                                                  left: context
+                                                                          .screenWidth *
+                                                                      30,
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .spaceAround,
+                                                                    children: [
+                                                                      GestureDetector(
+                                                                        onTap:
+                                                                            () async {
+                                                                          cnr.iSvideoPlaying
+                                                                              ? await cnr.pauseVideo()
+                                                                              : await cnr.playVideo();
+                                                                        },
+                                                                        child: cnr.iSvideoPlaying
+                                                                            ? Icon(
+                                                                                Icons.stop,
+                                                                                size: context.screenSize * 0.12,
+                                                                              )
+                                                                            : Icon(
+                                                                                Icons.play_circle,
+                                                                                size: context.screenSize * 0.12,
+                                                                              ),
+                                                                      ),
+                                                                      // GestureDetector(
+                                                                      //   onTap:
+                                                                      //       () async {
+                                                                      //     await cnr
+                                                                      //         .pauseVideo();
+                                                                      //   },
+                                                                      //   child:
+                                                                      //       Icon(
+                                                                      //     Icons
+                                                                      //         .stop,
+                                                                      //     size: context.screenSize *
+                                                                      //         0.12,
+                                                                      //   ),
+                                                                      // ),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                // Positioned(
+                                                                //   bottom: context
+                                                                //           .screenHeight *
+                                                                //       0.5,
+                                                                //   left: context
+                                                                //           .screenWidth *
+                                                                //       35,
+                                                                //   right: context
+                                                                //           .screenWidth *
+                                                                //       38,
+                                                                //   child:
+                                                                //       GestureDetector(
+                                                                //     onTap:
+                                                                //         () async {
+                                                                //       await cnr
+                                                                //           .playOrPauseVideo();
+                                                                //     },
+                                                                //     child: cnr
+                                                                //             .videoPlayerController
+                                                                //             .value
+                                                                //             .isPlaying
+                                                                //         ? Icon(
+                                                                //             Icons.stop,
+                                                                //             size:
+                                                                //                 context.screenSize * 0.12,
+                                                                //           )
+                                                                //         : Icon(
+                                                                //             Icons.pause_circle_filled_sharp,
+                                                                //             size:
+                                                                //                 context.screenSize * 0.12,
+                                                                //           ),
+                                                                //   ),
+                                                                // ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: SizedBox(
+                                                      width:
+                                                          context.screenWidth *
+                                                              35,
+                                                      height:
+                                                          context.screenHeight *
+                                                              17,
+                                                      child: CachedVideoPlayerPlus(
+                                                          cnr.videoController),
+                                                    ),
                                                   ),
                                                   SizedBox(
                                                     width: context.screenWidth *
