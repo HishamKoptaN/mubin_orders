@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../login/login_view.dart';
+
 class MyDrawerController extends GetxController {
   var name = '';
   late double xAlign;
@@ -27,6 +28,7 @@ class MyDrawerController extends GetxController {
     loginColor = selectedColor;
     signInColor = normalColor;
   }
+
   setAlignment() {
     currentLocale = Intl.getCurrentLocale();
 
@@ -38,6 +40,7 @@ class MyDrawerController extends GetxController {
       isArabic = false;
     }
   }
+
   Future<void> getCurrentUserName() async {
     final currentUser = FirebaseAuth.instance.currentUser;
 
@@ -48,6 +51,7 @@ class MyDrawerController extends GetxController {
             .get();
     name = userSnapshot.data()?['name'];
   }
+
   Future<void> selectAr() async {
     changeLocale('ar');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -58,8 +62,8 @@ class MyDrawerController extends GetxController {
     xAlign = signInAlign;
     signInColor = selectedColor;
     loginColor = normalColor;
-    update();
   }
+
   Future<void> selectEn() async {
     changeLocale('en');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -71,13 +75,13 @@ class MyDrawerController extends GetxController {
     xAlign = loginAlign;
     loginColor = selectedColor;
     signInColor = normalColor;
-    update();
   }
+
   void changeLocale(String langCode) {
     locale = Locale(langCode);
     Get.updateLocale(locale);
-    update();
   }
+
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
     final SharedPreferences prefs = await SharedPreferences.getInstance();

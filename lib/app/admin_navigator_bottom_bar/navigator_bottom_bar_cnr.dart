@@ -1,60 +1,35 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-import '../add_data/controllers/admin_products.controller.dart';
+
+import '../../generated/l10n.dart';
 import '../add_data/views/admin_products.view.dart';
 import '../home/home_view.dart';
-import '../../generated/l10n.dart';
 
-class NavigatorBottomBarCnr extends GetxController {
-  String title = 'Home';
-  final addData = AdminProductsController();
-  @override
-  void onInit() async {
-    await getCurrentUser();
-    isArabic();
-    setCurrentIndex;
-    super.onInit();
+class NavigatorBottomBarCnr extends ChangeNotifier {
+  late String _title;
+  int _currentIndex = 0;
+  late List<Widget> _pages;
+
+  String get title => _title;
+  int get currentIndex => _currentIndex;
+  List<Widget> get pages => _pages;
+  NavigatorBottomBarCnr() {
+    _title = 'Home';
+    _pages = [
+      HomeView(),
+      const AdminProductsView(),
+    ];
   }
 
-  Future<void> isArabic() async {
-    if (Intl.getCurrentLocale() == 'ar') {
-      title = 'الرئيسيه';
-    } else {
-      title = 'Home';
-    }
-  }
-
-  Future<void> getCurrentUser() async {
-    final currentUserRole = FirebaseAuth.instance.currentUser?.email;
-    switch (currentUserRole) {
-      case 'somal@email.com':
-        addData.targetCollection = 'somal_orders';
-      case 'kinia@email.com':
-        addData.targetCollection = 'kinia_orders';
-      case 'tanzania@email.com':
-        addData.targetCollection = 'tanzania_orders';
-    }
-  }
-
-  final List<Widget> pages = [
-    HomeView(),
-    const AdminProductsView(),
-  ];
-
-  int currentPagesIndex = 0;
-  void setCurrentIndex(int index, context) async {
+  void setCurrentIndex(int index, BuildContext context) async {
     switch (index) {
       case 0:
-        currentPagesIndex = index;
-        title = S.of(context).home_title;
-
+        _title = S.of(context).home_title;
+        break;
       case 1:
-        currentPagesIndex = index;
-        title = S.of(context).add_order;
+        _title = S.of(context).add_order;
+        break;
     }
-    currentPagesIndex = index;
-    update();
+    _currentIndex = index;
+    notifyListeners();
   }
 }
