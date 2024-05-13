@@ -19,20 +19,27 @@ class HomeController extends GetxController {
 
   bool isLoading = false;
   String videoUrl = '';
-  int currentIndex = 1;
-  String targetBranch = 'somal_orders';
+  int currentIndex = 0;
+  String targetBranch = 'Kenya@email.com';
   String currentLocale = '';
   bool isAraby = false;
-  bool iSvideoPlaying = false;
+  RxBool iSvideoPlaying = false.obs;
+  bool isShowPlayerVideo = false;
+
   @override
   void onInit() {
     super.onInit();
     getCurrentLang();
   }
 
+  void showPlayerVideo() {
+    isShowPlayerVideo = true;
+    iSvideoPlaying.value = true;
+    videoPlayerController.play();
+  }
+
   getCurrentLang() {
     currentLocale = Intl.getCurrentLocale();
-
     if (currentLocale == 'ar') {
       isAraby = true;
     } else if (currentLocale == 'en') {
@@ -46,76 +53,86 @@ class HomeController extends GetxController {
 
   List branchArData = [
     {
-      'branch_collection': 'kinia_orders',
+      'branch_collection': 'kenya@email.com',
       'name': 'كينيا',
       'flag': 'KE',
     },
     {
-      'branch_collection': 'tanzania_orders',
+      'branch_collection': 'tanzania@email.com',
       'name': 'تنزانيا',
       'flag': 'TZ',
     },
     {
-      'branch_collection': 'malawi_orders',
+      'branch_collection': 'malawi@email.com',
       'name': 'مالاوي',
       'flag': 'MW',
     },
     {
-      'branch_collection': 'cameroun_orders',
+      'branch_collection': 'cameroun@email.com',
       'name': 'الكاميرون',
       'flag': 'CM',
     },
     {
-      'branch_collection': 'benin_orders',
+      'branch_collection': 'benin@email.com',
       'name': 'بنين',
       'flag': 'BJ',
     },
     {
-      'branch_collection': 'ghana_orders',
+      'branch_collection': 'ghana@email.com',
       'name': 'Ghana',
       'flag': 'GA',
     },
     {
-      'branch_collection': 'guinee_orders',
+      'branch_collection': 'guinee@email.com',
       'name': 'غينيا',
       'flag': 'GN',
+    },
+    {
+      'branch_collection': 'uganda@email.com',
+      'name': 'أوغندا',
+      'flag': 'UG',
     },
   ];
   List branchEnData = [
     {
-      'branch_collection': 'kinia_orders',
-      'name': 'Kinia',
+      'branch_collection': 'Kenya@email.com',
+      'name': 'Kenya',
       'flag': 'KE',
     },
     {
-      'branch_collection': 'tanzania_orders',
+      'branch_collection': 'tanzania@email.com',
       'name': 'Tanzania',
       'flag': 'TZ',
     },
     {
-      'branch_collection': 'malawi_orders',
+      'branch_collection': 'malawi@email.com',
       'name': 'Malawi',
       'flag': 'MW',
     },
     {
-      'branch_collection': 'cameroun_orders',
+      'branch_collection': 'cameroun@email.com',
       'name': 'Cameroun',
       'flag': 'CM',
     },
     {
-      'branch_collection': 'benin_orders',
+      'branch_collection': 'benin@email.com',
       'name': 'Bénin',
       'flag': 'BJ',
     },
     {
-      'branch_collection': 'ghana_orders',
+      'branch_collection': 'ghana@email.com',
       'name': 'Ghana',
       'flag': 'GH',
     },
     {
-      'branch_collection': 'guinee_orders',
+      'branch_collection': 'guinee@email.com',
       'name': 'Guinée',
       'flag': 'GN',
+    },
+    {
+      'branch_collection': 'uganda@email.com',
+      'name': 'Uganda',
+      'flag': 'UG',
     },
   ];
   Future<void> setCurrentIndex(int index) async {
@@ -134,16 +151,19 @@ class HomeController extends GetxController {
         targetBranch = branchArData[2]['branch_collection'];
         update();
       case 3:
-        targetBranch = branchArData[2]['branch_collection'];
+        targetBranch = branchArData[3]['branch_collection'];
         update();
       case 4:
-        targetBranch = branchArData[2]['branch_collection'];
+        targetBranch = branchArData[4]['branch_collection'];
         update();
       case 5:
-        targetBranch = branchArData[2]['branch_collection'];
+        targetBranch = branchArData[5]['branch_collection'];
         update();
       case 6:
-        targetBranch = branchArData[2]['branch_collection'];
+        targetBranch = branchArData[6]['branch_collection'];
+        update();
+      case 7:
+        targetBranch = branchArData[7]['branch_collection'];
         update();
     }
   }
@@ -166,7 +186,7 @@ class HomeController extends GetxController {
       httpHeaders: {
         'Connection': 'keep-alive',
       },
-      invalidateCacheIfOlderThan: const Duration(days: 2),
+      invalidateCacheIfOlderThan: const Duration(days: 10),
     )..initialize().then(
         (value) async {
           await videoController.setLooping(false);
@@ -174,42 +194,21 @@ class HomeController extends GetxController {
       );
   }
 
-  Future<void> displayVideo(String urlVideo) async {
-    videoPlayerController = CachedVideoPlayerPlusController.networkUrl(
-      Uri.parse(
-        urlVideo,
-      ),
-      httpHeaders: {
-        'Connection': 'keep-alive',
-      },
-      invalidateCacheIfOlderThan: const Duration(days: 3),
-    )..initialize().then(
-        (value) async {
-          await videoPlayerController.setLooping(true);
-          await videoPlayerController.play();
-          iSvideoPlaying == true;
-        },
-      );
-  }
-
   Future<void> playVideo() async {
     await videoPlayerController.play();
-    iSvideoPlaying == true;
-    update();
+    iSvideoPlaying = true.obs;
   }
 
   Future<void> pauseVideo() async {
     await videoPlayerController.pause();
-    iSvideoPlaying == false;
-    update();
+    iSvideoPlaying = false.obs;
   }
 
   Future<void> replayVideo() async {
-    await videoPlayerController.seekTo(Duration.zero);
     await videoPlayerController.play();
   }
 
-  Future<void> shareOrder(collection, orderId, location) async {
+  Future<void> shareOrder(collection, orderId) async {
     showCustomSnackBar(
         title: 'مشاركة الطلب',
         message: 'جاري مشاركة الطلب',

@@ -5,7 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'app/admin_navigator_bottom_bar/navigator_bottom_bar_view.dart';
-import 'app/branches_home/home_view.dart';
+import 'app/home/home_controller.dart';
+import 'app/home/home_view.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
@@ -27,6 +28,10 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   cameras = await availableCameras();
+  final displayVideoCOntrollerContrller = Get.put(HomeController());
+
+  displayVideoCOntrollerContrller.setCurrentIndex(0);
+
   runApp(const MyApp());
 }
 
@@ -74,90 +79,6 @@ class MyApp extends StatelessWidget {
             // loadSavedData();
             return snapshot.hasData ? HomeView() : HomeView();
           },
-        ),
-      ),
-    );
-  }
-}
-
-class LanguageManager {
-  static const String _prefKey = 'userLanguage';
-  static Future<void> saveLanguage(String languageCode) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_prefKey, languageCode);
-  }
-
-  static Future<String?> getSavedLanguage() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getString(_prefKey);
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late String _selectedLanguage;
-  @override
-  void initState() {
-    super.initState();
-    _loadSavedLanguage();
-  }
-
-  Future<void> _loadSavedLanguage() async {
-    String? savedLanguage = await LanguageManager.getSavedLanguage();
-    if (savedLanguage != null) {
-      setState(() {
-        _selectedLanguage = savedLanguage;
-      });
-    } else {
-      // Set default language
-      _selectedLanguage = 'en'; // English
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Language Demo'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text(
-              'Select Language:',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            DropdownButton<String>(
-              value: _selectedLanguage,
-              items: const [
-                DropdownMenuItem(value: 'en', child: Text('English')),
-                DropdownMenuItem(value: 'ar', child: Text('العربية')),
-              ],
-              onChanged: (value) {
-                setState(() {
-                  _selectedLanguage = value!;
-                });
-                LanguageManager.saveLanguage(value!);
-              },
-            ),
-            const SizedBox(height: 20),
-            Text(
-              'Selected Language: $_selectedLanguage',
-              style: const TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Welcome!',
-              style: TextStyle(fontSize: 24),
-            ),
-          ],
         ),
       ),
     );

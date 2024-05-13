@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../admin_navigator_bottom_bar/navigator_bottom_bar_view.dart';
-import '../branches_home/home_view.dart';
+import '../home/home_view.dart';
 import 'login_view.dart';
 import 'package:intl/intl.dart';
 

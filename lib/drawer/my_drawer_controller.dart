@@ -63,27 +63,20 @@ class MyDrawerController extends GetxController {
     xAlign = signInAlign;
     signInColor = selectedColor;
     loginColor = normalColor;
-    update();
   }
 
   Future<void> selectEn() async {
     changeLocale('en');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_language', 'en');
-    if (kDebugMode) {
-      print('en');
-      print('Current Lang is : $currentLocale');
-    }
     xAlign = loginAlign;
     loginColor = selectedColor;
     signInColor = normalColor;
-    update();
   }
 
   void changeLocale(String langCode) {
     locale = Locale(langCode);
     Get.updateLocale(locale);
-    update();
   }
 
   Future<void> logOut() async {

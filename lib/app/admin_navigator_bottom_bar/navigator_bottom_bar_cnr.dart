@@ -5,17 +5,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../helpers/strings.dart';
 import '../../test._two.dart';
 import '../../test_one.dart';
-import '../branches_home/home_view.dart';
+import '../home/home_controller.dart';
+import '../home/home_view.dart';
 import '../login/login_view.dart';
 
 class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   bool isAdmin = false;
   String currentUser = '';
-
+  final homeController = Get.put(HomeController());
   @override
   void onInit() async {
     super.onInit();
+    homeController.targetBranch = 'Kenya@email.com';
   }
 
   final List<Widget> pages = [

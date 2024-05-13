@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../mbean_temporary/global/colors.dart';
+import '../../../global/colors.dart';
 
 class AdminTextField extends StatelessWidget {
   const AdminTextField({
