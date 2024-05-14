@@ -14,7 +14,7 @@ import '../login/login_view.dart';
 
 class HomeController extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  String _targetCollection = 'kenya@email.com';
+  String _targetCollection = '';
   late CachedVideoPlayerPlusController videoController;
   late CachedVideoPlayerPlusController videoPlayerController;
   final currentUser = FirebaseAuth.instance.currentUser?.email;

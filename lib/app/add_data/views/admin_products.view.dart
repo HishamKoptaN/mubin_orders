@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mbean_talabat/global/constants.dart';
 import 'package:mbean_talabat/global/media_query.dart';
-import '../../../generated/l10n.dart';
 import '../controllers/admin_products.controller.dart';
 import 'widgets/add_new_product.widget.dart';
 

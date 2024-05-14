@@ -21,7 +21,6 @@ class AdminProductsController extends GetxController {
   final ImagePicker imagePicker = ImagePicker();
   final loc.Location location = loc.Location();
   String targetCollection = '';
-
   GeoPoint orderLocationGeoPoint = const GeoPoint(0, 0);
   TextEditingController orderIDController = TextEditingController();
   TextEditingController placeNameController = TextEditingController();

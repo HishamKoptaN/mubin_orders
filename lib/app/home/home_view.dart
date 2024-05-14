@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,9 +9,9 @@ import 'package:shimmer/shimmer.dart';
 import 'package:shimmer_effect/shimmer_effect.dart';
 import '../../generated/l10n.dart';
 import '../../global/constants.dart';
-import '../../test_two.dart';
-import '../video_player/video_player_view.dart';
 import '../drawer/my_drawer.dart';
+import '../video_player.dart';
+import 'video_widget.dart';
 import 'home_controller.dart';
 
 class HomeView extends StatelessWidget {
@@ -237,44 +236,19 @@ class OrdersView extends StatelessWidget {
                                         children: [
                                           GestureDetector(
                                             onTap: () async {
-                                              Stack(
-                                                children: [
-                                                  VideoPlayerView(
-                                                    document:
-                                                        document['order_video'],
-                                                  ),
-                                                  const Center(
-                                                      child: Icon(Icons.error)),
-                                                ],
+                                              Get.to(
+                                                VideoPlayerScreen(
+                                                  videoUrl:
+                                                      document['order_video'],
+                                                ),
                                               );
                                             },
                                             child: SizedBox(
                                               width: context.screenWidth * 35,
                                               height: context.screenHeight * 17,
-                                              child: Stack(
-                                                children: [
-                                                  VideoScreenTest(
-                                                    videoUrl:
-                                                        document['order_video'],
-                                                  ),
-
-                                                  // CachedVideoPlayerPlus(
-                                                  //     homeController
-                                                  //         .videoController),
-                                                  // Positioned(
-                                                  //   top: context.screenHeight *
-                                                  //       5,
-                                                  //   right: context.screenWidth *
-                                                  //       13,
-                                                  //   child: Icon(
-                                                  //     Icons
-                                                  //         .play_circle_fill_outlined,
-                                                  //     size: context.screenSize *
-                                                  //         0.14,
-                                                  //     color: Colors.red,
-                                                  //   ),
-                                                  // ),
-                                                ],
+                                              child: VideoWidget(
+                                                videoUrl:
+                                                    document['order_video'],
                                               ),
                                             ),
                                           ),

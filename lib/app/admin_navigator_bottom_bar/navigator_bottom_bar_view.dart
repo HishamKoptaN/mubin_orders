@@ -11,6 +11,8 @@ class NavigateBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Provider.of<HomeController>(context, listen: false);
+    homeController.getCurrentUser();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -40,77 +42,80 @@ class NavigateBarScreen extends StatelessWidget {
             ),
           ),
         ),
-        bottomNavigationBar: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(15),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(15),
+              ),
             ),
-          ),
-          child: Consumer<NavigatorBottomBarCnr>(
-            builder: (context, cnr, child) {
-              return SalomonBottomBar(
-                curve: Curves.slowMiddle,
-                currentIndex: cnr.currentIndex,
-                backgroundColor: Colors.white60,
-                onTap: (int index) async {
-                  cnr.setCurrentIndex(index, context);
-                },
-                items: [
-                  SalomonBottomBarItem(
-                    selectedColor: Colors.green,
-                    unselectedColor: Colors.grey,
-                    icon: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [
-                            Colors.black,
-                            Colors.black,
-                          ],
-                        ).createShader(bounds);
-                      },
-                      child: Icon(
-                        Icons.home,
-                        size: MediaQuery.of(context).size.width * 0.13,
-                        color: Colors.white,
+            child: Consumer<NavigatorBottomBarCnr>(
+              builder: (context, cnr, child) {
+                return SalomonBottomBar(
+                  curve: Curves.slowMiddle,
+                  currentIndex: cnr.currentIndex,
+                  backgroundColor: Colors.white60,
+                  onTap: (int index) async {
+                    cnr.setCurrentIndex(index, context);
+                  },
+                  items: [
+                    SalomonBottomBarItem(
+                      selectedColor: Colors.green,
+                      unselectedColor: Colors.grey,
+                      icon: ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.black,
+                              Colors.black,
+                            ],
+                          ).createShader(bounds);
+                        },
+                        child: Icon(
+                          Icons.home,
+                          size: MediaQuery.of(context).size.width * 0.13,
+                          color: Colors.white,
+                        ),
+                      ),
+                      title: Text(
+                        S.of(context).home_title,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                        ),
                       ),
                     ),
-                    title: Text(
-                      S.of(context).home_title,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
+                    SalomonBottomBarItem(
+                      selectedColor: Colors.green,
+                      unselectedColor: Colors.grey,
+                      icon: ShaderMask(
+                        shaderCallback: (Rect bounds) {
+                          return const LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.black, Colors.black],
+                          ).createShader(bounds);
+                        },
+                        child: Icon(
+                          Icons.add_circle,
+                          size: MediaQuery.of(context).size.width * 0.13,
+                          color: Colors.white,
+                        ),
+                      ),
+                      title: Text(
+                        S.of(context).add_order,
+                        style: TextStyle(
+                          fontSize: MediaQuery.of(context).size.width * 0.04,
+                        ),
                       ),
                     ),
-                  ),
-                  SalomonBottomBarItem(
-                    selectedColor: Colors.green,
-                    unselectedColor: Colors.grey,
-                    icon: ShaderMask(
-                      shaderCallback: (Rect bounds) {
-                        return const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Colors.black, Colors.black],
-                        ).createShader(bounds);
-                      },
-                      child: Icon(
-                        Icons.add_circle,
-                        size: MediaQuery.of(context).size.width * 0.13,
-                        color: Colors.white,
-                      ),
-                    ),
-                    title: Text(
-                      S.of(context).add_order,
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.04,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            },
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),

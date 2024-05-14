@@ -8,12 +8,12 @@ import 'package:provider/provider.dart';
 import 'app/admin_navigator_bottom_bar/navigator_bottom_bar_cnr.dart';
 import 'app/admin_navigator_bottom_bar/navigator_bottom_bar_view.dart';
 import 'app/home/home_controller.dart';
-import 'app/home/home_view.dart';
 import 'firebase_options.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+final homeController = HomeController();
 String languageCode = 'en';
 List<CameraDescription> cameras = [];
 Future<void> main() async {
@@ -51,7 +51,7 @@ Future<void> signIn(String email, String password) async {
       email: email,
       password: password,
     );
-
+    await homeController.getCurrentUser();
     Get.to(NavigateBarScreen());
   } on FirebaseAuthException {}
 }
