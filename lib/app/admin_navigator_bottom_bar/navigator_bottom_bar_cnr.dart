@@ -13,7 +13,7 @@ class NavigatorBottomBarCnr extends GetxController {
   String title = homeTitle;
   bool isAdmin = false;
   String currentUser = '';
-  final homeController = Get.put(HomeController());
+  final homeController = Get.put(HomeProvider());
   @override
   void onInit() async {
     super.onInit();
@@ -23,7 +23,7 @@ class NavigatorBottomBarCnr extends GetxController {
   final List<Widget> pages = [
     HomeView(),
     const LoginView(),
-    MyAppToggle(),
+    CachedVideosList(),
     CachedVideosList(),
   ];
 

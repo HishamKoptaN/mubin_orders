@@ -1,23 +1,33 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
+import 'package:mbean_admin/mbean_temporary/global/colors.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../image_view/image_view.dart';
 import '../login/login_view.dart';
+import '../video_player/video_player.dart';
 
-class HomeController extends GetxController {
+class HomeProvider extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  late CachedVideoPlayerPlusController videoController;
-  late CachedVideoPlayerPlusController videoPlayerController;
 
-  bool isLoading = false;
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  void setLoading(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   String videoUrl = '';
   int currentIndex = 0;
   String targetBranch = 'Kenya@email.com';
@@ -26,16 +36,14 @@ class HomeController extends GetxController {
   RxBool iSvideoPlaying = false.obs;
   bool isShowPlayerVideo = false;
 
-  @override
-  void onInit() {
-    super.onInit();
-    getCurrentLang();
+  Future<void> initailzeBracnch() async {
+    targetBranch = 'Kenya@email.com';
+    notifyListeners();
   }
 
   void showPlayerVideo() {
     isShowPlayerVideo = true;
     iSvideoPlaying.value = true;
-    videoPlayerController.play();
   }
 
   getCurrentLang() {
@@ -141,154 +149,138 @@ class HomeController extends GetxController {
     switch (index) {
       case 0:
         targetBranch = branchArData[0]['branch_collection'];
-        update();
+        notifyListeners();
 
       case 1:
         targetBranch = branchArData[1]['branch_collection'];
-        update();
+        notifyListeners();
 
       case 2:
         targetBranch = branchArData[2]['branch_collection'];
-        update();
+        notifyListeners();
       case 3:
         targetBranch = branchArData[3]['branch_collection'];
-        update();
+        notifyListeners();
       case 4:
         targetBranch = branchArData[4]['branch_collection'];
-        update();
+        notifyListeners();
       case 5:
         targetBranch = branchArData[5]['branch_collection'];
-        update();
+        notifyListeners();
       case 6:
         targetBranch = branchArData[6]['branch_collection'];
-        update();
+        notifyListeners();
       case 7:
         targetBranch = branchArData[7]['branch_collection'];
-        update();
+        notifyListeners();
     }
   }
 
-  void startLoading() {
-    isLoading = true;
-    update();
-  }
+  // Future<void> shareOrder(String collection,String orderId) async {
+  //   showCustomSnackBar(
+  //       title: 'مشاركة الطلب',
+  //       message: 'جاري مشاركة الطلب',
+  //       duration: const Duration(seconds: 2));
+  //   Reference videoRef;
+  //   Reference firstImageRef;
+  //   Reference secondImageRef;
+  //   try {
+  //     final storageRef = FirebaseStorage.instance.ref();
+  //     videoRef = storageRef.child("$collection/$orderId/video.mp4");
+  //     firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
+  //     secondImageRef =
+  //         storageRef.child("$collection/$orderId/second_image.jpg");
+  //     final dir = await getApplicationDocumentsDirectory();
+  //     final videoFile = File('${dir.path}/${videoRef.name}.mp4');
+  //     final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
+  //     final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
+  //     await videoRef.writeToFile(videoFile);
+  //     await firstImageRef.writeToFile(firstImagFile);
+  //     await secondImageRef.writeToFile(secondImageFile);
 
-  void stopLoading() {
-    isLoading = false;
-    // update();
-  }
-
-  Future<void> initVideo(videoUrl) async {
-    videoController = CachedVideoPlayerPlusController.networkUrl(
-      Uri.parse(
-        videoUrl,
-      ),
-      httpHeaders: {
-        'Connection': 'keep-alive',
-      },
-      invalidateCacheIfOlderThan: const Duration(days: 10),
-    )..initialize().then(
-        (value) async {
-          await videoController.setLooping(false);
-        },
+  //     await Share.shareFiles(
+  //       [
+  //         videoFile.path,
+  //         firstImagFile.path,
+  //         secondImageFile.path,
+  //       ],
+  //     );
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print('Error occurred while downloading file: $e');
+  //     }
+  //   }
+  // }
+  Future<void> shareLocationOnWhatsApp(
+      String orderPlace, GeoPoint location) async {
+    setLoading(true);
+    try {
+      double latitude = location.latitude;
+      double longitude = location.longitude;
+      String locationUrl = "https://maps.google.com/?q=$latitude,$longitude";
+      String combinedMessage = "المكان :$orderPlace\n$locationUrl";
+      await Share.share(
+        combinedMessage,
       );
+      setLoading(false);
+    } catch (e) {
+      setLoading(false);
+    }
   }
 
-  Future<void> playVideo() async {
-    await videoPlayerController.play();
-    iSvideoPlaying = true.obs;
-  }
-
-  Future<void> pauseVideo() async {
-    await videoPlayerController.pause();
-    iSvideoPlaying = false.obs;
-  }
-
-  Future<void> replayVideo() async {
-    await videoPlayerController.play();
-  }
-
-  Future<void> shareOrder(collection, orderId) async {
-    showCustomSnackBar(
-        title: 'مشاركة الطلب',
-        message: 'جاري مشاركة الطلب',
-        duration: const Duration(seconds: 2));
-    Reference videoRef;
-    Reference firstImageRef;
-    Reference secondImageRef;
+  Future<void> shareOrderTest() async {
+    setLoading(true);
     try {
       final storageRef = FirebaseStorage.instance.ref();
-      videoRef = storageRef.child("$collection/$orderId/video.mp4");
-      firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
-      secondImageRef =
-          storageRef.child("$collection/$orderId/second_image.jpg");
+      final videoRef = storageRef.child("kenya@email.com/1/video.mp4");
       final dir = await getApplicationDocumentsDirectory();
-      final videoFile = File('${dir.path}/${videoRef.name}.mp4');
-      final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
-      final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
+      final videoFile = File('${dir.path}/video.mp4');
       await videoRef.writeToFile(videoFile);
-      await firstImageRef.writeToFile(firstImagFile);
-      await secondImageRef.writeToFile(secondImageFile);
-
       await Share.shareFiles(
         [
           videoFile.path,
-          firstImagFile.path,
-          secondImageFile.path,
         ],
       );
+      setLoading(false);
     } catch (e) {
-      if (kDebugMode) {
-        print('Error occurred while downloading file: $e');
-      }
+      showCustomSnackBar(
+          message: '', duration: const Duration(seconds: 2), title: '$e');
+    } finally {
+      setLoading(false);
     }
   }
 
-  Future<void> shareLocationOnWhatsApp(
-      String orderPlace, GeoPoint location) async {
-    double latitude = location.latitude;
-    double longitude = location.longitude;
-    String locationUrl = "https://maps.google.com/?q=$latitude,$longitude";
-    String combinedMessage = "المكان :$orderPlace\n${locationUrl}";
-    await Share.share(
-      combinedMessage,
-    );
-  }
-
-  Future<void> shareOrderTwo(collection, orderId, location) async {
+  Future<void> shareOrderTwo(String orderId) async {
+    setLoading(true);
     showCustomSnackBar(
         title: 'مشاركة الطلب',
         message: 'جاري مشاركة الطلب',
         duration: const Duration(seconds: 2));
-    Reference videoRef;
-    Reference firstImageRef;
-    Reference secondImageRef;
     try {
       final storageRef = FirebaseStorage.instance.ref();
-      videoRef = storageRef.child("$collection/$orderId/video.mp4");
-      firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
-      secondImageRef =
-          storageRef.child("$collection/$orderId/second_image.jpg");
+      final videoRef = storageRef.child("$targetBranch/$orderId/video.mp4");
+      final firstImageRef =
+          storageRef.child("$targetBranch/$orderId/first_image.jpg");
+      final secondImageRef =
+          storageRef.child("$targetBranch/$orderId/second_image.jpg");
       final dir = await getApplicationDocumentsDirectory();
-      final videoFile = File('${dir.path}/${videoRef.name}.mp4');
-      final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
-      final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
+      final videoFile = File('${dir.path}/video.mp4');
+      final firstImageFile = File('${dir.path}/first_image.jpg');
+      final secondImageFile = File('${dir.path}/second_image.jpg');
       await videoRef.writeToFile(videoFile);
-      await firstImageRef.writeToFile(firstImagFile);
+      await firstImageRef.writeToFile(firstImageFile);
       await secondImageRef.writeToFile(secondImageFile);
-      String orderLocation =
-          "Check out place location:\nhttps://maps.google.com/?q=$location";
       await Share.shareFiles(
-        [
-          // videoFile.path,
-          // firstImagFile.path,
-          // secondImageFile.path,
-        ],
-        text: orderLocation,
+        [videoFile.path, firstImageFile.path, secondImageFile.path],
       );
+      if (kDebugMode) {
+        print('تمت مشاركة الطلب بنجاح');
+      }
+      setLoading(false);
     } catch (e) {
       if (kDebugMode) {
-        print('Error occurred while downloading file: $e');
+        setLoading(false);
+        print('Error occurred while downloading or sharing file: $e');
       }
     }
   }
@@ -339,30 +331,29 @@ class HomeController extends GetxController {
     Get.off(const LoginView());
   }
 
-  // Future<void> shareVideo(
-  //   String place,
-  //   String videoPath,
-  //   String firstImagePath,
-  //   String secondImagePath,
-  //   double orderLocation,
-  // ) async {
-  //   String message =
-  //       "Check out my location:\nhttps://maps.google.com/?q=$orderLocation";
-  //   var videoFile = File(videoPath);
-  //   var firstImageFile = File(firstImagePath);
-  //   var secondImageFile = File(secondImagePath);
-  //   String placeAddress = 'المكان : ${place.toString()}';
-  //   if (videoFile.existsSync() &&
-  //       firstImageFile.existsSync() &&
-  //       secondImageFile.existsSync()) {
-  //     await Share.shareFiles(
-  //       [videoPath, firstImagePath, secondImagePath],
-  //     );
-  //   } else {
-  //     print('One or more files do not exist!');
-  //   }
-  // }
+  goToIMageView(context, document) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ImageView(
+          document: document,
+        ),
+      ),
+    );
+  }
 
+  goToVideoView(context, document, width, height) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerScreen(
+          videoUrl: document,
+          width: width,
+          height: height,
+        ),
+      ),
+    );
+  }
   // void deleteFile(String path) async {
   //   try {
   //     Reference storageRef = FirebaseStorage.instance.ref().child(path);
@@ -376,4 +367,40 @@ class HomeController extends GetxController {
   // void main() {
   //   deleteFile('path/to/your/file.jpg');
   // }
+  void selectFirstImagePath() {
+    Dialogs.materialDialog(
+      context: Get.context!,
+      title: 'اختر مسار الملفات',
+      msg: 'حدد من اين تفضل اضافة الملفات ',
+      titleStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+      msgStyle: const TextStyle(
+        fontSize: 17,
+      ),
+      actions: [
+        IconsOutlineButton(
+          onPressed: () async {
+            Navigator.pop(Get.context!);
+          },
+          text: 'الكاميرا',
+          iconData: CupertinoIcons.camera_fill,
+          textStyle: const TextStyle(color: Colors.white),
+          color: AppColors.greenColor,
+          iconColor: Colors.white,
+        ),
+        IconsButton(
+          onPressed: () async {
+            Navigator.pop(Get.context!);
+          },
+          text: 'الاستديو',
+          iconData: CupertinoIcons.photo_on_rectangle,
+          color: AppColors.greenColor,
+          textStyle: const TextStyle(color: Colors.white),
+          iconColor: Colors.white,
+        ),
+      ],
+    );
+  }
 }

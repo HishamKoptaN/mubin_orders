@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mbean_admin/helpers/media_query.dart';
-import '../generated/l10n.dart';
-import '../helpers/constants.dart';
+import '../../generated/l10n.dart';
+import '../../helpers/constants.dart';
 import 'my_drawer_controller.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -27,44 +27,44 @@ class MyDrawer extends StatelessWidget {
                   SizedBox(
                     height: context.screenHeight * 10,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      cnr.logOut();
-                    },
-                    child: Row(
-                      mainAxisAlignment: cnr.isArabic
-                          ? MainAxisAlignment.start
-                          : MainAxisAlignment.end,
-                      children: [
-                        const Spacer(
-                          flex: 1,
-                        ),
-                        Directionality(
-                          textDirection: cnr.isArabic
-                              ? TextDirection.rtl
-                              : TextDirection.ltr,
-                          child: Icon(
-                            Icons.logout,
-                            size: context.screenSize * 0.13,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 1,
-                        ),
-                        Text(
-                          S.of(context).log_out,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: context.screenSize * sevenFont,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const Spacer(
-                          flex: 6,
-                        ),
-                      ],
-                    ),
-                  ),
+                  // GestureDetector(
+                  //   onTap: () {
+                  //     cnr.logOut();
+                  //   },
+                  //   child: Row(
+                  //     mainAxisAlignment: cnr.isArabic
+                  //         ? MainAxisAlignment.start
+                  //         : MainAxisAlignment.end,
+                  //     children: [
+                  //       const Spacer(
+                  //         flex: 1,
+                  //       ),
+                  //       Directionality(
+                  //         textDirection: cnr.isArabic
+                  //             ? TextDirection.rtl
+                  //             : TextDirection.ltr,
+                  //         child: Icon(
+                  //           Icons.logout,
+                  //           size: context.screenSize * 0.13,
+                  //         ),
+                  //       ),
+                  //       const Spacer(
+                  //         flex: 1,
+                  //       ),
+                  //       Text(
+                  //         S.of(context).log_out,
+                  //         style: TextStyle(
+                  //           color: Colors.black,
+                  //           fontSize: context.screenSize * sevenFont,
+                  //           fontWeight: FontWeight.bold,
+                  //         ),
+                  //       ),
+                  //       const Spacer(
+                  //         flex: 6,
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   SizedBox(
                     height: context.screenHeight * 5,
                   ),

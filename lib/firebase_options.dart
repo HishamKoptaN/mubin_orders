@@ -64,5 +64,14 @@ class DefaultFirebaseOptions {
     messagingSenderId: '621278659042',
     projectId: 'document-orders',
     storageBucket: 'document-orders.appspot.com',
+  ); static const FirebaseOptions windows = FirebaseOptions(
+   apiKey: "AIzaSyBxlKRpyj4N41Texyvm96mCaVEjPPL63Po",
+  authDomain: "document-orders.firebaseapp.com",
+  projectId: "document-orders",
+  storageBucket: "document-orders.appspot.com",
+  messagingSenderId: "621278659042",
+  appId: "1:621278659042:web:f367e7500c73a3f09df9bb",
+  measurementId: "G-043YE52BRM"
   );
 }
+ 

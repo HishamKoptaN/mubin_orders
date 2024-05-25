@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../app/login/login_view.dart';
+import '../login/login_view.dart';
 
 class MyDrawerController extends GetxController {
   var name = '';

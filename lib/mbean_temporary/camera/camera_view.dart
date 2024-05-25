@@ -1,93 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:get/get.dart';
-import 'package:mbean_admin/helpers/media_query.dart';
-import '../../helpers/constants.dart';
-import 'camera_controller.dart';
+import 'package:video_player/video_player.dart';
 
-class VideoRecordingScreen extends GetView<VideoRecordingController> {
-  const VideoRecordingScreen({super.key});
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Video Player',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: VideoPlayerScreen(),
+    );
+  }
+}
+
+class VideoPlayerScreen extends StatefulWidget {
+  @override
+  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+}
+
+class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+  late VideoPlayerController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // استبدل هذا الرابط برابط الفيديو الخاص بك
+    _controller = VideoPlayerController.network(
+        'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4')
+      ..initialize().then((_) {
+        setState(() {});
+        _controller.play();
+      });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constriants) {
-            return Stack(
-              children: [
-                GetBuilder<VideoRecordingController>(
-                  init: VideoRecordingController(),
-                  builder: (cnr) {
-                    if (cnr.isCameraInitialized) {
-                      return Stack(
-                        children: [
-                          Positioned.fill(
-                            top: 50,
-                            child: AspectRatio(
-                                aspectRatio: 50,
-                                child: CameraPreview(cnr.cameraController!)),
-                          ),
-                          Positioned(
-                            top: context.screenHeight * 10,
-                            right: context.screenWidth * 7,
-                            child: Text(
-                              '${cnr.recordingDuration} s',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: context.screenSize * sixFont,
-                              ),
-                            ),
-                          ),
-                          Positioned(
-                            bottom: 0,
-                            left: 0,
-                            right: 0,
-                            child: Container(
-                              height: context.screenHeight * 20,
-                              decoration: const BoxDecoration(
-                                color: Color.fromARGB(110, 0, 0, 0),
-                              ),
-                              child: Center(
-                                child: GestureDetector(
-                                  onTap: () {
-                                    cnr.isRecording
-                                        ? cnr.stopVideoRecording()
-                                        : cnr.startVideoRecording();
-                                  },
-                                  child: Container(
-                                    height: context.screenHeight * 10,
-                                    width: context.screenWidth * 22,
-                                    decoration: BoxDecoration(
-                                      color: Colors.transparent,
-                                      borderRadius: BorderRadius.circular(50),
-                                      border: Border.all(
-                                          width: 4,
-                                          color: Colors.white,
-                                          style: BorderStyle.solid),
-                                    ),
-                                    child: Icon(
-                                      cnr.isRecording
-                                          ? Icons.stop
-                                          : Icons.play_arrow_rounded,
-                                      color: Colors.white,
-                                      size: context.screenSize * 0.25,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      );
-                    } else {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-                  },
-                )
-              ],
-            );
-          },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Flutter Video Player'),
+      ),
+      body: Center(
+        child: _controller.value.isInitialized
+            ? AspectRatio(
+                aspectRatio: _controller.value.aspectRatio,
+                child: VideoPlayer(_controller),
+              )
+            : CircularProgressIndicator(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            _controller.value.isPlaying
+                ? _controller.pause()
+                : _controller.play();
+          });
+        },
+        child: Icon(
+          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
         ),
       ),
     );
