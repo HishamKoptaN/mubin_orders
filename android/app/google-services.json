@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:621278659042:android:1004d3dc38b371d19df9bb",
+        "mobilesdk_app_id": "1:621278659042:android:3fc6b8b299f5ed189df9bb",
         "android_client_info": {
-          "package_name": "com.example.docs_orders"
+          "package_name": "com.example.mbean_talabat"
         }
       },
       "oauth_client": [],

@@ -125,7 +125,7 @@ class AdminProductsController extends GetxController {
   Future<void> pickVideoCamera() async {
     XFile? imageFile = await imagePicker.pickVideo(
       source: ImageSource.camera,
-      maxDuration: Duration(seconds: 30),
+      // maxDuration: Duration(seconds: 30),
     );
     if (imageFile != null) {
       pickedVideo = imageFile;
@@ -136,7 +136,7 @@ class AdminProductsController extends GetxController {
   Future<void> pickVideoGallery() async {
     XFile? videoFile = await imagePicker.pickVideo(
       source: ImageSource.gallery,
-      maxDuration: Duration(seconds: 30),
+      // maxDuration: Duration(seconds: 30),
     );
     if (videoFile != null) {
       pickedVideo = videoFile;
@@ -283,15 +283,11 @@ class AdminProductsController extends GetxController {
       showLoading();
       if (checkData()) {
         try {
-          // ضغط الفيديو قبل الرفع
           File? compressedVideo = await compressVideoFile(pickedVideo!.path);
           videoUrl = await videoUpload(path: compressedVideo!.path);
-          // رفع الصور الأولى والثانية كالمعتاد
           firstImageUrl = await firstImageUpload(path: pickedFirstImage!.path);
           secondImageUrl =
               await secondImageUpload(path: pickedSecondImage!.path);
-          // الحصول على الموقع الجغرافي
-          // رفع البيانات إلى Firebase Firestore
           await FirebaseFirestore.instance
               .collection(targetCollection)
               .doc(orderIDController.text)

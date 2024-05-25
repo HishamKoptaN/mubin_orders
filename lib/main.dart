@@ -1,8 +1,8 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'app/admin_navigator_bottom_bar/navigator_bottom_bar_cnr.dart';
@@ -13,21 +13,17 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'generated/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'global/responsive.dart';
+
 final homeController = HomeController();
 String languageCode = 'en';
 List<CameraDescription> cameras = [];
 Future<void> main() async {
-  try {
-    WidgetsFlutterBinding.ensureInitialized();
-  } on CameraException catch (e) {
-    if (kDebugMode) {
-      print(e.code);
-    }
-  }
+  WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPref = await SharedPreferences.getInstance();
   languageCode = sharedPref.getString('user_language') ?? 'en';
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.windows,
   );
   cameras = await availableCameras();
   runApp(const MyApp());
@@ -45,6 +41,28 @@ Future<void> loadSavedData() async {
   }
 }
 
+double setWidth(context, double value) {
+  double width;
+  if (Res.isMobile(context)) {
+    width = value;
+    return width;
+  } else {
+    width = (value / 2);
+    return width;
+  }
+}
+
+double setFont(context, double value) {
+  double font;
+  if (Res.isMobile(context)) {
+    font = (value * 1.3);
+    return font;
+  } else {
+    font = (value * 1);
+    return font;
+  }
+}
+
 Future<void> signIn(String email, String password) async {
   try {
     await FirebaseAuth.instance.signInWithEmailAndPassword(
@@ -52,7 +70,7 @@ Future<void> signIn(String email, String password) async {
       password: password,
     );
     await homeController.getCurrentUser();
-    Get.to(NavigateBarScreen());
+    Get.to(const NavigateBarScreen());
   } on FirebaseAuthException {}
 }
 
@@ -61,6 +79,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context);
     return MaterialApp(
       home: MultiProvider(
         providers: [
@@ -82,8 +101,8 @@ class MyApp extends StatelessWidget {
             builder: (context, snapshot) {
               loadSavedData();
               return snapshot.hasData
-                  ? NavigateBarScreen()
-                  : NavigateBarScreen();
+                  ? const NavigateBarScreen()
+                  : const NavigateBarScreen();
             },
           ),
         ),
