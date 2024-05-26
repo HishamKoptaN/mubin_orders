@@ -14,6 +14,19 @@
     "email_hint": "الايميل",
     "password_hint": "كلمة المرور ",
     "remember_me": "تذكرني",
-    "log_out": "تسجيل خروج"
-
+    "log_out": "تسجيل خروج",
+    "request_saving":"جاري حفظ الطلب",
+    "request_sharing":"جاري مشاركة الطلب"
+    ,"failed":"فشل"
+    ,"successfully":"نجاح",
+    "data_dont_saved":"'لم يتم حقظ الطلب يرجى اعادة المحاولة'"
+    ,"data_saved":"' تم حقظ الطلب بنجاح'"
+    ,"order_id_exists":"'معرف الطلب موجود , ادخل معرف اخر'"
+    ,"select_files":"'حدد من اين تفضل اضافة الملفات '"
+    ,"camera":"الكاميرا"
+    ,"gallery":"المعرض",
+    "cant_be_embty":"لا يمكن ان يكون فارغا",
+    "please_enter_all_data":"الرجاء إدخال جميع البيانات"
+    ,"ok":"اوك"
+  
 }

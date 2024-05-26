@@ -26,18 +26,39 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_order": MessageLookupByLibrary.simpleMessage("اضافة طلب"),
         "add_picure": MessageLookupByLibrary.simpleMessage("اضافة صوره"),
         "add_video": MessageLookupByLibrary.simpleMessage("اضافة فيديو"),
+        "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
+        "cant_be_embty":
+            MessageLookupByLibrary.simpleMessage("لا يمكن ان يكون فارغا"),
+        "data_dont_saved": MessageLookupByLibrary.simpleMessage(
+            "\'لم يتم حقظ الطلب يرجى اعادة المحاولة\'"),
+        "data_saved":
+            MessageLookupByLibrary.simpleMessage("\' تم حقظ الطلب بنجاح\'"),
         "email_hint": MessageLookupByLibrary.simpleMessage("الايميل"),
         "enter_order_id":
             MessageLookupByLibrary.simpleMessage("ادخل رقم الطلب"),
+        "failed": MessageLookupByLibrary.simpleMessage("فشل"),
+        "gallery": MessageLookupByLibrary.simpleMessage("المعرض"),
         "home_title": MessageLookupByLibrary.simpleMessage("الرئيسيه"),
         "loading": MessageLookupByLibrary.simpleMessage("جاري التحميل"),
         "log_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "login": MessageLookupByLibrary.simpleMessage("دخول"),
         "login_text": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "ok": MessageLookupByLibrary.simpleMessage("اوك"),
         "order_id": MessageLookupByLibrary.simpleMessage("معرف الطلب"),
+        "order_id_exists": MessageLookupByLibrary.simpleMessage(
+            "\'معرف الطلب موجود , ادخل معرف اخر\'"),
         "order_place": MessageLookupByLibrary.simpleMessage("المكان"),
         "password_hint": MessageLookupByLibrary.simpleMessage("كلمة المرور "),
         "place_hint": MessageLookupByLibrary.simpleMessage("مدرسه/مسجد/قريه"),
-        "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني")
+        "please_enter_all_data":
+            MessageLookupByLibrary.simpleMessage("الرجاء إدخال جميع البيانات"),
+        "remember_me": MessageLookupByLibrary.simpleMessage("تذكرني"),
+        "request_saving":
+            MessageLookupByLibrary.simpleMessage("جاري حفظ الطلب"),
+        "request_sharing":
+            MessageLookupByLibrary.simpleMessage("جاري مشاركة الطلب"),
+        "select_files": MessageLookupByLibrary.simpleMessage(
+            "\'حدد من اين تفضل اضافة الملفات \'"),
+        "successfully": MessageLookupByLibrary.simpleMessage("نجاح")
       };
 }

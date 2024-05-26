@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../generated/l10n.dart';
-import '../add_data/views/admin_products.view.dart';
+import '../add_data/views/add_new_product.widget.dart';
 import '../home/home_view.dart';
 
 class NavigatorBottomBarCnr extends ChangeNotifier {
@@ -16,7 +16,7 @@ class NavigatorBottomBarCnr extends ChangeNotifier {
     _title = 'Home';
     _pages = [
       HomeView(),
-      const AdminProductsView(),
+      const AddNewProduct(),
     ];
   }
 

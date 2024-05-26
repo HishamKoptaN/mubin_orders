@@ -209,6 +209,136 @@ class S {
       args: [],
     );
   }
+
+  /// `The request is being saved`
+  String get request_saving {
+    return Intl.message(
+      'The request is being saved',
+      name: 'request_saving',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sharing the request`
+  String get request_sharing {
+    return Intl.message(
+      'Sharing the request',
+      name: 'request_sharing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully`
+  String get successfully {
+    return Intl.message(
+      'Successfully',
+      name: 'successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Data was not uploaded, please try again'`
+  String get data_dont_saved {
+    return Intl.message(
+      '\'Data was not uploaded, please try again\'',
+      name: 'data_dont_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'The data has been saved successfully'`
+  String get data_saved {
+    return Intl.message(
+      '\'The data has been saved successfully\'',
+      name: 'data_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'The order ID exists, enter another ID'`
+  String get order_id_exists {
+    return Intl.message(
+      '\'The order ID exists, enter another ID\'',
+      name: 'order_id_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Select where you prefer to add files from'`
+  String get select_files {
+    return Intl.message(
+      '\'Select where you prefer to add files from\'',
+      name: 'select_files',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `camera`
+  String get camera {
+    return Intl.message(
+      'camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can not be empty`
+  String get cant_be_embty {
+    return Intl.message(
+      'Can not be empty',
+      name: 'cant_be_embty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter all data`
+  String get please_enter_all_data {
+    return Intl.message(
+      'Please enter all data',
+      name: 'please_enter_all_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

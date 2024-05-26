@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:mbean_talabat/main.dart';
 import 'package:provider/provider.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -13,7 +12,7 @@ class NavigateBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Provider.of<HomeController>(context, listen: false);
+    final homeController = Provider.of<HomeProvider>(context, listen: false);
     homeController.getCurrentUser();
     return SafeArea(
       child: Scaffold(
@@ -86,14 +85,14 @@ class NavigateBarScreen extends StatelessWidget {
                             },
                             child: Icon(
                               Icons.home,
-                              size: 45.r,
+                              size: 40,
                               color: Colors.white,
                             ),
                           ),
                           title: Text(
                             S.of(context).home_title,
                             style: TextStyle(
-                              fontSize: setFont(context, 17.5),
+                              fontSize: setFont(context, 12),
                             ),
                           ),
                         ),
@@ -110,14 +109,14 @@ class NavigateBarScreen extends StatelessWidget {
                             },
                             child: Icon(
                               Icons.add_circle,
-                              size: 45.r,
+                              size: 40,
                               color: Colors.white,
                             ),
                           ),
                           title: Text(
                             S.of(context).add_order,
                             style: TextStyle(
-                              fontSize: setFont(context, 17.5),
+                              fontSize: setFont(context, 12),
                             ),
                           ),
                         ),

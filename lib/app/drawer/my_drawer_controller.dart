@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../login/login_view.dart';
 
 class MyDrawerController extends GetxController {
@@ -68,10 +69,6 @@ class MyDrawerController extends GetxController {
     changeLocale('en');
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('user_language', 'en');
-    if (kDebugMode) {
-      print('en');
-      print('Current Lang is : $currentLocale');
-    }
     xAlign = loginAlign;
     loginColor = selectedColor;
     signInColor = normalColor;
