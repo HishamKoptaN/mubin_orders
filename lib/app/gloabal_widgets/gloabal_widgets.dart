@@ -15,6 +15,7 @@ class MyText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       fieldName,
+      maxLines: 2,
       style: TextStyle(
           fontSize: fontSize, fontWeight: FontWeight.bold, color: color),
     );

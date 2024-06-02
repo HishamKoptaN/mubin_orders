@@ -12,6 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../generated/l10n.dart';
 import '../add_data/views/add_new_product.widget.dart';
 import '../login/login_view.dart';
+import '../video_player.dart';
 import 'home_view.dart';
 
 class HomeProvider extends ChangeNotifier {
@@ -59,25 +60,6 @@ class HomeProvider extends ChangeNotifier {
   Color arabicColor = Colors.black54;
   Color englishColor = Colors.white;
   bool isArabic = false;
-  Locale locale = const Locale('en', 'US');
-
-  void selectArabic() {
-    xAlign = 1;
-    arabicColor = Colors.white;
-    englishColor = Colors.black54;
-    isArabic = true;
-    locale = const Locale('ar', 'AR');
-    notifyListeners();
-  }
-
-  void selectEnglish() {
-    xAlign = -1;
-    arabicColor = Colors.black54;
-    englishColor = Colors.white;
-    isArabic = false;
-    locale = const Locale('en', 'US');
-    notifyListeners();
-  }
 
   /////////////////////////////////////////////////////
 
@@ -142,7 +124,18 @@ class HomeProvider extends ChangeNotifier {
 
   Future<void> logOut() async {
     await FirebaseAuth.instance.signOut();
-    Get.to(const LoginView());
+    Get.to(LoginView());
+  }
+
+  goToVideoView(context, document, width, height) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => VideoPlayerScreen(
+          videoUrl: document,
+        ),
+      ),
+    );
   }
 
   Future<void> shareOrder(
@@ -203,10 +196,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future<void> shareOrderTwo(collection, orderId, location, context) async {
-    showCustomSnackBar(
-        title: S.of(context).request_sharing,
-        message: S.of(context).request_sharing,
-        duration: const Duration(seconds: 2));
+   
     Reference videoRef;
     Reference firstImageRef;
     Reference secondImageRef;
@@ -240,23 +230,4 @@ class HomeProvider extends ChangeNotifier {
     }
   }
 
-  static showCustomSnackBar(
-      {required String title, required String message, Duration? duration}) {
-    Get.snackbar(
-      title,
-      message,
-      duration: duration ?? const Duration(seconds: 3),
-      margin: const EdgeInsets.only(
-        top: 10,
-        left: 10,
-        right: 10,
-      ),
-      colorText: Colors.white,
-      backgroundColor: Colors.green,
-      icon: const Icon(
-        Icons.share_rounded,
-        color: Colors.white,
-      ),
-    );
-  }
 }

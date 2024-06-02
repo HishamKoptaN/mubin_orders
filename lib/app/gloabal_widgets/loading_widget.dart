@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 import '../add_data/views/add_new_product.widget.dart';
+import '../global_methods/global_methods.dart';
 import 'gloabal_widgets.dart';
 
 class LoadingWIdget extends StatelessWidget {

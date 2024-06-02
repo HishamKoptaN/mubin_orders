@@ -5,22 +5,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 import 'package:location/location.dart' as loc;
-import 'package:mbean_talabat/global/media_query.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../../generated/l10n.dart';
 import '../../../global/colors.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
-import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:video_compress_plus/video_compress_plus.dart';
-
-import '../../../main.dart';
 import '../../gloabal_widgets/gloabal_widgets.dart';
-import '../../login/login_view.dart';
-
+import '../../global_methods/global_methods.dart';
 class AdminProductsProvider extends ChangeNotifier {
   final FirebaseStorage firebaseStorage = FirebaseStorage.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -103,7 +95,7 @@ class AdminProductsProvider extends ChangeNotifier {
               color: AppColors.greenColor,
               iconColor: Colors.white,
             ),
-            IconsButton(
+            IconsOutlineButton(
               onPressed: () async {
                 if (file == 0) {
                   await pickVideoGallery();
@@ -301,7 +293,7 @@ class AdminProductsProvider extends ChangeNotifier {
             children: [
               MyText(
                 fieldName: "$title , $content",
-                fontSize: setFont(context, 12),
+                fontSize: setFont(context, 10),
                 color: Colors.black,
               ),
             ],
