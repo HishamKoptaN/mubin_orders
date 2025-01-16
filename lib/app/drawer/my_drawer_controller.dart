@@ -84,6 +84,10 @@ class MyDrawerController extends GetxController {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove('email');
     prefs.remove('password');
+<<<<<<< HEAD
     Get.to(const LoginView());
+=======
+    Get.to(LoginView());
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   }
 }

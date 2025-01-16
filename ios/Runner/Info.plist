@@ -5,7 +5,11 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
+<<<<<<< HEAD
 	<string>Docs Orders</string>
+=======
+	<string>Mbean Talabat</string>
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +17,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
+<<<<<<< HEAD
 	<string>docs_orders</string>
+=======
+	<string>mbean_talabat</string>
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -45,11 +53,14 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+<<<<<<< HEAD
 	<key>CFBundleLocalizations</key>
 <array>
     <string>en</string>
     <string>ar</string>
     ...
 </array>
+=======
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 </dict>
 </plist>

@@ -1,4 +1,11 @@
 {
+<<<<<<< HEAD
   "java.configuration.updateBuildConfiguration": "interactive",
   "cmake.sourceDirectory": "C:/codes/flutter/mubin_orders/linux"
 }
+=======
+    "cmake.sourceDirectory": "C:/Users/hesha/OneDrive/Documents/GitHub/mubin_orders/build/windows/x64/extracted/firebase_cpp_sdk_windows",
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "C_Cpp.errorSquiggles": "enabled"
+}
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a

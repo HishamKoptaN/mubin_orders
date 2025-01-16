@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mbean_admin/helpers/media_query.dart';
@@ -182,18 +183,214 @@ class LoginView extends StatelessWidget {
           ),
         ),
       ),
+=======
+import 'package:google_fonts/google_fonts.dart';
+import 'package:mbean_talabat/global/media_query.dart';
+import 'package:provider/provider.dart';
+import '../../generated/l10n.dart';
+import 'login_provider.dart';
+
+class LoginView extends StatelessWidget {
+  const LoginView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    return Consumer<LoginProvider>(
+      builder: (context, cnr, child) {
+        return SafeArea(
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            backgroundColor: Colors.black,
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Stack(
+                  children: [
+                    Consumer<LoginProvider>(
+                      builder: (context, cnr, child) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.chevron_right_outlined,
+                                    color: Colors.amber,
+                                    size: context.screenSize * 0.4),
+                                SizedBox(
+                                  width: context.screenWidth * 40,
+                                  height: context.screenHeight * 25,
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).login_text,
+                                      style: GoogleFonts.cairo(
+                                          color: Colors.white,
+                                          fontSize: context.fontSize * 0.12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                MyButton(
+                                  height: context.screenSize * 0.25,
+                                  width: context.screenSize * 0.4,
+                                  ontap: () => cnr.signIn(context),
+                                  text: S.of(context).login,
+                                  fontSize: context.fontSize * 0.1,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: context.screenHeight * 1,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MyTextField(
+                                  controller: cnr.loginEmailController,
+                                  hintText: S.of(context).email_hint,
+                                  obscure: false,
+                                  icon: Icons.email_outlined,
+                                  iconeSize: context.screenSize * .1,
+                                  textfontSize: context.screenSize * 0.07,
+                                ),
+                                SizedBox(
+                                  height: context.screenHeight * 2,
+                                ),
+                                MyTextField(
+                                  controller: cnr.loginPassController,
+                                  hintText: S.of(context).password_hint,
+                                  obscure: true,
+                                  icon: Icons.lock,
+                                  iconeSize: context.screenSize * .1,
+                                  textfontSize: context.screenSize * 0.07,
+                                ),
+                                SizedBox(
+                                  height: context.screenHeight * 2,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                SizedBox(width: context.screenSize * 0.06),
+                                Mytext(
+                                  text: S.of(context).remember_me,
+                                  fonstSize: context.fontSize * .06,
+                                ),
+                                Checkbox(
+                                  value: cnr.isChecked,
+                                  onChanged: (value) => cnr.toggleCheckbox(),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              width: cnr.width,
+                              height: cnr.height,
+                              decoration: const BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(50.0),
+                                ),
+                              ),
+                              child: Stack(
+                                children: [
+                                  AnimatedAlign(
+                                    alignment: Alignment(cnr.xAlign, 0),
+                                    duration: const Duration(milliseconds: 300),
+                                    child: Container(
+                                      width: cnr.width * 0.5,
+                                      height: cnr.height,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.lightGreen,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(50.0),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await loginProvider.selectLang(
+                                          "en", context);
+                                    },
+                                    child: Align(
+                                      alignment: const Alignment(-1, 0),
+                                      child: Container(
+                                        width: cnr.width * 0.5,
+                                        color: Colors.transparent,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'English',
+                                          style: TextStyle(
+                                            color: cnr.englishColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await loginProvider.selectLang(
+                                          "ar", context);
+                                    },
+                                    child: Align(
+                                      alignment: const Alignment(1, 0),
+                                      child: Container(
+                                        width: cnr.width * 0.5,
+                                        color: Colors.transparent,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          'عربي',
+                                          style: TextStyle(
+                                            color: cnr.arabicColor,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
     );
   }
 }
 
 class Mytext extends StatelessWidget {
+<<<<<<< HEAD
   Mytext({
+=======
+  final String text;
+  final double fonstSize;
+
+  const Mytext({
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
     super.key,
     required this.text,
     required this.fonstSize,
   });
+<<<<<<< HEAD
   String text;
   double fonstSize;
+=======
+
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   @override
   Widget build(BuildContext context) {
     return Text(
@@ -210,12 +407,17 @@ class MyTextField extends StatelessWidget {
   final bool? obscure;
   final double? iconeSize;
   final double? textfontSize;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   const MyTextField({
     super.key,
     this.icon,
     this.hintText,
     this.controller,
     this.obscure = false,
+<<<<<<< HEAD
     InputDecoration? decoration,
     required this.iconeSize,
     required this.textfontSize,
@@ -226,6 +428,11 @@ class MyTextField extends StatelessWidget {
     }
     return null;
   }
+=======
+    required this.iconeSize,
+    required this.textfontSize,
+  });
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 
   @override
   Widget build(BuildContext context) {
@@ -257,6 +464,7 @@ class MyTextField extends StatelessWidget {
 }
 
 class MyButton extends StatelessWidget {
+<<<<<<< HEAD
   Function()? ontap;
   String text;
   double? fontSize;
@@ -270,6 +478,22 @@ class MyButton extends StatelessWidget {
       required this.height,
       required this.width,
       ButtonStyle? style});
+=======
+  final Function()? ontap;
+  final String text;
+  final double? fontSize;
+  final double? height;
+  final double? width;
+
+  const MyButton({
+    super.key,
+    required this.fontSize,
+    this.ontap,
+    required this.text,
+    required this.height,
+    required this.width,
+  });
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 
   @override
   Widget build(BuildContext context) {
@@ -297,6 +521,7 @@ class MyButton extends StatelessWidget {
     );
   }
 }
+<<<<<<< HEAD
 
 // class ToggleButton extends StatefulWidget {
 //   @override
@@ -412,3 +637,5 @@ class MyButton extends StatelessWidget {
 //     );
 //   }
 // }
+=======
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a

@@ -1,15 +1,46 @@
 {
+<<<<<<< HEAD
     "home_title": "المدير",
     "order_place": "المكان",
     "order_id": "معرف الطلب",
     "kinia_name": "كينيا",
     "smoal_name": "الصومال",
     "tanzania": "تنزانيا",
+=======
+    "home_title": "الرئيسيه",
+    "add_order": "اضافة طلب",
+    "order_place": "المكان",
+    "order_id": "معرف الطلب",
+    "enter_order_id": "ادخل رقم الطلب",
+    "place_hint": "مدرسه/مسجد/قريه",
+    "add_video": "اضافة فيديو",
+    "add_picure": "اضافة صوره",
+    "add": "اضف",
+    "loading": "جاري التحميل",
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
     "login_text": "تسجيل الدخول",
     "login": "دخول",
     "email_hint": "الايميل",
     "password_hint": "كلمة المرور ",
     "remember_me": "تذكرني",
+<<<<<<< HEAD
     "log_out": "تسجيل خروج"
 
+=======
+    "log_out": "تسجيل خروج",
+    "request_saving":"جاري حفظ الطلب",
+    "request_sharing":"جاري مشاركة الطلب"
+    ,"failed":"فشل"
+    ,"successfully":"نجاح",
+    "data_dont_saved":"'لم يتم حقظ الطلب يرجى اعادة المحاولة'"
+    ,"data_saved":"' تم حقظ الطلب بنجاح'"
+    ,"order_id_exists":"'معرف الطلب موجود , ادخل معرف اخر'"
+    ,"select_files":"'حدد من اين تفضل اضافة الملفات '"
+    ,"camera":"الكاميرا"
+    ,"gallery":"المعرض",
+    "cant_be_embty":"لا يمكن ان يكون فارغا",
+    "please_enter_all_data":"الرجاء إدخال جميع البيانات"
+    ,"ok":"اوك"
+  
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 }

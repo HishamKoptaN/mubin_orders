@@ -50,16 +50,36 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+<<<<<<< HEAD
   /// `The manager`
   String get home_title {
     return Intl.message(
       'The manager',
+=======
+  /// `Home`
+  String get home_title {
+    return Intl.message(
+      'Home',
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
       name: 'home_title',
       desc: '',
       args: [],
     );
   }
 
+<<<<<<< HEAD
+=======
+  /// `Add order`
+  String get add_order {
+    return Intl.message(
+      'Add order',
+      name: 'add_order',
+      desc: '',
+      args: [],
+    );
+  }
+
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   /// `Place`
   String get order_place {
     return Intl.message(
@@ -80,31 +100,85 @@ class S {
     );
   }
 
+<<<<<<< HEAD
   /// `Kenya`
   String get kinia_name {
     return Intl.message(
       'Kenya',
       name: 'kinia_name',
+=======
+  /// `Add order ID`
+  String get enter_order_id {
+    return Intl.message(
+      'Add order ID',
+      name: 'enter_order_id',
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
       desc: '',
       args: [],
     );
   }
 
+<<<<<<< HEAD
   /// `Somal`
   String get smoal_name {
     return Intl.message(
       'Somal',
       name: 'smoal_name',
+=======
+  /// `Village/mosque/school`
+  String get place_hint {
+    return Intl.message(
+      'Village/mosque/school',
+      name: 'place_hint',
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
       desc: '',
       args: [],
     );
   }
 
+<<<<<<< HEAD
   /// `Tanzania`
   String get tanzania {
     return Intl.message(
       'Tanzania',
       name: 'tanzania',
+=======
+  /// `Add video`
+  String get add_video {
+    return Intl.message(
+      'Add video',
+      name: 'add_video',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add picure`
+  String get add_picure {
+    return Intl.message(
+      'Add picure',
+      name: 'add_picure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `loading.....`
+  String get loading {
+    return Intl.message(
+      'loading.....',
+      name: 'loading',
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
       desc: '',
       args: [],
     );
@@ -169,6 +243,139 @@ class S {
       args: [],
     );
   }
+<<<<<<< HEAD
+=======
+
+  /// `The request is being saved`
+  String get request_saving {
+    return Intl.message(
+      'The request is being saved',
+      name: 'request_saving',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sharing the request`
+  String get request_sharing {
+    return Intl.message(
+      'Sharing the request',
+      name: 'request_sharing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Successfully`
+  String get successfully {
+    return Intl.message(
+      'Successfully',
+      name: 'successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Data was not uploaded, please try again'`
+  String get data_dont_saved {
+    return Intl.message(
+      '\'Data was not uploaded, please try again\'',
+      name: 'data_dont_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'The data has been saved successfully'`
+  String get data_saved {
+    return Intl.message(
+      '\'The data has been saved successfully\'',
+      name: 'data_saved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'The order ID exists, enter another ID'`
+  String get order_id_exists {
+    return Intl.message(
+      '\'The order ID exists, enter another ID\'',
+      name: 'order_id_exists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'Select where you prefer to add files from'`
+  String get select_files {
+    return Intl.message(
+      '\'Select where you prefer to add files from\'',
+      name: 'select_files',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `camera`
+  String get camera {
+    return Intl.message(
+      'camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can not be empty`
+  String get cant_be_embty {
+    return Intl.message(
+      'Can not be empty',
+      name: 'cant_be_embty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter all data`
+  String get please_enter_all_data {
+    return Intl.message(
+      'Please enter all data',
+      name: 'please_enter_all_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ok`
+  String get ok {
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

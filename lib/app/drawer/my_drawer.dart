@@ -1,9 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
 import 'package:mbean_admin/helpers/media_query.dart';
 import '../../generated/l10n.dart';
 import '../../helpers/constants.dart';
+=======
+import 'package:mbean_talabat/global/media_query.dart';
+import 'package:mbean_talabat/main.dart';
+import '../../generated/l10n.dart';
+import '../global_methods/global_methods.dart';
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 import 'my_drawer_controller.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -27,6 +34,7 @@ class MyDrawer extends StatelessWidget {
                   SizedBox(
                     height: context.screenHeight * 10,
                   ),
+<<<<<<< HEAD
                   // GestureDetector(
                   //   onTap: () {
                   //     cnr.logOut();
@@ -132,10 +140,120 @@ class MyDrawer extends StatelessWidget {
                               ),
                             ),
                           ),
+=======
+                  GestureDetector(
+                    onTap: () {
+                      cnr.logOut();
+                    },
+                    child: Row(
+                      mainAxisAlignment: cnr.isArabic
+                          ? MainAxisAlignment.start
+                          : MainAxisAlignment.end,
+                      children: [
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Directionality(
+                          textDirection: cnr.isArabic
+                              ? TextDirection.rtl
+                              : TextDirection.ltr,
+                          child: Icon(
+                            Icons.logout,
+                            size: context.screenSize * 0.13,
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 1,
+                        ),
+                        Text(
+                          S.of(context).log_out,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: setFont(context, 17.5),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 6,
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
                         ),
                       ],
                     ),
                   ),
+<<<<<<< HEAD
+=======
+                  SizedBox(
+                    height: context.screenHeight * 5,
+                  ),
+                  // Container(
+                  //   width: cnr.width,
+                  //   height: cnr.height,
+                  //   decoration: const BoxDecoration(
+                  //     color: Colors.grey,
+                  //     borderRadius: BorderRadius.all(
+                  //       Radius.circular(50.0),
+                  //     ),
+                  //   ),
+                  //   child: Stack(
+                  //     children: [
+                  //       AnimatedAlign(
+                  //         alignment: Alignment(cnr.xAlign, 0),
+                  //         duration: const Duration(milliseconds: 300),
+                  //         child: Container(
+                  //           width: cnr.width * 0.5,
+                  //           height: cnr.height,
+                  //           decoration: const BoxDecoration(
+                  //             color: Colors.lightGreen,
+                  //             borderRadius: BorderRadius.all(
+                  //               Radius.circular(50.0),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       GestureDetector(
+                  //         onTap: () async {
+                  //           await cnr.selectEn();
+                  //         },
+                  //         child: Align(
+                  //           alignment: const Alignment(-1, 0),
+                  //           child: Container(
+                  //             width: cnr.width * 0.5,
+                  //             color: Colors.transparent,
+                  //             alignment: Alignment.center,
+                  //             child: Text(
+                  //               'English',
+                  //               style: TextStyle(
+                  //                 color: cnr.loginColor,
+                  //                 fontWeight: FontWeight.bold,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       GestureDetector(
+                  //         onTap: () async {
+                  //           await cnr.selectAr();
+                  //         },
+                  //         child: Align(
+                  //           alignment: const Alignment(1, 0),
+                  //           child: Container(
+                  //             width: cnr.width * 0.5,
+                  //             color: Colors.transparent,
+                  //             alignment: Alignment.center,
+                  //             child: Text(
+                  //               'عربي',
+                  //               style: TextStyle(
+                  //                 color: cnr.signInColor,
+                  //                 fontWeight: FontWeight.bold,
+                  //               ),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
                 ],
               );
             },

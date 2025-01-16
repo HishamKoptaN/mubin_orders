@@ -1,10 +1,18 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
+<<<<<<< HEAD
 project(docs_orders LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
 set(BINARY_NAME "docs_orders")
+=======
+project(mbean_talabat LANGUAGES CXX)
+
+# The name of the executable created for the application. Change this to change
+# the on-disk name of your application.
+set(BINARY_NAME "mbean_talabat")
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.

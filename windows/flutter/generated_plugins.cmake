@@ -9,12 +9,18 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   firebase_storage
   flutter_localization
+<<<<<<< HEAD
   list_all_videos
+=======
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   local_auth_windows
   permission_handler_windows
   share_plus
   url_launcher_windows
+<<<<<<< HEAD
   video_player_win
+=======
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST

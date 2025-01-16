@@ -15,7 +15,11 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "33CC10EC2044A3C60003C045"
+<<<<<<< HEAD
                BuildableName = "docs_orders.app"
+=======
+               BuildableName = "mbean_talabat.app"
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
                BlueprintName = "Runner"
                ReferencedContainer = "container:Runner.xcodeproj">
             </BuildableReference>
@@ -31,7 +35,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
+<<<<<<< HEAD
             BuildableName = "docs_orders.app"
+=======
+            BuildableName = "mbean_talabat.app"
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
@@ -65,7 +73,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
+<<<<<<< HEAD
             BuildableName = "docs_orders.app"
+=======
+            BuildableName = "mbean_talabat.app"
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>
@@ -82,7 +94,11 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "33CC10EC2044A3C60003C045"
+<<<<<<< HEAD
             BuildableName = "docs_orders.app"
+=======
+            BuildableName = "mbean_talabat.app"
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
             BlueprintName = "Runner"
             ReferencedContainer = "container:Runner.xcodeproj">
          </BuildableReference>

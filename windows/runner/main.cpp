@@ -27,7 +27,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   FlutterWindow window(project);
   Win32Window::Point origin(10, 10);
   Win32Window::Size size(1280, 720);
+<<<<<<< HEAD
   if (!window.Create(L"docs_orders", origin, size)) {
+=======
+  if (!window.Create(L"mbean_talabat", origin, size)) {
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);
