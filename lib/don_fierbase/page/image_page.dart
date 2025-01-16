@@ -1,11 +1,5 @@
-import 'dart:io';
 
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:share/share.dart';
-
-import '../api/firebase_api.dart';
 import '../model/firebase_file.dart';
 
 class ImagePage extends StatelessWidget {

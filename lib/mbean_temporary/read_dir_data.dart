@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:share/share.dart';
 
 class ReadDirData extends StatelessWidget {
   @override
@@ -53,9 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
     return files;
   }
 
-  Future<void> _shareFile(File file) async {
-    Share.shareFiles([file.path], text: 'Check out this file!');
-  }
+  // Future<void> _shareFile(File file) async {
+  //   Share.shareFiles([file.path], text: 'Check out this file!');
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 return ListTile(
                   title: Text(file.path),
                   onTap: () async {
-                    await _shareFile(file);
+                    // await _shareFile(file);
                   },
                 );
               },

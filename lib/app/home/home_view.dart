@@ -48,8 +48,7 @@ class _HomeViewState extends State<HomeView> {
       body: Selector<HomeProvider, String>(
         selector: (context, provider) => provider.targetBranch,
         builder: (context, targetBranch, child) {
-          return Expanded(
-            child: Column(
+          return Column(
               children: [
                 Expanded(
                   flex: 1,
@@ -251,7 +250,6 @@ class _HomeViewState extends State<HomeView> {
                   ),
                 ),
               ],
-            ),
           );
         },
       ),
