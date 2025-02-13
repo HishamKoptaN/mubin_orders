@@ -1,4 +1,4 @@
-import '../../../../../../all_imports.dart';
+import '../../../../../../core/all_imports.dart';
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_images.dart';
 import '../../../../../../core/utils/app_text_styles.dart';

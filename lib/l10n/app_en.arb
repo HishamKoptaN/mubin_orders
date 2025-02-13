@@ -1,8 +1,12 @@
 {
+    "kinia_name": "Kenya",
+    "smoal_name": "Somal",
+    "tanzania": "Tanzania",
     "home_title": "Home",
     "add_order": "Add order",
     "order_place": "Place",
     "order_id": "Order Id",
+	"client_id":"Client id",
     "enter_order_id": "Add order ID",
     "place_hint": "Village/mosque/school",
     "add_video": "Add video",
@@ -13,10 +17,8 @@
     "login": "Login",
     "email_hint": "Email",
     "password_hint": "Password",
-    "client_id": "Client Id",
-    "remember_me": "Remember me",	
-    "change": "Change",
-    "log_out": "LogOut",	
+    "remember_me": "Remember me",
+    "log_out": "LogOut",
     "request_saving":"The request is being saved",
     "request_sharing":"Sharing the request",
     "failed":"Failed",
@@ -39,10 +41,8 @@
     "close":"Close",
 	"required": "Required",
     "please_enter_all_data":"Please enter all data",
-    "ok":"Ok"
-  
-
-   
+    "ok":"Ok",
+    "change":"Change"
 
     
 }

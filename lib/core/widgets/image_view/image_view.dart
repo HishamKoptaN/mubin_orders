@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:mbean_talabat/core/global/media_query.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ImageView extends StatelessWidget {
@@ -14,8 +13,8 @@ class ImageView extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         body: SizedBox(
-          width: context.screenWidth * 100,
-          height: context.screenHeight * 100,
+          width: 100,
+          height: 100,
           child: Center(
             child: Stack(
               children: [

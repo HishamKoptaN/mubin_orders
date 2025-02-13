@@ -5,11 +5,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/widgets/snacke_bar.dart';
-import '../../../../generated/l10n.dart';
 import '../../../../core/helper/colors.dart';
 import '../../../main/present/view/main_view.dart';
 import '../present/bloc/login_bloc.dart';
 import '../present/bloc/login_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({
@@ -33,19 +33,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    final t = S.of(context);
-
-    validator(String? value) {
-      if (value == null) {
-        return t.required;
-      }
-
-      if (value.isEmpty) {
-        return t.required;
-      }
-      return null;
-    }
-
+    final t = AppLocalizations.of(context)!;
     return BlocProvider<LoginBloc>(
       create: (context) => LoginBloc(
         firebaseLoginUseCase: getIt(),
@@ -116,12 +104,12 @@ class _LoginViewState extends State<LoginView> {
                               color: Colors.grey[200],
                             ),
                             child: TextFormField(
-                              validator: validator,
-                              decoration: InputDecoration(
-                                labelText: S.current.email_hint,
-                                suffixIcon: const Icon(Icons.email),
+                              // validator: validator,
+                              decoration: const InputDecoration(
+                                labelText: "S.current.email_hint",
+                                suffixIcon: Icon(Icons.email),
                                 border: InputBorder.none,
-                                contentPadding: const EdgeInsets.symmetric(
+                                contentPadding: EdgeInsets.symmetric(
                                   vertical: 10,
                                   horizontal: 20,
                                 ),
@@ -136,10 +124,10 @@ class _LoginViewState extends State<LoginView> {
                               color: Colors.grey[200],
                             ),
                             child: TextFormField(
-                              validator: validator,
+                              // validator: validator,
                               obscureText: showPassword,
                               decoration: InputDecoration(
-                                labelText: S.current.password_hint,
+                                labelText: "S.current.password_hint",
                                 suffixIcon: InkWell(
                                   onTap: () {
                                     setState(
@@ -190,7 +178,7 @@ class _LoginViewState extends State<LoginView> {
                                   },
                                   orElse: () {
                                     return Text(
-                                      S.current.login,
+                                      " S.current.login",
                                       style: TextStyle(
                                         color: black,
                                         fontFamily: "Arial",

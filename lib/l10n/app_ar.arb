@@ -1,9 +1,12 @@
 {
+    "kinia_name": "كينيا",
+    "smoal_name": "الصومال",
+    "tanzania": "تنزانيا",
     "home_title": "الرئيسيه",
     "add_order": "اضافة طلب",
     "order_place": "المكان",
     "order_id": "معرف الطلب",    
-    "client_id": "معرف العميل",
+	"client_id":"المعرف الخاص بالعميل",
     "enter_order_id": "ادخل رقم الطلب",
     "place_hint": "مدرسه/مسجد/قريه",
     "add_video": "اضافة فيديو",
@@ -39,5 +42,5 @@
     "cant_be_embty":"لا يمكن ان يكون فارغا",
     "please_enter_all_data":"الرجاء إدخال جميع البيانات",
     "ok":"اوك"
-  
+	
 }

@@ -40,11 +40,19 @@ static void my_application_activate(GApplication* application) {
   if (use_header_bar) {
     GtkHeaderBar* header_bar = GTK_HEADER_BAR(gtk_header_bar_new());
     gtk_widget_show(GTK_WIDGET(header_bar));
+<<<<<<< HEAD
+    gtk_header_bar_set_title(header_bar, "docs_orders");
+    gtk_header_bar_set_show_close_button(header_bar, TRUE);
+    gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
+  } else {
+    gtk_window_set_title(window, "docs_orders");
+=======
     gtk_header_bar_set_title(header_bar, "mbean_talabat");
     gtk_header_bar_set_show_close_button(header_bar, TRUE);
     gtk_window_set_titlebar(window, GTK_WIDGET(header_bar));
   } else {
     gtk_window_set_title(window, "mbean_talabat");
+>>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
   }
 
   gtk_window_set_default_size(window, 1280, 720);

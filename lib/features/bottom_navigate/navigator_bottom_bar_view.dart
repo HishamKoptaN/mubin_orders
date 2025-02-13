@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import '../../generated/l10n.dart';
 import '../drawer/my_drawer.dart';
 import '../global_methods/global_methods.dart';
 import 'bloc/bottom_navigate_bloc.dart';
 import 'bloc/bottom_navigate_state.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class NavigateBarView extends StatelessWidget {
   const NavigateBarView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
     return BlocProvider(
       create: (context) => NavigatorBottomBarCubit(),
       child: SafeArea(
@@ -91,7 +92,7 @@ class NavigateBarView extends StatelessWidget {
                           ),
                         ),
                         title: Text(
-                          S.of(context).home_title,
+                          t.home_title,
                           style: TextStyle(
                             fontSize: setFont(context, 12),
                           ),
@@ -115,7 +116,7 @@ class NavigateBarView extends StatelessWidget {
                           ),
                         ),
                         title: Text(
-                          S.of(context).add_order,
+                          "S.of(context).add_order",
                           style: TextStyle(
                             fontSize: setFont(context, 12),
                           ),

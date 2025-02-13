@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import '../../generated/l10n.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppLayout extends StatefulWidget {
   const AppLayout({
@@ -22,7 +22,7 @@ class AppLayout extends StatefulWidget {
 class _AppLayoutState extends State<AppLayout> {
   @override
   Widget build(BuildContext context) {
-    final t = S.of(context);
+    final t = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,

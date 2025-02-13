@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
-import '../../../../generated/l10n.dart';
 import '../../../../core/helper/colors.dart';
 import '../../../Layouts/app_layout.dart';
 import '../bloc/language_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChangeLanguage extends StatefulWidget {
-  const ChangeLanguage({super.key});
+  const ChangeLanguage({
+    super.key,
+  });
 
   @override
   State<ChangeLanguage> createState() => _ChangeLanguageState();
@@ -19,7 +21,7 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final t = S.of(context);
+    final t = AppLocalizations.of(context)!;
 
     final List<Map<String, String>> languages = [
       {"name": t.arabic, "key": "ar"},

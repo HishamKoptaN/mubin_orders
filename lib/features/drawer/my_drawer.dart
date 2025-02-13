@@ -1,15 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:mbean_talabat/core/global/media_query.dart';
-import '../../generated/l10n.dart';
 import '../../core/helper/settings_tab.dart';
 import '../auth/login/view/login_view.dart';
 import 'Language/view/change_language_view.dart';
 import 'my_drawer_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({
@@ -17,12 +15,12 @@ class MyDrawer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final t = S.of(context);
+    final t = AppLocalizations.of(context)!;
     return Drawer(
-      width: context.screenWidth * 70,
+      width: 70,
       backgroundColor: Colors.white,
       child: SizedBox(
-        height: context.screenHeight * 70,
+        height: 70,
         child: SingleChildScrollView(
           child: GetBuilder<MyDrawerController>(
             init: MyDrawerController(),

@@ -33,10 +33,10 @@ class HomeController {
   void setCurrentIndex(int index, BuildContext context) async {
     switch (index) {
       case 0:
-        _title = S.of(context).home_title;
+        _title = "S.of(context).home_title";
         break;
       case 1:
-        _title = S.of(context).add_order;
+        _title = "S.of(context).add_order";
         break;
     }
     _currentIndex = index;

@@ -1,7 +1,8 @@
 import 'package:delightful_toast/delight_toast.dart';
 import 'package:delightful_toast/toast/components/toast_card.dart';
 import 'package:delightful_toast/toast/utils/enums.dart';
-import '../../all_imports.dart';
+
+import '../all_imports.dart';
 
 enum ToastType { success, failure }
 

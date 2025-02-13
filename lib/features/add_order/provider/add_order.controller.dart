@@ -44,7 +44,7 @@ class AddOrderController {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text(S.of(context).select_files),
+          content: Text("S.of(context).select_files"),
           actions: [
             IconsOutlineButton(
               onPressed: () async {
@@ -59,7 +59,7 @@ class AddOrderController {
                 }
                 Navigator.of(context).pop();
               },
-              text: S.of(context).camera,
+              text: "S.of(context).camera",
               iconData: CupertinoIcons.camera_fill,
               textStyle: const TextStyle(color: Colors.white),
               color: AppColors.greenColor,
@@ -78,7 +78,7 @@ class AddOrderController {
                 }
                 Navigator.of(context).pop();
               },
-              text: S.of(context).gallery,
+              text: "S.of(context).gallery",
               iconData: CupertinoIcons.photo_on_rectangle,
               color: AppColors.greenColor,
               textStyle: const TextStyle(color: Colors.white),
