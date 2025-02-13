@@ -9,9 +9,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   await Injection.inject();
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
