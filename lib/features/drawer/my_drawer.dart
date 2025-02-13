@@ -1,0 +1,235 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:gap/gap.dart';
+import 'package:get/get.dart';
+import 'package:mbean_talabat/core/global/media_query.dart';
+import '../../generated/l10n.dart';
+import '../../core/helper/settings_tab.dart';
+import '../auth/login/view/login_view.dart';
+import 'Language/view/change_language_view.dart';
+import 'my_drawer_controller.dart';
+
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({
+    super.key,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final t = S.of(context);
+    return Drawer(
+      width: context.screenWidth * 70,
+      backgroundColor: Colors.white,
+      child: SizedBox(
+        height: context.screenHeight * 70,
+        child: SingleChildScrollView(
+          child: GetBuilder<MyDrawerController>(
+            init: MyDrawerController(),
+            builder: (cnr) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Gap(25.h),
+                  SettingsTabWidget(
+                    title: t.change_language,
+                    icon: FontAwesomeIcons.language,
+                    onTap: () => {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ChangeLanguage(),
+                        ),
+                      )
+                    },
+                  ),
+                  SettingsTabWidget(
+                    title: t.log_out,
+                    icon: FontAwesomeIcons.signOut,
+                    onTap: () => {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            title: Center(
+                              child: Text(
+                                t.log_out,
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  t.are_you_sure,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 20),
+                                const Divider(thickness: 1),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Expanded(
+                                      child: TextButton(
+                                        onPressed: () async {
+                                          // Storage.setString("auth_token", '');
+                                          Navigator.of(context)
+                                              .pushAndRemoveUntil(
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const LoginView(),
+                                            ),
+                                            (route) => false,
+                                          );
+                                        },
+                                        child: Text(
+                                          t.log_out,
+                                          style: const TextStyle(
+                                            color: Colors.blue,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 40,
+                                      width: 1,
+                                      color: Colors.grey,
+                                    ),
+                                    Expanded(
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          t.close,
+                                          style: const TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+
+                      // Container(
+                      //   width: cnr.width,
+                      //   height: cnr.height,
+                      //   decoration: const BoxDecoration(
+                      //     color: Colors.grey,
+                      //     borderRadius: BorderRadius.all(
+                      //       Radius.circular(50.0),
+                      //     ),
+                      //   ),
+                      //   child: Stack(
+                      //     children: [
+                      //       AnimatedAlign(
+                      //         alignment: Alignment(cnr.xAlign, 0),
+                      //         duration: const Duration(milliseconds: 300),
+                      //         child: Container(
+                      //           width: cnr.width * 0.5,
+                      //           height: cnr.height,
+                      //           decoration: const BoxDecoration(
+                      //             color: Colors.lightGreen,
+                      //             borderRadius: BorderRadius.all(
+                      //               Radius.circular(50.0),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       GestureDetector(
+                      //         onTap: () async {
+                      //           await cnr.selectEn();
+                      //         },
+                      //         child: Align(
+                      //           alignment: const Alignment(-1, 0),
+                      //           child: Container(
+                      //             width: cnr.width * 0.5,
+                      //             color: Colors.transparent,
+                      //             alignment: Alignment.center,
+                      //             child: Text(
+                      //               'English',
+                      //               style: TextStyle(
+                      //                 color: cnr.loginColor,
+                      //                 fontWeight: FontWeight.bold,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       GestureDetector(
+                      //         onTap: () async {
+                      //           await cnr.selectAr();
+                      //         },
+                      //         child: Align(
+                      //           alignment: const Alignment(1, 0),
+                      //           child: Container(
+                      //             width: cnr.width * 0.5,
+                      //             color: Colors.transparent,
+                      //             alignment: Alignment.center,
+                      //             child: Text(
+                      //               'عربي',
+                      //               style: TextStyle(
+                      //                 color: cnr.signInColor,
+                      //                 fontWeight: FontWeight.bold,
+                      //               ),
+                      //             ),
+                      //           ),
+                      //         ),
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                    },
+                  )
+                ],
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyListTile extends StatelessWidget {
+  IconData? icon;
+  final String text;
+  final void Function()? onTap;
+
+  MyListTile({super.key, this.icon, required this.text, this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(
+            text,
+            style: const TextStyle(
+              fontSize: 17,
+              letterSpacing: 2,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          onTap: onTap,
+        ),
+        const Divider(
+          color: Colors.grey,
+          thickness: 1,
+        ),
+      ],
+    );
+  }
+}

@@ -26,14 +26,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_order": MessageLookupByLibrary.simpleMessage("Add order"),
         "add_picure": MessageLookupByLibrary.simpleMessage("Add picure"),
         "add_video": MessageLookupByLibrary.simpleMessage("Add video"),
+        "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
+        "are_you_sure": MessageLookupByLibrary.simpleMessage("Are you sure?"),
         "camera": MessageLookupByLibrary.simpleMessage("camera"),
         "cant_be_embty":
             MessageLookupByLibrary.simpleMessage("Can not be empty"),
+        "change": MessageLookupByLibrary.simpleMessage("Change"),
+        "change_language":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
+        "client_id": MessageLookupByLibrary.simpleMessage("Client Id"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "data_dont_saved": MessageLookupByLibrary.simpleMessage(
             "\'Data was not uploaded, please try again\'"),
         "data_saved": MessageLookupByLibrary.simpleMessage(
             "\'The data has been saved successfully\'"),
         "email_hint": MessageLookupByLibrary.simpleMessage("Email"),
+        "english": MessageLookupByLibrary.simpleMessage("English"),
         "enter_order_id": MessageLookupByLibrary.simpleMessage("Add order ID"),
         "failed": MessageLookupByLibrary.simpleMessage("Failed"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
@@ -42,7 +50,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_out": MessageLookupByLibrary.simpleMessage("LogOut"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "login_text": MessageLookupByLibrary.simpleMessage("Login"),
+        "mubin": MessageLookupByLibrary.simpleMessage("mubin"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
+        "or": MessageLookupByLibrary.simpleMessage("or"),
+        "order_added_successfully":
+            MessageLookupByLibrary.simpleMessage("Order Added Successfully"),
+        "order_addition_failed":
+            MessageLookupByLibrary.simpleMessage(" Order Addition Failed"),
         "order_id": MessageLookupByLibrary.simpleMessage("Order Id"),
         "order_id_exists": MessageLookupByLibrary.simpleMessage(
             "\'The order ID exists, enter another ID\'"),
@@ -57,6 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("The request is being saved"),
         "request_sharing":
             MessageLookupByLibrary.simpleMessage("Sharing the request"),
+        "required": MessageLookupByLibrary.simpleMessage("Required"),
         "select_files": MessageLookupByLibrary.simpleMessage(
             "\'Select where you prefer to add files from\'"),
         "successfully": MessageLookupByLibrary.simpleMessage("Successfully")

@@ -190,11 +190,31 @@ class S {
     );
   }
 
+  /// `Client Id`
+  String get client_id {
+    return Intl.message(
+      'Client Id',
+      name: 'client_id',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Remember me`
   String get remember_me {
     return Intl.message(
       'Remember me',
       name: 'remember_me',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get change {
+    return Intl.message(
+      'Change',
+      name: 'change',
       desc: '',
       args: [],
     );
@@ -235,6 +255,76 @@ class S {
     return Intl.message(
       'Failed',
       name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `mubin`
+  String get mubin {
+    return Intl.message(
+      'mubin',
+      name: 'mubin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or`
+  String get or {
+    return Intl.message(
+      'or',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get change_language {
+    return Intl.message(
+      'Change Language',
+      name: 'change_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Arabic`
+  String get arabic {
+    return Intl.message(
+      'Arabic',
+      name: 'arabic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get english {
+    return Intl.message(
+      'English',
+      name: 'english',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Added Successfully`
+  String get order_added_successfully {
+    return Intl.message(
+      'Order Added Successfully',
+      name: 'order_added_successfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Order Addition Failed`
+  String get order_addition_failed {
+    return Intl.message(
+      ' Order Addition Failed',
+      name: 'order_addition_failed',
       desc: '',
       args: [],
     );
@@ -310,11 +400,41 @@ class S {
     );
   }
 
+  /// `Are you sure?`
+  String get are_you_sure {
+    return Intl.message(
+      'Are you sure?',
+      name: 'are_you_sure',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Can not be empty`
   String get cant_be_embty {
     return Intl.message(
       'Can not be empty',
       name: 'cant_be_embty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get close {
+    return Intl.message(
+      'Close',
+      name: 'close',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Required`
+  String get required {
+    return Intl.message(
+      'Required',
+      name: 'required',
       desc: '',
       args: [],
     );

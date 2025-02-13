@@ -2,7 +2,8 @@
     "home_title": "الرئيسيه",
     "add_order": "اضافة طلب",
     "order_place": "المكان",
-    "order_id": "معرف الطلب",
+    "order_id": "معرف الطلب",    
+    "client_id": "معرف العميل",
     "enter_order_id": "ادخل رقم الطلب",
     "place_hint": "مدرسه/مسجد/قريه",
     "add_video": "اضافة فيديو",
@@ -13,6 +14,16 @@
     "login": "دخول",
     "email_hint": "الايميل",
     "password_hint": "كلمة المرور ",
+    "mubin":"مبين",
+    "or":"أو",	
+    "are_you_sure": "هل أنت متأكد؟",
+    "change": "تغيير",
+    "change_language": "تغيير اللغة",
+    "arabic": "العربية",
+	"english": "الانجليزية",	 "close":"إغلاق",
+	"required": "مطلوب",
+    "order_added_successfully":"تم أضافة الطلب",    
+    "order_addition_failed":"فشل أضافة الطلب",    
     "remember_me": "تذكرني",
     "log_out": "تسجيل خروج",
     "request_saving":"جاري حفظ الطلب",
@@ -26,7 +37,7 @@
     ,"camera":"الكاميرا"
     ,"gallery":"المعرض",
     "cant_be_embty":"لا يمكن ان يكون فارغا",
-    "please_enter_all_data":"الرجاء إدخال جميع البيانات"
-    ,"ok":"اوك"
+    "please_enter_all_data":"الرجاء إدخال جميع البيانات",
+    "ok":"اوك"
   
 }

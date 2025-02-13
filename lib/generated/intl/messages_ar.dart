@@ -26,14 +26,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_order": MessageLookupByLibrary.simpleMessage("اضافة طلب"),
         "add_picure": MessageLookupByLibrary.simpleMessage("اضافة صوره"),
         "add_video": MessageLookupByLibrary.simpleMessage("اضافة فيديو"),
+        "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
         "camera": MessageLookupByLibrary.simpleMessage("الكاميرا"),
         "cant_be_embty":
             MessageLookupByLibrary.simpleMessage("لا يمكن ان يكون فارغا"),
+        "change": MessageLookupByLibrary.simpleMessage("تغيير"),
+        "change_language": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
+        "client_id": MessageLookupByLibrary.simpleMessage("معرف العميل"),
         "data_dont_saved": MessageLookupByLibrary.simpleMessage(
             "\'لم يتم حقظ الطلب يرجى اعادة المحاولة\'"),
         "data_saved":
             MessageLookupByLibrary.simpleMessage("\' تم حقظ الطلب بنجاح\'"),
         "email_hint": MessageLookupByLibrary.simpleMessage("الايميل"),
+        "english": MessageLookupByLibrary.simpleMessage("الانجليزية"),
         "enter_order_id":
             MessageLookupByLibrary.simpleMessage("ادخل رقم الطلب"),
         "failed": MessageLookupByLibrary.simpleMessage("فشل"),
@@ -43,7 +48,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "log_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "login": MessageLookupByLibrary.simpleMessage("دخول"),
         "login_text": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "mubin": MessageLookupByLibrary.simpleMessage("مبين"),
         "ok": MessageLookupByLibrary.simpleMessage("اوك"),
+        "or": MessageLookupByLibrary.simpleMessage("أو"),
+        "order_added_successfully":
+            MessageLookupByLibrary.simpleMessage("تم أضافة الطلب"),
+        "order_addition_failed":
+            MessageLookupByLibrary.simpleMessage("فشل أضافة الطلب"),
         "order_id": MessageLookupByLibrary.simpleMessage("معرف الطلب"),
         "order_id_exists": MessageLookupByLibrary.simpleMessage(
             "\'معرف الطلب موجود , ادخل معرف اخر\'"),
