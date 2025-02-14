@@ -180,18 +180,6 @@
 @import url_launcher_ios;
 #endif
 
-#if __has_include(<video_compress/VideoCompressPlugin.h>)
-#import <video_compress/VideoCompressPlugin.h>
-#else
-@import video_compress;
-#endif
-
-#if __has_include(<video_compress_plus/VideoCompressPlugin.h>)
-#import <video_compress_plus/VideoCompressPlugin.h>
-#else
-@import video_compress_plus;
-#endif
-
 #if __has_include(<video_player_avfoundation/FVPVideoPlayerPlugin.h>)
 #import <video_player_avfoundation/FVPVideoPlayerPlugin.h>
 #else
@@ -236,8 +224,6 @@
   [SharedPreferencesPlugin registerWithRegistrar:[registry registrarForPlugin:@"SharedPreferencesPlugin"]];
   [SqflitePlugin registerWithRegistrar:[registry registrarForPlugin:@"SqflitePlugin"]];
   [URLLauncherPlugin registerWithRegistrar:[registry registrarForPlugin:@"URLLauncherPlugin"]];
-  [VideoCompressPlugin registerWithRegistrar:[registry registrarForPlugin:@"VideoCompressPlugin"]];
-  [VideoCompressPlugin registerWithRegistrar:[registry registrarForPlugin:@"VideoCompressPlugin"]];
   [FVPVideoPlayerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FVPVideoPlayerPlugin"]];
   [WakelockPlusPlugin registerWithRegistrar:[registry registrarForPlugin:@"WakelockPlusPlugin"]];
 }

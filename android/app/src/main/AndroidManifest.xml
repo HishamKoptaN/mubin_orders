@@ -12,7 +12,7 @@
 
     <application
 <<<<<<< HEAD
-        android:label="Mubin admin"
+        android:label="mubin_orders"
 =======
         android:label=  "Mubin orders"
 >>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a

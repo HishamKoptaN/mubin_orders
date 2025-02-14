@@ -1,3 +1,4 @@
+# dart run package_rename --path="package_rename_config.yaml"
 package_rename_config:
   android:
     app_name: "mubin_orders" # اسم التطبيق
