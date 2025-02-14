@@ -3,24 +3,26 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import '../drawer/my_drawer.dart';
 import '../global_methods/global_methods.dart';
-import 'bloc/bottom_navigate_bloc.dart';
-import 'bloc/bottom_navigate_state.dart';
+import 'bloc/home_bloc.dart';
+import 'bloc/home_state.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class NavigateBarView extends StatelessWidget {
-  const NavigateBarView({super.key});
+class HomeView extends StatelessWidget {
+  const HomeView({
+    super.key,
+  });
+  static const String routeName = "HomeView";
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return BlocProvider(
-      create: (context) => NavigatorBottomBarCubit(),
+      create: (context) => HomeCubit(),
       child: SafeArea(
         child: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title:
-                BlocBuilder<NavigatorBottomBarCubit, NavigatorBottomBarState>(
+            title: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 return Text(
                   state.title,
@@ -40,8 +42,7 @@ class NavigateBarView extends StatelessWidget {
               child: SizedBox(
                 height: MediaQuery.of(context).size.height * 0.76,
                 width: MediaQuery.of(context).size.width * 0.95,
-                child: BlocBuilder<NavigatorBottomBarCubit,
-                    NavigatorBottomBarState>(
+                child: BlocBuilder<HomeCubit, HomeState>(
                   builder: (context, state) {
                     return state.pages[state.currentIndex];
                   },
@@ -58,17 +59,14 @@ class NavigateBarView extends StatelessWidget {
                   Radius.circular(15),
                 ),
               ),
-              child:
-                  BlocBuilder<NavigatorBottomBarCubit, NavigatorBottomBarState>(
+              child: BlocBuilder<HomeCubit, HomeState>(
                 builder: (context, state) {
                   return SalomonBottomBar(
                     curve: Curves.slowMiddle,
                     currentIndex: state.currentIndex,
                     backgroundColor: const Color.fromARGB(0, 255, 255, 255),
                     onTap: (int index) {
-                      context
-                          .read<NavigatorBottomBarCubit>()
-                          .setCurrentIndex(index, context);
+                      context.read<HomeCubit>().setCurrentIndex(index, context);
                     },
                     items: [
                       SalomonBottomBarItem(
@@ -116,7 +114,7 @@ class NavigateBarView extends StatelessWidget {
                           ),
                         ),
                         title: Text(
-                          "S.of(context).add_order",
+                          t.add_order,
                           style: TextStyle(
                             fontSize: setFont(context, 12),
                           ),

@@ -1,14 +1,11 @@
 import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../auth/login/view/login_view.dart';
+import '../../../auth/login/present/view/login_view.dart';
+import '../../../home/home_view.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_event.dart';
 import '../bloc/main_state.dart';
-import 'adaptive_layout_widget.dart';
-import 'desktob_layout.dart';
-import 'mobile_layout.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/di/dependency_injection.dart';
-import 'tablet_layout.dart';
 import 'package:flutter/material.dart';
 
 class MainView extends StatelessWidget {
@@ -28,11 +25,7 @@ class MainView extends StatelessWidget {
         body: BlocBuilder<MainBloc, MainState>(
           builder: (context, state) {
             return state.maybeWhen(
-              logedIn: () => AdaptiveLayout(
-                mobileLayout: (context) => const MobileLayout(),
-                tabletLayout: (context) => const TabletLayout(),
-                desktopLayout: (context) => const DesktobLayout(),
-              ),
+              logedIn: () => const HomeView(),
               logedOut: () => const LoginView(),
               orElse: () => const CustomCircularProgress(),
             );

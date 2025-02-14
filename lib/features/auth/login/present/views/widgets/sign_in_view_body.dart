@@ -46,7 +46,9 @@ class _SigninViewBodyState extends State<SigninViewBody> {
           },
           linkSent: (data) {
             CustomToast.showToast(
-              key: const Key('reset_toast'),
+              key: const Key(
+                'reset_toast',
+              ),
               context: context,
               title:
                   "تم ارسال رابط أعادة تعين كلمة المرور الي البريد الالكتروني",
@@ -146,12 +148,12 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                                       resetPassReqBodyModel.copyWith(
                                     email: firabaseLoginReqBodyModel.email,
                                   );
-                                  context.read<LoginBloc>().add(
-                                        LoginEvent.resetPass(
-                                          resetPassReqBodyModel:
-                                              resetPassReqBodyModel,
-                                        ),
-                                      );
+                                  // context.read<LoginBloc>().add(
+                                  //       LoginEvent.resetPass(
+                                  //         resetPassReqBodyModel:
+                                  //             resetPassReqBodyModel,
+                                  //       ),
+                                  //     );
                                 } else {
                                   CustomToast.showToast(
                                     key: const Key('toast_button'),
@@ -205,7 +207,7 @@ class _SigninViewBodyState extends State<SigninViewBody> {
                         const SizedBox(
                           height: 16,
                         ),
-                        DontHaveAnAccountWidget(),
+                        const DontHaveAnAccountWidget(),
                         const SizedBox(
                           height: 48,
                         ),

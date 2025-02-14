@@ -1,0 +1,32 @@
+package_rename_config:
+  android:
+    app_name: "mubin_orders" # اسم التطبيق
+    package_name: "com.mubin.app.orders" # اسم الحزمة
+    override_old_package: true # لتجاهل الحزمة القديمة
+    lang: "en" # لغة التطبيق (اختياري)
+
+  ios:
+    app_name: "mubin_orders" # اسم التطبيق
+    bundle_name: "com.mubin.app.orders" # اسم الحزمة
+    package_name: "com.mubin.app.orders" # اسم الحزمة
+
+  linux:
+    app_name: "mubin_orders" # اسم التطبيق
+    package_name: "com.mubin.app.orders" # اسم الحزمة
+    exe_name: "mubin_orders" # اسم ملف التنفيذ
+
+  macos:
+    app_name: "mubin_orders" # اسم التطبيق
+    package_name: "com.mubin.app.orders" # اسم الحزمة
+    copyright_notice: "© 2024 IMolds" # حقوق الطبع والنشر (اختياري)
+
+  web:
+    app_name: "mubin_orders" # اسم التطبيق
+    short_app_name: "mubin_orders" # اسم التطبيق المختصر (اختياري)
+    description: "aquan App dev" # وصف التطبيق (اختياري)
+
+  windows:
+    app_name: "mubin_orders" # اسم التطبيق
+    organization: "mubin_orders" # اسم المؤسسة (اختياري)
+    copyright_notice: "© 2024 mubin_orders" # حقوق الطبع والنشر (اختياري)
+    exe_name: "mubin_orders" # اسم ملف التنفيذ

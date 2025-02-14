@@ -1,12 +1,7 @@
-// To parse this JSON data, do
-//
-//     final getBranchOrdersApiResModel = getBranchOrdersApiResModelFromJson(jsonString);
-
 import 'dart:convert';
 
 GetBranchOrdersApiResModel getBranchOrdersApiResModelFromJson(String str) =>
     GetBranchOrdersApiResModel.fromJson(json.decode(str));
-
 String getBranchOrdersApiResModelToJson(GetBranchOrdersApiResModel data) =>
     json.encode(data.toJson());
 

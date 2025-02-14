@@ -8,7 +8,4 @@ class LoginEvent with _$LoginEvent {
   const factory LoginEvent.fireLogin({
     required FirabaseLoginReqBodyModel firabaseLoginReqBodyModel,
   }) = _FireLogin;
-  const factory LoginEvent.resetPass({
-    required ResetPassReqBodyModel resetPassReqBodyModel,
-  }) = _ResetPass;
 }

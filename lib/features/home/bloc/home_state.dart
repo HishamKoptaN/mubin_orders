@@ -1,38 +1,29 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
-import '../model/orders_model.dart';
+class HomeState extends Equatable {
+  final String title;
+  final int currentIndex;
+  final List<Widget> pages;
 
-abstract class HomeState extends Equatable {
-  @override
-  List<Object> get props => [];
-}
-
-class HomeInitial extends HomeState {}
-
-class HomeLoading extends HomeState {}
-
-class HomeLoaded extends HomeState {
-  final List orders;
-
-  HomeLoaded({required this.orders});
+  const HomeState({
+    required this.title,
+    required this.currentIndex,
+    required this.pages,
+  });
 
   @override
-  List<Object> get props => [orders];
-}
+  List<Object> get props => [title, currentIndex, pages];
 
-class OrdersLoadedSuccessfully extends HomeState {
-  List<Order>? orders;
-  String permission;
-  OrdersLoadedSuccessfully({required this.orders, required this.permission});
-}
-
-class OrderAddedFailure extends HomeState {}
-
-class HomeError extends HomeState {
-  final String message;
-
-  HomeError({required this.message});
-
-  @override
-  List<Object> get props => [message];
+  HomeState copyWith({
+    String? title,
+    int? currentIndex,
+    List<Widget>? pages,
+  }) {
+    return HomeState(
+      title: title ?? this.title,
+      currentIndex: currentIndex ?? this.currentIndex,
+      pages: pages ?? this.pages,
+    );
+  }
 }

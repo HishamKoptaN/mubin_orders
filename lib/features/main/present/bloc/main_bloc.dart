@@ -25,12 +25,10 @@ class MainBloc extends Bloc<MainEvent, MainState> {
             if (idToken == null
                 // && idToken!.isEmpty
                 ) {
-              log("id token $idToken");
               emit(
                 const MainState.logedIn(),
               );
             } else {
-              log("id token $idToken");
               emit(
                 const MainState.logedOut(),
               );

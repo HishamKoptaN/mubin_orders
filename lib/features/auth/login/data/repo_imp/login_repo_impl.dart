@@ -11,7 +11,6 @@ import '../data_sources/login_api.dart';
 import '../models/firabase_login_req_body_model.dart';
 import '../models/login_req_body_model.dart';
 import '../models/verify_phone_otp_req_body_model.dart';
-import '../models/verify_phone_number_req_body_model.dart';
 
 class LoginRepoImpl implements LoginRepo {
   LoginRemDataSrc loginRemDataSrc;
@@ -81,24 +80,6 @@ class LoginRepoImpl implements LoginRepo {
       }
     } else {
       return Left(OfflineFailure());
-    }
-  }
-
-  @override
-  Future<Either<String, Unit>> verifyOtp({
-    required VerifyPhoneOtpReqBodyModel verifyPhoneOtpReqBodyModel,
-  }) async {
-    try {
-      final credential = PhoneAuthProvider.credential(
-        verificationId: verifyPhoneOtpReqBodyModel.verificationId ?? '',
-        smsCode: verifyPhoneOtpReqBodyModel.otp ?? '',
-      );
-      await firebaseAuth.signInWithCredential(
-        credential,
-      );
-      return right(unit);
-    } catch (e) {
-      return left(e.toString());
     }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-abstract class HomeEvent extends Equatable {
+sealed class BottomNavigateEvent extends Equatable {
+  const BottomNavigateEvent();
+
   @override
   List<Object> get props => [];
 }
-
-class FetchOrders extends HomeEvent {}

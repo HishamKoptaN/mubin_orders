@@ -1,6 +1,6 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://g.aquan.website/api/";
-  static const String apiAuthBaseUrl = "https://g.aquan.website/auth/";
+  static const String apiBaseUrl = "https://m-api.aquan.website/api";
+  static const String apiAuthBaseUrl = "https://m-api.aquan.website/auth/";
 
   static const String countries = "countries";
   static const String jobSeekerSignup = "job-seeker-sign-up";

@@ -21,6 +21,11 @@ abstract class AppColors {
   static const Color orangeColor = Color(0xFFFFB319);
   static const Color yellowColor = Color(0xFFFFD465);
   static const Color greenColor = Colors.green; // Gradients
+  static const Color iconColor = Color(0xffa8a09b);
+  static const Color correctColor = Colors.green;
+  static const Color inCorrectColor = Colors.red;
+  static const Color naturalColor = Colors.white;
+  static const Color backGroundColor = Colors.white;
   static const Gradient primaryGradient = LinearGradient(
     colors: [primaryColor, secondaryColor],
     begin: Alignment.topRight,

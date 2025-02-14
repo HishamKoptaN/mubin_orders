@@ -20,10 +20,6 @@ class _MobileLayoutState extends State<MobileLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [],
-      ),
-    );
+    return const Scaffold();
   }
 }

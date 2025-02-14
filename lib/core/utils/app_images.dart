@@ -153,7 +153,7 @@ class Assets {
 
   /// Assets for imagesLogopng
   /// assets/images/logopng.png
-  static const String imagesLogopng = "assets/images/logopng.png";
+  static const String imagesLogopng = "assets/icons/mbean_logo_circale.png";
 
   /// Assets for imagesMedium
   /// assets/images/medium.webp

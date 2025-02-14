@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../generated/l10n.dart';
 import '../../../core/helper/routes.dart';
 import '../../add_order/views/add_order_view.dart';
-import '../../video_player.dart';
+import '../../../core/widgets/video_player.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController {

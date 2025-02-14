@@ -1,43 +1,36 @@
-import 'package:bloc/bloc.dart';
-import 'package:local_auth/local_auth.dart';
-import '../controller/home_controller.dart';
-import '../model/orders_model.dart';
-import 'home_event.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../add_order/views/add_order_view.dart';
+import '../../orders/present/views/orders_view.dart';
 import 'home_state.dart';
 
-class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final HomeController homeController = HomeController();
-  final LocalAuthentication auth = LocalAuthentication();
+class HomeCubit extends Cubit<HomeState> {
+  HomeCubit()
+      : super(
+          HomeState(
+            title: 'Home',
+            currentIndex: 0,
+            pages: [
+              OrdersView(),
+              const AddOrderView(),
+            ],
+          ),
+        );
 
-  HomeBloc() : super(HomeInitial()) {
-    on<FetchOrders>(
-      (event, emit) async {
-        emit(HomeLoading());
-
-        try {
-          Map<String, dynamic> data = await homeController.fetchOrders();
-          GetBranchOrdersApiResModel getBranchOrdersApiResModel =
-              GetBranchOrdersApiResModel.fromJson(data);
-          if (data['status']) {
-            emit(
-              OrdersLoadedSuccessfully(
-                orders: getBranchOrdersApiResModel.orders,
-                permission: getBranchOrdersApiResModel.permission!,
-              ),
-            );
-          } else {
-            emit(
-              OrderAddedFailure(),
-            );
-          }
-        } catch (e) {
-          emit(
-            HomeError(
-              message: e.toString(),
-            ),
-          );
-        }
-      },
-    );
+  void setCurrentIndex(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        emit(state.copyWith(
+          title: "S.of(context)!.home_title",
+          currentIndex: index,
+        ));
+        break;
+      case 1:
+        emit(state.copyWith(
+          title: "S.of(context)!.add_order",
+          currentIndex: index,
+        ));
+        break;
+    }
   }
 }

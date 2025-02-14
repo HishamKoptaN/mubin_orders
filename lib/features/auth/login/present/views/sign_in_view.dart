@@ -1,6 +1,6 @@
 import '../../../../../core/all_imports.dart';
 import '../../../../main/present/view/adaptive_layout_widget.dart';
-import '../../view/login_view.dart';
+import '../view/login_view.dart';
 import '../bloc/login_bloc.dart';
 
 class SigninView extends StatelessWidget {

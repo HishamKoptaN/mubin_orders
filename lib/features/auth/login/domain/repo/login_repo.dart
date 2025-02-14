@@ -6,7 +6,6 @@ import '../../../../../core/networking/api_result.dart';
 import '../../../../errors/firebase_failures.dart';
 import '../../data/models/firabase_login_req_body_model.dart';
 import '../../data/models/login_req_body_model.dart';
-import '../../data/models/verify_phone_otp_req_body_model.dart';
 
 abstract class LoginRepo {
   Future<Either<FirebaseFailure, UserCredential>> firebaseLogin({
@@ -14,9 +13,6 @@ abstract class LoginRepo {
   });
   Future<ApiResult<UserData?>> authToken({
     required LoginReqBodyModel loginReqBodyModel,
-  });
-  Future<Either<String, Unit>> verifyOtp({
-    required VerifyPhoneOtpReqBodyModel verifyPhoneOtpReqBodyModel,
   });
   Future<Either<FirebaseFailure, Unit>> logOut();
 }

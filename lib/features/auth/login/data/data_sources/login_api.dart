@@ -6,7 +6,6 @@ import '../../../../../core/networking/api_constants.dart';
 import '../../../../errors/exceptions.dart';
 import '../models/firabase_login_req_body_model.dart';
 import '../models/login_req_body_model.dart';
-
 part 'login_api.g.dart';
 
 class LoginRemDataSrc {

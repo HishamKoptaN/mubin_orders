@@ -7,10 +7,10 @@ environment:
 dependencies:
   appinio_social_share: ^0.3.1
   cached_network_image: ^3.3.1
-  cached_video_player_plus: ^2.0.0
-  camera: ^0.10.5+9
+  cached_video_player_plus: ^3.0.3
+  camera: ^0.11.1
   chewie: ^1.8.1
-  country_flags: ^2.2.0
+  country_flags: ^3.2.0
   country_icons: ^3.0.0
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
@@ -24,13 +24,14 @@ dependencies:
   file_selector: ^1.0.3
   firebase_auth: ^5.4.2
   firebase_core: ^3.11.0
+  firebase_crashlytics: ^4.3.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.0.0
   flutter_image_compress: ^2.2.0
   flutter_inappwebview: ^6.0.0
-  flutter_local_notifications: ^17.1.0
-  flutter_localization: ^0.2.0
+  flutter_local_notifications: ^18.0.1
+  flutter_localization: ^0.3.1
   flutter_localizations:
     sdk: flutter
   flutter_screenutil: ^5.9.3
@@ -52,7 +53,7 @@ dependencies:
   intl_utils: ^2.8.7
   list_all_videos: ^1.2.0
   local_auth: ^2.2.0
-  location: ^6.0.1
+  location: ^8.0.0
   material_dialogs: ^1.1.4
   motion_toast: ^2.11.0
   open_file: ^3.3.2
@@ -61,9 +62,9 @@ dependencies:
   permission_handler: ^11.3.1
   pretty_dio_logger: ^1.4.0
   provider: ^6.1.2
-  rxdart: ^0.27.7
+  rxdart: ^0.28.0
   salomon_bottom_bar: ^3.3.2
-  screenshot: ^2.3.0
+  screenshot: ^3.0.0
   share_plus: ^10.1.4
   shared_preferences: ^2.2.3
   shimmer: ^3.0.0
@@ -72,25 +73,24 @@ dependencies:
   sqflite: ^2.3.3
   staggered_grid_view_flutter: ^0.0.4
   step_progress_indicator: ^1.0.2
-  timezone: ^0.9.2
+  timezone: ^0.10.0
   url_launcher: ^6.2.6
   video_compress: ^3.1.2
   video_compress_plus: ^1.0.0
   video_player: ^2.8.6
-  video_player_win: ^2.3.6
-  webview_flutter: ^4.7.0
+  video_player_win: ^3.1.1
   whatsapp_share: ^2.0.2
 dev_dependencies:
   build_runner: ^2.4.13
-  flutter_launcher_icons: ^0.13.1
-  flutter_lints: ^3.0.0
+  flutter_launcher_icons: ^0.14.3
+  flutter_lints: ^5.0.0
   flutter_native_splash: ^2.4.1
-  flutter_test:
-    sdk: flutter
   freezed: ^2.5.7
   json_serializable: ^6.8.0
   package_rename: ^1.7.1
   retrofit_generator: ">=8.0.0 <10.0.0"
+  flutter_test:
+    sdk: flutter
 flutter_launcher_icons:
   android: "launcher_icon"
   ios: true
@@ -113,5 +113,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/icons/
+    # /mbean_logo_circale.png
+flutter_assets:
+  assets_path: assets/images/
+  output_path: lib/core/utils
+  filename: app_images.dart
+  field_prefix: null
 flutter_intl:
   enabled: true

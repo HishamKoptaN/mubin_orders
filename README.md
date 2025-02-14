@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-# docs_orders
-=======
 # mbean_talabat
->>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
 
 A new Flutter project.
 

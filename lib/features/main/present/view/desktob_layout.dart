@@ -20,9 +20,9 @@ class _DesktobLayoutState extends State<DesktobLayout> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       key: Key('home_view'),
-      body: Column(
+      body: const Column(
         children: [
           // HomeHeader(
           //   selectedIndex: selectedIndex,

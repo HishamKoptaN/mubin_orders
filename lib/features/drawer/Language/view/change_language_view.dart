@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:motion_toast/motion_toast.dart';
 import '../../../../core/helper/colors.dart';
-import '../../../Layouts/app_layout.dart';
+import '../../../../core/widgets/Layouts/app_layout.dart';
 import '../bloc/language_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
