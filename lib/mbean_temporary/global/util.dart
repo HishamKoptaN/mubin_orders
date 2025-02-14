@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,34 +46,34 @@ void showCustomDialog(String title, String message, List<Widget> actions,
   );
 }
 
-/// Compress an image and copy it to a new location
-Future<Object> compressImageAndCopy(File image, String destination) async {
-  // Compress image
-  XFile? result = await FlutterImageCompress.compressAndGetFile(
-    image.absolute.path,
-    destination,
-    quality: 20,
-  );
-  // If compression failed, return original image and show error
-  if (result == null) {
-    showCustomDialog(
-      "Error",
-      "An error occured while compressing the image, using the original image instead.",
-      [
-        TextButton(
-          style: TextButton.styleFrom(
-              foregroundColor: Get.theme.colorScheme.onErrorContainer),
-          onPressed: () {
-            Get.back();
-          },
-          child: const Text("Ok"),
-        ),
-      ],
-    );
+// /// Compress an image and copy it to a new location
+// Future<Object> compressImageAndCopy(File image, String destination) async {
+//   // Compress image
+//   XFile? result = await FlutterImageCompress.compressAndGetFile(
+//     image.absolute.path,
+//     destination,
+//     quality: 20,
+//   );
+//   // If compression failed, return original image and show error
+//   if (result == null) {
+//     showCustomDialog(
+//       "Error",
+//       "An error occured while compressing the image, using the original image instead.",
+//       [
+//         TextButton(
+//           style: TextButton.styleFrom(
+//               foregroundColor: Get.theme.colorScheme.onErrorContainer),
+//           onPressed: () {
+//             Get.back();
+//           },
+//           child: const Text("Ok"),
+//         ),
+//       ],
+//     );
 
-    return image;
-  }
+//     return image;
+//   }
 
-  // Return compressed image
-  return result;
-}
+//   // Return compressed image
+//   return result;
+// }

@@ -5,22 +5,18 @@ version: 1.0.0+1
 environment:
   sdk: ^3.6.0
 dependencies:
-  appinio_social_share: ^0.3.1
   cached_network_image: ^3.3.1
   cached_video_player_plus: ^3.0.3
   camera: ^0.11.1
   chewie: ^1.8.1
   country_flags: ^3.2.0
-  country_icons: ^3.0.0
   cupertino_icons: ^1.0.6
   dartz: ^0.10.1
   delightful_toast: ^1.1.0
   dio: ^5.8.0+1
-  dough: ^2.0.0
   equatable: ^2.0.5
   fancy_shimmer_image: ^2.0.3
   file_picker: ^8.0.2
-  file_selector: ^1.0.3
   firebase_auth: ^5.4.2
   firebase_core: ^3.11.0
   firebase_crashlytics: ^4.3.2
@@ -34,26 +30,23 @@ dependencies:
   get: ^4.6.6
   get_it: ^8.0.3
   google_fonts: ^6.2.1
-  google_maps_flutter: ^2.5.3
+  google_maps_flutter: ^2.10.0
   google_sign_in: ^6.2.1
   http: ^1.2.2
   image_gallery_saver: ^2.0.3
   image_picker: ^1.1.0
   internet_connection_checker_plus: ^2.7.0
   intl: ^0.19.0
-  intl_utils: ^2.8.7
   list_all_videos: ^1.2.0
   local_auth: ^2.2.0
   location: ^8.0.0
   material_dialogs: ^1.1.4
   motion_toast: ^2.11.0
-  open_file: ^3.3.2
   path: ^1.9.0
   path_provider: ^2.1.3
   permission_handler: ^11.3.1
   pretty_dio_logger: ^1.4.0
   provider: ^6.1.2
-  rxdart: ^0.28.0
   salomon_bottom_bar: ^3.3.2
   screenshot: ^3.0.0
   share_plus: ^10.1.4

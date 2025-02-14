@@ -18,7 +18,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await FirebaseAuth.instance.signOut();
-
   await Injection.inject();
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
