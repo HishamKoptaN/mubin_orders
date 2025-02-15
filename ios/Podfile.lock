@@ -5,10 +5,6 @@ PODS:
   - AppAuth/Core (1.7.6)
   - AppAuth/ExternalUserAgent (1.7.6):
     - AppAuth/Core
-  - appinio_social_share (0.0.1):
-    - FBSDKCoreKit (= 17.0.2)
-    - FBSDKShareKit (= 17.0.2)
-    - Flutter
   - camera_avfoundation (0.0.1):
     - Flutter
   - connectivity_plus (0.0.1):
@@ -46,18 +42,8 @@ PODS:
   - DKPhotoGallery/Resource (0.0.19):
     - SDWebImage
     - SwiftyGif
-  - FBAEMKit (17.0.2):
-    - FBSDKCoreKit_Basics (= 17.0.2)
-  - FBSDKCoreKit (17.0.2):
-    - FBAEMKit (= 17.0.2)
-    - FBSDKCoreKit_Basics (= 17.0.2)
-  - FBSDKCoreKit_Basics (17.0.2)
-  - FBSDKShareKit (17.0.2):
-    - FBSDKCoreKit (= 17.0.2)
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
-    - Flutter
-  - file_selector_ios (0.0.1):
     - Flutter
   - Firebase/Auth (11.7.0):
     - Firebase/CoreOnly
@@ -198,8 +184,6 @@ PODS:
     - nanopb/encode (= 3.30910.0)
   - nanopb/decode (3.30910.0)
   - nanopb/encode (3.30910.0)
-  - open_file_ios (0.0.1):
-    - Flutter
   - package_info_plus (0.4.5):
     - Flutter
   - path_provider_foundation (0.0.1):
@@ -232,12 +216,10 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - appinio_social_share (from `.symlinks/plugins/appinio_social_share/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
-  - file_selector_ios (from `.symlinks/plugins/file_selector_ios/ios`)
   - firebase_auth (from `.symlinks/plugins/firebase_auth/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_crashlytics (from `.symlinks/plugins/firebase_crashlytics/ios`)
@@ -251,7 +233,6 @@ DEPENDENCIES:
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
   - location (from `.symlinks/plugins/location/ios`)
-  - open_file_ios (from `.symlinks/plugins/open_file_ios/ios`)
   - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
@@ -267,10 +248,6 @@ SPEC REPOS:
     - AppAuth
     - DKImagePickerController
     - DKPhotoGallery
-    - FBAEMKit
-    - FBSDKCoreKit
-    - FBSDKCoreKit_Basics
-    - FBSDKShareKit
     - Firebase
     - FirebaseAppCheckInterop
     - FirebaseAuth
@@ -297,8 +274,6 @@ SPEC REPOS:
     - SwiftyGif
 
 EXTERNAL SOURCES:
-  appinio_social_share:
-    :path: ".symlinks/plugins/appinio_social_share/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
   connectivity_plus:
@@ -307,8 +282,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info_plus/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
-  file_selector_ios:
-    :path: ".symlinks/plugins/file_selector_ios/ios"
   firebase_auth:
     :path: ".symlinks/plugins/firebase_auth/ios"
   firebase_core:
@@ -335,8 +308,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/local_auth_darwin/darwin"
   location:
     :path: ".symlinks/plugins/location/ios"
-  open_file_ios:
-    :path: ".symlinks/plugins/open_file_ios/ios"
   package_info_plus:
     :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider_foundation:
@@ -358,18 +329,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
-  appinio_social_share: 2bc54f484f240a8d7e4bcb3260e6f11921ad64c7
   camera_avfoundation: dd002b0330f4981e1bbcb46ae9b62829237459a4
   connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
   device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
-  FBAEMKit: 619f96ea65427e8afca240d5b0f4703738dfdf5c
-  FBSDKCoreKit: a5f384db2e9ee84e98494fed8f983d2bd79accff
-  FBSDKCoreKit_Basics: d35c775aaf243a2d731dfae7be3a74b1987285ab
-  FBSDKShareKit: e7ec3bed8e82dabc04e56f3cf44ef99a1864309e
   file_picker: b159e0c068aef54932bb15dc9fd1571818edaf49
-  file_selector_ios: f0670c1064a8c8450e38145d8043160105d0b97c
   Firebase: a64bf6a8546e6eab54f1c715cd6151f39d2329f4
   firebase_auth: bcc25c2992fb3e655b59faca6f0f5bc9215d463d
   firebase_core: aa979ae726f00b3ef4ccf59dfb96170af84efbd4
@@ -402,7 +367,6 @@ SPEC CHECKSUMS:
   local_auth_darwin: 66e40372f1c29f383a314c738c7446e2f7fdadc3
   location: d5cf8598915965547c3f36761ae9cc4f4e87d22e
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
-  open_file_ios: 461db5853723763573e140de3193656f91990d9e
   package_info_plus: c0502532a26c7662a62a356cebe2692ec5fe4ec4
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
