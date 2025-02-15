@@ -1,5 +1,5 @@
 import '../../../../../core/networking/api_result.dart';
-import '../../data/models/add_order_req_body.dart';
+import '../../data/models/create_order_req_body.dart';
 import '../../data/models/orders_res_model.dart';
 
 abstract class OrdersRepo {

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../../core/networking/api_constants.dart';
-import '../models/add_order_req_body.dart';
+import '../models/create_order_req_body.dart';
 import '../models/orders_res_model.dart';
 part 'orders_api.g.dart';
 
