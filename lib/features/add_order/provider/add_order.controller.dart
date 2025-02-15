@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart' as loc;
+import '../../../core/all_imports.dart';
 import '../../../core/utils/app_colors.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:http/http.dart' as http;
@@ -38,13 +36,16 @@ class AddOrderController {
   }
 
   void selectFilesPath({
+    required AppLocalizations t
+,
     required BuildContext context,required int file,
   }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          content: Text("S.of(context).select_files"),
+          content: Text(t.select_files,
+          ),
           actions: [
             IconsOutlineButton(
               onPressed: () async {
@@ -59,7 +60,7 @@ class AddOrderController {
                 }
                 Navigator.of(context).pop();
               },
-              text: "S.of(context).camera",
+              text: t.camera,
               iconData: CupertinoIcons.camera_fill,
               textStyle: const TextStyle(color: Colors.white),
               color: AppColors.greenColor,
@@ -73,12 +74,13 @@ class AddOrderController {
                     break;
                   case 1:
                   case 2:
-                    await pickImageGallery(file);
+                    await pickImageGallery(imageNumber:file,
+                    );
                     break;
                 }
                 Navigator.of(context).pop();
               },
-              text: "S.of(context).gallery",
+              text: t.gallery,
               iconData: CupertinoIcons.photo_on_rectangle,
               color: AppColors.greenColor,
               textStyle: const TextStyle(color: Colors.white),
@@ -174,11 +176,14 @@ class AddOrderController {
         'place': place,
       },
     );
-    var pickedVideo = await http.MultipartFile.fromPath("video", video.path);
+    var pickedVideo = await http.MultipartFile.fromPath("video", video.path,
+    );
     var pickedImageOne =
-        await http.MultipartFile.fromPath("image_one", imageOne.path);
+        await http.MultipartFile.fromPath("image_one", imageOne.path,
+        );
     var pickedImageTwo =
-        await http.MultipartFile.fromPath("image_two", imageTwo.path);
+        await http.MultipartFile.fromPath("image_two", imageTwo.path,
+        );
     request.files.add(pickedVideo);
     request.files.add(pickedImageOne);
     request.files.add(pickedImageTwo);

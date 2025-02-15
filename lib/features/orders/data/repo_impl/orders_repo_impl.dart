@@ -2,6 +2,7 @@ import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
+import '../models/add_order_req_body.dart';
 import '../models/orders_res_model.dart';
 
 class OrdersRepoImpl implements OrdersRepo {
@@ -25,29 +26,29 @@ class OrdersRepoImpl implements OrdersRepo {
     }
   }
 
-  // @override
-  // Future<ApiResult<Job?>> addJob({
-  //   required AddJobReqBody addJobReqBody,
-  // }) async {
-  //   try {
-  //     final res = await postsApi.addJob(
-  //       addJobReqBody: addJobReqBody,
-  //     );
-  //     return ApiResult.success(
-  //       data: res,
-  //     );
-  //   } catch (error) {
-  //     return ApiResult.failure(
-  //       apiErrorModel: ApiErrorHandler.handle(
-  //         error: error,
-  //       ),
-  //     );
-  //   }
-  // }
+  @override
+  Future<ApiResult<Order?>> createOrder({
+    required CreateOrderReqBody addOrderReqBody,
+  }) async {
+    try {
+      final res = await postsApi.addOrder(
+        createOrderReqBody: addOrderReqBody,
+      );
+      return ApiResult.success(
+        data: res,
+      );
+    } catch (error) {
+      return ApiResult.failure(
+        apiErrorModel: ApiErrorHandler.handle(
+          error: error,
+        ),
+      );
+    }
+  }
 
   // @override
   // Future<ApiResult<void>> toggleLike({
-  //   required JobToggleLikeReqBody postToggleLikeReqBody,
+  //   required OrderToggleLikeReqBody postToggleLikeReqBody,
   // }) async {
   //   try {
   //     await postsApi.toggleLike(
@@ -89,7 +90,7 @@ class OrdersRepoImpl implements OrdersRepo {
 
   // @override
   // Future<ApiResult<Comment?>> cmnt({
-  //   required JobCmntReqBody postCmntReqBody,
+  //   required OrderCmntReqBody postCmntReqBody,
   // }) async {
   //   try {
   //     final res = await postsApi.cmnt(

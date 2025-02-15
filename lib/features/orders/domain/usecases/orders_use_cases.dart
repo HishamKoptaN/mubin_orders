@@ -1,69 +1,70 @@
 import '../../../../../core/networking/api_result.dart';
+import '../../data/models/add_order_req_body.dart';
 import '../../data/models/orders_res_model.dart';
 import '../repo/orders_repo.dart';
 
 class GetOrdersUseCase {
-  final OrdersRepo jobsRepo;
+  final OrdersRepo ordersRepo;
   GetOrdersUseCase({
-    required this.jobsRepo,
+    required this.ordersRepo,
   });
   Future<ApiResult<OrdersResModel?>> getOrders() async {
-    return await jobsRepo.getOrders();
+    return await ordersRepo.getOrders();
   }
 }
-// class CreateJobUseCase {
-//   final OrdersRepo jobsRepo;
-//   CreateJobUseCase({
-//     required this.jobsRepo,
-//   });
-//   Future<ApiResult<Job?>> addJob({
-//     required AddJobReqBody addJobReqBody,
-//   }) async {
-//     return await jobsRepo.addJob(
-//       addJobReqBody: addJobReqBody,
-//     );
-//   }
-// }
+class CreateOrderUseCase {
+  final OrdersRepo ordersRepo;
+  CreateOrderUseCase({
+    required this.ordersRepo,
+  });
+  Future<ApiResult<Order?>> addOrder({
+    required CreateOrderReqBody addOrderReqBody,
+  }) async {
+    return await ordersRepo.createOrder(
+      addOrderReqBody: addOrderReqBody,
+    );
+  }
+}
 
-// class ToggleLikeJobUseCase {
-//   final OrdersRepo jobsRepo;
-//   ToggleLikeJobUseCase({
-//     required this.jobsRepo,
+// class ToggleLikeOrderUseCase {
+//   final OrdersRepo ordersRepo;
+//   ToggleLikeOrderUseCase({
+//     required this.ordersRepo,
 //   });
 //   Future<ApiResult<void>> toggleLike({
-//     required JobToggleLikeReqBody jobToggleLikeReqBody,
+//     required OrderToggleLikeReqBody jobToggleLikeReqBody,
 //   }) async {
-//     return await jobsRepo.toggleLike(
+//     return await ordersRepo.toggleLike(
 //       jobToggleLikeReqBody: jobToggleLikeReqBody,
 //     );
 //   }
 // }
 
-// class GeJobCmntsUseCase {
-//   final OrdersRepo jobsRepo;
-//   GeJobCmntsUseCase({
-//     required this.jobsRepo,
+// class GeOrderCmntsUseCase {
+//   final OrdersRepo ordersRepo;
+//   GeOrderCmntsUseCase({
+//     required this.ordersRepo,
 //   });
 //   Future<ApiResult<CmntsResModel?>> getCmnts({
 //     required int jobId,
 //     required int page,
 //   }) async {
-//     return await jobsRepo.getCmnts(
+//     return await ordersRepo.getCmnts(
 //       jobId: jobId,
 //       page: page,
 //     );
 //   }
 // }
 
-// class JobCmntUseCase {
-//   final OrdersRepo jobsRepo;
-//   JobCmntUseCase({
-//     required this.jobsRepo,
+// class OrderCmntUseCase {
+//   final OrdersRepo ordersRepo;
+//   OrderCmntUseCase({
+//     required this.ordersRepo,
 //   });
 //   Future<ApiResult<Comment?>> cmnt({
-//     required JobCmntReqBody jobCmntReqBody,
+//     required OrderCmntReqBody jobCmntReqBody,
 //   }) async {
-//     return await jobsRepo.cmnt(
+//     return await ordersRepo.cmnt(
 //       jobCmntReqBody: jobCmntReqBody,
 //     );
 //   }

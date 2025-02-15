@@ -1,5 +1,5 @@
 import 'package:mubin_orders/core/all_imports.dart';
-import '../add_order/views/add_order_view.dart';
+import '../orders/present/views/add_order_view.dart';
 import '../drawer/my_drawer.dart';
 import '../orders/present/views/orders_view.dart';
 
@@ -15,7 +15,6 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   int _currentIndex = 0;
-
   final List<Widget> _pages = [
     const OrdersView(),
     const AddOrderView(),
@@ -24,7 +23,6 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,

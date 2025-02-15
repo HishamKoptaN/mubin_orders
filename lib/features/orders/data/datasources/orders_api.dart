@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../../core/networking/api_constants.dart';
+import '../models/add_order_req_body.dart';
 import '../models/orders_res_model.dart';
 part 'orders_api.g.dart';
 
@@ -17,13 +18,13 @@ abstract class OrdersApi {
     ApiConstants.orders,
   )
   Future<OrdersResModel?> getOrders();
-  // // ! Add post
-  // @POST(
-  //   ApiConstants.posts,
-  // )
-  // Future<Job?> addJob({
-  //   @Body() required AddJobReqBody addJobReqBody,
-  // });
+  // ! Create post
+  @POST(
+    ApiConstants.orders,
+  )
+  Future<Order?> addOrder({
+    @Body() required CreateOrderReqBody createOrderReqBody,
+  });
   // // ! toggle like
   // @PUT(
   //   "${ApiConstants.posts}/{id}",
@@ -42,6 +43,6 @@ abstract class OrdersApi {
   //   ApiConstants.postCmnts,
   // )
   // Future<Comment?> cmnt({
-  //   @Body() required JobCmntReqBody postCmntReqBody,
+  //   @Body() required OrderCmntReqBody postCmntReqBody,
   // });
 }
