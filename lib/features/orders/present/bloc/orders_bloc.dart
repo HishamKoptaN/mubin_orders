@@ -1,14 +1,14 @@
+import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/single_tone/orders_single_tone.dart';
+import '../../domain/usecases/orders_use_cases.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  final FirebaseAuth auth;
-
+ GetOrdersUseCase getOrdersUseCase;
   OrdersBloc({
-    required this.auth,
+ required this.getOrdersUseCase,
   }) : super(
           const OrdersState.initial(),
         ) {
@@ -19,17 +19,35 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             emit(
               const OrdersState.loading(),
             );
-            User? user = FirebaseAuth.instance.currentUser;
-            String? idToken = await user?.getIdToken();
-            if (idToken == null
-                // && idToken!.isEmpty
-                ) {
-              log("id token $idToken");
-              emit(
-                const OrdersState.success(),
+            try {
+              final res = await getOrdersUseCase.getOrders();
+              await res.when(
+                success: (
+                  res,
+                ) async {
+                  OrdersSingletone.instance.ordersResModel = res;
+                  emit(
+                    const OrdersState.initial(),
+                  );
+                },
+                failure: (
+                  apiErrorModel,
+                ) async {
+                  emit(
+                    OrdersState.failure(
+                      apiErrorModel: apiErrorModel,
+                    ),
+                  );
+                },
               );
-            } else {
-              log("id token $idToken");
+            } catch (e) {
+              emit(
+                OrdersState.failure(
+                  apiErrorModel: ApiErrorModel(
+                    error: e.toString(),
+                  ),
+                ),
+              );
             }
           },
         );

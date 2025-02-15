@@ -17,7 +17,8 @@ class MyText extends StatelessWidget {
       fieldName,
       maxLines: 2,
       style: TextStyle(
-          fontSize: fontSize, fontWeight: FontWeight.bold, color: color),
+          fontSize: fontSize, fontWeight: FontWeight.bold, color: color,
+          ),
     );
   }
 }

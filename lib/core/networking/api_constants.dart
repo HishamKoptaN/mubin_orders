@@ -1,15 +1,9 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://m-api.aquan.website/api";
+  static const String apiBaseUrl = "https://m-api.aquan.website/api/";
   static const String apiAuthBaseUrl = "https://m-api.aquan.website/auth/";
 
-  static const String countries = "countries";
-  static const String jobSeekerSignup = "job-seeker-sign-up";
-  static const String companySignup = "company-sign-up";
   static const String check = "check";
-  static const String posts = "posts";
-  static const String postCmnts = "post-cmnts";
-  static const String statuses = "statuses";
-  static const String jobs = "jobs";
+  static const String orders = "orders";
 
   static const String authToken = "auth-token";
   static const String login = "login";

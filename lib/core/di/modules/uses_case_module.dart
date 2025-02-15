@@ -1,6 +1,7 @@
 import '../../../features/auth/login/domain/use_cases/auth_token_use_case.dart';
 import '../../../features/auth/login/domain/use_cases/fire_login_use_case.dart';
 import '../../../features/main/domain/usecases/main_use_casees.dart';
+import '../../../features/orders/domain/usecases/orders_use_cases.dart';
 import '../dependency_injection.dart';
 
 class UseCaseModule extends DIModule {
@@ -20,6 +21,10 @@ class UseCaseModule extends DIModule {
       ..registerLazySingleton(
         () => FirebaseLoginUseCase(
           loginRepo: getIt(),
+        ),
+      )  ..registerLazySingleton(
+        () => GetOrdersUseCase(
+          jobsRepo: getIt(),
         ),
       );
   }

@@ -14,7 +14,7 @@
 
 
     <application
-        android:label="Mubin orders"
+        android:label="mubin_orders"
         android:name=".MainApplication"
         android:icon="@mipmap/launcher_icon">
 

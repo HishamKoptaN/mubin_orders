@@ -1,6 +1,6 @@
 import '../../../../core/networking/api_result.dart';
 import '../../../../core/models/user_data.dart';
-import '../../../errors/api_error_handler.dart';
+import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/repo/main_repo.dart';
 import '../datasources/main_api.dart';
 

@@ -14,8 +14,6 @@ import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/snacke_bar.dart';
 import '../../../../../core/helper/colors.dart';
 import '../../../../home/home_view.dart';
-import '../../../../orders/present/views/orders_view.dart';
-import '../../../../main/present/view/main_view.dart';
 import '../../data/models/firabase_login_req_body_model.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';

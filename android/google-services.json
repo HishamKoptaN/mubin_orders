@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "14728606104",
+    "project_id": "mubin-c2b92",
+    "storage_bucket": "mubin-c2b92.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:14728606104:android:cb64a5ded17c6e45bc3bed",
+        "android_client_info": {
+          "package_name": "com.mubin.app.orders"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6YfewQ8X0wgcICWXedlSVbLrVx0xm8b0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

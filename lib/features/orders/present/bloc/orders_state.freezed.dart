@@ -21,6 +21,7 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() orderShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? orderShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? orderShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
@@ -46,6 +49,7 @@ mixin _$OrdersState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -54,6 +58,7 @@ mixin _$OrdersState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -62,6 +67,7 @@ mixin _$OrdersState {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -133,6 +139,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() orderShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return initial();
@@ -144,6 +151,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? orderShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return initial?.call();
@@ -155,6 +163,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? orderShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -170,6 +179,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -181,6 +191,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -192,6 +203,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -250,6 +262,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() orderShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return loading();
@@ -261,6 +274,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? orderShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return loading?.call();
@@ -272,6 +286,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? orderShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -287,6 +302,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -298,6 +314,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -309,6 +326,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -367,6 +385,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() orderShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success();
@@ -378,6 +397,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? orderShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call();
@@ -389,6 +409,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? orderShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -404,6 +425,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
     required TResult Function(_Failure value) failure,
   }) {
     return success(this);
@@ -415,6 +437,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
@@ -426,6 +449,7 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -438,6 +462,129 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements OrdersState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$OrderShareImplCopyWith<$Res> {
+  factory _$$OrderShareImplCopyWith(
+          _$OrderShareImpl value, $Res Function(_$OrderShareImpl) then) =
+      __$$OrderShareImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OrderShareImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrderShareImpl>
+    implements _$$OrderShareImplCopyWith<$Res> {
+  __$$OrderShareImplCopyWithImpl(
+      _$OrderShareImpl _value, $Res Function(_$OrderShareImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OrderShareImpl implements _OrderShare {
+  const _$OrderShareImpl();
+
+  @override
+  String toString() {
+    return 'OrdersState.orderShare()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OrderShareImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function() orderShare,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
+  }) {
+    return orderShare();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function()? orderShare,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+  }) {
+    return orderShare?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function()? orderShare,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    required TResult orElse(),
+  }) {
+    if (orderShare != null) {
+      return orderShare();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return orderShare(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return orderShare?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (orderShare != null) {
+      return orderShare(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OrderShare implements OrdersState {
+  const factory _OrderShare() = _$OrderShareImpl;
 }
 
 /// @nodoc
@@ -512,6 +659,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function() orderShare,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return failure(apiErrorModel);
@@ -523,6 +671,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function()? orderShare,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return failure?.call(apiErrorModel);
@@ -534,6 +683,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function()? orderShare,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -549,6 +699,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_OrderShare value) orderShare,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -560,6 +711,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_OrderShare value)? orderShare,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -571,6 +723,7 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_OrderShare value)? orderShare,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

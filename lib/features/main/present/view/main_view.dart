@@ -1,6 +1,8 @@
 import '../../../../core/widgets/custom_circular_progress.dart';
+import '../../../add_order/views/add_order_view.dart';
 import '../../../auth/login/present/view/login_view.dart';
 import '../../../home/home_view.dart';
+import '../../../orders/present/views/orders_view.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_event.dart';
 import '../bloc/main_state.dart';
@@ -25,7 +27,7 @@ class MainView extends StatelessWidget {
         body: BlocBuilder<MainBloc, MainState>(
           builder: (context, state) {
             return state.maybeWhen(
-              logedIn: () => const HomeView(),
+              logedIn: () =>  HomeView(),
               logedOut: () => const LoginView(),
               orElse: () => const CustomCircularProgress(),
             );
@@ -35,3 +37,5 @@ class MainView extends StatelessWidget {
     );
   }
 }
+
+

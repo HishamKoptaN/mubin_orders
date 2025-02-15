@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/database/cache/shared_pref_helper.dart';
 import '../../../../../core/database/cache/shared_pref_keys.dart';
 import '../../../../../core/single_tone/user_singleton.dart';
-import '../../../../errors/api_error_model.dart';
-import '../../../../errors/firebase_failures.dart';
+import '../../../../../core/errors/api_error_model.dart';
+import '../../../../../core/errors/firebase_failures.dart';
 import '../../data/models/login_req_body_model.dart';
 import '../../domain/use_cases/fire_login_use_case.dart';
 import '../../domain/use_cases/auth_token_use_case.dart';
@@ -47,39 +47,39 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 emit(
                   const LoginState.success(),
                 );
-                // await userCredential.user?.getIdToken().then(
-                //   (idToken) async {
-                //     log(idToken!);
-                //     final res = await loginUseCase.authToken(
-                //       loginReqBodyModel: const LoginReqBodyModel().copyWith(
-                //         idToken: idToken,
-                //       ),
-                //     );
-                //     await res.when(
-                //       success: (
-                //         res,
-                //       ) async {
-                //         UserDataSingleton.instance.user = res;
-                //         await SharedPrefHelper.setSecuredString(
-                //           key: SharedPrefKeys.userToken,
-                //           value: res?.token ?? '',
-                //         );
-                //         emit(
-                //           const LoginState.success(),
-                //         );
-                //       },
-                //       failure: (
-                //         apiErrorModel,
-                //       ) async {
-                //         emit(
-                //           LoginState.failure(
-                //             apiErrorModel: apiErrorModel,
-                //           ),
-                //         );
-                //       },
-                //     );
-                //   },
-                // );
+                await userCredential.user?.getIdToken().then(
+                  (idToken) async {
+                    log(idToken!);
+                        final res = await loginUseCase.authToken(
+                          loginReqBodyModel: const LoginReqBodyModel().copyWith(
+                            idToken: idToken,
+                          ),
+                        );
+                        await res.when(
+                          success: (
+                            res,
+                          ) async {
+                            UserDataSingleton.instance.user = res;
+                            await SharedPrefHelper.setSecuredString(
+                              key: SharedPrefKeys.userToken,
+                              value: res?.token ?? '1|x26Tvl0KcpyWhvoT37PkMMFXA28sRd8tX7dOvRIH44a143b3',
+                            );
+                            emit(
+                              const LoginState.success(),
+                            );
+                          },
+                          failure: (
+                            apiErrorModel,
+                          ) async {
+                            emit(
+                              LoginState.failure(
+                                apiErrorModel: apiErrorModel,
+                              ),
+                            );
+                          },
+                        );
+                  },
+                );
               },
             );
           },

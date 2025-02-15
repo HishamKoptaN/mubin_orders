@@ -22,15 +22,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
             );
             User? user = FirebaseAuth.instance.currentUser;
             String? idToken = await user?.getIdToken();
-            if (idToken == null
-                // && idToken!.isEmpty
-                ) {
-              emit(
-                const MainState.logedIn(),
-              );
-            } else {
+            if (idToken != null && idToken.isNotEmpty) {
+              log(idToken);
               emit(
                 const MainState.logedOut(),
+              );
+            
+            } else {
+              emit(
+                const MainState.logedIn(),
               );
             }
           },

@@ -1,5 +1,6 @@
 import '../../../features/auth/login/present/bloc/login_bloc.dart';
 import '../../../features/main/present/bloc/main_bloc.dart';
+import '../../../features/orders/present/bloc/orders_bloc.dart';
 import '../dependency_injection.dart';
 
 class BlocModule extends DIModule {
@@ -17,6 +18,12 @@ class BlocModule extends DIModule {
           firebaseLoginUseCase: getIt(),
           loginUseCase: getIt(),
           firebaseAuth: getIt(),
+        ),
+      )
+       //! Login
+      ..registerLazySingleton<OrdersBloc>(
+        () => OrdersBloc(
+          getOrdersUseCase: getIt(),
         ),
       );
   }

@@ -9,3 +9,4 @@ export 'package:gap/gap.dart';
 export 'package:shared_preferences/shared_preferences.dart';
 export 'package:url_launcher/url_launcher.dart';
 export '../../../core/di/dependency_injection.dart';
+export 'package:flutter_gen/gen_l10n/app_localizations.dart';

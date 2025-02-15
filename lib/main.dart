@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,13 +16,16 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await FirebaseAuth.instance.signOut();
+  // await FirebaseAuth.instance.signOut();
   await Injection.inject();
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
         key: SharedPrefKeys.languageCode,
       ) ??
-      'ar';
+      'ar';   await SharedPrefHelper.setSecuredString(
+                              key: SharedPrefKeys.userToken,
+                              value:  '1|QIrLW9H4AkJ2tCO3eEcvu57QDwkA38fTx2OOhMQ076298fb1',
+                            );
   Bloc.observer = AppBlocObserver();
   // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {
   //   SharedPrefHelper.setData(
