@@ -1,5 +1,6 @@
 {
     "kinia_name": "كينيا",
+    "@kinia_name": {},
     "smoal_name": "الصومال",
     "tanzania": "تنزانيا",
     "home_title": "الرئيسيه",
@@ -19,6 +20,8 @@
     "password_hint": "كلمة المرور ",
     "mubin":"مبين",
     "or":"أو",	
+    "request_time_out":"انتهت مهلة الطلب",
+
     "are_you_sure": "هل أنت متأكد؟",
     "change": "تغيير",
     "change_language": "تغيير اللغة",
@@ -30,8 +33,8 @@
     "remember_me": "تذكرني",
     "log_out": "تسجيل خروج",
     "request_saving":"جاري حفظ الطلب",
-    "request_sharing":"جاري مشاركة الطلب"
-    ,"failed":"فشل"
+    "order_is_sharing": "جاري مشاركة الطلب",
+    "failed":"فشل"
     ,"successfully":"نجاح",
     "data_dont_saved":"'لم يتم حقظ الطلب يرجى اعادة المحاولة'"
     ,"data_saved":"' تم حقظ الطلب بنجاح'"

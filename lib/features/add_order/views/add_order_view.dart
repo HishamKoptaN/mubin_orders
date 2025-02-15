@@ -62,7 +62,7 @@ class _AddOrderViewState extends State<AddOrderView> {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   backgroundColor: Colors.red,
-                  content: Text("S.of(context).request_timed_out"),
+                  content: Text("S.of(context).request_time_out"),
                   duration: Duration(seconds: 4),
                 ),
               );
@@ -74,7 +74,7 @@ class _AddOrderViewState extends State<AddOrderView> {
               return LoadingWidget(
                 height: height,
                 width: width,
-                text: t.request_saving,
+                text: t.order_saving,
                 progress: progress,
               );
             }
@@ -104,7 +104,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     controller: adminProductsProvider.videoController,
                     maxLines: 2,
                     onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 0),
+                        adminProductsProvider.selectFilesPath(context:context,file:  0,),
                     labelText: t.add_video,
                     hint: t.add_video,
                     suffixIcon: Icons.cloud_upload,
@@ -114,7 +114,8 @@ class _AddOrderViewState extends State<AddOrderView> {
                     controller: adminProductsProvider.firstImageController,
                     maxLines: 2,
                     onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 1),
+                        adminProductsProvider.selectFilesPath(context:context,file: 1,
+                        ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
@@ -124,7 +125,8 @@ class _AddOrderViewState extends State<AddOrderView> {
                     controller: adminProductsProvider.secondImageController,
                     maxLines: 2,
                     onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 2),
+                        adminProductsProvider.selectFilesPath(context:context,file: 2,
+                        ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,

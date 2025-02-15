@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
 import 'core/database/cache/shared_pref_keys.dart'; 
@@ -16,6 +17,12 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+   // طلب إذن الكاميرا
+  PermissionStatus cameraStatus = await Permission.camera.request();
+
+  // طلب إذن الوصول إلى المعرض
+  PermissionStatus photoStatus = await Permission.photos.request();
+
   // await FirebaseAuth.instance.signOut();
   await Injection.inject();
   await ScreenUtil.ensureScreenSize();
@@ -24,7 +31,7 @@ Future<void> main() async {
       ) ??
       'ar';   await SharedPrefHelper.setSecuredString(
                               key: SharedPrefKeys.userToken,
-                              value:  '1|QIrLW9H4AkJ2tCO3eEcvu57QDwkA38fTx2OOhMQ076298fb1',
+                              value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
                             );
   Bloc.observer = AppBlocObserver();
   // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {

@@ -37,8 +37,6 @@ class _LoginViewState extends State<LoginView> {
   final Validator validator = Validator();
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     final t = AppLocalizations.of(context)!;
     return BlocProvider<LoginBloc>(
       create: (context) => LoginBloc(
@@ -114,7 +112,7 @@ class _LoginViewState extends State<LoginView> {
                               value: v ?? '',
                             ),
                             textInputType: TextInputType.emailAddress,
-                            hintText: "ادخل البريد الألكتروني هنا",
+                            hintText: t.email_hint,
                           ),
                           Gap(
                             10.h,
@@ -133,7 +131,7 @@ class _LoginViewState extends State<LoginView> {
                             validator: (v) => Validator.customValidator(
                               value: v ?? '',
                             ),
-                            hintText: "ادخل كلمة السر",
+                            hintText: t.password_hint,
                             textInputType: TextInputType.visiblePassword,
                           ),
                           Gap(
@@ -161,8 +159,8 @@ class _LoginViewState extends State<LoginView> {
                               },
                               orElse: () {
                                 return Text(
-                                  "تسجيل الدخول",
-                                  style: TextStyles.medium15.copyWith(
+                                  t.login,
+                                  style: TextStyles.medium22.copyWith(
                                     color: Colors.black,
                                   ),
                                 );

@@ -6,10 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart' as loc;
 import '../../../core/utils/app_colors.dart';
-import '../../../generated/l10n.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'package:http/http.dart' as http;
-import '../../../core/temporary/controller/login_controller.dart';
 
 class AddOrderController {
   final ImagePicker imagePicker = ImagePicker();
@@ -39,7 +37,9 @@ class AddOrderController {
     return null;
   }
 
-  void selectFilesPath(BuildContext context, int file) {
+  void selectFilesPath({
+    required BuildContext context,required int file,
+  }) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -128,7 +128,8 @@ class AddOrderController {
     }
   }
 
-  Future<void> pickImageGallery(int imageNumber) async {
+  Future<void> pickImageGallery({required int imageNumber,
+  }) async {
     XFile? imageFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
     );
