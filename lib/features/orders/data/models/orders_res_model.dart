@@ -42,9 +42,9 @@ class Order with _$Order {
         @JsonKey(name: "id")
         int? id,
         @JsonKey(name: "created_at")
-        DateTime? createdAt,
+        String? createdAt,
         @JsonKey(name: "updated_at")
-        DateTime? updatedAt,
+        String? updatedAt,
         @JsonKey(name: "latitude")
         String? latitude,
         @JsonKey(name: "longitude")

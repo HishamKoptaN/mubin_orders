@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class ImageScreen extends StatelessWidget {
+class ImagePreview extends StatelessWidget {
   final String imageUrl;
 
-  const ImageScreen({super.key, required this.imageUrl});
+  const ImagePreview({super.key, required this.imageUrl,
+  });
+
+  static const String routeName = "ImagePreview";
 
   @override
   Widget build(BuildContext context) {
@@ -12,14 +15,18 @@ class ImageScreen extends StatelessWidget {
     double width = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
+      appBar: AppBar(),
       body: Center(
-        child: CachedNetworkImage(
-          height: height,
-          width: width,
-          fit: BoxFit.cover,
-          imageUrl: "https://api.aquan.website/api/images/invoices/$imageUrl",
-          placeholder: (context, url) => const CircularProgressIndicator(),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+        child: InteractiveViewer(
+          // Enable zooming and panning
+          child: CachedNetworkImage(
+            imageUrl: imageUrl,
+            fit: BoxFit.contain,  // Use BoxFit.contain to maintain aspect ratio
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
+            width: width,
+            height: height,
+          ),
         ),
       ),
     );
