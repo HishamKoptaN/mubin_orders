@@ -17,7 +17,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
     return Drawer(
-      width: 70,
+      width: 250.w,
       backgroundColor: Colors.white,
       child: SizedBox(
         height: 70,

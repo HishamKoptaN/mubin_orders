@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'package:cached_video_player_plus/cached_video_player_plus.dart';
-import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../../../generated/l10n.dart';
+import '../../../core/all_imports.dart';
 import '../../../core/helper/routes.dart';
-import '../../add_order/views/add_order_view.dart';
+import '../present/views/add_order_view.dart';
 import '../../../core/widgets/video_player.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,13 +27,18 @@ class HomeController {
     }
   }
 
-  void setCurrentIndex(int index, BuildContext context) async {
+  void setCurrentIndex(
+  {  
+   required   AppLocalizations t
+,
+   required int index, required BuildContext context,
+   }) async {
     switch (index) {
       case 0:
-        _title = "S.of(context).home_title";
+        _title = t.home_title;
         break;
       case 1:
-        _title = "S.of(context).add_order";
+        _title = t.add_order;
         break;
     }
     _currentIndex = index;

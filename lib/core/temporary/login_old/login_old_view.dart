@@ -39,7 +39,7 @@
 //                                     height: context.screenHeight * 25,
 //                                     child: Center(
 //                                       child: Text(
-//                                         S.of(context).login_text,
+//                                         t.login_text,
 //                                         style: GoogleFonts.cairo(
 //                                             color: Colors.white,
 //                                             fontSize: context.fontSize * 0.12,
@@ -55,7 +55,7 @@
 //                                     height: context.screenSize * 0.25,
 //                                     width: context.screenSize * 0.4,
 //                                     ontap: () => cnr.signIn(context),
-//                                     text: S.of(context).login,
+//                                     text: t.login,
 //                                     fontSize: context.fontSize * 0.1,
 //                                   ),
 //                                 ],
@@ -68,7 +68,7 @@
 //                                 children: [
 //                                   MyTextField(
 //                                     controller: cnr.loginEmailController,
-//                                     hintText: S.of(context).email_hint,
+//                                     hintText: t.email_hint,
 //                                     obscure: false,
 //                                     icon: Icons.email_outlined,
 //                                     iconeSize: context.screenSize * .1,
@@ -79,7 +79,7 @@
 //                                   ),
 //                                   MyTextField(
 //                                     controller: cnr.loginPassController,
-//                                     hintText: S.of(context).password_hint,
+//                                     hintText: t.password_hint,
 //                                     obscure: true,
 //                                     icon: Icons.lock,
 //                                     iconeSize: context.screenSize * .1,
@@ -94,7 +94,7 @@
 //                                 children: [
 //                                   SizedBox(width: context.screenSize * 0.06),
 //                                   Mytext(
-//                                     text: S.of(context).remember_me,
+//                                     text: t.remember_me,
 //                                     fonstSize: context.fontSize * .06,
 //                                   ),
 //                                   Checkbox(

@@ -1,13 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/gloabal_widgets/loading_widget.dart';
-import '../bloc/order_bloc.dart';
-import '../bloc/order_event.dart';
-import '../bloc/order_state.dart';
-import '../provider/add_order.controller.dart';
-import 'widgets/text_field.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../../core/all_imports.dart';
+import '../bloc/orders_bloc.dart';
+import '../bloc/orders_state.dart';
+import '../../../add_order/bloc/order_bloc.dart';
+import '../../../add_order/bloc/order_event.dart';
+import '../../../add_order/provider/add_order.controller.dart';
+import '../../../add_order/views/widgets/text_field.dart';
 
 class AddOrderView extends StatefulWidget {
   const AddOrderView({super.key});
@@ -35,11 +32,13 @@ class _AddOrderViewState extends State<AddOrderView> {
     final t = AppLocalizations.of(context)!;
     return Scaffold(
       body: BlocProvider(
-        create: (_) => OrderBloc(),
-        child: BlocConsumer<OrderBloc, OrderState>(
+        create: (_) => OrdersBloc(
+          getOrdersUseCase: getIt(),
+        ),
+        child: BlocConsumer<OrdersBloc, OrdersState>(
           listener: (context, state) {
-            if (state is OrdersAddedSuccessfully) {
-              ScaffoldMessenger.of(context).showSnackBar(
+            state.whenOrNull(
+              success: () => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.green,
                   content: Text(
@@ -47,43 +46,17 @@ class _AddOrderViewState extends State<AddOrderView> {
                   ),
                   duration: const Duration(seconds: 4),
                 ),
-              );
-            }
-            if (state is OrderAddedFailure) {
-              ScaffoldMessenger.of(context).showSnackBar(
+              ),
+              failure: (e) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.red,
                   content: Text(t.order_addition_failed),
                   duration: const Duration(seconds: 4),
                 ),
-              );
-            }
-            if (state is OrderTimeout) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  backgroundColor: Colors.red,
-                  content: Text("S.of(context).request_timed_out"),
-                  duration: Duration(seconds: 4),
-                ),
-              );
-            }
+              ),
+            );
           },
           builder: (context, state) {
-            if (state is OrderLoading || state is OrderProgress) {
-              double progress = state is OrderProgress ? state.progress : 0.0;
-              return LoadingWidget(
-                height: height,
-                width: width,
-                text: t.request_saving,
-                progress: progress,
-              );
-            }
-            // return LoadingWidget(
-            //   height: height,
-            //   width: width,
-            //   text: S.of(context).request_saving,
-            //   progress: 100,
-            // );
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -103,8 +76,11 @@ class _AddOrderViewState extends State<AddOrderView> {
                   MyTextField(
                     controller: adminProductsProvider.videoController,
                     maxLines: 2,
-                    onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 0),
+                    onTap: () => adminProductsProvider.selectFilesPath(
+                      t: t,
+                      context: context,
+                      file: 0,
+                    ),
                     labelText: t.add_video,
                     hint: t.add_video,
                     suffixIcon: Icons.cloud_upload,
@@ -113,8 +89,11 @@ class _AddOrderViewState extends State<AddOrderView> {
                   MyTextField(
                     controller: adminProductsProvider.firstImageController,
                     maxLines: 2,
-                    onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 1),
+                    onTap: () => adminProductsProvider.selectFilesPath(
+                      t: t,
+                      context: context,
+                      file: 1,
+                    ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
@@ -123,8 +102,11 @@ class _AddOrderViewState extends State<AddOrderView> {
                   MyTextField(
                     controller: adminProductsProvider.secondImageController,
                     maxLines: 2,
-                    onTap: () =>
-                        adminProductsProvider.selectFilesPath(context, 2),
+                    onTap: () => adminProductsProvider.selectFilesPath(
+                      t: t,
+                      context: context,
+                      file: 2,
+                    ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
@@ -172,3 +154,26 @@ class _AddOrderViewState extends State<AddOrderView> {
     );
   }
 }
+
+
+
+
+
+
+
+
+   // if (state is OrderLoading || state is OrderProgress) {
+            //   double progress = state is OrderProgress ? state.progress : 0.0;
+            //   return LoadingWidget(
+            //     height: height,
+            //     width: width,
+            //     text: t.order_saving,
+            //     progress: progress,
+            //   );
+            // }
+            // return LoadingWidget(
+            //   height: height,
+            //   width: width,
+            //   text: t.request_saving,
+            //   progress: 100,
+            // );

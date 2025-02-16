@@ -14,6 +14,8 @@ class OrdersView extends StatefulWidget {
   const OrdersView({
     super.key,
   });
+    static const String routeName = "OrdersView";
+
   @override
   State<OrdersView> createState() => _OrdersViewState();
 }
@@ -111,11 +113,11 @@ class _OrdersViewState extends State<OrdersView> {
                               Radius.circular(15),
                             ),
                           ),
-                          child: const Row(
+                          child:  Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               MyText(
-                                fieldName: 'جاري مشاركة الطلب ',
+                                fieldName:t.or,
                                 color: Colors.black,
                                 fontSize: 15,
                               ),

@@ -24,7 +24,12 @@ class UseCaseModule extends DIModule {
         ),
       )  ..registerLazySingleton(
         () => GetOrdersUseCase(
-          jobsRepo: getIt(),
+          ordersRepo: getIt(),
+        ),
+      )
+       ..registerLazySingleton(
+        () => CreateOrderUseCase(
+          ordersRepo: getIt(),
         ),
       );
   }

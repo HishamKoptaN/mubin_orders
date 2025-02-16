@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
-import 'core/database/cache/shared_pref_keys.dart';
+import 'core/database/cache/shared_pref_keys.dart'; 
 import 'core/di/dependency_injection.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
@@ -22,7 +22,7 @@ Future<void> main() async {
       ) ??
       'ar';   await SharedPrefHelper.setSecuredString(
                               key: SharedPrefKeys.userToken,
-                              value:  '1|QIrLW9H4AkJ2tCO3eEcvu57QDwkA38fTx2OOhMQ076298fb1',
+                              value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
                             );
   Bloc.observer = AppBlocObserver();
   // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {
