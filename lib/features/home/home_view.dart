@@ -8,7 +8,6 @@ class HomeView extends StatefulWidget {
     super.key,
   });
   static const String routeName = "HomeView";
-
   @override
   State<HomeView> createState() => _HomeViewState();
 }

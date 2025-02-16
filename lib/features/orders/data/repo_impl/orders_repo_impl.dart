@@ -5,7 +5,6 @@ import '../../../../core/errors/api_error_handler.dart';
 import '../../../../core/networking/api_constants.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
-import '../models/create_order_req_body.dart';
 import '../models/orders_res_model.dart';
 
 class OrdersRepoImpl implements OrdersRepo {

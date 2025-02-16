@@ -3,9 +3,10 @@ import 'package:mubin_orders/core/all_imports.dart';
 import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
-import '../../../../../core/gloabal_widgets/image_view.dart';
+import '../../../../../core/gloabal_widgets/image_widget.dart';
 import '../../../data/models/orders_res_model.dart';
 import '../orders_view.dart';
+import 'image_preview.dart';
 import 'video_widget.dart';
 
 class MobileHomeWidget extends StatelessWidget {
@@ -75,7 +76,7 @@ class MobileHomeWidget extends StatelessWidget {
                     onTap: () async {
                       Navigator.pushNamed(
                         context,
-                        ImageView.routeName,
+                        ImagePreview.routeName,
                         arguments: {
                           'image_url': order.imageOne ?? '',
                         },
@@ -98,7 +99,7 @@ class MobileHomeWidget extends StatelessWidget {
                     onTap: () async {
                       Navigator.pushNamed(
                         context,
-                        ImageView.routeName,
+                        ImagePreview.routeName,
                         arguments: {'image_url': order.imageTwo ?? ''},
                       );
                     },

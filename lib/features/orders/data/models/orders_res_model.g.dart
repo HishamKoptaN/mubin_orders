@@ -46,12 +46,8 @@ Map<String, dynamic> _$$MetaImplToJson(_$MetaImpl instance) =>
 
 _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
       id: (json['id'] as num?)?.toInt(),
-      createdAt: json['created_at'] == null
-          ? null
-          : DateTime.parse(json['created_at'] as String),
-      updatedAt: json['updated_at'] == null
-          ? null
-          : DateTime.parse(json['updated_at'] as String),
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
       latitude: json['latitude'] as String?,
       longitude: json['longitude'] as String?,
       imageOne: json['image_one'] as String?,
@@ -65,8 +61,8 @@ _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
 Map<String, dynamic> _$$OrderImplToJson(_$OrderImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'created_at': instance.createdAt?.toIso8601String(),
-      'updated_at': instance.updatedAt?.toIso8601String(),
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'image_one': instance.imageOne,

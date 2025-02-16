@@ -527,9 +527,9 @@ mixin _$Order {
   @JsonKey(name: "id")
   int? get id => throw _privateConstructorUsedError;
   @JsonKey(name: "created_at")
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
-  DateTime? get updatedAt => throw _privateConstructorUsedError;
+  String? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "latitude")
   String? get latitude => throw _privateConstructorUsedError;
   @JsonKey(name: "longitude")
@@ -563,8 +563,8 @@ abstract class $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "created_at") DateTime? createdAt,
-      @JsonKey(name: "updated_at") DateTime? updatedAt,
+      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "updated_at") String? updatedAt,
       @JsonKey(name: "latitude") String? latitude,
       @JsonKey(name: "longitude") String? longitude,
       @JsonKey(name: "image_one") String? imageOne,
@@ -610,11 +610,11 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -660,8 +660,8 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "created_at") DateTime? createdAt,
-      @JsonKey(name: "updated_at") DateTime? updatedAt,
+      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "updated_at") String? updatedAt,
       @JsonKey(name: "latitude") String? latitude,
       @JsonKey(name: "longitude") String? longitude,
       @JsonKey(name: "image_one") String? imageOne,
@@ -705,11 +705,11 @@ class __$$OrderImplCopyWithImpl<$Res>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       latitude: freezed == latitude
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -770,10 +770,10 @@ class _$OrderImpl implements _Order {
   final int? id;
   @override
   @JsonKey(name: "created_at")
-  final DateTime? createdAt;
+  final String? createdAt;
   @override
   @JsonKey(name: "updated_at")
-  final DateTime? updatedAt;
+  final String? updatedAt;
   @override
   @JsonKey(name: "latitude")
   final String? latitude;
@@ -865,8 +865,8 @@ class _$OrderImpl implements _Order {
 abstract class _Order implements Order {
   const factory _Order(
       {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "created_at") final DateTime? createdAt,
-      @JsonKey(name: "updated_at") final DateTime? updatedAt,
+      @JsonKey(name: "created_at") final String? createdAt,
+      @JsonKey(name: "updated_at") final String? updatedAt,
       @JsonKey(name: "latitude") final String? latitude,
       @JsonKey(name: "longitude") final String? longitude,
       @JsonKey(name: "image_one") final String? imageOne,
@@ -883,10 +883,10 @@ abstract class _Order implements Order {
   int? get id;
   @override
   @JsonKey(name: "created_at")
-  DateTime? get createdAt;
+  String? get createdAt;
   @override
   @JsonKey(name: "updated_at")
-  DateTime? get updatedAt;
+  String? get updatedAt;
   @override
   @JsonKey(name: "latitude")
   String? get latitude;
