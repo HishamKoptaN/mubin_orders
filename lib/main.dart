@@ -8,9 +8,7 @@ import 'core/database/cache/shared_pref_keys.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'firebase_options.dart';
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
