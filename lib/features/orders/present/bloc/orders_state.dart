@@ -9,14 +9,15 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.initial() = _Initial;
   const factory OrdersState.loading() = _LoadInProgress;
   const factory OrdersState.success() = _Success;
-   const factory OrdersState.imagePicked({
+  const factory OrdersState.imagePicked({
     required XFile file,
-   required FileType fileType, 
-  ImageSelection? imageSelection,
+    required FileType fileType,
+    ImageSelection? imageSelection,
   }) = _ImagePicked;
-  const factory OrdersState.orderShare () = _OrderShare;
-   const factory OrdersState.progress({required double progress,
-   }) = _Progress;
+  const factory OrdersState.orderShare() = _OrderShare;
+  const factory OrdersState.progress({
+    required double progress,
+  }) = _Progress;
   const factory OrdersState.failure({
     required ApiErrorModel apiErrorModel,
   }) = _Failure;
