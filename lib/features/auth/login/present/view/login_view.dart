@@ -5,14 +5,13 @@ import 'package:gap/gap.dart';
 import '../../../../../core/di/dependency_injection.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
-import '../../../../../core/validator.dart';
+import '../../../../../core/helper_functions/validator.dart';
 import '../../../../../core/widgets/custom_button.dart';
 import '../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../core/widgets/custom_logo_image.dart';
 import '../../../../../core/widgets/custom_password_form_field.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../../core/widgets/snacke_bar.dart';
-import '../../../../../core/helper/colors.dart';
 import '../../../../home/home_view.dart';
 import '../../data/models/firabase_login_req_body_model.dart';
 import '../bloc/login_bloc.dart';
@@ -74,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: white,
+            backgroundColor:  AppColors.white,
             body: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),

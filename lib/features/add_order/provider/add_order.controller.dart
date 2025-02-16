@@ -15,7 +15,6 @@ class AddOrderController {
   final TextEditingController videoController = TextEditingController();
   final TextEditingController firstImageController = TextEditingController();
   final TextEditingController secondImageController = TextEditingController();
-
   XFile? pickedFirstImage;
   XFile? pickedSecondImage;
   XFile? pickedVideo;

@@ -16,45 +16,37 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeEvent {
-  int get index => throw _privateConstructorUsedError;
-  AppLocalizations get t => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index, AppLocalizations t) changeTab,
+    required TResult Function() check,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index, AppLocalizations t)? changeTab,
+    TResult? Function()? check,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index, AppLocalizations t)? changeTab,
+    TResult Function()? check,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeTab value) changeTab,
+    required TResult Function(_Check value) check,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeTab value)? changeTab,
+    TResult? Function(_Check value)? check,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeTab value)? changeTab,
+    TResult Function(_Check value)? check,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +54,6 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res, HomeEvent>;
-  @useResult
-  $Res call({int index, AppLocalizations t});
 }
 
 /// @nodoc
@@ -78,125 +68,70 @@ class _$HomeEventCopyWithImpl<$Res, $Val extends HomeEvent>
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? index = null,
-    Object? t = freezed,
-  }) {
-    return _then(_value.copyWith(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      t: freezed == t
-          ? _value.t
-          : t // ignore: cast_nullable_to_non_nullable
-              as AppLocalizations,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ChangeTabImplCopyWith<$Res>
-    implements $HomeEventCopyWith<$Res> {
-  factory _$$ChangeTabImplCopyWith(
-          _$ChangeTabImpl value, $Res Function(_$ChangeTabImpl) then) =
-      __$$ChangeTabImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int index, AppLocalizations t});
+abstract class _$$CheckImplCopyWith<$Res> {
+  factory _$$CheckImplCopyWith(
+          _$CheckImpl value, $Res Function(_$CheckImpl) then) =
+      __$$CheckImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ChangeTabImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$ChangeTabImpl>
-    implements _$$ChangeTabImplCopyWith<$Res> {
-  __$$ChangeTabImplCopyWithImpl(
-      _$ChangeTabImpl _value, $Res Function(_$ChangeTabImpl) _then)
+class __$$CheckImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$CheckImpl>
+    implements _$$CheckImplCopyWith<$Res> {
+  __$$CheckImplCopyWithImpl(
+      _$CheckImpl _value, $Res Function(_$CheckImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of HomeEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? index = null,
-    Object? t = freezed,
-  }) {
-    return _then(_$ChangeTabImpl(
-      index: null == index
-          ? _value.index
-          : index // ignore: cast_nullable_to_non_nullable
-              as int,
-      t: freezed == t
-          ? _value.t
-          : t // ignore: cast_nullable_to_non_nullable
-              as AppLocalizations,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$ChangeTabImpl implements _ChangeTab {
-  const _$ChangeTabImpl({required this.index, required this.t});
-
-  @override
-  final int index;
-  @override
-  final AppLocalizations t;
+class _$CheckImpl implements _Check {
+  const _$CheckImpl();
 
   @override
   String toString() {
-    return 'HomeEvent.changeTab(index: $index, t: $t)';
+    return 'HomeEvent.check()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeTabImpl &&
-            (identical(other.index, index) || other.index == index) &&
-            const DeepCollectionEquality().equals(other.t, t));
+        (other.runtimeType == runtimeType && other is _$CheckImpl);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, index, const DeepCollectionEquality().hash(t));
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangeTabImplCopyWith<_$ChangeTabImpl> get copyWith =>
-      __$$ChangeTabImplCopyWithImpl<_$ChangeTabImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int index, AppLocalizations t) changeTab,
+    required TResult Function() check,
   }) {
-    return changeTab(index, t);
+    return check();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int index, AppLocalizations t)? changeTab,
+    TResult? Function()? check,
   }) {
-    return changeTab?.call(index, t);
+    return check?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int index, AppLocalizations t)? changeTab,
+    TResult Function()? check,
     required TResult orElse(),
   }) {
-    if (changeTab != null) {
-      return changeTab(index, t);
+    if (check != null) {
+      return check();
     }
     return orElse();
   }
@@ -204,46 +139,32 @@ class _$ChangeTabImpl implements _ChangeTab {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_ChangeTab value) changeTab,
+    required TResult Function(_Check value) check,
   }) {
-    return changeTab(this);
+    return check(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ChangeTab value)? changeTab,
+    TResult? Function(_Check value)? check,
   }) {
-    return changeTab?.call(this);
+    return check?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ChangeTab value)? changeTab,
+    TResult Function(_Check value)? check,
     required TResult orElse(),
   }) {
-    if (changeTab != null) {
-      return changeTab(this);
+    if (check != null) {
+      return check(this);
     }
     return orElse();
   }
 }
 
-abstract class _ChangeTab implements HomeEvent {
-  const factory _ChangeTab(
-      {required final int index,
-      required final AppLocalizations t}) = _$ChangeTabImpl;
-
-  @override
-  int get index;
-  @override
-  AppLocalizations get t;
-
-  /// Create a copy of HomeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChangeTabImplCopyWith<_$ChangeTabImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _Check implements HomeEvent {
+  const factory _Check() = _$CheckImpl;
 }

@@ -1,11 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
 import 'core/database/cache/shared_pref_keys.dart'; 
-import 'core/di/dependency_injection.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
 import 'firebase_options.dart';

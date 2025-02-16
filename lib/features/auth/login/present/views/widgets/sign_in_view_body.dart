@@ -2,7 +2,7 @@ import '../../../../../../core/all_imports.dart';
 import '../../../../../../core/utils/app_colors.dart';
 import '../../../../../../core/utils/app_images.dart';
 import '../../../../../../core/utils/app_text_styles.dart';
-import '../../../../../../core/validator.dart';
+import '../../../../../../core/helper_functions/validator.dart';
 import '../../../../../../core/widgets/custom_button.dart';
 import '../../../../../../core/widgets/custom_circular_progress.dart';
 import '../../../../../../core/widgets/custom_field.dart';

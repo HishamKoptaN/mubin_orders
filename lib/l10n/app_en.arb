@@ -1,4 +1,5 @@
 {
+    "@@locale": "en",
     "kinia_name": "Kenya",
     "smoal_name": "Somal",
     "tanzania": "Tanzania",
@@ -13,6 +14,7 @@
     "add_picure": "Add picure",
     "add": "Add",
     "loading": "loading.....",
+    "changeLanguage": "Change Language",
     "login_text": "Login",
     "login": "Login",
     "email_hint": "Email",

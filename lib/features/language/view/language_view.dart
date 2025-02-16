@@ -1,34 +1,48 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion_toast/motion_toast.dart';
-import '../../../../core/helper/colors.dart';
-import '../../../../core/widgets/Layouts/app_layout.dart';
-import '../bloc/language_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../core/database/cache/shared_pref_helper.dart';
+import '../../../core/database/cache/shared_pref_keys.dart';
+import '../../../core/widgets/Layouts/app_layout.dart';
+import '../../../main.dart';
+import '../bloc/language_bloc.dart';
 
 class ChangeLanguage extends StatefulWidget {
-  const ChangeLanguage({
-    super.key,
-  });
+  const ChangeLanguage({super.key});
 
   @override
   State<ChangeLanguage> createState() => _ChangeLanguageState();
 }
 
 class _ChangeLanguageState extends State<ChangeLanguage> {
-  String? locale;
+  String locale = "ar";
+
+  @override
+  void initState() {
+    super.initState();
+    SharedPrefHelper.getString(
+      key: SharedPrefKeys.languageCode,
+    ).then(
+      (value) {
+        setState(
+          () {
+            locale = value ?? 'ar';
+          },
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final t = AppLocalizations.of(context)!;
-
     final List<Map<String, String>> languages = [
       {"name": t.arabic, "key": "ar"},
       {"name": t.english, "key": "en"},
     ];
     return AppLayout(
-      route: t.change_language,
+      route: t.changeLanguage,
       showAppBar: true,
       body: BlocProvider<LanguageBloc>(
         create: (context) => LanguageBloc(),
@@ -65,7 +79,13 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                           ),
                         )
                         .toList(),
-                    onChanged: (value) => {setState(() => locale = value!)},
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          locale = value!;
+                        },
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 30,
@@ -74,19 +94,30 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                     width: size.width,
                     child: TextButton(
                       onPressed: () async {
-                        // Storage.setString(
-                        //   'language',
-                        //   locale,
-                        // );
-                        MotionToast.success(
-                          toastDuration: const Duration(seconds: 3),
-                          description: Text(
-                            t.change_language,
-                            style: const TextStyle(
-                              color: white,
+                        try {
+                          SharedPrefHelper.setData(
+                            key: SharedPrefKeys.languageCode,
+                            value: locale,
+                          );
+                          // ToastNotifier().showSuccess(
+                          //   context: context,
+                          //   message: t.languageChanged,
+                          // );
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyApp(
+                                locale: locale,
+                              ),
                             ),
-                          ),
-                        ).show(context);
+                            (route) => false,
+                          );
+                        } catch (e) {
+                          // ToastNotifier().showError(
+                          //   context: context,
+                          //   message: e.toString(),
+                          // );
+                        }
                       },
                       style: TextButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 20),
@@ -99,11 +130,11 @@ class _ChangeLanguageState extends State<ChangeLanguage> {
                       child: Text(
                         t.change,
                         style: const TextStyle(
-                          color: white,
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             );

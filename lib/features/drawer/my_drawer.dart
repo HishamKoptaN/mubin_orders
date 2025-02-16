@@ -3,9 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import '../../core/helper/settings_tab.dart';
+import '../../core/gloabal_widgets/settings_tab.dart';
 import '../auth/login/present/view/login_view.dart';
-import 'Language/view/change_language_view.dart';
+import '../language/view/language_view.dart';
 import 'my_drawer_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -28,7 +28,7 @@ class MyDrawer extends StatelessWidget {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Gap(25.h),
+                  Gap(25.h,),
                   SettingsTabWidget(
                     title: t.change_language,
                     icon: FontAwesomeIcons.language,

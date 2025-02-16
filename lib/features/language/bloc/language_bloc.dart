@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../core/database/cache/shared_pref_helper.dart';
 part 'language_event.dart';
 part 'language_state.dart';
 
@@ -7,23 +8,17 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     on<CheckLanguage>(
       (event, emit) {
         emit(LanguageInitial());
-        // if (Storage.getString('language') == null) {
-        //   emit(
-        //     SetLanguage(),
-        //   );
-        // } else {
-        //   emit(
-        //     LanguageSeted(),
-        //   );
-        // }
+        if (SharedPrefHelper.getString(key: 'language') == null) {
+          emit(SetLanguage());
+        } else {
+          emit(LanguageSeted());
+        }
       },
     );
     on<SetLocale>(
       (event, emit) {
         emit(LanguageInitial());
-
-        // Storage.setString("language", event.locale);
-
+        SharedPrefHelper.setData(key: "language", value: event.locale);
         emit(LanguageSeted());
       },
     );

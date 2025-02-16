@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../../generated/l10n.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AppLayout extends StatefulWidget {

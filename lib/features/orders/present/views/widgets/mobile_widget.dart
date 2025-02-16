@@ -26,15 +26,8 @@ class MobileHomeWidget extends StatelessWidget {
         children: [
           Expanded(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Expanded(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [   Expanded(
                           flex: 1,
                           child: MyText(
                             fieldName: '${t.order_id}: ${order.id.toString()}',
@@ -42,7 +35,7 @@ class MobileHomeWidget extends StatelessWidget {
                             fontSize: 15.sp,
                           ),
                         ),
-                        Expanded(
+                 Expanded(
                           flex: 1,
                           child: MyText(
                             fieldName: '${t.order_place}: ${order.place}',
@@ -50,55 +43,7 @@ class MobileHomeWidget extends StatelessWidget {
                             fontSize: 15.sp,
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      // Expanded(
-                      //   flex: 1,
-                      //   child: GestureDetector(
-                      //     onTap: () async {
-                      //       await shareOrderTwo(
-                      //         proId,
-                      //       );
-                      //     },
-                      //     child: Container(
-                      //       decoration: BoxDecoration(
-                      //         border: Border.all(color: Colors.green),
-                      //         borderRadius: const BorderRadius.all(
-                      //           Radius.circular(50),
-                      //         ),
-                      //       ),
-                      //       child: const Icon(
-                      //         Icons.share,
-                      //         color: Colors.green,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      Gap(
-                        10.w,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetectorWidget(
-                          onTap: () {
-                            // value.shareLocationOnWhatsApp(
-                            //     document['place_name'],
-                            //     document['order_location']
-                            // );
-                          },
-                          // document: document,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+               
               ],
             ),
           ),
@@ -218,3 +163,50 @@ class MobileHomeWidget extends StatelessWidget {
   //     }
   //   }
   // }
+
+
+   // Expanded(
+                //   flex: 1,
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       // Expanded(
+                //       //   flex: 1,
+                //       //   child: GestureDetector(
+                //       //     onTap: () async {
+                //       //       await shareOrderTwo(
+                //       //         proId,
+                //       //       );
+                //       //     },
+                //       //     child: Container(
+                //       //       decoration: BoxDecoration(
+                //       //         border: Border.all(color: Colors.green),
+                //       //         borderRadius: const BorderRadius.all(
+                //       //           Radius.circular(50),
+                //       //         ),
+                //       //       ),
+                //       //       child: const Icon(
+                //       //         Icons.share,
+                //       //         color: Colors.green,
+                //       //       ),
+                //       //     ),
+                //       //   ),
+                //       // ),
+                //       Gap(
+                //         10.w,
+                //       ),
+                //       Expanded(
+                //         flex: 1,
+                //         child: GestureDetectorWidget(
+                //           onTap: () {
+                //             // value.shareLocationOnWhatsApp(
+                //             //     document['place_name'],
+                //             //     document['order_location']
+                //             // );
+                //           },
+                //           // document: document,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
