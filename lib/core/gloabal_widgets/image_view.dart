@@ -10,27 +10,24 @@ class ImageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.ltr,
-      child: Scaffold(
-        appBar: AppBar(),
-        body: SizedBox(
-          width: 100,
-          height: 100,
-          child: Center(
-            child: Stack(
-              children: [
-                CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  placeholder: (context, url) => Shimmer.fromColors(
-                    baseColor: Colors.red,
-                    highlightColor: Colors.yellow,
-                    child: const SizedBox(),
-                  ),
-                  fit: BoxFit.contain,
+    return Scaffold(
+      appBar: AppBar(),
+      body: SizedBox(
+        width: 100,
+        height: 100,
+        child: Center(
+          child: Stack(
+            children: [
+              CachedNetworkImage(
+                imageUrl: imageUrl,
+                placeholder: (context, url) => Shimmer.fromColors(
+                  baseColor: Colors.red,
+                  highlightColor: Colors.yellow,
+                  child: const SizedBox(),
                 ),
-              ],
-            ),
+                fit: BoxFit.contain,
+              ),
+            ],
           ),
         ),
       ),
