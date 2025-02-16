@@ -17,7 +17,8 @@ class OrdersState with _$OrdersState {
     required File videoFile,
   }) = _VideoPicked;
   const factory OrdersState.orderShare () = _OrderShare;
-   const factory OrdersState.progress({required double progress,}) = _Progress;
+   const factory OrdersState.progress({required double progress,
+   }) = _Progress;
   const factory OrdersState.failure({
     required ApiErrorModel apiErrorModel,
   }) = _Failure;
