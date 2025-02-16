@@ -5,7 +5,8 @@ import '../../data/models/orders_res_model.dart';
 abstract class OrdersRepo {
   Future<ApiResult<OrdersResModel?>> getOrders();
   Future<ApiResult<Order?>> createOrder({
-    required CreateOrderReqBody addOrderReqBody,
+    required CreateOrderReqBody createOrderReqBody,
+    required Function(double) onProgress,
   });
 
   // Future<ApiResult<void>> toggleLike({

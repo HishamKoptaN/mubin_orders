@@ -17,11 +17,15 @@ class CreateOrderUseCase {
   CreateOrderUseCase({
     required this.ordersRepo,
   });
-  Future<ApiResult<Order?>> addOrder({
-    required CreateOrderReqBody addOrderReqBody,
+  Future<ApiResult<Order?>> createOrder({
+    required CreateOrderReqBody createOrderReqBody,
+      required Function(double) onProgress,
+
   }) async {
     return await ordersRepo.createOrder(
-      addOrderReqBody: addOrderReqBody,
+      createOrderReqBody: createOrderReqBody,
+      onProgress: onProgress,
+
     );
   }
 }

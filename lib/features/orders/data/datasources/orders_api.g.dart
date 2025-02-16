@@ -48,13 +48,11 @@ class _OrdersApi implements OrdersApi {
   }
 
   @override
-  Future<Order?> addOrder({
-    required CreateOrderReqBody createOrderReqBody,
-  }) async {
+  Future<Order?> createOrder({required FormData formData}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = createOrderReqBody;
+    final _data = formData;
     final _options = _setStreamType<Order>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

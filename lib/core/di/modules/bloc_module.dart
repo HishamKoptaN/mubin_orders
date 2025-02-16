@@ -23,7 +23,7 @@ class BlocModule extends DIModule {
        //! Login
       ..registerLazySingleton<OrdersBloc>(
         () => OrdersBloc(
-          getOrdersUseCase: getIt(),
+          getOrdersUseCase: getIt(),createOrderUseCase:getIt(),
         ),
       );
   }

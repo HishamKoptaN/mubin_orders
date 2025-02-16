@@ -6,7 +6,7 @@ import '../../../../core/utils/app_colors.dart';
 class MyTextField extends StatelessWidget {
   const MyTextField({
     super.key,
-    required this.controller,
+    required this.onChanged,
     required this.labelText,
     this.onTap,
     this.hint,
@@ -20,7 +20,7 @@ class MyTextField extends StatelessWidget {
   final String labelText;
   final String? hint;
   final TextInputType keyboardType;
-  final TextEditingController controller;
+ final void Function(String)? onChanged;
   final IconData? suffixIcon;
   final bool obscureText;
   final int maxLines;
@@ -32,7 +32,7 @@ class MyTextField extends StatelessWidget {
         width: 300.w,
         height: 50.w,
         child: TextField(
-          controller: controller,
+          onChanged:onChanged ,
           obscureText: obscureText,
           keyboardType: keyboardType,
           maxLines: maxLines,

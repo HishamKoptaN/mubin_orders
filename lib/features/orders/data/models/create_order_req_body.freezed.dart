@@ -20,12 +20,20 @@ CreateOrderReqBody _$CreateOrderReqBodyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CreateOrderReqBody {
-  @JsonKey(name: "content")
-  String? get content => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_url")
-  String? get imageUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: "video_url")
-  String? get videoUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: "client_id")
+  int? get clientId => throw _privateConstructorUsedError;
+  @JsonKey(name: "place")
+  String? get place => throw _privateConstructorUsedError;
+  @JsonKey(name: "latitude")
+  double? get latitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "longitude")
+  double? get longitude => throw _privateConstructorUsedError;
+  @JsonKey(name: "video")
+  String? get video => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_one")
+  String? get imageOne => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_two")
+  String? get imageTwo => throw _privateConstructorUsedError;
 
   /// Serializes this CreateOrderReqBody to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,9 +52,13 @@ abstract class $CreateOrderReqBodyCopyWith<$Res> {
       _$CreateOrderReqBodyCopyWithImpl<$Res, CreateOrderReqBody>;
   @useResult
   $Res call(
-      {@JsonKey(name: "content") String? content,
-      @JsonKey(name: "image_url") String? imageUrl,
-      @JsonKey(name: "video_url") String? videoUrl});
+      {@JsonKey(name: "client_id") int? clientId,
+      @JsonKey(name: "place") String? place,
+      @JsonKey(name: "latitude") double? latitude,
+      @JsonKey(name: "longitude") double? longitude,
+      @JsonKey(name: "video") String? video,
+      @JsonKey(name: "image_one") String? imageOne,
+      @JsonKey(name: "image_two") String? imageTwo});
 }
 
 /// @nodoc
@@ -64,22 +76,42 @@ class _$CreateOrderReqBodyCopyWithImpl<$Res, $Val extends CreateOrderReqBody>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = freezed,
-    Object? imageUrl = freezed,
-    Object? videoUrl = freezed,
+    Object? clientId = freezed,
+    Object? place = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? video = freezed,
+    Object? imageOne = freezed,
+    Object? imageTwo = freezed,
   }) {
     return _then(_value.copyWith(
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      clientId: freezed == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      place: freezed == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
               as String?,
-      videoUrl: freezed == videoUrl
-          ? _value.videoUrl
-          : videoUrl // ignore: cast_nullable_to_non_nullable
+      imageOne: freezed == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageTwo: freezed == imageTwo
+          ? _value.imageTwo
+          : imageTwo // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -94,9 +126,13 @@ abstract class _$$CreateOrderReqBodyImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: "content") String? content,
-      @JsonKey(name: "image_url") String? imageUrl,
-      @JsonKey(name: "video_url") String? videoUrl});
+      {@JsonKey(name: "client_id") int? clientId,
+      @JsonKey(name: "place") String? place,
+      @JsonKey(name: "latitude") double? latitude,
+      @JsonKey(name: "longitude") double? longitude,
+      @JsonKey(name: "video") String? video,
+      @JsonKey(name: "image_one") String? imageOne,
+      @JsonKey(name: "image_two") String? imageTwo});
 }
 
 /// @nodoc
@@ -112,22 +148,42 @@ class __$$CreateOrderReqBodyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? content = freezed,
-    Object? imageUrl = freezed,
-    Object? videoUrl = freezed,
+    Object? clientId = freezed,
+    Object? place = freezed,
+    Object? latitude = freezed,
+    Object? longitude = freezed,
+    Object? video = freezed,
+    Object? imageOne = freezed,
+    Object? imageTwo = freezed,
   }) {
     return _then(_$CreateOrderReqBodyImpl(
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      clientId: freezed == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      place: freezed == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      latitude: freezed == latitude
+          ? _value.latitude
+          : latitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      longitude: freezed == longitude
+          ? _value.longitude
+          : longitude // ignore: cast_nullable_to_non_nullable
+              as double?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
               as String?,
-      videoUrl: freezed == videoUrl
-          ? _value.videoUrl
-          : videoUrl // ignore: cast_nullable_to_non_nullable
+      imageOne: freezed == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageTwo: freezed == imageTwo
+          ? _value.imageTwo
+          : imageTwo // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -137,26 +193,42 @@ class __$$CreateOrderReqBodyImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CreateOrderReqBodyImpl implements _CreateOrderReqBody {
   const _$CreateOrderReqBodyImpl(
-      {@JsonKey(name: "content") this.content,
-      @JsonKey(name: "image_url") this.imageUrl,
-      @JsonKey(name: "video_url") this.videoUrl});
+      {@JsonKey(name: "client_id") this.clientId,
+      @JsonKey(name: "place") this.place,
+      @JsonKey(name: "latitude") this.latitude,
+      @JsonKey(name: "longitude") this.longitude,
+      @JsonKey(name: "video") this.video,
+      @JsonKey(name: "image_one") this.imageOne,
+      @JsonKey(name: "image_two") this.imageTwo});
 
   factory _$CreateOrderReqBodyImpl.fromJson(Map<String, dynamic> json) =>
       _$$CreateOrderReqBodyImplFromJson(json);
 
   @override
-  @JsonKey(name: "content")
-  final String? content;
+  @JsonKey(name: "client_id")
+  final int? clientId;
   @override
-  @JsonKey(name: "image_url")
-  final String? imageUrl;
+  @JsonKey(name: "place")
+  final String? place;
   @override
-  @JsonKey(name: "video_url")
-  final String? videoUrl;
+  @JsonKey(name: "latitude")
+  final double? latitude;
+  @override
+  @JsonKey(name: "longitude")
+  final double? longitude;
+  @override
+  @JsonKey(name: "video")
+  final String? video;
+  @override
+  @JsonKey(name: "image_one")
+  final String? imageOne;
+  @override
+  @JsonKey(name: "image_two")
+  final String? imageTwo;
 
   @override
   String toString() {
-    return 'CreateOrderReqBody(content: $content, imageUrl: $imageUrl, videoUrl: $videoUrl)';
+    return 'CreateOrderReqBody(clientId: $clientId, place: $place, latitude: $latitude, longitude: $longitude, video: $video, imageOne: $imageOne, imageTwo: $imageTwo)';
   }
 
   @override
@@ -164,16 +236,24 @@ class _$CreateOrderReqBodyImpl implements _CreateOrderReqBody {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateOrderReqBodyImpl &&
-            (identical(other.content, content) || other.content == content) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.videoUrl, videoUrl) ||
-                other.videoUrl == videoUrl));
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId) &&
+            (identical(other.place, place) || other.place == place) &&
+            (identical(other.latitude, latitude) ||
+                other.latitude == latitude) &&
+            (identical(other.longitude, longitude) ||
+                other.longitude == longitude) &&
+            (identical(other.video, video) || other.video == video) &&
+            (identical(other.imageOne, imageOne) ||
+                other.imageOne == imageOne) &&
+            (identical(other.imageTwo, imageTwo) ||
+                other.imageTwo == imageTwo));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, content, imageUrl, videoUrl);
+  int get hashCode => Object.hash(runtimeType, clientId, place, latitude,
+      longitude, video, imageOne, imageTwo);
 
   /// Create a copy of CreateOrderReqBody
   /// with the given fields replaced by the non-null parameter values.
@@ -194,23 +274,39 @@ class _$CreateOrderReqBodyImpl implements _CreateOrderReqBody {
 
 abstract class _CreateOrderReqBody implements CreateOrderReqBody {
   const factory _CreateOrderReqBody(
-          {@JsonKey(name: "content") final String? content,
-          @JsonKey(name: "image_url") final String? imageUrl,
-          @JsonKey(name: "video_url") final String? videoUrl}) =
+          {@JsonKey(name: "client_id") final int? clientId,
+          @JsonKey(name: "place") final String? place,
+          @JsonKey(name: "latitude") final double? latitude,
+          @JsonKey(name: "longitude") final double? longitude,
+          @JsonKey(name: "video") final String? video,
+          @JsonKey(name: "image_one") final String? imageOne,
+          @JsonKey(name: "image_two") final String? imageTwo}) =
       _$CreateOrderReqBodyImpl;
 
   factory _CreateOrderReqBody.fromJson(Map<String, dynamic> json) =
       _$CreateOrderReqBodyImpl.fromJson;
 
   @override
-  @JsonKey(name: "content")
-  String? get content;
+  @JsonKey(name: "client_id")
+  int? get clientId;
   @override
-  @JsonKey(name: "image_url")
-  String? get imageUrl;
+  @JsonKey(name: "place")
+  String? get place;
   @override
-  @JsonKey(name: "video_url")
-  String? get videoUrl;
+  @JsonKey(name: "latitude")
+  double? get latitude;
+  @override
+  @JsonKey(name: "longitude")
+  double? get longitude;
+  @override
+  @JsonKey(name: "video")
+  String? get video;
+  @override
+  @JsonKey(name: "image_one")
+  String? get imageOne;
+  @override
+  @JsonKey(name: "image_two")
+  String? get imageTwo;
 
   /// Create a copy of CreateOrderReqBody
   /// with the given fields replaced by the non-null parameter values.

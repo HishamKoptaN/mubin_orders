@@ -21,7 +21,10 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +33,10 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +45,10 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
@@ -49,7 +58,10 @@ mixin _$OrdersState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +70,10 @@ mixin _$OrdersState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +82,10 @@ mixin _$OrdersState {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
@@ -139,7 +157,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return initial();
@@ -151,7 +172,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return initial?.call();
@@ -163,7 +187,10 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -179,7 +206,10 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
@@ -191,7 +221,10 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
@@ -203,7 +236,10 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -262,7 +298,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return loading();
@@ -274,7 +313,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return loading?.call();
@@ -286,7 +328,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -302,7 +347,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
@@ -314,7 +362,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
@@ -326,7 +377,10 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -385,7 +439,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success();
@@ -397,7 +454,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call();
@@ -409,7 +469,10 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -425,7 +488,10 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) {
     return success(this);
@@ -437,7 +503,10 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
@@ -449,7 +518,10 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -462,6 +534,372 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements OrdersState {
   const factory _Success() = _$SuccessImpl;
+}
+
+/// @nodoc
+abstract class _$$ImagePickedImplCopyWith<$Res> {
+  factory _$$ImagePickedImplCopyWith(
+          _$ImagePickedImpl value, $Res Function(_$ImagePickedImpl) then) =
+      __$$ImagePickedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File imageFile, CaptureType type});
+}
+
+/// @nodoc
+class __$$ImagePickedImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$ImagePickedImpl>
+    implements _$$ImagePickedImplCopyWith<$Res> {
+  __$$ImagePickedImplCopyWithImpl(
+      _$ImagePickedImpl _value, $Res Function(_$ImagePickedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? imageFile = null,
+    Object? type = null,
+  }) {
+    return _then(_$ImagePickedImpl(
+      imageFile: null == imageFile
+          ? _value.imageFile
+          : imageFile // ignore: cast_nullable_to_non_nullable
+              as File,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CaptureType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ImagePickedImpl implements _ImagePicked {
+  const _$ImagePickedImpl({required this.imageFile, required this.type});
+
+  @override
+  final File imageFile;
+  @override
+  final CaptureType type;
+
+  @override
+  String toString() {
+    return 'OrdersState.imagePicked(imageFile: $imageFile, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ImagePickedImpl &&
+            (identical(other.imageFile, imageFile) ||
+                other.imageFile == imageFile) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, imageFile, type);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ImagePickedImplCopyWith<_$ImagePickedImpl> get copyWith =>
+      __$$ImagePickedImplCopyWithImpl<_$ImagePickedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
+    required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
+  }) {
+    return imagePicked(imageFile, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
+    TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+  }) {
+    return imagePicked?.call(imageFile, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
+    TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    required TResult orElse(),
+  }) {
+    if (imagePicked != null) {
+      return imagePicked(imageFile, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
+    required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return imagePicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
+    TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return imagePicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
+    TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (imagePicked != null) {
+      return imagePicked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ImagePicked implements OrdersState {
+  const factory _ImagePicked(
+      {required final File imageFile,
+      required final CaptureType type}) = _$ImagePickedImpl;
+
+  File get imageFile;
+  CaptureType get type;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ImagePickedImplCopyWith<_$ImagePickedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$VideoPickedImplCopyWith<$Res> {
+  factory _$$VideoPickedImplCopyWith(
+          _$VideoPickedImpl value, $Res Function(_$VideoPickedImpl) then) =
+      __$$VideoPickedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({File videoFile});
+}
+
+/// @nodoc
+class __$$VideoPickedImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$VideoPickedImpl>
+    implements _$$VideoPickedImplCopyWith<$Res> {
+  __$$VideoPickedImplCopyWithImpl(
+      _$VideoPickedImpl _value, $Res Function(_$VideoPickedImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? videoFile = null,
+  }) {
+    return _then(_$VideoPickedImpl(
+      videoFile: null == videoFile
+          ? _value.videoFile
+          : videoFile // ignore: cast_nullable_to_non_nullable
+              as File,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$VideoPickedImpl implements _VideoPicked {
+  const _$VideoPickedImpl({required this.videoFile});
+
+  @override
+  final File videoFile;
+
+  @override
+  String toString() {
+    return 'OrdersState.videoPicked(videoFile: $videoFile)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$VideoPickedImpl &&
+            (identical(other.videoFile, videoFile) ||
+                other.videoFile == videoFile));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, videoFile);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$VideoPickedImplCopyWith<_$VideoPickedImpl> get copyWith =>
+      __$$VideoPickedImplCopyWithImpl<_$VideoPickedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
+    required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
+  }) {
+    return videoPicked(videoFile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
+    TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+  }) {
+    return videoPicked?.call(videoFile);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
+    TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    required TResult orElse(),
+  }) {
+    if (videoPicked != null) {
+      return videoPicked(videoFile);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
+    required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return videoPicked(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
+    TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return videoPicked?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
+    TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (videoPicked != null) {
+      return videoPicked(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _VideoPicked implements OrdersState {
+  const factory _VideoPicked({required final File videoFile}) =
+      _$VideoPickedImpl;
+
+  File get videoFile;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$VideoPickedImplCopyWith<_$VideoPickedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -508,7 +946,10 @@ class _$OrderShareImpl implements _OrderShare {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return orderShare();
@@ -520,7 +961,10 @@ class _$OrderShareImpl implements _OrderShare {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return orderShare?.call();
@@ -532,7 +976,10 @@ class _$OrderShareImpl implements _OrderShare {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -548,7 +995,10 @@ class _$OrderShareImpl implements _OrderShare {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) {
     return orderShare(this);
@@ -560,7 +1010,10 @@ class _$OrderShareImpl implements _OrderShare {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) {
     return orderShare?.call(this);
@@ -572,7 +1025,10 @@ class _$OrderShareImpl implements _OrderShare {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
@@ -585,6 +1041,183 @@ class _$OrderShareImpl implements _OrderShare {
 
 abstract class _OrderShare implements OrdersState {
   const factory _OrderShare() = _$OrderShareImpl;
+}
+
+/// @nodoc
+abstract class _$$ProgressImplCopyWith<$Res> {
+  factory _$$ProgressImplCopyWith(
+          _$ProgressImpl value, $Res Function(_$ProgressImpl) then) =
+      __$$ProgressImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({double progress});
+}
+
+/// @nodoc
+class __$$ProgressImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$ProgressImpl>
+    implements _$$ProgressImplCopyWith<$Res> {
+  __$$ProgressImplCopyWithImpl(
+      _$ProgressImpl _value, $Res Function(_$ProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? progress = null,
+  }) {
+    return _then(_$ProgressImpl(
+      progress: null == progress
+          ? _value.progress
+          : progress // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ProgressImpl implements _Progress {
+  const _$ProgressImpl({required this.progress});
+
+  @override
+  final double progress;
+
+  @override
+  String toString() {
+    return 'OrdersState.progress(progress: $progress)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ProgressImpl &&
+            (identical(other.progress, progress) ||
+                other.progress == progress));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, progress);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ProgressImplCopyWith<_$ProgressImpl> get copyWith =>
+      __$$ProgressImplCopyWithImpl<_$ProgressImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
+    required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
+  }) {
+    return progress(this.progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
+    TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
+  }) {
+    return progress?.call(this.progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
+    TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(this.progress);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_LoadInProgress value) loading,
+    required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
+    required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
+    required TResult Function(_Failure value) failure,
+  }) {
+    return progress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_LoadInProgress value)? loading,
+    TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
+    TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
+    TResult? Function(_Failure value)? failure,
+  }) {
+    return progress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_LoadInProgress value)? loading,
+    TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
+    TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
+    TResult Function(_Failure value)? failure,
+    required TResult orElse(),
+  }) {
+    if (progress != null) {
+      return progress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Progress implements OrdersState {
+  const factory _Progress({required final double progress}) = _$ProgressImpl;
+
+  double get progress;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ProgressImplCopyWith<_$ProgressImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -659,7 +1292,10 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
+    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
+    required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return failure(apiErrorModel);
@@ -671,7 +1307,10 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
+    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
+    TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return failure?.call(apiErrorModel);
@@ -683,7 +1322,10 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
+    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
+    TResult Function(double progress)? progress,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
@@ -699,7 +1341,10 @@ class _$FailureImpl implements _Failure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
+    required TResult Function(_ImagePicked value) imagePicked,
+    required TResult Function(_VideoPicked value) videoPicked,
     required TResult Function(_OrderShare value) orderShare,
+    required TResult Function(_Progress value) progress,
     required TResult Function(_Failure value) failure,
   }) {
     return failure(this);
@@ -711,7 +1356,10 @@ class _$FailureImpl implements _Failure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
+    TResult? Function(_ImagePicked value)? imagePicked,
+    TResult? Function(_VideoPicked value)? videoPicked,
     TResult? Function(_OrderShare value)? orderShare,
+    TResult? Function(_Progress value)? progress,
     TResult? Function(_Failure value)? failure,
   }) {
     return failure?.call(this);
@@ -723,7 +1371,10 @@ class _$FailureImpl implements _Failure {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
+    TResult Function(_ImagePicked value)? imagePicked,
+    TResult Function(_VideoPicked value)? videoPicked,
     TResult Function(_OrderShare value)? orderShare,
+    TResult Function(_Progress value)? progress,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {

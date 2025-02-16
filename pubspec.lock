@@ -1038,7 +1038,7 @@ packages:
     source: hosted
     version: "0.6.7"
   json_annotation:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: json_annotation
       sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
@@ -1478,7 +1478,7 @@ packages:
     source: hosted
     version: "1.5.0"
   retrofit:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: retrofit
       sha256: c6cc9ad3374e6d07008343140a67afffaaa34cdf6bf08d4847d91417a99dcf45
@@ -2010,14 +2010,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
-  whatsapp_share:
-    dependency: "direct main"
-    description:
-      name: whatsapp_share
-      sha256: d1884f302a52d9f400bc3d7d4274b77aad83424e08f425351cea8d13b4cb8649
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.2"
   win32:
     dependency: transitive
     description:

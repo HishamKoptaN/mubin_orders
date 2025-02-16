@@ -29,7 +29,7 @@ class _OrdersViewState extends State<OrdersView> {
     return Scaffold(
       body: BlocProvider(
         create: (context) => OrdersBloc(
-          getOrdersUseCase: getIt(),
+          getOrdersUseCase: getIt(), createOrderUseCase:  getIt(),
         )..add(
             OrdersEvent.getOrders(),
           ),

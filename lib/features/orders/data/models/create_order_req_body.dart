@@ -5,9 +5,13 @@ part 'create_order_req_body.g.dart';
 @freezed
 class CreateOrderReqBody with _$CreateOrderReqBody {
   const factory CreateOrderReqBody({
-    @JsonKey(name: "content") String? content,
-    @JsonKey(name: "image_url") String? imageUrl,
-    @JsonKey(name: "video_url") String? videoUrl,
+    @JsonKey(name: "client_id") int? clientId,
+    @JsonKey(name: "place") String? place,
+    @JsonKey(name: "latitude") double? latitude,
+    @JsonKey(name: "longitude") double? longitude,
+    @JsonKey(name: "video") String? video,
+    @JsonKey(name: "image_one") String? imageOne,
+    @JsonKey(name: "image_two") String? imageTwo,
   }) = _CreateOrderReqBody;
 
   factory CreateOrderReqBody.fromJson(Map<String, dynamic> json) =>

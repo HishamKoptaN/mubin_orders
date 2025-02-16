@@ -1,9 +1,8 @@
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/all_imports.dart';
 import '../bloc/orders_bloc.dart';
+import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
-import '../../../add_order/bloc/order_bloc.dart';
-import '../../../add_order/bloc/order_event.dart';
-import '../../../add_order/provider/add_order.controller.dart';
 import '../../../add_order/views/widgets/text_field.dart';
 
 class AddOrderView extends StatefulWidget {
@@ -14,26 +13,14 @@ class AddOrderView extends StatefulWidget {
 }
 
 class _AddOrderViewState extends State<AddOrderView> {
-  final AddOrderController adminProductsProvider = AddOrderController();
-  double _progress = 0.0;
-
-  void _handleUploadProgress(double progress) {
-    setState(
-      () {
-        _progress = progress;
-      },
-    );
-  }
-
   @override
   Widget build(context) {
-    double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
     final t = AppLocalizations.of(context)!;
     return Scaffold(
       body: BlocProvider(
         create: (_) => OrdersBloc(
           getOrdersUseCase: getIt(),
+           createOrderUseCase: getIt(),
         ),
         child: BlocConsumer<OrdersBloc, OrdersState>(
           listener: (context, state) {
@@ -57,56 +44,67 @@ class _AddOrderViewState extends State<AddOrderView> {
             );
           },
           builder: (context, state) {
+            state.maybeWhen(
+              progress:(progress)=> Column(
+        children: [
+          LinearProgressIndicator(value: progress,), 
+          Text("${(progress * 100).toStringAsFixed(0)}%",),
+        ],
+      ),
+              orElse: (){}
+              );
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MyTextField(
-                    controller: adminProductsProvider.clientIdController,
+                    onChanged:(v){},
                     maxLines: 2,
                     labelText: t.client_id,
                     hint: t.client_id,
                   ),
                   MyTextField(
-                    controller: adminProductsProvider.placeNameController,
+                   onChanged:(v){},
                     maxLines: 2,
                     labelText: t.place_hint,
                     hint: t.place_hint,
                   ),
                   MyTextField(
-                    controller: adminProductsProvider.videoController,
+                   onChanged:(v){},
                     maxLines: 2,
-                    onTap: () => adminProductsProvider.selectFilesPath(
-                      t: t,
-                      context: context,
-                      file: 0,
-                    ),
+                    onTap: () =>context.read<OrdersBloc>().add(
+      const OrdersEvent.pickImage(
+        source: ImageSource.camera,
+        type: CaptureType.imageOne,
+      ),
+    ),
                     labelText: t.add_video,
                     hint: t.add_video,
                     suffixIcon: Icons.cloud_upload,
                     keyboardType: TextInputType.none,
                   ),
                   MyTextField(
-                    controller: adminProductsProvider.firstImageController,
+                  onChanged:(v){},
                     maxLines: 2,
-                    onTap: () => adminProductsProvider.selectFilesPath(
-                      t: t,
-                      context: context,
-                      file: 1,
-                    ),
+                      onTap: () =>context.read<OrdersBloc>().add(
+      const OrdersEvent.pickImage(
+        source: ImageSource.camera,
+        type: CaptureType.imageTwo,
+      ),
+    ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
                     keyboardType: TextInputType.none,
                   ),
                   MyTextField(
-                    controller: adminProductsProvider.secondImageController,
+                   onChanged:(v){},
                     maxLines: 2,
-                    onTap: () => adminProductsProvider.selectFilesPath(
-                      t: t,
-                      context: context,
-                      file: 2,
-                    ),
+                   onTap: () =>context.read<OrdersBloc>().add(
+      const OrdersEvent.pickVideo(
+        source: ImageSource.camera,
+      ),
+    ),
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
@@ -114,18 +112,18 @@ class _AddOrderViewState extends State<AddOrderView> {
                   ),
                   GestureDetector(
                     onTap: () async {
-                      context.read<OrderBloc>().add(
-                            AddOrderEvent(
-                              clientId:
-                                  adminProductsProvider.clientIdController.text,
-                              place: adminProductsProvider
-                                  .placeNameController.text,
-                              video: adminProductsProvider.pickedVideo!,
-                              imageOne: adminProductsProvider.pickedFirstImage!,
-                              imageTwo:
-                                  adminProductsProvider.pickedSecondImage!,
-                            ),
-                          );
+                      // context.read<OrderBloc>().add(
+                      //       AddOrderEvent(
+                      //         clientId:
+                      //             adminProductsProvider.clientIdController.text,
+                      //         place: adminProductsProvider
+                      //             .placeNameController.text,
+                      //         video: adminProductsProvider.pickedVideo!,
+                      //         imageOne: adminProductsProvider.pickedFirstImage!,
+                      //         imageTwo:
+                      //             adminProductsProvider.pickedSecondImage!,
+                      //       ),
+                      //     );
                     },
                     child: Container(
                       height: 50.h,
