@@ -5,6 +5,7 @@ import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
 import 'package:location/location.dart' as loc;
 import '../../../../core/utils/app_colors.dart';
+import '../../data/repo_impl/orders_repo_impl.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'package:flutter/cupertino.dart';
 import 'orders_event.dart';
@@ -78,24 +79,24 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             imageSelection,
           ) async {
             emit(const OrdersState.loading());
-
+          
             try {
-              XFile? file = await selectFilesPath(
-                context: context,
-                fileType: fileType,
-                imageSelection: imageSelection,
-              );
-              emit(
-                OrdersState.imagePicked(
-                    file: file!,
-                    fileType: fileType,
-                    imageSelection: imageSelection),
-              );
+           XFile? file  = await selectFilesPath(
+              context: context,
+              fileType: fileType,
+              imageSelection: imageSelection,
+            );
+             emit(
+                  OrdersState.imagePicked(
+                    file: file!, fileType: fileType
+                   ,imageSelection: imageSelection
+                  ),
+                );
               // final XFile? pickedFile = await imagePicker.pickVideo(
               //   source: source,
               // );
               // if (pickedFile != null) {
-              //
+              //  
               // } else {
               //   emit(OrdersState.failure(
               //     apiErrorModel: ApiErrorModel(
@@ -119,38 +120,48 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               const OrdersState.loading(),
             );
             try {
-              Map<String, double>? location = await getCurrentLocation();
-              var latitude = location!['latitude'] ?? 0.0;
-              var longitude = location['longitude'] ?? 0.0;
-              final res = await createOrderUseCase.createOrder(
-                formData: formData,
-                onProgress: (progress) {
-                  emit(
-                    OrdersState.progress(
-                      progress: progress,
-                    ),
-                  );
-                },
-              );
-              await res.when(
-                success: (
-                  res,
-                ) async {
-                  // OrdersSingletone.instance.ordersResModel = res;
-                  emit(
+               await runIsolateUpload({
+        'clientId': formData.fields[0].value,
+        'place': formData.fields[1].value,
+        'imageOne': formData.files[0].value,
+        'imageTwo': formData.files[1].value,
+        'video': formData.files[2].value,
+      });
+       emit(
                     const OrdersState.initial(),
                   );
-                },
-                failure: (
-                  apiErrorModel,
-                ) async {
-                  emit(
-                    OrdersState.failure(
-                      apiErrorModel: apiErrorModel,
-                    ),
-                  );
-                },
-              );
+              // Map<String, double>? location = await getCurrentLocation();
+              // var latitude = location!['latitude'] ?? 0.0;
+              // var longitude = location['longitude'] ?? 0.0;
+              // final res = await createOrderUseCase.createOrder(
+              //   formData: formData,
+              //   onProgress: (progress) {
+              //     emit(
+              //       OrdersState.progress(
+              //         progress: progress,
+              //       ),
+              //     );
+              //   },
+              // );
+              // await res.when(
+              //   success: (
+              //     res,
+              //   ) async {
+              //     // OrdersSingletone.instance.ordersResModel = res;
+              //     emit(
+              //       const OrdersState.initial(),
+              //     );
+              //   },
+              //   failure: (
+              //     apiErrorModel,
+              //   ) async {
+              //     emit(
+              //       OrdersState.failure(
+              //         apiErrorModel: apiErrorModel,
+              //       ),
+              //     );
+              //   },
+              // );
             } catch (e) {
               emit(
                 OrdersState.failure(
@@ -181,52 +192,52 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     }
     return null;
   }
+Future<XFile?> selectFilesPath({
+  required BuildContext context,
+  required FileType fileType,
+  required ImageSelection? imageSelection,
+}) async {
+  final t = AppLocalizations.of(context)!;
+  return await showDialog<XFile>(
+    context: context,
+    builder: (BuildContext context) {
+      XFile? file;
 
-  Future<XFile?> selectFilesPath({
-    required BuildContext context,
-    required FileType fileType,
-    required ImageSelection? imageSelection,
-  }) async {
-    final t = AppLocalizations.of(context)!;
-    return await showDialog<XFile>(
-      context: context,
-      builder: (BuildContext context) {
-        XFile? file;
+      return AlertDialog(
+        content: Text(t.select_files),
+        actions: [
+          IconsOutlineButton(
+            onPressed: () async {
+              file = await pickImageCamera();
+              Navigator.of(context).pop(file);
+            },
+            text: t.camera,
+            iconData: CupertinoIcons.camera_fill,
+            textStyle: const TextStyle(color: Colors.white),
+            color: AppColors.greenColor,
+            iconColor: Colors.white,
+          ),
+          IconsOutlineButton(
+            onPressed: () async {
+              if (fileType == FileType.image) {
+                file = await pickImageGallery();
+              } else if (fileType == FileType.video) {
+                file = await pickVideoGallery();
+              }
+              Navigator.of(context).pop(file);
+            },
+            text: t.gallery,
+            iconData: CupertinoIcons.photo_on_rectangle,
+            color: AppColors.greenColor,
+            textStyle: const TextStyle(color: Colors.white),
+            iconColor: Colors.white,
+          ),
+        ],
+      );
+    },
+  );
+}
 
-        return AlertDialog(
-          content: Text(t.select_files),
-          actions: [
-            IconsOutlineButton(
-              onPressed: () async {
-                file = await pickImageCamera();
-                Navigator.of(context).pop(file);
-              },
-              text: t.camera,
-              iconData: CupertinoIcons.camera_fill,
-              textStyle: const TextStyle(color: Colors.white),
-              color: AppColors.greenColor,
-              iconColor: Colors.white,
-            ),
-            IconsOutlineButton(
-              onPressed: () async {
-                if (fileType == FileType.image) {
-                  file = await pickImageGallery();
-                } else if (fileType == FileType.video) {
-                  file = await pickVideoGallery();
-                }
-                Navigator.of(context).pop(file);
-              },
-              text: t.gallery,
-              iconData: CupertinoIcons.photo_on_rectangle,
-              color: AppColors.greenColor,
-              textStyle: const TextStyle(color: Colors.white),
-              iconColor: Colors.white,
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   Future<void> pickVideo() async {
     XFile? videoFile = await imagePicker.pickVideo(

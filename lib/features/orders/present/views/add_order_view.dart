@@ -74,16 +74,18 @@ class _AddOrderViewState extends State<AddOrderView> {
             return Stack(
               children: [
                 state.maybeWhen(
-                  progress: (progress) => Column(
-                    children: [
-                      LinearProgressIndicator(
-                        value: progress,
-                      ),
-                      Text(
-                        "${(progress * 100).toStringAsFixed(0)}%",
-                      ),
-                    ],
-                  ),
+                  progress: (progress) {
+                    return Column(
+                      children: [
+                        LinearProgressIndicator(
+                          value: progress,
+                        ),
+                        Text(
+                          "${(progress * 100).toStringAsFixed(0)}%",
+                        ),
+                      ],
+                    );
+                  },
                   orElse: () {
                     return SizedBox.shrink();
                   },
