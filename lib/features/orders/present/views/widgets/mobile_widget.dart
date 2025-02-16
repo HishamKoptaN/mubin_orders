@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mubin_orders/core/all_imports.dart';
+import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
+import '../../../../../core/gloabal_widgets/image_view.dart';
 import '../../../data/models/orders_res_model.dart';
 import '../orders_view.dart';
 import 'video_widget.dart';
@@ -12,6 +14,8 @@ class MobileHomeWidget extends StatelessWidget {
     required this.order,
   });
   final Order order;
+  static const String routeName = "MobileHomeWidget";
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -55,28 +59,28 @@ class MobileHomeWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: GestureDetector(
-                          onTap: () async {
-                            // await value.shareOrderTwo(
-                            //   proId,
-                            // );
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.green),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(50),
-                              ),
-                            ),
-                            child: const Icon(
-                              Icons.share,
-                              color: Colors.green,
-                            ),
-                          ),
-                        ),
-                      ),
+                      // Expanded(
+                      //   flex: 1,
+                      //   child: GestureDetector(
+                      //     onTap: () async {
+                      //       await shareOrderTwo(
+                      //         proId,
+                      //       );
+                      //     },
+                      //     child: Container(
+                      //       decoration: BoxDecoration(
+                      //         border: Border.all(color: Colors.green),
+                      //         borderRadius: const BorderRadius.all(
+                      //           Radius.circular(50),
+                      //         ),
+                      //       ),
+                      //       child: const Icon(
+                      //         Icons.share,
+                      //         color: Colors.green,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       Gap(
                         10.w,
                       ),
@@ -107,8 +111,13 @@ class MobileHomeWidget extends StatelessWidget {
                   flex: 2,
                   child: GestureDetector(
                     onTap: () async {
-                      // value.goToVideoView(
-                      //     context, document['order_video'], width, height);
+                      Navigator.pushNamed(
+                        context,
+                        VideoPlayerView.routeName,
+                        arguments: {
+                          'video_url': order.video ?? '',
+                        },
+                      );
                     },
                     child: VideoWidget(
                       videoUrl: order.video ?? '',
@@ -119,8 +128,13 @@ class MobileHomeWidget extends StatelessWidget {
                   flex: 2,
                   child: GestureDetector(
                     onTap: () async {
-                      // value.goToIMageView(
-                      //     context, document['order_first_image']);
+                      Navigator.pushNamed(
+                        context,
+                        ImageView.routeName,
+                        arguments: {
+                          'image_url': order.imageOne ?? '',
+                        },
+                      );
                     },
                     child: CachedNetworkImage(
                       imageUrl: order.imageOne ?? '',
@@ -137,8 +151,11 @@ class MobileHomeWidget extends StatelessWidget {
                   flex: 2,
                   child: GestureDetector(
                     onTap: () async {
-                      // value.goToIMageView(
-                      //     context, document['order_second_image']);
+                      Navigator.pushNamed(
+                        context,
+                        ImageView.routeName,
+                        arguments: {'image_url': order.imageTwo ?? ''},
+                      );
                     },
                     child: CachedNetworkImage(
                       imageUrl: order.imageTwo ?? '',
@@ -167,3 +184,37 @@ class MobileHomeWidget extends StatelessWidget {
     );
   }
 }
+
+  // Future<void> shareOrderTwo(collection, orderId, location, context) async {
+  //   Reference videoRef;
+  //   Reference firstImageRef;
+  //   Reference secondImageRef;
+  //   try {
+  //     final storageRef = FirebaseStorage.instance.ref();
+  //     videoRef = storageRef.child("$collection/$orderId/video.mp4");
+  //     firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
+  //     secondImageRef =
+  //         storageRef.child("$collection/$orderId/second_image.jpg");
+  //     final dir = await getApplicationDocumentsDirectory();
+  //     final videoFile = File('${dir.path}/${videoRef.name}.mp4');
+  //     final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
+  //     final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
+  //     await videoRef.writeToFile(videoFile);
+  //     await firstImageRef.writeToFile(firstImagFile);
+  //     await secondImageRef.writeToFile(secondImageFile);
+  //     String orderLocation =
+  //         "Check out place location:\nhttps://maps.google.com/?q=$location";
+  //     await Share.shareFiles(
+  //       [
+  //         // videoFile.path,
+  //         // firstImagFile.path,
+  //         // secondImageFile.path,
+  //       ],
+  //       text: orderLocation,
+  //     );
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print('Error occurred while downloading file: $e');
+  //     }
+  //   }
+  // }

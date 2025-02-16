@@ -5,6 +5,8 @@ import 'package:shimmer/shimmer.dart';
 class ImageView extends StatelessWidget {
   String imageUrl;
   ImageView({super.key, required this.imageUrl});
+    static const String routeName = "ImageView";
+
 
   @override
   Widget build(BuildContext context) {
