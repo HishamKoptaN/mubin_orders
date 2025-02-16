@@ -7,9 +7,8 @@ import '../all_imports.dart';
 enum ToastType { success, failure }
 
 class CustomToast {
-  // دالة لعرض Toast مع تخصيص العنوان والأيقونة بناءً على نوع الحالة
   static void showToast({
-    Key? key, // إضافة النوع (نجاح أو فشل)
+    Key? key, 
     required BuildContext context,
     required String title,
     Icon? leadingIcon,
@@ -17,7 +16,6 @@ class CustomToast {
     TextStyle? titleStyle,
     ToastType toastType = ToastType.success,
   }) {
-    // تخصيص الأيقونة ولون الخلفية بناءً على نوع الحالة
     Icon toastIcon;
     Color toastBackgroundColor;
 

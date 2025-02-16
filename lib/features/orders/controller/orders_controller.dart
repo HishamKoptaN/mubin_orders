@@ -2,7 +2,7 @@ import 'package:cached_video_player_plus/cached_video_player_plus.dart';
 import '../../../core/all_imports.dart';
 import '../../../core/helper/routes.dart';
 import '../present/views/add_order_view.dart';
-import '../../../core/widgets/video_player.dart';
+import '../../../core/gloabal_widgets/video_player.dart';
 import 'package:http/http.dart' as http;
 
 class HomeController {
@@ -107,7 +107,7 @@ class HomeController {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => VideoPlayerScreen(
+        builder: (context) => VideoPlayerView(
           videoUrl: document,
         ),
       ),
@@ -171,37 +171,4 @@ class HomeController {
   //   }
   // }
 
-  // Future<void> shareOrderTwo(collection, orderId, location, context) async {
-  //   Reference videoRef;
-  //   Reference firstImageRef;
-  //   Reference secondImageRef;
-  //   try {
-  //     final storageRef = FirebaseStorage.instance.ref();
-  //     videoRef = storageRef.child("$collection/$orderId/video.mp4");
-  //     firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
-  //     secondImageRef =
-  //         storageRef.child("$collection/$orderId/second_image.jpg");
-  //     final dir = await getApplicationDocumentsDirectory();
-  //     final videoFile = File('${dir.path}/${videoRef.name}.mp4');
-  //     final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
-  //     final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
-  //     await videoRef.writeToFile(videoFile);
-  //     await firstImageRef.writeToFile(firstImagFile);
-  //     await secondImageRef.writeToFile(secondImageFile);
-  //     String orderLocation =
-  //         "Check out place location:\nhttps://maps.google.com/?q=$location";
-  //     await Share.shareFiles(
-  //       [
-  //         // videoFile.path,
-  //         // firstImagFile.path,
-  //         // secondImageFile.path,
-  //       ],
-  //       text: orderLocation,
-  //     );
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print('Error occurred while downloading file: $e');
-  //     }
-  //   }
-  // }
 }

@@ -4,6 +4,8 @@ import '../../features/auth/login/present/views/sign_in_view.dart';
 import '../../features/main/present/view/mobile_layout.dart';
 import '../../features/main/present/view/main_view.dart';
 import '../../features/orders/present/views/orders_view.dart';
+import '../gloabal_widgets/image_view.dart';
+import '../gloabal_widgets/video_player.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -18,6 +20,21 @@ case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const OrdersView());
     case MobileLayout.routeName:
       return MaterialPageRoute(builder: (context) => const MobileLayout());
+case ImageView.routeName:
+      final args = settings.arguments as Map<String, dynamic>?;
+      final imageUrl = args?['image_url'] ?? '';
+      return MaterialPageRoute(
+        builder: (context) => ImageView(imageUrl: imageUrl),
+      );
+      case VideoPlayerView.routeName:
+      final args = settings.arguments as Map<String, dynamic>?;
+      final videoUrl = args?['video_url'] ?? '';
+      return MaterialPageRoute(
+        builder: (context) => VideoPlayerView(videoUrl: videoUrl,
+        ),
+      );
+
+      
     default:
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
