@@ -87,9 +87,8 @@ class _AddOrderViewState extends State<AddOrderView> {
                     );
                   },
                   orElse: () {
-                    return SizedBox.shrink();
-                  },
-                ),
+                    return 
+                
                 Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -113,7 +112,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                           context.read<OrdersBloc>().add(
                                 OrdersEvent.pickFile(
                                   context: context,
-                                  fileType: FileType.image,
+                                  fileType: FileType.video,
                                   imageSelection: ImageSelection.first,
                                 ),
                               );
@@ -203,6 +202,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                       ),
                     ],
                   ),
+                ); },
                 ),
               ],
             );
