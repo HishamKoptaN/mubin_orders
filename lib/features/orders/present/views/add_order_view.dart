@@ -1,4 +1,4 @@
-import 'package:image_picker/image_picker.dart';
+import 'dart:typed_data';
 import '../../../../core/all_imports.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
@@ -14,21 +14,14 @@ class AddOrderView extends StatefulWidget {
 }
 
 class _AddOrderViewState extends State<AddOrderView> {
-  final ImagePicker imagePicker = ImagePicker();
-  final TextEditingController orderIDController = TextEditingController();
-  final TextEditingController clientIdController = TextEditingController();
-
-
-  
-  final TextEditingController placeNameController = TextEditingController();
-  final TextEditingController videoController = TextEditingController();
-  final TextEditingController firstImageController = TextEditingController();
-  final TextEditingController secondImageController = TextEditingController();
-  double? latitude;
-  double? longitude;
-  Uint8List? video;
+   Uint8List? video;
   Uint8List? imageOne;
   Uint8List? imageTwo;
+   final TextEditingController clientIdController = TextEditingController();
+  final TextEditingController placeNameController = TextEditingController();
+  final TextEditingController videoController = TextEditingController();
+  final TextEditingController imageOneController = TextEditingController();
+  final TextEditingController imageTwoController = TextEditingController();
   @override
   Widget build(context) {
     final t = AppLocalizations.of(context)!;
@@ -50,8 +43,24 @@ class _AddOrderViewState extends State<AddOrderView> {
                   duration: const Duration(seconds: 4),
                 ),
               ),
-              
-              videoPicked: (pickedVideo) =>  videoController.text = pickedVideo.path,
+              imagePicked: (
+                file,
+                fileType,
+                pickedVideo,
+              ) async {
+                if (fileType == FileType.video) {
+                  video = await file.readAsBytes();
+                  videoController.text = file.path;
+                } else {
+                  if (pickedVideo == ImageSelection.first) {
+                    imageOne = await file.readAsBytes();
+                    imageOneController.text = file.path;
+                  } else if (pickedVideo == ImageSelection.second) {
+                    imageTwo = await file.readAsBytes();
+                    imageTwoController.text = file.path;
+                  }
+                }
+              },
               failure: (e) => ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.red,
@@ -61,22 +70,20 @@ class _AddOrderViewState extends State<AddOrderView> {
               ),
             );
           },
-
-
           builder: (context, state) {
             state.maybeWhen(
-                progress: (progress) => Column(
-                      children: [
-                        LinearProgressIndicator(
-                          value: progress,
-                        ),
-                        Text(
-                          "${(progress * 100).toStringAsFixed(0)}%",
-                        ),
-                      ],
-                    ),
-                orElse: () {},
-                );
+              progress: (progress) => Column(
+                children: [
+                  LinearProgressIndicator(
+                    value: progress,
+                  ),
+                  Text(
+                    "${(progress * 100).toStringAsFixed(0)}%",
+                  ),
+                ],
+              ),
+              orElse: () {},
+            );
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -88,57 +95,58 @@ class _AddOrderViewState extends State<AddOrderView> {
                     hint: t.client_id,
                   ),
                   MyTextField(
-controller:placeNameController,
+                    controller: placeNameController,
                     maxLines: 2,
                     labelText: t.place_hint,
                     hint: t.place_hint,
                   ),
                   MyTextField(
+                    controller: videoController,
                     maxLines: 2,
                     onTap: () {
-                      
                       context.read<OrdersBloc>().add(
-                           OrdersEvent.pickFile(
-context: context,
-
-                            // source: ImageSource.camera,
-                            fileType: FileType.image,
-                            imageSelection: ImageSelection.first,
-                          ),
-                        );},
+                            OrdersEvent.pickFile(
+                              context: context,
+                              fileType: FileType.image,
+                              imageSelection: ImageSelection.first,
+                            ),
+                          );
+                    },
                     labelText: t.add_video,
                     hint: t.add_video,
                     suffixIcon: Icons.cloud_upload,
                     keyboardType: TextInputType.none,
                   ),
                   MyTextField(
+                    controller: imageOneController,
                     maxLines: 2,
-                      onTap: () {
-                      
+                    onTap: () {
                       context.read<OrdersBloc>().add(
-                           OrdersEvent.pickFile(
-                            context: context,
-                            // source: ImageSource.camera,
-                            fileType: FileType.image,
-                            imageSelection: ImageSelection.first,
-                          ),
-                        );},
+                            OrdersEvent.pickFile(
+                              context: context,
+                              fileType: FileType.image,
+                              imageSelection: ImageSelection.first,
+                            ),
+                          );
+                    },
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
                     keyboardType: TextInputType.none,
                   ),
                   MyTextField(
+                    controller: imageTwoController,
+
                     maxLines: 2,
-                        onTap: () {
+                    onTap: () {
                       context.read<OrdersBloc>().add(
-                           OrdersEvent.pickFile(
-                            context: context,
-                            // source: ImageSource.camera,
-                            fileType: FileType.image,
-                            imageSelection: ImageSelection.second,
-                          ),
-                        );},
+                            OrdersEvent.pickFile(
+                              context: context,
+                              fileType: FileType.image,
+                              imageSelection: ImageSelection.second,
+                            ),
+                          );
+                    },
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
@@ -146,26 +154,26 @@ context: context,
                   ),
                   GestureDetector(
                     onTap: () async {
-                        FormData formData = FormData.fromMap(
-                            {
-                              'client_id': clientIdController,
-                              'place': placeNameController,
-                              'image_one': MultipartFile.fromBytes(
-                                imageOne!,
-                                filename: 'prdouct_image.jpg',
-                              ),
-                               'image_two': MultipartFile.fromBytes(
-                                imageTwo!,
-                                filename: 'prdouct_image.jpg',
-                              ), 'image': MultipartFile.fromBytes(
-                                video!,
-                                filename: 'prdouct_image.jpg',
-                              ),
-                            },
-                          );
+                      FormData formData = FormData.fromMap(
+                        {
+                          'client_id': clientIdController,
+                          'place': placeNameController,
+                          'image_one': MultipartFile.fromBytes(
+                            imageOne!,
+                            filename: 'prdouct_image.jpg',
+                          ),
+                          'image_two': MultipartFile.fromBytes(
+                            imageTwo!,
+                            filename: 'prdouct_image.jpg',
+                          ),
+                          'image': MultipartFile.fromBytes(
+                            video!,
+                            filename: 'prdouct_image.jpg',
+                          ),
+                        },
+                      );
                       context.read<OrdersBloc>().add(
-                            OrdersEvent.createOrder(
-                            formData: formData
+                            OrdersEvent.createOrder(formData: formData,
                             ),
                           );
                     },
@@ -195,9 +203,4 @@ context: context,
       ),
     );
   }
- 
 }
-
-
-
-

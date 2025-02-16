@@ -72,23 +72,30 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             }
           },
-          pickFile: ( context, fileType,imageSelection,) async {
+          pickFile: (
+            context,
+            fileType,
+            imageSelection,
+          ) async {
             emit(const OrdersState.loading());
-               selectFilesPath(
-                context: context, fileType: fileType,imageSelection:imageSelection,
-               );
+
             try {
+              XFile? file = await selectFilesPath(
+                context: context,
+                fileType: fileType,
+                imageSelection: imageSelection,
+              );
+              emit(
+                OrdersState.imagePicked(
+                    file: file!,
+                    fileType: fileType,
+                    imageSelection: imageSelection),
+              );
               // final XFile? pickedFile = await imagePicker.pickVideo(
               //   source: source,
               // );
               // if (pickedFile != null) {
-              //   emit(
-              //     OrdersState.videoPicked(
-              //       videoFile: File(
-              //         pickedFile.path,
-              //       ),
-              //     ),
-              //   );
+              //
               // } else {
               //   emit(OrdersState.failure(
               //     apiErrorModel: ApiErrorModel(
@@ -112,11 +119,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               const OrdersState.loading(),
             );
             try {
-               Map<String, double>? location = await getCurrentLocation();
-                var latitude = location!['latitude'] ?? 0.0;
-                var longitude = location['longitude'] ?? 0.0;
-//              'latitude': latitude.toString(),
-//              'longitude': longitude.toString(),
+              Map<String, double>? location = await getCurrentLocation();
+              var latitude = location!['latitude'] ?? 0.0;
+              var longitude = location['longitude'] ?? 0.0;
               final res = await createOrderUseCase.createOrder(
                 formData: formData,
                 onProgress: (progress) {
@@ -177,47 +182,39 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     return null;
   }
 
-  void selectFilesPath({
+  Future<XFile?> selectFilesPath({
     required BuildContext context,
     required FileType fileType,
-    required ImageSelection? imageSelection
-,
-  }) {
-    showDialog(
+    required ImageSelection? imageSelection,
+  }) async {
+    final t = AppLocalizations.of(context)!;
+    return await showDialog<XFile>(
       context: context,
       builder: (BuildContext context) {
-          final t = AppLocalizations.of(context)!;
-  return AlertDialog(
-          content: Text(
-            t.select_files,
-          ),
+        XFile? file;
+
+        return AlertDialog(
+          content: Text(t.select_files),
           actions: [
             IconsOutlineButton(
               onPressed: () async {
-                 XFile?  file = await pickImageCamera();
-                 Navigator.of(context).pop();
+                file = await pickImageCamera();
+                Navigator.of(context).pop(file);
               },
               text: t.camera,
               iconData: CupertinoIcons.camera_fill,
-              textStyle: const TextStyle(color: Colors.white,
-              ),
+              textStyle: const TextStyle(color: Colors.white),
               color: AppColors.greenColor,
               iconColor: Colors.white,
             ),
             IconsOutlineButton(
               onPressed: () async {
-                // switch (file) {
-                //   case 0:
-                //     await pickVideoGallery();
-                //     break;
-                //   case 1:
-                //   case 2:
-                //     await pickImageGallery(
-                //       imageNumber: file,
-                //     );
-                //     break;
-                // }
-                Navigator.of(context).pop();
+                if (fileType == FileType.image) {
+                  file = await pickImageGallery();
+                } else if (fileType == FileType.video) {
+                  file = await pickVideoGallery();
+                }
+                Navigator.of(context).pop(file);
               },
               text: t.gallery,
               iconData: CupertinoIcons.photo_on_rectangle,
@@ -230,6 +227,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       },
     );
   }
+
   Future<void> pickVideo() async {
     XFile? videoFile = await imagePicker.pickVideo(
       source: ImageSource.camera,
@@ -238,33 +236,33 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       videoFile = videoFile;
     }
   }
-  Future< XFile?> pickVideoGallery() async {
+
+  Future<XFile?> pickVideoGallery() async {
     XFile? videoFile = await imagePicker.pickVideo(
       source: ImageSource.gallery,
     );
     if (videoFile != null) {
-        return videoFile;
+      return videoFile;
     }
     return null;
   }
+
   Future<XFile?> pickImageCamera() async {
     XFile? imageFile = await imagePicker.pickImage(
       source: ImageSource.camera,
     );
     if (imageFile != null) {
-   return imageFile;
+      return imageFile;
     }
     return null;
-    
   }
-   Future<XFile?> pickImageGallery({
-    required int imageNumber,
-  }) async {
+
+  Future<XFile?> pickImageGallery() async {
     XFile? imageFile = await imagePicker.pickImage(
       source: ImageSource.gallery,
     );
-   if (imageFile != null) {
-   return imageFile;
+    if (imageFile != null) {
+      return imageFile;
     }
     return null;
   }

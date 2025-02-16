@@ -23,6 +23,10 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    final List<String> _titles = [
+     t.home_title, 
+   t.add_order, 
+  ];
     return Scaffold(
       body: IndexedStack(
         index: _currentIndex,
@@ -31,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
        appBar: AppBar(
         centerTitle: true,
         title: Text(
-          t.home_title,
+           _titles[_currentIndex], 
           style: TextStyle(
             color: Colors.black,
             fontSize: 30.sp,
