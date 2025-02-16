@@ -21,7 +21,8 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -33,7 +34,8 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -45,7 +47,8 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -157,7 +160,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -172,7 +176,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -187,7 +192,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -298,7 +304,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -313,7 +320,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -328,7 +336,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -439,7 +448,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -454,7 +464,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -469,7 +480,8 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -542,7 +554,7 @@ abstract class _$$ImagePickedImplCopyWith<$Res> {
           _$ImagePickedImpl value, $Res Function(_$ImagePickedImpl) then) =
       __$$ImagePickedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({File imageFile, CaptureType type});
+  $Res call({FileType fileType, ImageSelection? imageSelection});
 }
 
 /// @nodoc
@@ -558,18 +570,18 @@ class __$$ImagePickedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? imageFile = null,
-    Object? type = null,
+    Object? fileType = null,
+    Object? imageSelection = freezed,
   }) {
     return _then(_$ImagePickedImpl(
-      imageFile: null == imageFile
-          ? _value.imageFile
-          : imageFile // ignore: cast_nullable_to_non_nullable
-              as File,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as CaptureType,
+      fileType: null == fileType
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as FileType,
+      imageSelection: freezed == imageSelection
+          ? _value.imageSelection
+          : imageSelection // ignore: cast_nullable_to_non_nullable
+              as ImageSelection?,
     ));
   }
 }
@@ -577,16 +589,16 @@ class __$$ImagePickedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ImagePickedImpl implements _ImagePicked {
-  const _$ImagePickedImpl({required this.imageFile, required this.type});
+  const _$ImagePickedImpl({required this.fileType, this.imageSelection});
 
   @override
-  final File imageFile;
+  final FileType fileType;
   @override
-  final CaptureType type;
+  final ImageSelection? imageSelection;
 
   @override
   String toString() {
-    return 'OrdersState.imagePicked(imageFile: $imageFile, type: $type)';
+    return 'OrdersState.imagePicked(fileType: $fileType, imageSelection: $imageSelection)';
   }
 
   @override
@@ -594,13 +606,14 @@ class _$ImagePickedImpl implements _ImagePicked {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ImagePickedImpl &&
-            (identical(other.imageFile, imageFile) ||
-                other.imageFile == imageFile) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.fileType, fileType) ||
+                other.fileType == fileType) &&
+            (identical(other.imageSelection, imageSelection) ||
+                other.imageSelection == imageSelection));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, imageFile, type);
+  int get hashCode => Object.hash(runtimeType, fileType, imageSelection);
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -616,13 +629,14 @@ class _$ImagePickedImpl implements _ImagePicked {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return imagePicked(imageFile, type);
+    return imagePicked(fileType, imageSelection);
   }
 
   @override
@@ -631,13 +645,14 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return imagePicked?.call(imageFile, type);
+    return imagePicked?.call(fileType, imageSelection);
   }
 
   @override
@@ -646,7 +661,8 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -654,7 +670,7 @@ class _$ImagePickedImpl implements _ImagePicked {
     required TResult orElse(),
   }) {
     if (imagePicked != null) {
-      return imagePicked(imageFile, type);
+      return imagePicked(fileType, imageSelection);
     }
     return orElse();
   }
@@ -711,11 +727,11 @@ class _$ImagePickedImpl implements _ImagePicked {
 
 abstract class _ImagePicked implements OrdersState {
   const factory _ImagePicked(
-      {required final File imageFile,
-      required final CaptureType type}) = _$ImagePickedImpl;
+      {required final FileType fileType,
+      final ImageSelection? imageSelection}) = _$ImagePickedImpl;
 
-  File get imageFile;
-  CaptureType get type;
+  FileType get fileType;
+  ImageSelection? get imageSelection;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
@@ -796,7 +812,8 @@ class _$VideoPickedImpl implements _VideoPicked {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -811,7 +828,8 @@ class _$VideoPickedImpl implements _VideoPicked {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -826,7 +844,8 @@ class _$VideoPickedImpl implements _VideoPicked {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -946,7 +965,8 @@ class _$OrderShareImpl implements _OrderShare {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -961,7 +981,8 @@ class _$OrderShareImpl implements _OrderShare {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -976,7 +997,8 @@ class _$OrderShareImpl implements _OrderShare {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -1115,7 +1137,8 @@ class _$ProgressImpl implements _Progress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -1130,7 +1153,8 @@ class _$ProgressImpl implements _Progress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -1145,7 +1169,8 @@ class _$ProgressImpl implements _Progress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,
@@ -1292,7 +1317,8 @@ class _$FailureImpl implements _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(File imageFile, CaptureType type) imagePicked,
+    required TResult Function(FileType fileType, ImageSelection? imageSelection)
+        imagePicked,
     required TResult Function(File videoFile) videoPicked,
     required TResult Function() orderShare,
     required TResult Function(double progress) progress,
@@ -1307,7 +1333,8 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(File imageFile, CaptureType type)? imagePicked,
+    TResult? Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult? Function(File videoFile)? videoPicked,
     TResult? Function()? orderShare,
     TResult? Function(double progress)? progress,
@@ -1322,7 +1349,8 @@ class _$FailureImpl implements _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(File imageFile, CaptureType type)? imagePicked,
+    TResult Function(FileType fileType, ImageSelection? imageSelection)?
+        imagePicked,
     TResult Function(File videoFile)? videoPicked,
     TResult Function()? orderShare,
     TResult Function(double progress)? progress,

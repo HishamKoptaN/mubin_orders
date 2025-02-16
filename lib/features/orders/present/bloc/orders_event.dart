@@ -1,22 +1,22 @@
+import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
-
-import '../../data/models/create_order_req_body.dart';
+import '../../../../core/all_imports.dart';
 part 'orders_event.freezed.dart';
 
 @freezed
 class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.getOrders() = _GetOrders;
-    const factory OrdersEvent.pickImage({
-    required ImageSource source,
-    required CaptureType type,
-  }) = _PickImage;
-
-  const factory OrdersEvent.pickVideo({
-    required ImageSource source,
-  }) = _PickVideo;
+   const factory OrdersEvent.pickFile({
+    required BuildContext context,
+  required FileType fileType, 
+  ImageSelection? imageSelection,
+}) = _PickFile;
   const factory OrdersEvent.createOrder({
-    required CreateOrderReqBody createOrderReqBody,
+    required FormData formData,
   }) = _CreateOrder;
 }
-enum CaptureType { imageOne, imageTwo ,}
+enum FileType { image, video, 
+}
+
+enum ImageSelection { first, second ,
+}

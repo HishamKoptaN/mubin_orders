@@ -30,35 +30,10 @@ class OrdersRepoImpl implements OrdersRepo {
   }
 
  Future<ApiResult<Order?>> createOrder({
-  required CreateOrderReqBody createOrderReqBody,
+   required FormData formData,
   required Function(double) onProgress, // <-- إضافة دالة لاستقبال التقدم
 }) async {
   try {
-    final videoFile = await MultipartFile.fromFile(
-      createOrderReqBody.video!,
-      filename: "video.mp4",
-    );
-
-    final imageOneFile = await MultipartFile.fromFile(
-      createOrderReqBody.imageOne!,
-      filename: "image1.jpg",
-    );
-
-    final imageTwoFile = await MultipartFile.fromFile(
-      createOrderReqBody.imageTwo!,
-      filename: "image2.jpg",
-    );
-
-    final formData = FormData.fromMap({
-      "client_id": createOrderReqBody.clientId,
-      "place": createOrderReqBody.place,
-      "latitude": createOrderReqBody.latitude,
-      "longitude": createOrderReqBody.longitude,
-      "video": videoFile,
-      "image1": imageOneFile,
-      "image2": imageTwoFile,
-    });
-
     final dio = Dio(); // إنشاء Dio
     dio.interceptors.add(
       InterceptorsWrapper(

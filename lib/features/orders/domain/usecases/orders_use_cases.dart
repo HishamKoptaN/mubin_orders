@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+
 import '../../../../../core/networking/api_result.dart';
 import '../../data/models/create_order_req_body.dart';
 import '../../data/models/orders_res_model.dart';
@@ -18,12 +20,12 @@ class CreateOrderUseCase {
     required this.ordersRepo,
   });
   Future<ApiResult<Order?>> createOrder({
-    required CreateOrderReqBody createOrderReqBody,
+      required FormData formData,
       required Function(double) onProgress,
 
   }) async {
     return await ordersRepo.createOrder(
-      createOrderReqBody: createOrderReqBody,
+      formData: formData,
       onProgress: onProgress,
 
     );
