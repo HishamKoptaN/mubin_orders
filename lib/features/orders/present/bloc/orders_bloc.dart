@@ -229,24 +229,34 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     }
     return null;
   }
-
-  Future<LocationModel?> getCurrentLocation() async {
-    try {
-      final loc.Location location = loc.Location();
-      bool serviceEnabled = await location.serviceEnabled();
+Future<LocationModel?> getCurrentLocation() async {
+  try {
+    final loc.Location location = loc.Location();
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
       if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) return null;
+        // في حالة فشل الخدمة، يمكن إعطاء قيمة افتراضية للموقع
+        return LocationModel(latitude: 0.0, longitude: 0.0);
       }
-      loc.PermissionStatus permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied) {
-        permissionGranted = await location.requestPermission();
-        if (permissionGranted != PermissionStatus.granted) return null;
-      }
-      var locationData = await location.getLocation();
-      return LocationModel.fromLocationData(locationData);
-    } catch (e) {
-      return null;
     }
+    
+    loc.PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        // إذا لم يتم منح الإذن، نرجع إلى موقع افتراضي
+        return LocationModel(latitude: 0.0, longitude: 0.0);
+      }
+    }
+
+    var locationData = await location.getLocation();
+    return LocationModel.fromLocationData(locationData);
+
+  } catch (e) {
+    // في حالة وجود خطأ أثناء محاولة جلب الموقع
+    return LocationModel(latitude: 0.0, longitude: 0.0);
   }
+}
+
 }
