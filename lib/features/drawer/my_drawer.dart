@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -76,7 +77,7 @@ class MyDrawer extends StatelessWidget {
                                     Expanded(
                                       child: TextButton(
                                         onPressed: () async {
-                                          // Storage.setString("auth_token", '');
+                                            await FirebaseAuth.instance.signOut();
                                           Navigator.of(context)
                                               .pushAndRemoveUntil(
                                             MaterialPageRoute(
@@ -119,75 +120,6 @@ class MyDrawer extends StatelessWidget {
                           );
                         },
                       ),
-
-                      // Container(
-                      //   width: cnr.width,
-                      //   height: cnr.height,
-                      //   decoration: const BoxDecoration(
-                      //     color: Colors.grey,
-                      //     borderRadius: BorderRadius.all(
-                      //       Radius.circular(50.0),
-                      //     ),
-                      //   ),
-                      //   child: Stack(
-                      //     children: [
-                      //       AnimatedAlign(
-                      //         alignment: Alignment(cnr.xAlign, 0),
-                      //         duration: const Duration(milliseconds: 300),
-                      //         child: Container(
-                      //           width: cnr.width * 0.5,
-                      //           height: cnr.height,
-                      //           decoration: const BoxDecoration(
-                      //             color: Colors.lightGreen,
-                      //             borderRadius: BorderRadius.all(
-                      //               Radius.circular(50.0),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       GestureDetector(
-                      //         onTap: () async {
-                      //           await cnr.selectEn();
-                      //         },
-                      //         child: Align(
-                      //           alignment: const Alignment(-1, 0),
-                      //           child: Container(
-                      //             width: cnr.width * 0.5,
-                      //             color: Colors.transparent,
-                      //             alignment: Alignment.center,
-                      //             child: Text(
-                      //               'English',
-                      //               style: TextStyle(
-                      //                 color: cnr.loginColor,
-                      //                 fontWeight: FontWeight.bold,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       GestureDetector(
-                      //         onTap: () async {
-                      //           await cnr.selectAr();
-                      //         },
-                      //         child: Align(
-                      //           alignment: const Alignment(1, 0),
-                      //           child: Container(
-                      //             width: cnr.width * 0.5,
-                      //             color: Colors.transparent,
-                      //             alignment: Alignment.center,
-                      //             child: Text(
-                      //               'عربي',
-                      //               style: TextStyle(
-                      //                 color: cnr.signInColor,
-                      //                 fontWeight: FontWeight.bold,
-                      //               ),
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
                     },
                   )
                 ],

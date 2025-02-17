@@ -28,23 +28,23 @@ class MobileHomeWidget extends StatelessWidget {
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [   Expanded(
-                          flex: 1,
-                          child: MyText(
-                            fieldName: '${t.order_id}: ${order.id.toString()}',
-                            color: Colors.blue,
-                            fontSize: 15.sp,
-                          ),
-                        ),
-                 Expanded(
-                          flex: 1,
-                          child: MyText(
-                            fieldName: '${t.order_place}: ${order.place}',
-                            color: Colors.black,
-                            fontSize: 15.sp,
-                          ),
-                        ),
-               
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: MyText(
+                    fieldName: '${t.order_id}: ${order.id.toString()}',
+                    color: Colors.blue,
+                    fontSize: 15.sp,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: MyText(
+                    fieldName: '${t.order_place}: ${order.place}',
+                    color: Colors.black,
+                    fontSize: 15.sp,
+                  ),
+                ),
               ],
             ),
           ),
@@ -82,14 +82,26 @@ class MobileHomeWidget extends StatelessWidget {
                         },
                       );
                     },
-                    child: CachedNetworkImage(
-                      imageUrl: order.imageOne ?? '',
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.red,
-                        highlightColor: Colors.yellow,
-                        child: const SizedBox(),
-                      ),
+                    child: Image.network(
+                      order.imageOne ?? '',
                       fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Shimmer.fromColors(
+                          baseColor: Colors.red,
+                          highlightColor: Colors.yellow,
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.broken_image,
+                          size: 50,
+                          color: Colors.grey,
+                        );
+                      },
                     ),
                   ),
                 ),
@@ -100,28 +112,63 @@ class MobileHomeWidget extends StatelessWidget {
                       Navigator.pushNamed(
                         context,
                         ImagePreview.routeName,
-                        arguments: {'image_url': order.imageTwo ?? ''},
+                        arguments: {
+                          'image_url': order.imageTwo ?? '',
+                        },
                       );
                     },
-                    child: CachedNetworkImage(
-                      imageUrl: order.imageTwo ?? '',
-                      placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.red,
-                        highlightColor: Colors.yellow,
-                        child: const SizedBox(),
-                      ),
-                      errorWidget: (
-                        context,
-                        url,
-                        error,
-                      ) =>
-                          const Icon(
-                        Icons.error,
-                      ),
+                    child: Image.network(
+                      order.imageTwo ?? '',
                       fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Shimmer.fromColors(
+                          baseColor: Colors.red,
+                          highlightColor: Colors.yellow,
+                          child: Container(
+                            color: Colors.white,
+                          ),
+                        );
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Icon(
+                          Icons.broken_image,
+                          size: 50,
+                          color: Colors.grey,
+                        );
+                      },
                     ),
                   ),
                 ),
+                // Expanded(
+                //   flex: 2,
+                //   child: GestureDetector(
+                //     onTap: () async {
+                //       Navigator.pushNamed(
+                //         context,
+                //         ImagePreview.routeName,
+                //         arguments: {'image_url': order.imageTwo ?? ''},
+                //       );
+                //     },
+                //     child: CachedNetworkImage(
+                //       imageUrl: order.imageTwo ?? '',
+                //       placeholder: (context, url) => Shimmer.fromColors(
+                //         baseColor: Colors.red,
+                //         highlightColor: Colors.yellow,
+                //         child: const SizedBox(),
+                //       ),
+                //       errorWidget: (
+                //         context,
+                //         url,
+                //         error,
+                //       ) =>
+                //           const Icon(
+                //         Icons.error,
+                //       ),
+                //       fit: BoxFit.cover,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -130,84 +177,3 @@ class MobileHomeWidget extends StatelessWidget {
     );
   }
 }
-
-  // Future<void> shareOrderTwo(collection, orderId, location, context) async {
-  //   Reference videoRef;
-  //   Reference firstImageRef;
-  //   Reference secondImageRef;
-  //   try {
-  //     final storageRef = FirebaseStorage.instance.ref();
-  //     videoRef = storageRef.child("$collection/$orderId/video.mp4");
-  //     firstImageRef = storageRef.child("$collection/$orderId/first_image.jpg");
-  //     secondImageRef =
-  //         storageRef.child("$collection/$orderId/second_image.jpg");
-  //     final dir = await getApplicationDocumentsDirectory();
-  //     final videoFile = File('${dir.path}/${videoRef.name}.mp4');
-  //     final firstImagFile = File('${dir.path}/${firstImageRef.name}.jpg');
-  //     final secondImageFile = File('${dir.path}/${secondImageRef.name}.jpg');
-  //     await videoRef.writeToFile(videoFile);
-  //     await firstImageRef.writeToFile(firstImagFile);
-  //     await secondImageRef.writeToFile(secondImageFile);
-  //     String orderLocation =
-  //         "Check out place location:\nhttps://maps.google.com/?q=$location";
-  //     await Share.shareFiles(
-  //       [
-  //         // videoFile.path,
-  //         // firstImagFile.path,
-  //         // secondImageFile.path,
-  //       ],
-  //       text: orderLocation,
-  //     );
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print('Error occurred while downloading file: $e');
-  //     }
-  //   }
-  // }
-
-
-   // Expanded(
-                //   flex: 1,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       // Expanded(
-                //       //   flex: 1,
-                //       //   child: GestureDetector(
-                //       //     onTap: () async {
-                //       //       await shareOrderTwo(
-                //       //         proId,
-                //       //       );
-                //       //     },
-                //       //     child: Container(
-                //       //       decoration: BoxDecoration(
-                //       //         border: Border.all(color: Colors.green),
-                //       //         borderRadius: const BorderRadius.all(
-                //       //           Radius.circular(50),
-                //       //         ),
-                //       //       ),
-                //       //       child: const Icon(
-                //       //         Icons.share,
-                //       //         color: Colors.green,
-                //       //       ),
-                //       //     ),
-                //       //   ),
-                //       // ),
-                //       Gap(
-                //         10.w,
-                //       ),
-                //       Expanded(
-                //         flex: 1,
-                //         child: GestureDetectorWidget(
-                //           onTap: () {
-                //             // value.shareLocationOnWhatsApp(
-                //             //     document['place_name'],
-                //             //     document['order_location']
-                //             // );
-                //           },
-                //           // document: document,
-                //         ),
-                //       ),
-                //     ],
-                //   ),
-                // ),

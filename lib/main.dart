@@ -11,7 +11,6 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  // await FirebaseAuth.instance.signOut();
   await Injection.inject();
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
