@@ -54,6 +54,8 @@ class _OrdersApi implements OrdersApi {
     required File video,
     required File imageOne,
     required File imageTwo,
+    required double latitude,
+    required double longitude,
     void Function(int, int)? onSendProgress,
   }) async {
     final _extra = <String, dynamic>{};
@@ -90,6 +92,8 @@ class _OrdersApi implements OrdersApi {
         ),
       ),
     );
+    _data.fields.add(MapEntry('latitude', latitude.toString()));
+    _data.fields.add(MapEntry('longitude', longitude.toString()));
     final _options = _setStreamType<Order>(
       Options(
         method: 'POST',

@@ -24,12 +24,14 @@ class CreateOrderUseCase {
   });
 
   Future<ApiResult<Order?>> createOrder({
-     required String clientId,
-      required String placeName,
-      required File video,
-      required File imageOne,
-      required File imageTwo,
-    required ProgressCallback?  onSendProgress,
+    required String clientId,
+    required String placeName,
+    required File video,
+    required File imageOne,
+    required File imageTwo,
+    required double latitude,
+    required double longitude,
+    required ProgressCallback? onSendProgress,
   }) async {
     return await ordersRepo.createOrder(
       clientId: clientId,
@@ -37,7 +39,9 @@ class CreateOrderUseCase {
       video: video,
       imageOne: imageOne,
       imageTwo: imageTwo,
-     onSendProgress:  onSendProgress,
+      onSendProgress: onSendProgress,
+      latitude: latitude,
+      longitude: longitude,
     );
   }
 }

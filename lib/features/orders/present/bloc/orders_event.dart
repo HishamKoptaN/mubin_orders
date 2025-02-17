@@ -15,7 +15,7 @@ class OrdersEvent with _$OrdersEvent {
       required String clientId,
       required String placeName,
       required File video,
-      required File filimageOnee,
+      required File imageOne,
       required File imageTwo,
   }) = _CreateOrder;
 }

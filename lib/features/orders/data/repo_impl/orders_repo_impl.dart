@@ -39,6 +39,8 @@ class OrdersRepoImpl implements OrdersRepo {
       required File video,
       required File imageOne,
       required File imageTwo,
+       required double latitude,
+    required double longitude,
     required ProgressCallback?  onSendProgress,
   }) async {
     try {
@@ -48,6 +50,8 @@ class OrdersRepoImpl implements OrdersRepo {
       video: video,
       imageOne: imageOne,
       imageTwo: imageTwo,
+         latitude: latitude,
+      longitude: longitude,
         onSendProgress: onSendProgress,
 
       );

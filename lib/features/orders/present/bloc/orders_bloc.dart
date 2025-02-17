@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'dart:developer';
 import 'package:image_picker/image_picker.dart';
+import 'package:location/location.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
@@ -10,7 +10,6 @@ import '../../domain/usecases/orders_use_cases.dart';
 import 'package:flutter/cupertino.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
-import 'package:flutter/foundation.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
@@ -26,7 +25,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         ) {
     on<OrdersEvent>(
       (event, emit) async {
-       await event.when(
+        await event.when(
           getOrders: () async {
             emit(
               const OrdersState.loading(),
@@ -95,19 +94,33 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             placeName,
             video,
             imageOne,
-imageTwo
+            imageTwo,
           ) async {
+            final loc.Location location = loc.Location();
             try {
+              bool serviceEnabled = await location.serviceEnabled();
+              if (!serviceEnabled) {
+                serviceEnabled = await location.requestService();
+                if (!serviceEnabled) return null;
+              }
+              loc.PermissionStatus permissionGranted =
+                  await location.hasPermission();
+              if (permissionGranted == PermissionStatus.denied) {
+                permissionGranted = await location.requestPermission();
+                if (permissionGranted != PermissionStatus.granted) return null;
+              }
+              var locationData = await location.getLocation();
               final result = await createOrderUseCase.createOrder(
-                 clientId: clientId,
-      placeName: placeName,
-      video: video,
-      imageOne: imageOne,
-      imageTwo: imageTwo,
+                clientId: clientId,
+                placeName: placeName,
+                video: video,
+                imageOne: imageOne,
+                imageTwo: imageTwo,
+                latitude: locationData.latitude ?? 0.0,
+                longitude: locationData.longitude ?? 0.0,
                 onSendProgress: (sent, total) {
                   String? uploadProgress;
-                  uploadProgress = "${(sent / total) * 100}%";
-                  log("sent: $sent,total: $total");
+                  uploadProgress = "${((sent / total) * 100).toInt()}%";
                   emit(
                     OrdersState.uploading(
                       progress: uploadProgress,
@@ -117,7 +130,8 @@ imageTwo
               );
               await result.when(
                 success: (order) async {
-                  emit(const OrdersState.success(),
+                  emit(
+                    const OrdersState.success(),
                   );
                 },
                 failure: (apiErrorModel) async {
@@ -141,22 +155,6 @@ imageTwo
         );
       },
     );
-  }
-
-  Future<Map<String, double>?> getCurrentLocation() async {
-    final loc.Location location = loc.Location();
-    try {
-      var locationData = await location.getLocation();
-      return {
-        'latitude': locationData.latitude ?? 0.0,
-        'longitude': locationData.longitude ?? 0.0,
-      };
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-    return null;
   }
 
   Future<XFile?> selectFilesPath({
@@ -243,61 +241,20 @@ imageTwo
     }
     return null;
   }
-}
-// Map<String, double>? location = await getCurrentLocation();
-              // var latitude = location!['latitude'] ?? 0.0;
-              // var longitude = location['longitude'] ?? 0.0;
-              // final res = await createOrderUseCase.createOrder(
-              //   formData: formData,
-              //   onProgress: (progress) {
-              //     emit(
-              //       OrdersState.progress(
-              //         progress: progress,
-              //       ),
-              //     );
-              //   },
-              // );
-              // await res.when(
-              //   success: (
-              //     res,
-              //   ) async {
-              //     // OrdersSingletone.instance.ordersResModel = res;
-              //     emit(
-              //       const OrdersState.initial(),
-              //     );
-              //   },
-              //   failure: (
-              //     apiErrorModel,
-              //   ) async {
-              //     emit(
-              //       OrdersState.failure(
-              //         apiErrorModel: apiErrorModel,
-              //       ),
-              //     );
-              //   },
-              // );
-  //             static Future<void> _uploadInIsolate(List<dynamic> args) async {
-  // SendPort sendPort = args[0];
-  // FormData formData = args[1];
 
-  // try {
-  //   final dio = Dio();
-  //   print("📡 Sending request...");
-    
-  //   final response = await dio.post(
-  //     ApiConstants.orders,
-  //     data: formData,
-  //     onSendProgress: (sent, total) {
-  //       double progress = total > 0 ? sent / total : 0.0;
-  //       print('📤 Upload Progress: ${(progress * 100).toStringAsFixed(2)}%');
-  //       sendPort.send(progress);
-  //     },
-  //   );
-
-  //   final order = Order.fromJson(response.data);
-  //   sendPort.send(ApiResult.success(data: order));
-  // } catch (error, stacktrace) {
-  //   print("❌ Upload Failed: $error \n$stacktrace");
-  //   sendPort.send(ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: error)));
+  // Future<Map<String, double>?> getCurxrentLocation() async {
+  //   final loc.Location location = loc.Location();
+  //   try {
+  //     var locationData = await location.getLocation();
+  //     return {
+  //       'latitude': locationData.latitude ?? 0.0,
+  //       'longitude': locationData.longitude ?? 0.0,
+  //     };
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print(e);
+  //     }
+  //   }
+  //   return null;
   // }
-// }
+}

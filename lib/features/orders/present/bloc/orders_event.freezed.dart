@@ -23,7 +23,7 @@ mixin _$OrdersEvent {
             ImageSelection? imageSelection)
         pickFile,
     required TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)
+            File imageOne, File imageTwo)
         createOrder,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ mixin _$OrdersEvent {
             ImageSelection? imageSelection)?
         pickFile,
     TResult? Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
   }) =>
       throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ mixin _$OrdersEvent {
             ImageSelection? imageSelection)?
         pickFile,
     TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
     required TResult orElse(),
   }) =>
@@ -141,7 +141,7 @@ class _$GetOrdersImpl implements _GetOrders {
             ImageSelection? imageSelection)
         pickFile,
     required TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)
+            File imageOne, File imageTwo)
         createOrder,
   }) {
     return getOrders();
@@ -155,7 +155,7 @@ class _$GetOrdersImpl implements _GetOrders {
             ImageSelection? imageSelection)?
         pickFile,
     TResult? Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
   }) {
     return getOrders?.call();
@@ -169,7 +169,7 @@ class _$GetOrdersImpl implements _GetOrders {
             ImageSelection? imageSelection)?
         pickFile,
     TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
     required TResult orElse(),
   }) {
@@ -314,7 +314,7 @@ class _$PickFileImpl implements _PickFile {
             ImageSelection? imageSelection)
         pickFile,
     required TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)
+            File imageOne, File imageTwo)
         createOrder,
   }) {
     return pickFile(context, fileType, imageSelection);
@@ -328,7 +328,7 @@ class _$PickFileImpl implements _PickFile {
             ImageSelection? imageSelection)?
         pickFile,
     TResult? Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
   }) {
     return pickFile?.call(context, fileType, imageSelection);
@@ -342,7 +342,7 @@ class _$PickFileImpl implements _PickFile {
             ImageSelection? imageSelection)?
         pickFile,
     TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
     required TResult orElse(),
   }) {
@@ -414,7 +414,7 @@ abstract class _$$CreateOrderImplCopyWith<$Res> {
       {String clientId,
       String placeName,
       File video,
-      File filimageOnee,
+      File imageOne,
       File imageTwo});
 }
 
@@ -434,7 +434,7 @@ class __$$CreateOrderImplCopyWithImpl<$Res>
     Object? clientId = null,
     Object? placeName = null,
     Object? video = null,
-    Object? filimageOnee = null,
+    Object? imageOne = null,
     Object? imageTwo = null,
   }) {
     return _then(_$CreateOrderImpl(
@@ -450,9 +450,9 @@ class __$$CreateOrderImplCopyWithImpl<$Res>
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
               as File,
-      filimageOnee: null == filimageOnee
-          ? _value.filimageOnee
-          : filimageOnee // ignore: cast_nullable_to_non_nullable
+      imageOne: null == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
               as File,
       imageTwo: null == imageTwo
           ? _value.imageTwo
@@ -469,7 +469,7 @@ class _$CreateOrderImpl implements _CreateOrder {
       {required this.clientId,
       required this.placeName,
       required this.video,
-      required this.filimageOnee,
+      required this.imageOne,
       required this.imageTwo});
 
   @override
@@ -479,13 +479,13 @@ class _$CreateOrderImpl implements _CreateOrder {
   @override
   final File video;
   @override
-  final File filimageOnee;
+  final File imageOne;
   @override
   final File imageTwo;
 
   @override
   String toString() {
-    return 'OrdersEvent.createOrder(clientId: $clientId, placeName: $placeName, video: $video, filimageOnee: $filimageOnee, imageTwo: $imageTwo)';
+    return 'OrdersEvent.createOrder(clientId: $clientId, placeName: $placeName, video: $video, imageOne: $imageOne, imageTwo: $imageTwo)';
   }
 
   @override
@@ -498,15 +498,15 @@ class _$CreateOrderImpl implements _CreateOrder {
             (identical(other.placeName, placeName) ||
                 other.placeName == placeName) &&
             (identical(other.video, video) || other.video == video) &&
-            (identical(other.filimageOnee, filimageOnee) ||
-                other.filimageOnee == filimageOnee) &&
+            (identical(other.imageOne, imageOne) ||
+                other.imageOne == imageOne) &&
             (identical(other.imageTwo, imageTwo) ||
                 other.imageTwo == imageTwo));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, clientId, placeName, video, filimageOnee, imageTwo);
+  int get hashCode =>
+      Object.hash(runtimeType, clientId, placeName, video, imageOne, imageTwo);
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -524,10 +524,10 @@ class _$CreateOrderImpl implements _CreateOrder {
             ImageSelection? imageSelection)
         pickFile,
     required TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)
+            File imageOne, File imageTwo)
         createOrder,
   }) {
-    return createOrder(clientId, placeName, video, filimageOnee, imageTwo);
+    return createOrder(clientId, placeName, video, imageOne, imageTwo);
   }
 
   @override
@@ -538,11 +538,10 @@ class _$CreateOrderImpl implements _CreateOrder {
             ImageSelection? imageSelection)?
         pickFile,
     TResult? Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
   }) {
-    return createOrder?.call(
-        clientId, placeName, video, filimageOnee, imageTwo);
+    return createOrder?.call(clientId, placeName, video, imageOne, imageTwo);
   }
 
   @override
@@ -553,12 +552,12 @@ class _$CreateOrderImpl implements _CreateOrder {
             ImageSelection? imageSelection)?
         pickFile,
     TResult Function(String clientId, String placeName, File video,
-            File filimageOnee, File imageTwo)?
+            File imageOne, File imageTwo)?
         createOrder,
     required TResult orElse(),
   }) {
     if (createOrder != null) {
-      return createOrder(clientId, placeName, video, filimageOnee, imageTwo);
+      return createOrder(clientId, placeName, video, imageOne, imageTwo);
     }
     return orElse();
   }
@@ -603,13 +602,13 @@ abstract class _CreateOrder implements OrdersEvent {
       {required final String clientId,
       required final String placeName,
       required final File video,
-      required final File filimageOnee,
+      required final File imageOne,
       required final File imageTwo}) = _$CreateOrderImpl;
 
   String get clientId;
   String get placeName;
   File get video;
-  File get filimageOnee;
+  File get imageOne;
   File get imageTwo;
 
   /// Create a copy of OrdersEvent

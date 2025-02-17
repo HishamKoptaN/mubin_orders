@@ -15,10 +15,9 @@ class AddOrderView extends StatefulWidget {
 }
 
 class _AddOrderViewState extends State<AddOrderView> {
-
   final TextEditingController clientIdController = TextEditingController();
   final TextEditingController placeNameController = TextEditingController();
-    XFile? video;
+  XFile? video;
   XFile? imageOne;
   XFile? imageTwo;
   final TextEditingController videoController = TextEditingController();
@@ -51,14 +50,14 @@ class _AddOrderViewState extends State<AddOrderView> {
                 imageSelection,
               ) async {
                 if (fileType == FileType.video) {
-                  video =  file;
+                  video = file;
                   videoController.text = file.path;
                 } else {
                   if (imageSelection == ImageSelection.first) {
                     imageOne = file;
                     imageOneController.text = file.path;
                   } else if (imageSelection == ImageSelection.second) {
-                    imageTwo =file;
+                    imageTwo = file;
                     imageTwoController.text = file.path;
                   }
                 }
@@ -74,33 +73,6 @@ class _AddOrderViewState extends State<AddOrderView> {
           },
           builder: (context, state) {
             return state.maybeWhen(
-              uploading: (progress) {
-                double? parsedProgress = double.tryParse(progress);
-                if (parsedProgress != null) {
-                  return Center(
-                    child: Column(
-                      children: [
-                        LinearProgressIndicator(value: parsedProgress,
-                        ),
-                        Text(progress,
-                        )
-                      ],
-                    ),
-                  );
-                } else {
-                  return Center(
-                    child: Column(
-                      children: [
-                        LinearProgressIndicator(
-                          value: 0.0,
-                        ),
-                        Text(progress,
-                        )
-                      ],
-                    ),
-                  );
-                }
-              },
               orElse: () {
                 return Center(
                   child: Column(
@@ -186,53 +158,15 @@ class _AddOrderViewState extends State<AddOrderView> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          // context.read<OrdersBloc>().add(
-                          //     OrdersEvent.createOrder(
-                          //       clientId:clientIdController.text,
-                          //       placeName: placeNameController.text!,
-                          //       video: video!,
-                          //       file: imageOneFile!,
-                          //       file: imageOneFile!,
-                          //     ),
-                          //   );
-//  Response<Map<String, dynamic>>? dataApi =
-//                                 await tbib_file_uploader.TBIBFileUploader()
-//                                     .startUploadFileWithResponse(
-//                               dio: Dio(
-//                                 BaseOptions(
-//                                   baseUrl: 'https://api.escuelajs.co/api/v1/',
-//                                 ),
-//                               ),
-//                               pathApi: 'files/upload',
-//                               method: 'POST',
-//                               yourData: FormData.fromMap(
-//                                 {
-//                                   'file': MultipartFile.fromBytes(
-//                   imageOne!,
-
-//                                   )
-
-//                                 },
-//                               ),
-//                             );
-                          // FormData formData = FormData.fromMap(
-                          //   {
-                          //     'client_id': clientIdController,
-                          //     'place': placeNameController,
-                          //     'image_one': MultipartFile.fromBytes(
-                          //       imageOne!,
-                          //       filename: 'prdouct_image.jpg',
-                          //     ),
-                          //     'image_two': MultipartFile.fromBytes(
-                          //       imageTwo!,
-                          //       filename: 'prdouct_image.jpg',
-                          //     ),
-                          //     'image': MultipartFile.fromBytes(
-                          //       video!,
-                          //       filename: 'prdouct_image.jpg',
-                          //     ),
-                          //   },
-                          // );
+                          context.read<OrdersBloc>().add(
+                                OrdersEvent.createOrder(
+                                  clientId: clientIdController.text,
+                                  placeName: placeNameController.text,
+                                  video: File(video!.path),
+                                  imageOne: File(imageOne!.path),
+                                  imageTwo: File(imageTwo!.path),
+                                ),
+                              );
                         },
                         child: Container(
                           height: 50.h,
@@ -251,6 +185,41 @@ class _AddOrderViewState extends State<AddOrderView> {
                             ),
                           ),
                         ),
+                      ),
+                      state.maybeWhen(
+                        uploading: (progress) {
+                          double? parsedProgress = double.tryParse(progress);
+                          if (parsedProgress != null) {
+                            return Center(
+                              child: Column(
+                                children: [
+                                  LinearProgressIndicator(
+                                    value: parsedProgress,
+                                  ),
+                                  Text(
+                                    progress,
+                                  )
+                                ],
+                              ),
+                            );
+                          } else {
+                            return Center(
+                              child: Column(
+                                children: [
+                                  LinearProgressIndicator(
+                                    value: 0.0,
+                                  ),
+                                  Text(
+                                    progress,
+                                  )
+                                ],
+                              ),
+                            );
+                          }
+                        },
+                        orElse: () {
+                          return SizedBox.shrink();
+                        },
                       ),
                     ],
                   ),

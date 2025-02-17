@@ -24,11 +24,13 @@ abstract class OrdersApi {
   )
   @MultiPart()
   Future<Order> createOrder({
-     @Part(name: 'client_id') required String clientId,
-     @Part(name: 'place') required String placeName,
-     @Part(name: 'video')  required File video,
-     @Part(name: 'image_one')  required File imageOne,
-     @Part(name: 'image_two') required File imageTwo,
-    @SendProgress()required ProgressCallback?  onSendProgress,
+    @Part(name: 'client_id') required String clientId,
+    @Part(name: 'place') required String placeName,
+    @Part(name: 'video') required File video,
+    @Part(name: 'image_one') required File imageOne,
+    @Part(name: 'image_two') required File imageTwo,
+    @Part(name: 'latitude') required double latitude,
+    @Part(name: 'longitude') required double longitude,
+    @SendProgress() required ProgressCallback? onSendProgress,
   });
 }

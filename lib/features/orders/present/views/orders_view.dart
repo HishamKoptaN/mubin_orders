@@ -1,6 +1,5 @@
 import 'package:shimmer_effect/shimmer_effect.dart';
 import '../../../../core/all_imports.dart';
-import '../../../../core/gloabal_widgets/gloabal_widgets.dart';
 import '../../../../core/utils/responsive.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
 import '../../data/models/orders_res_model.dart';

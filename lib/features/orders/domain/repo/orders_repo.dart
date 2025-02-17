@@ -12,7 +12,8 @@ abstract class OrdersRepo {
       required String placeName,
       required File video,
       required File imageOne,
-      required File imageTwo,
+      required File imageTwo,  required double latitude,
+      required double longitude,
    required ProgressCallback?  onSendProgress,
   });
 
