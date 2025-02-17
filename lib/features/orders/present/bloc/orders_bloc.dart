@@ -24,23 +24,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }) : super(
           const OrdersState.initial(),
         ) {
-
-  
     on<OrdersEvent>(
       (event, emit) async {
-        
-         event.when(
-            uploadImage: (image) async* {
-        yield const OrdersState.uploading(progress: 0);
-        try {
-          await Permission.storage.request();
-          await Permission.camera.request();
-          // final response = await OrdersApi.uploadImage(file);
-          yield const OrdersState.success();
-        } catch (error) {
-          yield OrdersState.failure(apiErrorModel: ApiErrorModel(error: error.toString()));
-        }
-      }, 
+       await event.when(
           getOrders: () async {
             emit(
               const OrdersState.loading(),
@@ -82,7 +68,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             imageSelection,
           ) async {
             emit(const OrdersState.loading());
-
             try {
               XFile? file = await selectFilesPath(
                 context: context,
@@ -105,32 +90,41 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             }
           },
-          createOrder: (formData) async {
-            emit(const OrdersState.loading());
-
-            final progressStream = StreamController<double>();
-            progressStream.stream.listen((progress) {
-              emit(OrdersState.progress(progress: progress)); // متابعة التقدم هنا
-            });
+          createOrder: (file) async {
             try {
               final result = await createOrderUseCase.createOrder(
-                formData: formData,
-                onProgress: (progress) {
-                  progressStream.add(progress); // إرسال التقدم عبر StreamController
+                file: file,
+                onSendProgress: (sent, total) {
+                  String? uploadProgress;
+                  uploadProgress = "${(sent / total) * 100}%";
+                  emit(
+                    OrdersState.uploading(
+                      progress: uploadProgress,
+                    ),
+                  );
                 },
               );
-              progressStream.close();
               await result.when(
                 success: (order) async {
-                  emit(const OrdersState.success());
-                  emit(const OrdersState.initial());
+                  emit(const OrdersState.success(),
+                  );
                 },
                 failure: (apiErrorModel) async {
-                  emit(OrdersState.failure(apiErrorModel: apiErrorModel));
+                  emit(
+                    OrdersState.failure(
+                      apiErrorModel: apiErrorModel,
+                    ),
+                  );
                 },
               );
             } catch (e) {
-              emit(OrdersState.failure(apiErrorModel: ApiErrorModel(error: e.toString())));
+              emit(
+                OrdersState.failure(
+                  apiErrorModel: ApiErrorModel(
+                    error: e.toString(),
+                  ),
+                ),
+              );
             }
           },
         );

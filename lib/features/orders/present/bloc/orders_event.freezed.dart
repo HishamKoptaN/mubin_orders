@@ -22,8 +22,7 @@ mixin _$OrdersEvent {
     required TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)
         pickFile,
-    required TResult Function(FormData formData) createOrder,
-    required TResult Function(File image) uploadImage,
+    required TResult Function(File file) createOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,8 +31,7 @@ mixin _$OrdersEvent {
     TResult? Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult? Function(FormData formData)? createOrder,
-    TResult? Function(File image)? uploadImage,
+    TResult? Function(File file)? createOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,8 +40,7 @@ mixin _$OrdersEvent {
     TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult Function(FormData formData)? createOrder,
-    TResult Function(File image)? uploadImage,
+    TResult Function(File file)? createOrder,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,7 +49,6 @@ mixin _$OrdersEvent {
     required TResult Function(_GetOrders value) getOrders,
     required TResult Function(_PickFile value) pickFile,
     required TResult Function(_CreateOrder value) createOrder,
-    required TResult Function(_UploadImage value) uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,7 +56,6 @@ mixin _$OrdersEvent {
     TResult? Function(_GetOrders value)? getOrders,
     TResult? Function(_PickFile value)? pickFile,
     TResult? Function(_CreateOrder value)? createOrder,
-    TResult? Function(_UploadImage value)? uploadImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -68,7 +63,6 @@ mixin _$OrdersEvent {
     TResult Function(_GetOrders value)? getOrders,
     TResult Function(_PickFile value)? pickFile,
     TResult Function(_CreateOrder value)? createOrder,
-    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -140,8 +134,7 @@ class _$GetOrdersImpl implements _GetOrders {
     required TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)
         pickFile,
-    required TResult Function(FormData formData) createOrder,
-    required TResult Function(File image) uploadImage,
+    required TResult Function(File file) createOrder,
   }) {
     return getOrders();
   }
@@ -153,8 +146,7 @@ class _$GetOrdersImpl implements _GetOrders {
     TResult? Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult? Function(FormData formData)? createOrder,
-    TResult? Function(File image)? uploadImage,
+    TResult? Function(File file)? createOrder,
   }) {
     return getOrders?.call();
   }
@@ -166,8 +158,7 @@ class _$GetOrdersImpl implements _GetOrders {
     TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult Function(FormData formData)? createOrder,
-    TResult Function(File image)? uploadImage,
+    TResult Function(File file)? createOrder,
     required TResult orElse(),
   }) {
     if (getOrders != null) {
@@ -182,7 +173,6 @@ class _$GetOrdersImpl implements _GetOrders {
     required TResult Function(_GetOrders value) getOrders,
     required TResult Function(_PickFile value) pickFile,
     required TResult Function(_CreateOrder value) createOrder,
-    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return getOrders(this);
   }
@@ -193,7 +183,6 @@ class _$GetOrdersImpl implements _GetOrders {
     TResult? Function(_GetOrders value)? getOrders,
     TResult? Function(_PickFile value)? pickFile,
     TResult? Function(_CreateOrder value)? createOrder,
-    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return getOrders?.call(this);
   }
@@ -204,7 +193,6 @@ class _$GetOrdersImpl implements _GetOrders {
     TResult Function(_GetOrders value)? getOrders,
     TResult Function(_PickFile value)? pickFile,
     TResult Function(_CreateOrder value)? createOrder,
-    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (getOrders != null) {
@@ -313,8 +301,7 @@ class _$PickFileImpl implements _PickFile {
     required TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)
         pickFile,
-    required TResult Function(FormData formData) createOrder,
-    required TResult Function(File image) uploadImage,
+    required TResult Function(File file) createOrder,
   }) {
     return pickFile(context, fileType, imageSelection);
   }
@@ -326,8 +313,7 @@ class _$PickFileImpl implements _PickFile {
     TResult? Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult? Function(FormData formData)? createOrder,
-    TResult? Function(File image)? uploadImage,
+    TResult? Function(File file)? createOrder,
   }) {
     return pickFile?.call(context, fileType, imageSelection);
   }
@@ -339,8 +325,7 @@ class _$PickFileImpl implements _PickFile {
     TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult Function(FormData formData)? createOrder,
-    TResult Function(File image)? uploadImage,
+    TResult Function(File file)? createOrder,
     required TResult orElse(),
   }) {
     if (pickFile != null) {
@@ -355,7 +340,6 @@ class _$PickFileImpl implements _PickFile {
     required TResult Function(_GetOrders value) getOrders,
     required TResult Function(_PickFile value) pickFile,
     required TResult Function(_CreateOrder value) createOrder,
-    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return pickFile(this);
   }
@@ -366,7 +350,6 @@ class _$PickFileImpl implements _PickFile {
     TResult? Function(_GetOrders value)? getOrders,
     TResult? Function(_PickFile value)? pickFile,
     TResult? Function(_CreateOrder value)? createOrder,
-    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return pickFile?.call(this);
   }
@@ -377,7 +360,6 @@ class _$PickFileImpl implements _PickFile {
     TResult Function(_GetOrders value)? getOrders,
     TResult Function(_PickFile value)? pickFile,
     TResult Function(_CreateOrder value)? createOrder,
-    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (pickFile != null) {
@@ -410,7 +392,7 @@ abstract class _$$CreateOrderImplCopyWith<$Res> {
           _$CreateOrderImpl value, $Res Function(_$CreateOrderImpl) then) =
       __$$CreateOrderImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({FormData formData});
+  $Res call({File file});
 }
 
 /// @nodoc
@@ -426,13 +408,13 @@ class __$$CreateOrderImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? formData = null,
+    Object? file = null,
   }) {
     return _then(_$CreateOrderImpl(
-      formData: null == formData
-          ? _value.formData
-          : formData // ignore: cast_nullable_to_non_nullable
-              as FormData,
+      file: null == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File,
     ));
   }
 }
@@ -440,14 +422,14 @@ class __$$CreateOrderImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CreateOrderImpl implements _CreateOrder {
-  const _$CreateOrderImpl({required this.formData});
+  const _$CreateOrderImpl({required this.file});
 
   @override
-  final FormData formData;
+  final File file;
 
   @override
   String toString() {
-    return 'OrdersEvent.createOrder(formData: $formData)';
+    return 'OrdersEvent.createOrder(file: $file)';
   }
 
   @override
@@ -455,12 +437,11 @@ class _$CreateOrderImpl implements _CreateOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateOrderImpl &&
-            (identical(other.formData, formData) ||
-                other.formData == formData));
+            (identical(other.file, file) || other.file == file));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, formData);
+  int get hashCode => Object.hash(runtimeType, file);
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -477,10 +458,9 @@ class _$CreateOrderImpl implements _CreateOrder {
     required TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)
         pickFile,
-    required TResult Function(FormData formData) createOrder,
-    required TResult Function(File image) uploadImage,
+    required TResult Function(File file) createOrder,
   }) {
-    return createOrder(formData);
+    return createOrder(file);
   }
 
   @override
@@ -490,10 +470,9 @@ class _$CreateOrderImpl implements _CreateOrder {
     TResult? Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult? Function(FormData formData)? createOrder,
-    TResult? Function(File image)? uploadImage,
+    TResult? Function(File file)? createOrder,
   }) {
-    return createOrder?.call(formData);
+    return createOrder?.call(file);
   }
 
   @override
@@ -503,12 +482,11 @@ class _$CreateOrderImpl implements _CreateOrder {
     TResult Function(BuildContext context, FileType fileType,
             ImageSelection? imageSelection)?
         pickFile,
-    TResult Function(FormData formData)? createOrder,
-    TResult Function(File image)? uploadImage,
+    TResult Function(File file)? createOrder,
     required TResult orElse(),
   }) {
     if (createOrder != null) {
-      return createOrder(formData);
+      return createOrder(file);
     }
     return orElse();
   }
@@ -519,7 +497,6 @@ class _$CreateOrderImpl implements _CreateOrder {
     required TResult Function(_GetOrders value) getOrders,
     required TResult Function(_PickFile value) pickFile,
     required TResult Function(_CreateOrder value) createOrder,
-    required TResult Function(_UploadImage value) uploadImage,
   }) {
     return createOrder(this);
   }
@@ -530,7 +507,6 @@ class _$CreateOrderImpl implements _CreateOrder {
     TResult? Function(_GetOrders value)? getOrders,
     TResult? Function(_PickFile value)? pickFile,
     TResult? Function(_CreateOrder value)? createOrder,
-    TResult? Function(_UploadImage value)? uploadImage,
   }) {
     return createOrder?.call(this);
   }
@@ -541,7 +517,6 @@ class _$CreateOrderImpl implements _CreateOrder {
     TResult Function(_GetOrders value)? getOrders,
     TResult Function(_PickFile value)? pickFile,
     TResult Function(_CreateOrder value)? createOrder,
-    TResult Function(_UploadImage value)? uploadImage,
     required TResult orElse(),
   }) {
     if (createOrder != null) {
@@ -552,172 +527,13 @@ class _$CreateOrderImpl implements _CreateOrder {
 }
 
 abstract class _CreateOrder implements OrdersEvent {
-  const factory _CreateOrder({required final FormData formData}) =
-      _$CreateOrderImpl;
+  const factory _CreateOrder({required final File file}) = _$CreateOrderImpl;
 
-  FormData get formData;
+  File get file;
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateOrderImplCopyWith<_$CreateOrderImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UploadImageImplCopyWith<$Res> {
-  factory _$$UploadImageImplCopyWith(
-          _$UploadImageImpl value, $Res Function(_$UploadImageImpl) then) =
-      __$$UploadImageImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({File image});
-}
-
-/// @nodoc
-class __$$UploadImageImplCopyWithImpl<$Res>
-    extends _$OrdersEventCopyWithImpl<$Res, _$UploadImageImpl>
-    implements _$$UploadImageImplCopyWith<$Res> {
-  __$$UploadImageImplCopyWithImpl(
-      _$UploadImageImpl _value, $Res Function(_$UploadImageImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? image = null,
-  }) {
-    return _then(_$UploadImageImpl(
-      null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as File,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UploadImageImpl implements _UploadImage {
-  const _$UploadImageImpl(this.image);
-
-  @override
-  final File image;
-
-  @override
-  String toString() {
-    return 'OrdersEvent.uploadImage(image: $image)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UploadImageImpl &&
-            (identical(other.image, image) || other.image == image));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, image);
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UploadImageImplCopyWith<_$UploadImageImpl> get copyWith =>
-      __$$UploadImageImplCopyWithImpl<_$UploadImageImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getOrders,
-    required TResult Function(BuildContext context, FileType fileType,
-            ImageSelection? imageSelection)
-        pickFile,
-    required TResult Function(FormData formData) createOrder,
-    required TResult Function(File image) uploadImage,
-  }) {
-    return uploadImage(image);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrders,
-    TResult? Function(BuildContext context, FileType fileType,
-            ImageSelection? imageSelection)?
-        pickFile,
-    TResult? Function(FormData formData)? createOrder,
-    TResult? Function(File image)? uploadImage,
-  }) {
-    return uploadImage?.call(image);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrders,
-    TResult Function(BuildContext context, FileType fileType,
-            ImageSelection? imageSelection)?
-        pickFile,
-    TResult Function(FormData formData)? createOrder,
-    TResult Function(File image)? uploadImage,
-    required TResult orElse(),
-  }) {
-    if (uploadImage != null) {
-      return uploadImage(image);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrders value) getOrders,
-    required TResult Function(_PickFile value) pickFile,
-    required TResult Function(_CreateOrder value) createOrder,
-    required TResult Function(_UploadImage value) uploadImage,
-  }) {
-    return uploadImage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrders value)? getOrders,
-    TResult? Function(_PickFile value)? pickFile,
-    TResult? Function(_CreateOrder value)? createOrder,
-    TResult? Function(_UploadImage value)? uploadImage,
-  }) {
-    return uploadImage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrders value)? getOrders,
-    TResult Function(_PickFile value)? pickFile,
-    TResult Function(_CreateOrder value)? createOrder,
-    TResult Function(_UploadImage value)? uploadImage,
-    required TResult orElse(),
-  }) {
-    if (uploadImage != null) {
-      return uploadImage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UploadImage implements OrdersEvent {
-  const factory _UploadImage(final File image) = _$UploadImageImpl;
-
-  File get image;
-
-  /// Create a copy of OrdersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UploadImageImplCopyWith<_$UploadImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

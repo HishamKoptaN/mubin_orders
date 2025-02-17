@@ -48,21 +48,25 @@ class _OrdersApi implements OrdersApi {
   }
 
   @override
-  Future<HttpResponse<dynamic>> createOrder({required File file}) async {
+  Future<Order> createOrder({
+    required File file,
+    void Function(int, int)? onSendProgress,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
     _data.files.add(
       MapEntry(
-        'file',
+        'image_one',
         MultipartFile.fromFileSync(
           file.path,
           filename: file.path.split(Platform.pathSeparator).last,
         ),
       ),
     );
-    final _options = _setStreamType<HttpResponse<dynamic>>(
+    final _options = _setStreamType<Order>(
       Options(
         method: 'POST',
         headers: _headers,
@@ -74,13 +78,19 @@ class _OrdersApi implements OrdersApi {
             'orders',
             queryParameters: queryParameters,
             data: _data,
+            onSendProgress: onSendProgress,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch(_options);
-    final _value = _result.data;
-    final httpResponse = HttpResponse(_value, _result);
-    return httpResponse;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late Order _value;
+    try {
+      _value = Order.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
