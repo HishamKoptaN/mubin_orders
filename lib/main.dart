@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tbib_file_uploader/tbib_file_uploader.dart';
 import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
@@ -21,6 +22,8 @@ Future<void> main() async {
                               key: SharedPrefKeys.userToken,
                               value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
                             );
+  await TBIBFileUploader().init();
+
   Bloc.observer = AppBlocObserver();
   // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {
   //   SharedPrefHelper.setData(

@@ -16,7 +16,7 @@ dependencies:
   dio: ^5.8.0+1
   equatable: ^2.0.5
   fancy_shimmer_image: ^2.0.3
-  file_picker: ^8.0.2
+  file_picker: ^8.3.7
   firebase_auth: ^5.4.2
   firebase_core: ^3.11.0
   firebase_crashlytics: ^4.3.2
@@ -36,9 +36,10 @@ dependencies:
   image_picker: ^1.1.0
   internet_connection_checker_plus: ^2.7.0
   intl: ^0.19.0
-  list_all_videos: ^1.2.0
+  # list_all_videos: ^1.2.0
   local_auth: ^2.2.0
   location: ^8.0.0
+  tbib_file_uploader: ^2.3.3
   material_dialogs: ^1.1.4
   motion_toast: ^2.11.0
   path: ^1.9.0
@@ -64,6 +65,7 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+  upload_largest_files: ^0.0.3
 dev_dependencies:
   build_runner: ^2.4.7
   flutter_launcher_icons: ^0.14.3
