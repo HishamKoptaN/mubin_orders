@@ -156,7 +156,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       context: context,
       builder: (BuildContext context) {
         XFile? file;
-
         return AlertDialog(
           content: Text(t.select_files),
           actions: [
