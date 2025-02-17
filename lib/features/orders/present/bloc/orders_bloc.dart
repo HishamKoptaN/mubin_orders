@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 import '../../../../core/all_imports.dart';
@@ -6,6 +7,7 @@ import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
 import 'package:location/location.dart' as loc;
 import '../../../../core/utils/app_colors.dart';
+import '../../data/models/location_model.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'package:flutter/cupertino.dart';
 import 'orders_event.dart';
@@ -96,28 +98,16 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             imageOne,
             imageTwo,
           ) async {
-            final loc.Location location = loc.Location();
             try {
-              bool serviceEnabled = await location.serviceEnabled();
-              if (!serviceEnabled) {
-                serviceEnabled = await location.requestService();
-                if (!serviceEnabled) return null;
-              }
-              loc.PermissionStatus permissionGranted =
-                  await location.hasPermission();
-              if (permissionGranted == PermissionStatus.denied) {
-                permissionGranted = await location.requestPermission();
-                if (permissionGranted != PermissionStatus.granted) return null;
-              }
-              var locationData = await location.getLocation();
+            final locationData = await getCurrentLocation();
               final result = await createOrderUseCase.createOrder(
                 clientId: clientId,
                 placeName: placeName,
                 video: video,
                 imageOne: imageOne,
                 imageTwo: imageTwo,
-                latitude: locationData.latitude ?? 0.0,
-                longitude: locationData.longitude ?? 0.0,
+                latitude: locationData?.latitude ?? 0.0,
+                longitude: locationData?.longitude ?? 0.0,
                 onSendProgress: (sent, total) {
                   String? uploadProgress;
                   uploadProgress = "${((sent / total) * 100).toInt()}%";
@@ -240,5 +230,31 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       return imageFile;
     }
     return null;
+  }Future<LocationModel?> getCurrentLocation() async {
+  try {
+    final loc.Location location = loc.Location();
+
+    // التأكد من تفعيل خدمة الموقع
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) return null;
+    }
+
+    // التحقق من صلاحيات الموقع
+    loc.PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) return null;
+    }
+
+    // جلب بيانات الموقع وإنشاء كائن `LocationModel`
+    var locationData = await location.getLocation();
+    return LocationModel.fromLocationData(locationData);
+  } catch (e) {
+    log("Error getting location: $e");
+    return null;
   }
+}
+
 }

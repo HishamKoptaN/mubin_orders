@@ -23,8 +23,6 @@ class _OrdersViewState extends State<OrdersView> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double width = MediaQuery.of(context).size.width;
-    final t = AppLocalizations.of(context)!;
     return Scaffold(
       body: BlocProvider(
         create: (context) => OrdersBloc(

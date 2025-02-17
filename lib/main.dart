@@ -23,12 +23,6 @@ Future<void> main() async {
                               value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
                             );
   Bloc.observer = AppBlocObserver();
-  // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {
-  //   SharedPrefHelper.setData(
-  //     key: "fingerprints",
-  //     value: false,
-  //   );
-  // }
   runApp(
     MyApp(
         locale: locale,

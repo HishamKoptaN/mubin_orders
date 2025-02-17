@@ -52,8 +52,6 @@ double _progress = 0.0;
                       Builder(builder: (context) {
                         bool isHide = false;
                         return StatefulBuilder(
-                          // Listen to changes in the ValueNotifier
-
                           builder: (_, builderSetState) => Column(
                             children: [
                               Row(

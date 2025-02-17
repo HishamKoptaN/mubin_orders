@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:image_picker/image_picker.dart';
 import '../../../../core/all_imports.dart';
 import '../bloc/orders_bloc.dart';
@@ -78,21 +77,6 @@ class _AddOrderViewState extends State<AddOrderView> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      // ElevatedButton(
-                      //   onPressed: () async {
-                      //     final pickedFile = await _picker.pickImage(
-                      //         source: ImageSource.gallery);
-                      //     if (pickedFile != null) {
-                      //       File imageFile = File(pickedFile.path);
-                      //       context.read<OrdersBloc>().add(
-                      //             OrdersEvent.createOrder(
-                      //               file: imageFile,
-                      //             ),
-                      //           );
-                      //     }
-                      //   },
-                      //   child: const Text("Pick Image and Upload"),
-                      // ),
                       MyTextField(
                         controller: clientIdController,
                         maxLines: 2,
@@ -195,6 +179,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                                 children: [
                                   LinearProgressIndicator(
                                     value: parsedProgress,
+                                    color: Colors.green,
                                   ),
                                   Text(
                                     progress,
@@ -207,7 +192,8 @@ class _AddOrderViewState extends State<AddOrderView> {
                               child: Column(
                                 children: [
                                   LinearProgressIndicator(
-                                    value: 0.0,
+                                    value: parsedProgress,
+                                    color: Colors.green,
                                   ),
                                   Text(
                                     progress,
