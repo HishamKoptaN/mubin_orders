@@ -1,6 +1,10 @@
+import 'dart:isolate';
+
 import 'package:dio/dio.dart';
 
 import '../../../../../core/networking/api_result.dart';
+import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/networking/api_constants.dart';
 import '../../data/models/orders_res_model.dart';
 import '../repo/orders_repo.dart';
 
@@ -15,21 +19,43 @@ class GetOrdersUseCase {
 }
 class CreateOrderUseCase {
   final OrdersRepo ordersRepo;
-  CreateOrderUseCase({
-    required this.ordersRepo,
-  });
+
+  CreateOrderUseCase({required this.ordersRepo});
+
   Future<ApiResult<Order?>> createOrder({
-      required FormData formData,
-      required Function(double) onProgress,
-
+    required FormData formData,
+    required Function(double) onProgress,
   }) async {
-    return await ordersRepo.createOrder(
-      formData: formData,
-      onProgress: onProgress,
+    final receivePort = ReceivePort();
+    await Isolate.spawn(_uploadInIsolate, [receivePort.sendPort, formData]);
 
-    );
+    return await receivePort.first as ApiResult<Order?>;
+  }
+
+  static Future<void> _uploadInIsolate(List<dynamic> args) async {
+    SendPort sendPort = args[0];
+    FormData formData = args[1];
+
+    try {
+      final dio = Dio();
+
+      final response = await dio.post(
+        ApiConstants.orders,
+        data: formData,
+        onSendProgress: (sent, total) {
+          double progress = total > 0 ? sent / total : 0.0;
+          sendPort.send(progress);
+        },
+      );
+
+      final order = Order.fromJson(response.data);
+      sendPort.send(ApiResult.success(data: order));
+    } catch (error) {
+      sendPort.send(ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: error)));
+    }
   }
 }
+
 
 // class ToggleLikeOrderUseCase {
 //   final OrdersRepo ordersRepo;
