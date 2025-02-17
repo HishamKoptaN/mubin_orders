@@ -2,10 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
-import 'core/database/cache/shared_pref_keys.dart'; 
+import 'core/database/cache/shared_pref_keys.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
 import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -16,18 +17,19 @@ Future<void> main() async {
   String locale = await SharedPrefHelper.getString(
         key: SharedPrefKeys.languageCode,
       ) ??
-      'ar';   
-      await SharedPrefHelper.setSecuredString(
-                              key: SharedPrefKeys.userToken,
-                              value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
-                            );
+      'ar';
+  await SharedPrefHelper.setSecuredString(
+    key: SharedPrefKeys.userToken,
+    value: '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
+  );
   Bloc.observer = AppBlocObserver();
   runApp(
     MyApp(
-        locale: locale,
-      ),
+      locale: locale,
+    ),
   );
 }
+
 class MyApp extends StatelessWidget {
   MyApp({
     super.key,
@@ -45,7 +47,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-     localizationsDelegates: AppLocalizations.localizationsDelegates,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale(
           locale ?? '',
