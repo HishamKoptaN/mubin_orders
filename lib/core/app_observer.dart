@@ -1,4 +1,3 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppBlocObserver extends BlocObserver {
@@ -24,9 +23,8 @@ class AppBlocObserver extends BlocObserver {
   void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
     super.onError(bloc, error, stackTrace);
     print("❌ Bloc Error: $error");
-
-    // تسجيل الخطأ في Firebase Crashlytics
-    FirebaseCrashlytics.instance
-        .recordError(error, stackTrace, reason: 'Bloc Error');
+    // // تسجيل الخطأ في Firebase Crashlytics
+    // FirebaseCrashlytics.instance
+    //     .recordError(error, stackTrace, reason: 'Bloc Error');
   }
 }

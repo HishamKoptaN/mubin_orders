@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
-    "name": "docs_orders",
-    "short_name": "docs_orders",
-=======
-    "name": "mbean_talabat",
-    "short_name": "mbean_talabat",
->>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a
+    "name": "mubin_orders",
+    "short_name": "mubin_orders",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#hexcode",

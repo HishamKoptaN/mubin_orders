@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"flutter":{"platforms":{"android":{"default":{"projectId":"document-orders","appId":"1:621278659042:android:1004d3dc38b371d19df9bb","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"document-orders","configurations":{"android":"1:621278659042:android:1004d3dc38b371d19df9bb","web":"1:621278659042:web:0dc7b5315328bfe69df9bb"}}}}}}
-=======
 {"flutter":{"platforms":{"android":{"default":{"projectId":"document-orders","appId":"1:621278659042:android:3fc6b8b299f5ed189df9bb","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"document-orders","configurations":{"android":"1:621278659042:android:3fc6b8b299f5ed189df9bb","ios":"1:621278659042:ios:a4654ab7783f509e9df9bb","macos":"1:621278659042:ios:a4654ab7783f509e9df9bb","web":"1:621278659042:web:400da453a575dcff9df9bb","windows":"1:621278659042:web:f367e7500c73a3f09df9bb"}}}}}}
->>>>>>> 2ce4355013ab2d5962ea1a6602f942dba833831a

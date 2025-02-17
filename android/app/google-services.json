@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:14728606104:android:cb64a5ded17c6e45bc3bed",
+        "mobilesdk_app_id": "1:14728606104:android:54dc42a151112eddbc3bed",
         "android_client_info": {
-          "package_name": "com.example.docs_orders"
+          "package_name": "com.mubin.app.orders"
         }
       },
       "oauth_client": [],
