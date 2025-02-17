@@ -90,18 +90,18 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             }
           },
           createOrder: (formData) async {
-            emit(
-              const OrdersState.loading(),
-            );
+            emit(const OrdersState.loading());
+
             final progressStream = StreamController<double>();
             progressStream.stream.listen((progress) {
-              emit(OrdersState.progress(progress: progress));
+              emit(OrdersState.progress(progress: progress)); // متابعة التقدم هنا
             });
+
             try {
               final result = await createOrderUseCase.createOrder(
                 formData: formData,
                 onProgress: (progress) {
-                  progressStream.add(progress);
+                  progressStream.add(progress); // إرسال التقدم عبر StreamController
                 },
               );
               progressStream.close();
@@ -115,8 +115,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                 },
               );
             } catch (e) {
-              emit(OrdersState.failure(
-                  apiErrorModel: ApiErrorModel(error: e.toString())));
+              emit(OrdersState.failure(apiErrorModel: ApiErrorModel(error: e.toString())));
             }
           },
         );

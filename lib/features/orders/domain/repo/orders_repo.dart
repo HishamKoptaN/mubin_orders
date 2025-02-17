@@ -9,15 +9,4 @@ abstract class OrdersRepo {
     required Function(double) onProgress,
   });
 
-  // Future<ApiResult<void>> toggleLike({
-  //   required OrderToggleLikeReqBody postToggleLikeReqBody,
-  // });
-  // Future<ApiResult<CmntsResModel?>> getCmnts({
-  //   required int postId,
-  //   required int page,
-  // });
-
-  // Future<ApiResult<Comment?>> cmnt({
-  //   required OrderCmntReqBody postCmntReqBody,
-  // });
 }

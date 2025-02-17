@@ -70,8 +70,19 @@ class _AddOrderViewState extends State<AddOrderView> {
               ),
             );
           },
-          builder: (context, state) {
-            return Stack(
+          builder: (context, state) {return
+            // في شاشة إضافة الطلب:
+state.maybeWhen(
+  progress: (progress) {
+    return Column(
+      children: [
+        LinearProgressIndicator(value: progress),
+        Text("${(progress * 100).toStringAsFixed(0)}%"),
+      ],
+    );
+  },
+  orElse: () {
+  return Stack(
               children: [
                 state.maybeWhen(
                   progress: (progress) {
@@ -206,6 +217,9 @@ class _AddOrderViewState extends State<AddOrderView> {
                 ),
               ],
             );
+  },
+);
+            
           },
         ),
       ),
