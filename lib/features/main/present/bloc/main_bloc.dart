@@ -24,14 +24,15 @@ class MainBloc extends Bloc<MainEvent, MainState> {
             String? idToken = await user?.getIdToken();
             if (idToken != null && idToken.isNotEmpty) {
               log(idToken);
-              emit(
-                const MainState.logedOut(),
+               emit(
+                const MainState.logedIn(),
               );
             
             } else {
               emit(
-                const MainState.logedIn(),
+                const MainState.logedOut(),
               );
+             
             }
           },
         );

@@ -17,10 +17,10 @@ Future<void> main() async {
         key: SharedPrefKeys.languageCode,
       ) ??
       'ar';   
-      await SharedPrefHelper.setSecuredString(
-                              key: SharedPrefKeys.userToken,
-                              value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
-                            );
+      // await SharedPrefHelper.setSecuredString(
+      //                         key: SharedPrefKeys.userToken,
+      //                         value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
+      //                       );
   Bloc.observer = AppBlocObserver();
   runApp(
     MyApp(

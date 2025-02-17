@@ -29,9 +29,8 @@ class MainView extends StatelessWidget {
                   logedIn: () => 
                    HomeView(),
                   logedOut: () =>
-                   HomeView(),
-
-                  //  const LoginView(),
+                   const LoginView(),
+                  //  HomeView(),
                   orElse: () => const CustomCircularProgress(),
                 );
               },
