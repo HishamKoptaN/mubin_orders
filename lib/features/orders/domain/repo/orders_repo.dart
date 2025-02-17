@@ -1,7 +1,5 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../../../../core/networking/api_result.dart';
 import '../../data/models/orders_res_model.dart';
 
