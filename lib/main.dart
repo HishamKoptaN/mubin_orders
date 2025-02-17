@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:tbib_file_uploader/tbib_file_uploader.dart';
 import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
 import 'core/database/cache/shared_pref_keys.dart'; 
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'firebase_options.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +22,6 @@ Future<void> main() async {
                               key: SharedPrefKeys.userToken,
                               value:  '2|tfljNqJDELKyjcB0Z1rtBXTv4edcbOWWkv5UZEsA9424f2d2',
                             );
-  await TBIBFileUploader().init();
-
   Bloc.observer = AppBlocObserver();
   // if (SharedPrefHelper.getBool(key: "fingerprints") == null) {
   //   SharedPrefHelper.setData(
@@ -32,8 +30,13 @@ Future<void> main() async {
   //   );
   // }
   runApp(
-    MyApp(
-      locale: locale,
+    MultiBlocProvider(
+      providers: [
+        
+      ],
+      child: MyApp(
+        locale: locale,
+      ),
     ),
   );
 }
@@ -54,8 +57,15 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+       localizationsDelegates: [
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ],
+  supportedLocales: [
+    Locale('en'), // English
+    Locale('es'), // Spanish
+  ],
         locale: Locale(
           locale ?? '',
         ),

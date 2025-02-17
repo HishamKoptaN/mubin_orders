@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../../core/all_imports.dart';
@@ -14,6 +16,7 @@ class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.createOrder({
     required FormData formData,
   }) = _CreateOrder;
+  const factory OrdersEvent.uploadImage(File image) = _UploadImage;
 }
 enum FileType { image, video, 
 }

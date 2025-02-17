@@ -16,17 +16,19 @@ class GetOrdersUseCase {
   Future<ApiResult<OrdersResModel?>> getOrders() async {
     return await ordersRepo.getOrders();
   }
-}class CreateOrderUseCase {
+}
+class CreateOrderUseCase {
   final OrdersRepo ordersRepo;
 
   CreateOrderUseCase({required this.ordersRepo});
 
   Future<ApiResult<Order?>> createOrder({
     required FormData formData,
-    required Function(double) onProgress, // <-- إضافة دالة لاستقبال التقدم
+    required Function(double) onProgress, 
   }) async {
     final receivePort = ReceivePort();
-    await Isolate.spawn(_uploadInIsolate, [receivePort.sendPort, formData, onProgress]);
+    await Isolate.spawn(_uploadInIsolate, [receivePort.sendPort, formData, onProgress,
+    ]);
 
     return await receivePort.first as ApiResult<Order?>;
   }

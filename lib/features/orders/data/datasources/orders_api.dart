@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../../core/networking/api_constants.dart';
@@ -17,11 +19,11 @@ abstract class OrdersApi {
     ApiConstants.orders,
   )
   Future<OrdersResModel?> getOrders();
-@POST(ApiConstants.orders,
-)
-Future<Order?> createOrder( {
-  @Body() required FormData formData,
-});
-
-
+  @POST(
+    ApiConstants.orders,
+  )
+  @MultiPart()
+  Future<HttpResponse> createOrder({
+    @Part(name: 'file')required File file,
+  });
 }

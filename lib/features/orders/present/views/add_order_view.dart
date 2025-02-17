@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:image_picker/image_picker.dart';
 import 'package:tbib_file_uploader/tbib_file_uploader.dart' as tbib_file_uploader;
 import '../../../../core/all_imports.dart';
 import '../bloc/orders_bloc.dart';
@@ -25,6 +26,8 @@ class _AddOrderViewState extends State<AddOrderView> {
   final TextEditingController videoController = TextEditingController();
   final TextEditingController imageOneController = TextEditingController();
   final TextEditingController imageTwoController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+
   @override
   Widget build(context) {
     final t = AppLocalizations.of(context)!;
@@ -88,6 +91,31 @@ class _AddOrderViewState extends State<AddOrderView> {
               orElse: () {
                 return Stack(
                   children: [
+                    BlocBuilder<OrdersBloc, OrdersState>(
+                  builder: (context, state) {
+                    return state.maybeWhen(
+                      initial: () => const SizedBox.shrink(),
+                      uploading: (progress) =>
+                          LinearProgressIndicator(value: progress),
+                      success: () => const SizedBox.shrink(),
+                      failure: (error) => const SizedBox.shrink(), orElse: () { return SizedBox(); },
+                    );
+                  },
+                ),
+                     ElevatedButton(
+                  onPressed: () async {
+                    final pickedFile =
+                        await _picker.pickImage(source: ImageSource.gallery);
+                    if (pickedFile != null) {
+                      File imageFile = File(pickedFile.path);
+                      
+                      context
+                          .read<OrdersBloc>()
+                          .add(OrdersEvent.uploadImage(imageFile));
+                    }
+                  },
+                  child: const Text("Pick Image and Upload"),
+                ),
                     state.maybeWhen(
                       progress: (progress) {
                         return Column(

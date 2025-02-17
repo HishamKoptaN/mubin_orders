@@ -91,45 +91,45 @@ class _OrdersViewState extends State<OrdersView> {
                   ],
                 );
               },
-              orderShare: () {
-                return Center(
-                  child: Center(
-                    child: Expanded(
-                      flex: 2,
-                      child: Container(
-                        width: width / 3,
-                        height: height / 3,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: const Color.fromARGB(0, 158, 158, 158)),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(15),
-                          ),
-                        ),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(15),
-                            ),
-                          ),
-                          child:  Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              MyText(
-                                fieldName:t.or,
-                                color: Colors.black,
-                                fontSize: 15,
-                              ),
-                              CircularProgressIndicator(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+              // orderShare: () {
+              //   return Center(
+              //     child: Center(
+              //       child: Expanded(
+              //         flex: 2,
+              //         child: Container(
+              //           width: width / 3,
+              //           height: height / 3,
+              //           decoration: BoxDecoration(
+              //             border: Border.all(
+              //                 color: const Color.fromARGB(0, 158, 158, 158)),
+              //             borderRadius: const BorderRadius.all(
+              //               Radius.circular(15),
+              //             ),
+              //           ),
+              //           child: Container(
+              //             decoration: BoxDecoration(
+              //               border: Border.all(color: Colors.black),
+              //               borderRadius: const BorderRadius.all(
+              //                 Radius.circular(15),
+              //               ),
+              //             ),
+              //             child:  Row(
+              //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //               children: [
+              //                 MyText(
+              //                   fieldName:t.or,
+              //                   color: Colors.black,
+              //                   fontSize: 15,
+              //                 ),
+              //                 CircularProgressIndicator(),
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   );
+              // },
               loading: () {
                 return Center(
                   child: ShimmerEffect(
