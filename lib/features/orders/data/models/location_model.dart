@@ -1,8 +1,8 @@
 import 'package:location/location.dart' as loc;
 
 class LocationModel {
-  final double latitude;
-  final double longitude;
+  final double? latitude;
+  final double? longitude;
 
   LocationModel({
     required this.latitude,

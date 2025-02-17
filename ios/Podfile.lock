@@ -86,6 +86,8 @@ PODS:
     - Flutter
   - flutter_secure_storage (6.0.0):
     - Flutter
+  - geolocator_apple (1.2.0):
+    - Flutter
   - Google-Maps-iOS-Utils (5.0.0):
     - GoogleMaps (~> 8.0)
   - google_maps_flutter_ios (0.0.1):
@@ -186,6 +188,7 @@ DEPENDENCIES:
   - flutter_localization (from `.symlinks/plugins/flutter_localization/ios`)
   - flutter_native_splash (from `.symlinks/plugins/flutter_native_splash/ios`)
   - flutter_secure_storage (from `.symlinks/plugins/flutter_secure_storage/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/darwin`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
@@ -248,6 +251,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_native_splash/ios"
   flutter_secure_storage:
     :path: ".symlinks/plugins/flutter_secure_storage/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
   google_maps_flutter_ios:
     :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   google_sign_in_ios:
@@ -301,6 +306,7 @@ SPEC CHECKSUMS:
   flutter_localization: f43b18844a2b3d2c71fd64f04ffd6b1e64dd54d4
   flutter_native_splash: f71420956eb811e6d310720fee915f1d42852e7a
   flutter_secure_storage: d33dac7ae2ea08509be337e775f6b59f1ff45f12
+  geolocator_apple: 9bcea1918ff7f0062d98345d238ae12718acfbc1
   Google-Maps-iOS-Utils: 66d6de12be1ce6d3742a54661e7a79cb317a9321
   google_maps_flutter_ios: e31555a04d1986ab130f2b9f24b6cdc861acc6d3
   google_sign_in_ios: 4111e87aa5e24a4404f00ea13479f35e571969cc
