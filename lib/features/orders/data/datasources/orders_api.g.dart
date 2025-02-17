@@ -49,7 +49,11 @@ class _OrdersApi implements OrdersApi {
 
   @override
   Future<Order> createOrder({
-    required File file,
+    required String clientId,
+    required String placeName,
+    required File video,
+    required File imageOne,
+    required File imageTwo,
     void Function(int, int)? onSendProgress,
   }) async {
     final _extra = <String, dynamic>{};
@@ -57,12 +61,32 @@ class _OrdersApi implements OrdersApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
+    _data.fields.add(MapEntry('client_id', clientId));
+    _data.fields.add(MapEntry('place', placeName));
+    _data.files.add(
+      MapEntry(
+        'video',
+        MultipartFile.fromFileSync(
+          video.path,
+          filename: video.path.split(Platform.pathSeparator).last,
+        ),
+      ),
+    );
     _data.files.add(
       MapEntry(
         'image_one',
         MultipartFile.fromFileSync(
-          file.path,
-          filename: file.path.split(Platform.pathSeparator).last,
+          imageOne.path,
+          filename: imageOne.path.split(Platform.pathSeparator).last,
+        ),
+      ),
+    );
+    _data.files.add(
+      MapEntry(
+        'image_two',
+        MultipartFile.fromFileSync(
+          imageTwo.path,
+          filename: imageTwo.path.split(Platform.pathSeparator).last,
         ),
       ),
     );

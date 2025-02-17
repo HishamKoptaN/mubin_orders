@@ -90,11 +90,20 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             }
           },
-          createOrder: (clientId,
+          createOrder: (
+            clientId,
+            placeName,
+            video,
+            imageOne,
+imageTwo
           ) async {
             try {
               final result = await createOrderUseCase.createOrder(
-                file: file,
+                 clientId: clientId,
+      placeName: placeName,
+      video: video,
+      imageOne: imageOne,
+      imageTwo: imageTwo,
                 onSendProgress: (sent, total) {
                   String? uploadProgress;
                   uploadProgress = "${(sent / total) * 100}%";

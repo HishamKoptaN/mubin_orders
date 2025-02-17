@@ -34,12 +34,20 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<Order?>> createOrder({
-    required File file,
+ required String clientId,
+      required String placeName,
+      required File video,
+      required File imageOne,
+      required File imageTwo,
     required ProgressCallback?  onSendProgress,
   }) async {
     try {
       final res = await postsApi.createOrder(
-        file: file, 
+       clientId: clientId,
+      placeName: placeName,
+      video: video,
+      imageOne: imageOne,
+      imageTwo: imageTwo,
         onSendProgress: onSendProgress,
 
       );
