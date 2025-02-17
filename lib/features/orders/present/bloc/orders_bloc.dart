@@ -105,8 +105,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                 video: video,
                 imageOne: imageOne,
                 imageTwo: imageTwo,
-                latitude: locationData?.latitude ?? 0.0,
-                longitude: locationData?.longitude ?? 0.0,
+                latitude: locationData?.latitude.toString() ?? '0.0',
+                longitude: locationData?.longitude.toString() ?? '0.0',
                 onSendProgress: (sent, total) {
                   String? uploadProgress;
                   uploadProgress = "${((sent / total) * 100).toInt()}%";

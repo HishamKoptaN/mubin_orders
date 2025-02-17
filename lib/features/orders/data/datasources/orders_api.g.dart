@@ -49,13 +49,13 @@ class _OrdersApi implements OrdersApi {
 
   @override
   Future<Order> createOrder({
+    required String longitude,
+    required String latitude,
     required String clientId,
     required String placeName,
     required File video,
     required File imageOne,
     required File imageTwo,
-    required double latitude,
-    required double longitude,
     void Function(int, int)? onSendProgress,
   }) async {
     final _extra = <String, dynamic>{};
@@ -63,6 +63,8 @@ class _OrdersApi implements OrdersApi {
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     final _data = FormData();
+    _data.fields.add(MapEntry('longitude', longitude));
+    _data.fields.add(MapEntry('latitude', latitude));
     _data.fields.add(MapEntry('client_id', clientId));
     _data.fields.add(MapEntry('place', placeName));
     _data.files.add(
@@ -92,8 +94,6 @@ class _OrdersApi implements OrdersApi {
         ),
       ),
     );
-    _data.fields.add(MapEntry('latitude', latitude.toString()));
-    _data.fields.add(MapEntry('longitude', longitude.toString()));
     final _options = _setStreamType<Order>(
       Options(
         method: 'POST',

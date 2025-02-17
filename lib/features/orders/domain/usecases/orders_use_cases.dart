@@ -29,8 +29,8 @@ class CreateOrderUseCase {
     required File video,
     required File imageOne,
     required File imageTwo,
-    required double latitude,
-    required double longitude,
+    required String latitude,
+    required String longitude,
     required ProgressCallback? onSendProgress,
   }) async {
     return await ordersRepo.createOrder(
