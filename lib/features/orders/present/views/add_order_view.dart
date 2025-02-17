@@ -1,12 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:tbib_file_uploader/tbib_file_uploader.dart' as tbib_file_uploader;
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/all_imports.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
 import '../../../../core/widgets/text_field.dart';
-import 'package:dio/dio.dart';
 
 class AddOrderView extends StatefulWidget {
   const AddOrderView({super.key});
@@ -25,6 +24,8 @@ class _AddOrderViewState extends State<AddOrderView> {
   final TextEditingController videoController = TextEditingController();
   final TextEditingController imageOneController = TextEditingController();
   final TextEditingController imageTwoController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
+
   @override
   Widget build(context) {
     final t = AppLocalizations.of(context)!;
@@ -74,104 +75,106 @@ class _AddOrderViewState extends State<AddOrderView> {
             );
           },
           builder: (context, state) {
-            return
-                // في شاشة إضافة الطلب:
-                state.maybeWhen(
+            return state.maybeWhen(
+              uploading: (progress) {
+                return LinearProgressIndicator(value: progress);
+              },
               progress: (progress) {
                 return Column(
                   children: [
-                    LinearProgressIndicator(value: progress),
-                    Text("${(progress * 100).toStringAsFixed(0)}%"),
+                    LinearProgressIndicator(
+                      value: progress,
+                    ),
+                    Text(
+                      "${(progress * 100).toStringAsFixed(0)}%",
+                    ),
                   ],
                 );
               },
               orElse: () {
-                return Stack(
-                  children: [
-                    state.maybeWhen(
-                      progress: (progress) {
-                        return Column(
-                          children: [
-                            LinearProgressIndicator(
-                              value: progress,
-                            ),
-                            Text(
-                              "${(progress * 100).toStringAsFixed(0)}%",
-                            ),
-                          ],
-                        );
-                      },
-                      orElse: () {
-                        return Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              MyTextField(
-                                controller: clientIdController,
-                                maxLines: 2,
-                                labelText: t.client_id,
-                                hint: t.client_id,
-                              ),
-                              MyTextField(
-                                controller: placeNameController,
-                                maxLines: 2,
-                                labelText: t.place_hint,
-                                hint: t.place_hint,
-                              ),
-                              MyTextField(
-                                controller: videoController,
-                                maxLines: 2,
-                                onTap: () {
-                                  
-                                  context.read<OrdersBloc>().add(
-                                        OrdersEvent.pickFile(
-                                          context: context,
-                                          fileType: FileType.video,
-                                          imageSelection: ImageSelection.first,
-                                        ),
-                                      );
-                                },
-                                labelText: t.add_video,
-                                hint: t.add_video,
-                                suffixIcon: Icons.cloud_upload,
-                                keyboardType: TextInputType.none,
-                              ),
-                              MyTextField(
-                                controller: imageOneController,
-                                maxLines: 2,
-                                onTap: () {
-                                  context.read<OrdersBloc>().add(
-                                        OrdersEvent.pickFile(
-                                          context: context,
-                                          fileType: FileType.image,
-                                          imageSelection: ImageSelection.first,
-                                        ),
-                                      );
-                                },
-                                suffixIcon: Icons.cloud_upload,
-                                labelText: t.add_picure,
-                                hint: t.add_picure,
-                                keyboardType: TextInputType.none,
-                              ),
-                              MyTextField(
-                                controller: imageTwoController,
-                                maxLines: 2,
-                                onTap: () {
-                                  context.read<OrdersBloc>().add(
-                                        OrdersEvent.pickFile(
-                                          context: context,
-                                          fileType: FileType.image,
-                                          imageSelection: ImageSelection.second,
-                                        ),
-                                      );
-                                },
-                                suffixIcon: Icons.cloud_upload,
-                                labelText: t.add_picure,
-                                hint: t.add_picure,
-                                keyboardType: TextInputType.none,
-                              ),
-                              GestureDetector(
-                                onTap: () async {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          final pickedFile = await _picker.pickImage(
+                              source: ImageSource.gallery);
+                          if (pickedFile != null) {
+                            File imageFile = File(pickedFile.path);
+
+                            context
+                                .read<OrdersBloc>()
+                                .add(OrdersEvent.uploadImage(imageFile));
+                          }
+                        },
+                        child: const Text("Pick Image and Upload"),
+                      ),
+                      MyTextField(
+                        controller: clientIdController,
+                        maxLines: 2,
+                        labelText: t.client_id,
+                        hint: t.client_id,
+                      ),
+                      MyTextField(
+                        controller: placeNameController,
+                        maxLines: 2,
+                        labelText: t.place_hint,
+                        hint: t.place_hint,
+                      ),
+                      MyTextField(
+                        controller: videoController,
+                        maxLines: 2,
+                        onTap: () {
+                          context.read<OrdersBloc>().add(
+                                OrdersEvent.pickFile(
+                                  context: context,
+                                  fileType: FileType.video,
+                                  imageSelection: ImageSelection.first,
+                                ),
+                              );
+                        },
+                        labelText: t.add_video,
+                        hint: t.add_video,
+                        suffixIcon: Icons.cloud_upload,
+                        keyboardType: TextInputType.none,
+                      ),
+                      MyTextField(
+                        controller: imageOneController,
+                        maxLines: 2,
+                        onTap: () {
+                          context.read<OrdersBloc>().add(
+                                OrdersEvent.pickFile(
+                                  context: context,
+                                  fileType: FileType.image,
+                                  imageSelection: ImageSelection.first,
+                                ),
+                              );
+                        },
+                        suffixIcon: Icons.cloud_upload,
+                        labelText: t.add_picure,
+                        hint: t.add_picure,
+                        keyboardType: TextInputType.none,
+                      ),
+                      MyTextField(
+                        controller: imageTwoController,
+                        maxLines: 2,
+                        onTap: () {
+                          context.read<OrdersBloc>().add(
+                                OrdersEvent.pickFile(
+                                  context: context,
+                                  fileType: FileType.image,
+                                  imageSelection: ImageSelection.second,
+                                ),
+                              );
+                        },
+                        suffixIcon: Icons.cloud_upload,
+                        labelText: t.add_picure,
+                        hint: t.add_picure,
+                        keyboardType: TextInputType.none,
+                      ),
+                      GestureDetector(
+                        onTap: () async {
 //  Response<Map<String, dynamic>>? dataApi =
 //                                 await tbib_file_uploader.TBIBFileUploader()
 //                                     .startUploadFileWithResponse(
@@ -188,59 +191,54 @@ class _AddOrderViewState extends State<AddOrderView> {
 //                   imageOne!,
 
 //                                   )
-                                  
-                                  
+
 //                                 },
 //                               ),
 //                             );
-                                  // FormData formData = FormData.fromMap(
-                                  //   {
-                                  //     'client_id': clientIdController,
-                                  //     'place': placeNameController,
-                                  //     'image_one': MultipartFile.fromBytes(
-                                  //       imageOne!,
-                                  //       filename: 'prdouct_image.jpg',
-                                  //     ),
-                                  //     'image_two': MultipartFile.fromBytes(
-                                  //       imageTwo!,
-                                  //       filename: 'prdouct_image.jpg',
-                                  //     ),
-                                  //     'image': MultipartFile.fromBytes(
-                                  //       video!,
-                                  //       filename: 'prdouct_image.jpg',
-                                  //     ),
-                                  //   },
-                                  // );
-                                  // context.read<OrdersBloc>().add(
-                                  //       OrdersEvent.createOrder(
-                                  //         formData: formData,
-                                  //       ),
-                                  //     );
-                                },
-                                child: Container(
-                                  height: 50.h,
-                                  width: 200.w,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.green,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      t.add,
-                                      style: TextStyle(
-                                        fontSize: 20.sp,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+                          // FormData formData = FormData.fromMap(
+                          //   {
+                          //     'client_id': clientIdController,
+                          //     'place': placeNameController,
+                          //     'image_one': MultipartFile.fromBytes(
+                          //       imageOne!,
+                          //       filename: 'prdouct_image.jpg',
+                          //     ),
+                          //     'image_two': MultipartFile.fromBytes(
+                          //       imageTwo!,
+                          //       filename: 'prdouct_image.jpg',
+                          //     ),
+                          //     'image': MultipartFile.fromBytes(
+                          //       video!,
+                          //       filename: 'prdouct_image.jpg',
+                          //     ),
+                          //   },
+                          // );
+                          // context.read<OrdersBloc>().add(
+                          //       OrdersEvent.createOrder(
+                          //         formData: formData,
+                          //       ),
+                          //     );
+                        },
+                        child: Container(
+                          height: 50.h,
+                          width: 200.w,
+                          decoration: const BoxDecoration(
+                            color: Colors.green,
                           ),
-                        );
-                      },
-                    ),
-                  ],
+                          child: Center(
+                            child: Text(
+                              t.add,
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 );
               },
             );

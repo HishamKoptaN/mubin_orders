@@ -44,6 +44,6 @@ class ApiModule extends DIModule {
       ) //! LoginApi
       ..registerLazySingleton<OrdersApi>(
         () => OrdersApi(getIt()),
-      );
+      )  ;
   }
 }

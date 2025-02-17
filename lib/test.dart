@@ -9,14 +9,6 @@ import 'package:tbib_file_uploader/tbib_file_uploader.dart';
 
 
 class TbibFileUploaderView extends StatefulWidget {
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -31,31 +23,18 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
   File? selectedFile;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String enterValue = '';
-
+double _progress = 0.0; 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Center(
-            // Center is a layout widget. It takes a single child and positions it
-            // in the middle of the parent.
             child: Form(
               key: _formKey,
               child: Column(
@@ -64,6 +43,12 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
                 children: [
                   Column(
                     children: [
+                   LinearProgressIndicator(
+        value: _progress,
+        backgroundColor: Colors.grey[200],
+        color: Colors.blueAccent,
+      ),
+
                       Builder(builder: (context) {
                         bool isHide = false;
                         return StatefulBuilder(
@@ -113,10 +98,10 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
                                     FileExtensions.JPG,
                                     FileExtensions.PNG
                                   ],
-                                  //  fileType: FileType.,
-                                  // displayNote: '',
-                                  // selectImageGallery: false,
-                                  // selectImageCamera: false,
+                                   fileType: FileType.image,
+                                  displayNote: '',
+                                  selectImageGallery: true,
+                                  selectImageCamera: true,
                                   selectedFile: ({name, path}) {
                                     if (path == null) return;
                                     log('selectedFile $name $path');
@@ -154,65 +139,7 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
                       const SizedBox(
                         height: 20,
                       ),
-                      Builder(builder: (context) {
-                        bool isHide = false;
-                        return StatefulBuilder(
-                          // Listen to changes in the ValueNotifier
-
-                          builder: (_, builderSetState) => Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  const Text('Show or hide widget'),
-                                  Switch.adaptive(
-                                      value: !isHide,
-                                      onChanged: (v) {
-                                        builderSetState(() {
-                                          isHide = !isHide;
-                                        });
-                                      }),
-                                ],
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: Colors.blueAccent,
-                                        width: isHide ? 0 : 1),
-                                    borderRadius: BorderRadius.circular(30)),
-                                child: TBIBUploaderFile(
-                                  isHide: isHide,
-                                  allowedExtensions: const [
-                                    FileExtensions.XLS,
-                                    FileExtensions.XLSX,
-                                    FileExtensions.PDF,
-                                  ],
-                                  selectedFile: ({name, path}) {
-                                    selectedFile = File(path![0]!);
-                                  },
-                                  showFileName: true,
-                                  maxFileSize: 12,
-                                  style: const TBIBUploaderStyle(
-                                      labelText: 'Please select file 1'),
-                                  children: [
-                                    TextFormField(),
-                                  ],
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 20,
-                              ),
-                              // ElevatedButton(
-                              //     onPressed: () async {
-                              //       builderSetState(() {
-                              //         isHide = !isHide;
-                              //       });
-                              //     },
-                              //     child: const Text('Hide')),
-                            ],
-                          ),
-                        );
-                      }),
+                    
                     ],
                   ),
                   const SizedBox(
@@ -222,17 +149,21 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
                     alignment: Alignment.center,
                     child: ElevatedButton(
                         onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            if (selectedFile == null) return;
+                          // if (_formKey.currentState!.validate()) {
+                            // if (selectedFile == null) return;
+                             setState(() {
+        _progress = 0.0;  // إعادة تعيين التقدم عند البدء
+      });
+
                             Response<Map<String, dynamic>>? dataApi =
                                 await TBIBFileUploader()
                                     .startUploadFileWithResponse(
                               dio: Dio(
                                 BaseOptions(
-                                  baseUrl: 'https://api.escuelajs.co/api/v1/',
+                                  baseUrl: 'https://m-api.aquan.website/api/',
                                 ),
                               ),
-                              pathApi: 'files/upload',
+                              pathApi: 'orders',
                               showNotification: selectedFile != null &&
                                   await Permission.notification.isGranted,
                               method: 'POST',
@@ -245,11 +176,19 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
                                         .last,
                                   ),
                                 },
+                                
                               ),
+                               onSendProgress: ({required int countDownloaded, required int totalSize}) {
+            if (totalSize > 0) {
+              setState(() {
+                _progress = countDownloaded / totalSize; // Calculate progress
+              });
+            }
+          },
                             );
                             // var res = ApiModel.fromMap(dataApi!.data!);
                             // log(res.toJson());
-                          }
+                          // }
                         },
                         child: const Text('Submit')),
                   )

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
@@ -15,6 +16,7 @@ import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   GetOrdersUseCase getOrdersUseCase;
   CreateOrderUseCase createOrderUseCase;
+
   final ImagePicker imagePicker = ImagePicker();
   OrdersBloc({
     required this.getOrdersUseCase,
@@ -22,9 +24,23 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   }) : super(
           const OrdersState.initial(),
         ) {
+
+  
     on<OrdersEvent>(
       (event, emit) async {
-        await event.when(
+        
+         event.when(
+            uploadImage: (image) async* {
+        yield const OrdersState.uploading(progress: 0);
+        try {
+          await Permission.storage.request();
+          await Permission.camera.request();
+          // final response = await OrdersApi.uploadImage(file);
+          yield const OrdersState.success();
+        } catch (error) {
+          yield OrdersState.failure(apiErrorModel: ApiErrorModel(error: error.toString()));
+        }
+      }, 
           getOrders: () async {
             emit(
               const OrdersState.loading(),
@@ -96,7 +112,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             progressStream.stream.listen((progress) {
               emit(OrdersState.progress(progress: progress)); // متابعة التقدم هنا
             });
-
             try {
               final result = await createOrderUseCase.createOrder(
                 formData: formData,

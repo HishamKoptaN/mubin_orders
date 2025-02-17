@@ -25,6 +25,6 @@ class BlocModule extends DIModule {
         () => OrdersBloc(
           getOrdersUseCase: getIt(),createOrderUseCase:getIt(),
         ),
-      );
+      ) ;
   }
 }

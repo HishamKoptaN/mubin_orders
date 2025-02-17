@@ -1,5 +1,4 @@
 import 'package:mubin_orders/core/all_imports.dart';
-import '../../test.dart';
 import '../orders/present/views/add_order_view.dart';
 import '../drawer/my_drawer.dart';
 import '../orders/present/views/orders_view.dart';
@@ -18,8 +17,6 @@ class _HomeViewState extends State<HomeView> {
   final List<Widget> _pages = [
     const OrdersView(),
     const AddOrderView(),
-         TbibFileUploaderView(title: '',)
-,
 
 
   ];
@@ -29,7 +26,6 @@ class _HomeViewState extends State<HomeView> {
     final t = AppLocalizations.of(context)!;
     final List<String> _titles = [
      t.home_title, 
-   t.add_order, 
    t.add_order, 
   ];
     return Scaffold(
@@ -81,15 +77,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               backgroundColor: Colors.green,
               label: t.add_order,
-            ),    BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_circle,
-                size: 40,
-                color: Colors.black,
-              ),
-              backgroundColor: Colors.green,
-              label: t.add_order,
-            ),
+            ),   
           ],
         ),
       ),
