@@ -241,20 +241,4 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     }
     return null;
   }
-
-  // Future<Map<String, double>?> getCurxrentLocation() async {
-  //   final loc.Location location = loc.Location();
-  //   try {
-  //     var locationData = await location.getLocation();
-  //     return {
-  //       'latitude': locationData.latitude ?? 0.0,
-  //       'longitude': locationData.longitude ?? 0.0,
-  //     };
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print(e);
-  //     }
-  //   }
-  //   return null;
-  // }
 }
