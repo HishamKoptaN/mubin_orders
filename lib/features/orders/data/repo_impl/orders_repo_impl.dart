@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'dart:isolate';
 
 import 'package:dio/dio.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
@@ -32,31 +34,24 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<Order?>> createOrder({
-    required FormData formData,
-    required Function(double) onProgress, // <-- إضافة دالة لاستقبال التقدم
+    required File file,
+    required ProgressCallback?  onSendProgress,
   }) async {
     try {
-      final dio = Dio(); // إنشاء Dio
-      dio.interceptors.add(
-        InterceptorsWrapper(
-          onRequest: (options, handler) {
-            options.onSendProgress = (sent, total) {
-              double progress = (sent / total);
-              onProgress(progress); 
-            };
-            return handler.next(options);
-          },
+      final res = await postsApi.createOrder(
+        file: file, 
+        onSendProgress: onSendProgress,
+
+      );
+      return ApiResult.success(
+        data: res,
+      );
+    } catch (error) {
+      return ApiResult.failure(
+        apiErrorModel: ApiErrorHandler.handle(
+          error: error,
         ),
       );
-
-      final res = await dio.post(
-        ApiConstants.orders,
-        data: formData,
-      );
-
-      return ApiResult.success(data: Order.fromJson(res.data));
-    } catch (error) {
-      return ApiResult.failure(apiErrorModel: ApiErrorHandler.handle(error: error));
     }
   }
 }

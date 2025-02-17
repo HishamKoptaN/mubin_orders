@@ -14,12 +14,11 @@ class OrdersState with _$OrdersState {
     required FileType fileType,
     ImageSelection? imageSelection,
   }) = _ImagePicked;
-  const factory OrdersState.progress({
-    required double progress,
-  }) = _Progress;
+  const factory OrdersState.uploading({
+    required String progress,
+  }) = _Uploading;
   const factory OrdersState.failure({
     required ApiErrorModel apiErrorModel,
   }) = _Failure;
-  const factory OrdersState.uploading({required double progress}) = _Uploading;
 
 }

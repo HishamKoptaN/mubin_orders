@@ -15,17 +15,15 @@ class AddOrderView extends StatefulWidget {
 }
 
 class _AddOrderViewState extends State<AddOrderView> {
-  Uint8List? imageOneFile;
-  Uint8List? video;
-  Uint8List? imageOne;
-  Uint8List? imageTwo;
+
   final TextEditingController clientIdController = TextEditingController();
   final TextEditingController placeNameController = TextEditingController();
+    XFile? video;
+  XFile? imageOne;
+  XFile? imageTwo;
   final TextEditingController videoController = TextEditingController();
   final TextEditingController imageOneController = TextEditingController();
   final TextEditingController imageTwoController = TextEditingController();
-  final ImagePicker _picker = ImagePicker();
-
   @override
   Widget build(context) {
     final t = AppLocalizations.of(context)!;
@@ -50,17 +48,17 @@ class _AddOrderViewState extends State<AddOrderView> {
               imagePicked: (
                 file,
                 fileType,
-                pickedVideo,
+                imageSelection,
               ) async {
                 if (fileType == FileType.video) {
-                  video = await file.readAsBytes();
+                  video =  file;
                   videoController.text = file.path;
                 } else {
-                  if (pickedVideo == ImageSelection.first) {
-                    imageOne = await file.readAsBytes();
+                  if (imageSelection == ImageSelection.first) {
+                    imageOne = file;
                     imageOneController.text = file.path;
-                  } else if (pickedVideo == ImageSelection.second) {
-                    imageTwo = await file.readAsBytes();
+                  } else if (imageSelection == ImageSelection.second) {
+                    imageTwo =file;
                     imageTwoController.text = file.path;
                   }
                 }
@@ -77,39 +75,52 @@ class _AddOrderViewState extends State<AddOrderView> {
           builder: (context, state) {
             return state.maybeWhen(
               uploading: (progress) {
-                return LinearProgressIndicator(value: progress);
-              },
-              progress: (progress) {
-                return Column(
-                  children: [
-                    LinearProgressIndicator(
-                      value: progress,
+                double? parsedProgress = double.tryParse(progress);
+                if (parsedProgress != null) {
+                  return Center(
+                    child: Column(
+                      children: [
+                        LinearProgressIndicator(value: parsedProgress,
+                        ),
+                        Text(progress,
+                        )
+                      ],
                     ),
-                    Text(
-                      "${(progress * 100).toStringAsFixed(0)}%",
+                  );
+                } else {
+                  return Center(
+                    child: Column(
+                      children: [
+                        LinearProgressIndicator(
+                          value: 0.0,
+                        ),
+                        Text(progress,
+                        )
+                      ],
                     ),
-                  ],
-                );
+                  );
+                }
               },
               orElse: () {
                 return Center(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      ElevatedButton(
-                        onPressed: () async {
-                          final pickedFile = await _picker.pickImage(
-                              source: ImageSource.gallery);
-                          if (pickedFile != null) {
-                            File imageFile = File(pickedFile.path);
-
-                            context
-                                .read<OrdersBloc>()
-                                .add(OrdersEvent.uploadImage(imageFile));
-                          }
-                        },
-                        child: const Text("Pick Image and Upload"),
-                      ),
+                      // ElevatedButton(
+                      //   onPressed: () async {
+                      //     final pickedFile = await _picker.pickImage(
+                      //         source: ImageSource.gallery);
+                      //     if (pickedFile != null) {
+                      //       File imageFile = File(pickedFile.path);
+                      //       context.read<OrdersBloc>().add(
+                      //             OrdersEvent.createOrder(
+                      //               file: imageFile,
+                      //             ),
+                      //           );
+                      //     }
+                      //   },
+                      //   child: const Text("Pick Image and Upload"),
+                      // ),
                       MyTextField(
                         controller: clientIdController,
                         maxLines: 2,
@@ -175,6 +186,15 @@ class _AddOrderViewState extends State<AddOrderView> {
                       ),
                       GestureDetector(
                         onTap: () async {
+                          // context.read<OrdersBloc>().add(
+                          //     OrdersEvent.createOrder(
+                          //       clientId:clientIdController.text,
+                          //       placeName: placeNameController.text!,
+                          //       video: video!,
+                          //       file: imageOneFile!,
+                          //       file: imageOneFile!,
+                          //     ),
+                          //   );
 //  Response<Map<String, dynamic>>? dataApi =
 //                                 await tbib_file_uploader.TBIBFileUploader()
 //                                     .startUploadFileWithResponse(
@@ -213,11 +233,6 @@ class _AddOrderViewState extends State<AddOrderView> {
                           //     ),
                           //   },
                           // );
-                          // context.read<OrdersBloc>().add(
-                          //       OrdersEvent.createOrder(
-                          //         formData: formData,
-                          //       ),
-                          //     );
                         },
                         child: Container(
                           height: 50.h,
