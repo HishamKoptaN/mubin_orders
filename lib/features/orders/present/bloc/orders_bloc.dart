@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:image_picker/image_picker.dart';
-import 'package:permission_handler/permission_handler.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
