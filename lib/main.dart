@@ -30,14 +30,9 @@ Future<void> main() async {
   //   );
   // }
   runApp(
-    MultiBlocProvider(
-      providers: [
-        
-      ],
-      child: MyApp(
+    MyApp(
         locale: locale,
       ),
-    ),
   );
 }
 class MyApp extends StatelessWidget {
@@ -57,15 +52,8 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-       localizationsDelegates: [
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ],
-  supportedLocales: [
-    Locale('en'), // English
-    Locale('es'), // Spanish
-  ],
+     localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         locale: Locale(
           locale ?? '',
         ),
