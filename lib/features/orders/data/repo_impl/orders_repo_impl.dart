@@ -1,12 +1,7 @@
 import 'dart:io';
-import 'dart:isolate';
-
 import 'package:dio/dio.dart';
-import 'package:image_picker/image_picker.dart';
-
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
-import '../../../../core/networking/api_constants.dart';
 import '../../domain/repo/orders_repo.dart';
 import '../datasources/orders_api.dart';
 import '../models/orders_res_model.dart';
@@ -34,26 +29,25 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<Order?>> createOrder({
- required String clientId,
-      required String placeName,
-      required File video,
-      required File imageOne,
-      required File imageTwo,
-       required double latitude,
-    required double longitude,
-    required ProgressCallback?  onSendProgress,
+    required String clientId,
+    required String placeName,
+    required File video,
+    required File imageOne,
+    required File imageTwo,
+    required String latitude,
+    required String longitude,
+    required ProgressCallback? onSendProgress,
   }) async {
     try {
       final res = await postsApi.createOrder(
-       clientId: clientId,
-      placeName: placeName,
-      video: video,
-      imageOne: imageOne,
-      imageTwo: imageTwo,
-         latitude: latitude,
-      longitude: longitude,
+        clientId: clientId,
+        placeName: placeName,
+        video: video,
+        imageOne: imageOne,
+        imageTwo: imageTwo,
+        latitude: latitude,
+        longitude: longitude,
         onSendProgress: onSendProgress,
-
       );
       return ApiResult.success(
         data: res,

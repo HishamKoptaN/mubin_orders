@@ -1,21 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:mubin_orders/core/all_imports.dart';
 import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
-import '../../../../../core/gloabal_widgets/image_widget.dart';
 import '../../../data/models/orders_res_model.dart';
-import '../orders_view.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';
 
-class MobileHomeWidget extends StatelessWidget {
-  const MobileHomeWidget({
+class OrderWidget extends StatelessWidget {
+  const OrderWidget({
     super.key,
     required this.order,
   });
   final Order order;
-  static const String routeName = "MobileHomeWidget";
+  static const String routeName = "OrderWidget";
 
   @override
   Widget build(BuildContext context) {
@@ -140,35 +137,6 @@ class MobileHomeWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Expanded(
-                //   flex: 2,
-                //   child: GestureDetector(
-                //     onTap: () async {
-                //       Navigator.pushNamed(
-                //         context,
-                //         ImagePreview.routeName,
-                //         arguments: {'image_url': order.imageTwo ?? ''},
-                //       );
-                //     },
-                //     child: CachedNetworkImage(
-                //       imageUrl: order.imageTwo ?? '',
-                //       placeholder: (context, url) => Shimmer.fromColors(
-                //         baseColor: Colors.red,
-                //         highlightColor: Colors.yellow,
-                //         child: const SizedBox(),
-                //       ),
-                //       errorWidget: (
-                //         context,
-                //         url,
-                //         error,
-                //       ) =>
-                //           const Icon(
-                //         Icons.error,
-                //       ),
-                //       fit: BoxFit.cover,
-                //     ),
-                //   ),
-                // ),
               ],
             ),
           ),

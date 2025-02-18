@@ -29,8 +29,8 @@ abstract class OrdersApi {
     @Part(name: 'video') required File video,
     @Part(name: 'image_one') required File imageOne,
     @Part(name: 'image_two') required File imageTwo,
-    @Part(name: 'latitude') required double latitude,
-    @Part(name: 'longitude') required double longitude,
+    @Part(name: 'longitude') required String longitude,
+    @Part(name: 'latitude') required String latitude,
     @SendProgress() required ProgressCallback? onSendProgress,
   });
 }

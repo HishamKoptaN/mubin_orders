@@ -1,10 +1,14 @@
+import 'dart:developer';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:location/location.dart' as loc;
+import 'package:location/location.dart';
 import 'core/all_imports.dart';
 import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
 import 'core/database/cache/shared_pref_keys.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/main/present/view/main_view.dart';
+import 'features/orders/data/models/location_model.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -56,5 +60,26 @@ class MyApp extends StatelessWidget {
         initialRoute: MainView.routeName,
       ),
     );
+  }
+  }
+  
+  Future<LocationModel?> getCurrentLocation() async {
+  try {
+    final loc.Location location = loc.Location();
+    bool serviceEnabled = await location.serviceEnabled();
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) return null;
+    }
+    loc.PermissionStatus permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) return null;
+    }
+    var locationData = await location.getLocation();
+    return LocationModel.fromLocationData(locationData);
+  } catch (e) {
+    log("Error getting location: $e");
+    return null;
   }
 }

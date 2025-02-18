@@ -7,12 +7,12 @@ abstract class OrdersRepo {
   Future<ApiResult<OrdersResModel?>> getOrders();
   Future<ApiResult<Order?>> createOrder({
     required String clientId,
-      required String placeName,
-      required File video,
-      required File imageOne,
-      required File imageTwo,  required double latitude,
-      required double longitude,
-   required ProgressCallback?  onSendProgress,
+    required String placeName,
+    required File video,
+    required File imageOne,
+    required File imageTwo,
+    required String latitude,
+    required String longitude,
+    required ProgressCallback? onSendProgress,
   });
-
 }

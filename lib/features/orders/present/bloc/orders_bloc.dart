@@ -105,8 +105,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                 video: video,
                 imageOne: imageOne,
                 imageTwo: imageTwo,
-                latitude: locationData?.latitude ?? 0.0,
-                longitude: locationData?.longitude ?? 0.0,
+                latitude: locationData?.latitude.toString() ??'0.0',
+                longitude: locationData?.longitude.toString() ?? '0.0',
                 onSendProgress: (sent, total) {
                   String? uploadProgress;
                   uploadProgress = "${((sent / total) * 100).toInt()}%";
@@ -217,6 +217,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     if (imageFile != null) {
       return imageFile;
     }
+
     return null;
   }
 
@@ -236,17 +237,22 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       bool serviceEnabled = await location.serviceEnabled();
       if (!serviceEnabled) {
         serviceEnabled = await location.requestService();
-        if (!serviceEnabled) return null;
+        if (!serviceEnabled) {
+          return LocationModel(latitude: 0.0, longitude: 0.0);
+        }
       }
+
       loc.PermissionStatus permissionGranted = await location.hasPermission();
       if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await location.requestPermission();
-        if (permissionGranted != PermissionStatus.granted) return null;
+        if (permissionGranted != PermissionStatus.granted) {
+          return LocationModel(latitude: 0.0, longitude: 0.0);
+        }
       }
       var locationData = await location.getLocation();
       return LocationModel.fromLocationData(locationData);
     } catch (e) {
-      return null;
+      return LocationModel(latitude: 0.0, longitude: 0.0);
     }
   }
 }

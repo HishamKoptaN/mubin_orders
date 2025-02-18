@@ -1,19 +1,17 @@
 import 'package:shimmer_effect/shimmer_effect.dart';
 import '../../../../core/all_imports.dart';
-import '../../../../core/utils/responsive.dart';
 import '../../../../core/single_tone/orders_single_tone.dart';
 import '../../data/models/orders_res_model.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
-import 'widgets/desktop_widget.dart';
 import 'widgets/mobile_widget.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({
     super.key,
   });
-    static const String routeName = "OrdersView";
+  static const String routeName = "OrdersView";
 
   @override
   State<OrdersView> createState() => _OrdersViewState();
@@ -26,7 +24,8 @@ class _OrdersViewState extends State<OrdersView> {
     return Scaffold(
       body: BlocProvider(
         create: (context) => OrdersBloc(
-          getOrdersUseCase: getIt(), createOrderUseCase:  getIt(),
+          getOrdersUseCase: getIt(),
+          createOrderUseCase: getIt(),
         )..add(
             OrdersEvent.getOrders(),
           ),
@@ -43,8 +42,9 @@ class _OrdersViewState extends State<OrdersView> {
                           Expanded(
                             flex: 7,
                             child: ListView.builder(
-                              itemCount: OrdersSingletone
-                                  .instance.ordersResModel?.orders?.length ??10,
+                              itemCount: OrdersSingletone.instance
+                                      .ordersResModel?.orders?.length ??
+                                  10,
                               itemBuilder: (context, index) {
                                 final order = OrdersSingletone
                                     .instance.ordersResModel?.orders?[index];
@@ -62,19 +62,13 @@ class _OrdersViewState extends State<OrdersView> {
                                           ),
                                         ),
                                         child: Card(
-                                          semanticContainer: true,
-                                          clipBehavior:
-                                              Clip.antiAliasWithSaveLayer,
-                                          child: Res.isMobile(
-                                            context,
-                                          )
-                                              ? MobileHomeWidget(
-                                                  order: order?? Order(),
-                                                )
-                                              : DesktopWidget(
-                                                  order: order?? Order(),
-                                                ),
-                                        ),
+                                            semanticContainer: true,
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            child: OrderWidget(
+                                              order: order ?? Order(),
+                                            ),
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -88,45 +82,6 @@ class _OrdersViewState extends State<OrdersView> {
                   ],
                 );
               },
-              // orderShare: () {
-              //   return Center(
-              //     child: Center(
-              //       child: Expanded(
-              //         flex: 2,
-              //         child: Container(
-              //           width: width / 3,
-              //           height: height / 3,
-              //           decoration: BoxDecoration(
-              //             border: Border.all(
-              //                 color: const Color.fromARGB(0, 158, 158, 158)),
-              //             borderRadius: const BorderRadius.all(
-              //               Radius.circular(15),
-              //             ),
-              //           ),
-              //           child: Container(
-              //             decoration: BoxDecoration(
-              //               border: Border.all(color: Colors.black),
-              //               borderRadius: const BorderRadius.all(
-              //                 Radius.circular(15),
-              //               ),
-              //             ),
-              //             child:  Row(
-              //               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //               children: [
-              //                 MyText(
-              //                   fieldName:t.or,
-              //                   color: Colors.black,
-              //                   fontSize: 15,
-              //                 ),
-              //                 CircularProgressIndicator(),
-              //               ],
-              //             ),
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   );
-              // },
               loading: () {
                 return Center(
                   child: ShimmerEffect(
@@ -154,11 +109,11 @@ class _OrdersViewState extends State<OrdersView> {
               },
               failure: (e) {
                 return Center(
-                  child:  Text(
-                         e.error??'',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 24),
-                        ),
+                  child: Text(
+                    e.error ?? '',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 24),
+                  ),
                 );
               },
             );
@@ -172,7 +127,7 @@ class _OrdersViewState extends State<OrdersView> {
 class GestureDetectorWidget extends StatelessWidget {
   GestureDetectorWidget({
     super.key,
-    required  this.onTap,
+    required this.onTap,
   });
 
   void Function()? onTap;

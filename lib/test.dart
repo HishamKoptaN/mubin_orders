@@ -1,15 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
-
 // import 'package:example/src/api_model.dart';
 // import 'package:example/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tbib_file_uploader/tbib_file_uploader.dart';
 
-
 class TbibFileUploaderView extends StatefulWidget {
-
   final String title;
 
   const TbibFileUploaderView({super.key, required this.title});
@@ -23,7 +20,7 @@ class _TbibFileUploaderViewState extends State<TbibFileUploaderView> {
   File? selectedFile;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String enterValue = '';
-double _progress = 0.0; 
+  double _progress = 0.0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,12 +40,11 @@ double _progress = 0.0;
                 children: [
                   Column(
                     children: [
-                   LinearProgressIndicator(
-        value: _progress,
-        backgroundColor: Colors.grey[200],
-        color: Colors.blueAccent,
-      ),
-
+                      LinearProgressIndicator(
+                        value: _progress,
+                        backgroundColor: Colors.grey[200],
+                        color: Colors.blueAccent,
+                      ),
                       Builder(builder: (context) {
                         bool isHide = false;
                         return StatefulBuilder(
@@ -96,7 +92,7 @@ double _progress = 0.0;
                                     FileExtensions.JPG,
                                     FileExtensions.PNG
                                   ],
-                                   fileType: FileType.image,
+                                  fileType: FileType.image,
                                   displayNote: '',
                                   selectImageGallery: true,
                                   selectImageCamera: true,
@@ -137,7 +133,6 @@ double _progress = 0.0;
                       const SizedBox(
                         height: 20,
                       ),
-                    
                     ],
                   ),
                   const SizedBox(
@@ -148,44 +143,46 @@ double _progress = 0.0;
                     child: ElevatedButton(
                         onPressed: () async {
                           // if (_formKey.currentState!.validate()) {
-                            // if (selectedFile == null) return;
-                             setState(() {
-        _progress = 0.0;  // إعادة تعيين التقدم عند البدء
-      });
+                          // if (selectedFile == null) return;
+                          setState(() {
+                            _progress = 0.0; // إعادة تعيين التقدم عند البدء
+                          });
 
-                            Response<Map<String, dynamic>>? dataApi =
-                                await TBIBFileUploader()
-                                    .startUploadFileWithResponse(
-                              dio: Dio(
-                                BaseOptions(
-                                  baseUrl: 'https://m-api.aquan.website/api/',
+                          Response<Map<String, dynamic>>? dataApi =
+                              await TBIBFileUploader()
+                                  .startUploadFileWithResponse(
+                            dio: Dio(
+                              BaseOptions(
+                                baseUrl: 'https://m-api.aquan.website/api/',
+                              ),
+                            ),
+                            pathApi: 'orders',
+                            showNotification: selectedFile != null &&
+                                await Permission.notification.isGranted,
+                            method: 'POST',
+                            yourData: FormData.fromMap(
+                              {
+                                'file': MultipartFile.fromFileSync(
+                                  selectedFile!.path,
+                                  filename: selectedFile!.path
+                                      .split(Platform.pathSeparator)
+                                      .last,
                                 ),
-                              ),
-                              pathApi: 'orders',
-                              showNotification: selectedFile != null &&
-                                  await Permission.notification.isGranted,
-                              method: 'POST',
-                              yourData: FormData.fromMap(
-                                {
-                                  'file': MultipartFile.fromFileSync(
-                                    selectedFile!.path,
-                                    filename: selectedFile!.path
-                                        .split(Platform.pathSeparator)
-                                        .last,
-                                  ),
-                                },
-                                
-                              ),
-                               onSendProgress: ({required int countDownloaded, required int totalSize}) {
-            if (totalSize > 0) {
-              setState(() {
-                _progress = countDownloaded / totalSize; // Calculate progress
-              });
-            }
-          },
-                            );
-                            // var res = ApiModel.fromMap(dataApi!.data!);
-                            // log(res.toJson());
+                              },
+                            ),
+                            onSendProgress: (
+                                {required int countDownloaded,
+                                required int totalSize}) {
+                              if (totalSize > 0) {
+                                setState(() {
+                                  _progress = countDownloaded /
+                                      totalSize; // Calculate progress
+                                });
+                              }
+                            },
+                          );
+                          // var res = ApiModel.fromMap(dataApi!.data!);
+                          // log(res.toJson());
                           // }
                         },
                         child: const Text('Submit')),
