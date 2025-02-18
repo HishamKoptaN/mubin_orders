@@ -16,7 +16,7 @@
     "add_picure": "اضافة صوره",
     "add": "اضف",
     "loading": "جاري التحميل",
-    
+    "file_pick_failed": " فشل اضافة الملف",
     "login_text": "تسجيل الدخول",
     "login": "دخول",
     "email_hint": "الايميل",

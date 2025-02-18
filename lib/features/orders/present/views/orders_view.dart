@@ -107,7 +107,7 @@ class _OrdersViewState extends State<OrdersView> {
                   ),
                 );
               },
-              failure: (e) {
+              getOrdersfailure: (e) {
                 return Center(
                   child: Text(
                     e.error ?? '',

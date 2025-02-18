@@ -21,6 +21,7 @@
     "password_hint": "Password",
     "remember_me": "Remember me",
     "log_out": "LogOut",
+    "file_pick_failed": "File capture failed",
     "order_saving":"The order is being saved",
     "order__is_sharing":"Sharing the order",
     "failed":"Failed",

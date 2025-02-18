@@ -7,6 +7,7 @@ import '../../../../core/single_tone/orders_single_tone.dart';
 import 'package:location/location.dart' as loc;
 import '../../../../core/utils/app_colors.dart';
 import '../../data/models/location_model.dart';
+import '../../data/models/orders_res_model.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'package:flutter/cupertino.dart';
 import 'orders_event.dart';
@@ -37,7 +38,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                 success: (
                   res,
                 ) async {
-                  OrdersSingletone.instance.ordersResModel = res;
+                  OrdersSingletone.instance.addOrders(
+                    newOrders: res?.orders ?? [],
+                    newMeta: res?.meta,
+                  );
                   emit(
                     const OrdersState.initial(),
                   );
@@ -46,7 +50,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   apiErrorModel,
                 ) async {
                   emit(
-                    OrdersState.failure(
+                    OrdersState.getOrdersfailure(
                       apiErrorModel: apiErrorModel,
                     ),
                   );
@@ -54,7 +58,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             } catch (e) {
               emit(
-                OrdersState.failure(
+                OrdersState.getOrdersfailure(
                   apiErrorModel: ApiErrorModel(
                     error: e.toString(),
                   ),
@@ -67,7 +71,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             fileType,
             imageSelection,
           ) async {
-            emit(const OrdersState.loading());
+            emit(
+              const OrdersState.loading(),
+            );
             try {
               XFile? file = await selectFilesPath(
                 context: context,
@@ -75,16 +81,16 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                 imageSelection: imageSelection,
               );
               emit(
-                OrdersState.imagePicked(
+                OrdersState.filePicked(
                     file: file!,
                     fileType: fileType,
                     imageSelection: imageSelection),
               );
             } catch (e) {
               emit(
-                OrdersState.failure(
+                OrdersState.pickFileFailure(
                   apiErrorModel: ApiErrorModel(
-                    error: "خطأ في التقاط الفيديو: ${e.toString()}",
+                    error: e.toString(),
                   ),
                 ),
               );
@@ -119,13 +125,16 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
               await result.when(
                 success: (order) async {
+                  OrdersSingletone.instance.addSingleOrder(
+                    newOrder: order ?? Order(),
+                  );
                   emit(
                     const OrdersState.success(),
                   );
                 },
                 failure: (apiErrorModel) async {
                   emit(
-                    OrdersState.failure(
+                    OrdersState.createOrderFailure(
                       apiErrorModel: apiErrorModel,
                     ),
                   );
@@ -133,7 +142,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             } catch (e) {
               emit(
-                OrdersState.failure(
+                OrdersState.createOrderFailure(
                   apiErrorModel: ApiErrorModel(
                     error: e.toString(),
                   ),
@@ -229,34 +238,30 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     }
     return null;
   }
-Future<LocationModel?> getCurrentLocation() async {
-  try {
-    final loc.Location location = loc.Location();
-    bool serviceEnabled = await location.serviceEnabled();
-    if (!serviceEnabled) {
-      serviceEnabled = await location.requestService();
+
+  Future<LocationModel?> getCurrentLocation() async {
+    try {
+      final loc.Location location = loc.Location();
+      bool serviceEnabled = await location.serviceEnabled();
       if (!serviceEnabled) {
-        // في حالة فشل الخدمة، يمكن إعطاء قيمة افتراضية للموقع
-        return LocationModel(latitude: 0.0, longitude: 0.0);
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) {
+          return LocationModel(latitude: 0.0, longitude: 0.0);
+        }
       }
-    }
-    
-    loc.PermissionStatus permissionGranted = await location.hasPermission();
-    if (permissionGranted == PermissionStatus.denied) {
-      permissionGranted = await location.requestPermission();
-      if (permissionGranted != PermissionStatus.granted) {
-        // إذا لم يتم منح الإذن، نرجع إلى موقع افتراضي
-        return LocationModel(latitude: 0.0, longitude: 0.0);
+
+      loc.PermissionStatus permissionGranted = await location.hasPermission();
+      if (permissionGranted == PermissionStatus.denied) {
+        permissionGranted = await location.requestPermission();
+        if (permissionGranted != PermissionStatus.granted) {
+          return LocationModel(latitude: 0.0, longitude: 0.0);
+        }
       }
+
+      var locationData = await location.getLocation();
+      return LocationModel.fromLocationData(locationData);
+    } catch (e) {
+      return LocationModel(latitude: 0.0, longitude: 0.0);
     }
-
-    var locationData = await location.getLocation();
-    return LocationModel.fromLocationData(locationData);
-
-  } catch (e) {
-    // في حالة وجود خطأ أثناء محاولة جلب الموقع
-    return LocationModel(latitude: 0.0, longitude: 0.0);
   }
-}
-
 }

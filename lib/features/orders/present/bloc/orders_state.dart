@@ -9,7 +9,7 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.initial() = _Initial;
   const factory OrdersState.loading() = _LoadInProgress;
   const factory OrdersState.success() = _Success;
-  const factory OrdersState.imagePicked({
+  const factory OrdersState.filePicked({
     required XFile file,
     required FileType fileType,
     ImageSelection? imageSelection,
@@ -17,8 +17,14 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.uploading({
     required String progress,
   }) = _Uploading;
-  const factory OrdersState.failure({
+  
+  const factory OrdersState.getOrdersfailure({
     required ApiErrorModel apiErrorModel,
-  }) = _Failure;
-
+  }) = _GetOrdersFailure;
+   const factory OrdersState.pickFileFailure({
+    required ApiErrorModel apiErrorModel,
+  }) = _PickFileailure;
+   const factory OrdersState.createOrderFailure({
+    required ApiErrorModel apiErrorModel,
+  }) = _CreateOrderFailure;
 }

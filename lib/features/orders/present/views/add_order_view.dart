@@ -43,7 +43,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                   duration: const Duration(seconds: 4),
                 ),
               ),
-              imagePicked: (
+              filePicked: (
                 file,
                 fileType,
                 imageSelection,
@@ -61,10 +61,23 @@ class _AddOrderViewState extends State<AddOrderView> {
                   }
                 }
               },
-              failure: (e) => ScaffoldMessenger.of(context).showSnackBar(
+              pickFileFailure: (e) =>
+                  ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   backgroundColor: Colors.red,
-                  content: Text(t.order_addition_failed),
+                  content: Text(
+                    t.file_pick_failed,
+                  ),
+                  duration: const Duration(seconds: 4),
+                ),
+              ),
+              createOrderFailure: (e) =>
+                  ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    t.order_addition_failed,
+                  ),
                   duration: const Duration(seconds: 4),
                 ),
               ),
@@ -142,15 +155,20 @@ class _AddOrderViewState extends State<AddOrderView> {
                       ),
                       GestureDetector(
                         onTap: () async {
-                          context.read<OrdersBloc>().add(
-                                OrdersEvent.createOrder(
-                                  clientId: clientIdController.text,
-                                  placeName: placeNameController.text,
-                                  video: File(video!.path),
-                                  imageOne: File(imageOne!.path),
-                                  imageTwo: File(imageTwo!.path),
-                                ),
-                              );
+                          state.maybeWhen(
+                            uploading: (p) {},
+                            orElse: () {
+                              context.read<OrdersBloc>().add(
+                                    OrdersEvent.createOrder(
+                                      clientId: clientIdController.text,
+                                      placeName: placeNameController.text,
+                                      video: File(video!.path),
+                                      imageOne: File(imageOne!.path),
+                                      imageTwo: File(imageTwo!.path),
+                                    ),
+                                  );
+                            },
+                          );
                         },
                         child: Container(
                           height: 50.h,
