@@ -5,8 +5,7 @@ version: 1.1.0+2
 environment:
   sdk: ">=3.5.0 <4.0.0"
 dependencies:
-  wakelock_plus: any
-  geolocator: ^13.0.2
+  awesome_notifications: ^0.10.0
   cached_network_image: ^3.3.1
   cached_video_player_plus: ^3.0.3
   camera: ^0.11.1
@@ -21,13 +20,18 @@ dependencies:
   file_picker: ^8.3.7
   firebase_auth: ^5.4.2
   firebase_core: ^3.11.0
-  flutter_bloc: ^9.0.0 
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^9.0.0
   flutter_localization: ^0.3.1
+  flutter_localizations:
+    sdk: flutter
   flutter_screenutil: ^5.9.3
   flutter_secure_storage: ^9.2.4
   flutter_svg: ^2.0.17
   font_awesome_flutter: ^10.7.0
   gap: ^3.0.1
+  geolocator: ^13.0.2
   get: ^4.6.6
   get_it: ^8.0.3
   google_fonts: ^6.2.1
@@ -36,10 +40,10 @@ dependencies:
   http: ^1.2.2
   image_picker: ^1.1.0
   internet_connection_checker_plus: ^2.7.0
-  # list_all_videos: ^1.2.0
+  intl: any
+  json_annotation: ^4.9.0
   local_auth: ^2.2.0
   location: ^8.0.0
-  tbib_file_uploader: ^2.3.3
   material_dialogs: ^1.1.4
   motion_toast: ^2.11.0
   path: ^1.9.0
@@ -47,6 +51,7 @@ dependencies:
   permission_handler: ^11.3.1
   pretty_dio_logger: ^1.4.0
   provider: ^6.1.2
+  retrofit: ^4.0.3
   salomon_bottom_bar: ^3.3.2
   screenshot: ^3.0.0
   share_plus: ^10.1.4
@@ -56,33 +61,24 @@ dependencies:
   simple_circular_progress_bar: ^1.0.2
   sqflite: ^2.3.3
   staggered_grid_view_flutter: ^0.0.4
+  tbib_file_uploader: ^2.3.3
+  upload_largest_files: ^0.0.3
   url_launcher: ^6.2.6
   video_player: ^2.8.6
   video_player_win: ^3.1.1
-  retrofit: ^4.0.3
-  json_annotation: ^4.9.0
-
-
-  
-  flutter:
-    sdk: flutter
-  flutter_localizations:
-    sdk: flutter
-  intl: any
-  
-  upload_largest_files: ^0.0.3
+  wakelock_plus: any
 dev_dependencies:
-  intl_utils: ^2.5.0
   build_runner: ^2.4.7
   flutter_launcher_icons: ^0.14.3
   flutter_lints: ^5.0.0
   flutter_native_splash: ^2.4.1
+  flutter_test:
+    sdk: flutter
   freezed: ^2.5.7
+  intl_utils: ^2.5.0
   json_serializable: ^6.7.1
   package_rename: ^1.7.1
   retrofit_generator: ">=8.0.0 <10.0.0"
-  flutter_test:
-    sdk: flutter
 
 flutter:
   generate: true # Add this line
@@ -98,4 +94,5 @@ flutter_assets:
   field_prefix: null
 flutter_intl:
   enabled: false
+
 # The following section is specific to Flutter.
