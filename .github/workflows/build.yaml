@@ -10,7 +10,7 @@ jobs:
     steps:
       #! 1. التحقق من الكود
       - name: التحقق من الكود
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       #! 2. إعداد JDK
       - name: إعداد JDK
         uses: actions/setup-java@v2
@@ -21,11 +21,16 @@ jobs:
       - name: إعداد فلاتر
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.24.0'
+          flutter-version: '3.0.0'
           channel: stable
+          architecture: x64
+          cache: false
+          pub-cache-path: default
+          dry-run: false
+      - name: Upgrade Flutter
+        run: flutter upgrade
       - name: فحص بيئة فلاتر
-        run: flutter doctor
-        
+        run: flutter doctor  
       #! 4. تحميل التبعيات
       - name: تحميل التبعيات
         run: flutter pub get
