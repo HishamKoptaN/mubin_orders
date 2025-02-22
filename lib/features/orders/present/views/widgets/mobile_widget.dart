@@ -2,6 +2,7 @@ import 'package:mubin_orders/core/all_imports.dart';
 import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
+import '../../../../../core/widgets/image_item_shimmer.dart';
 import '../../../data/models/orders_res_model.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';
@@ -85,9 +86,11 @@ class OrderWidget extends StatelessWidget {
                       loadingBuilder: (context, child, loadingProgress) {
                         if (loadingProgress == null) return child;
                         return Shimmer.fromColors(
-                          baseColor: Colors.red,
-                          highlightColor: Colors.yellow,
+                          baseColor: Colors.grey.shade300,
+                          highlightColor: Colors.grey.shade100,
                           child: Container(
+                            width: double.infinity,
+                            height: double.infinity,
                             color: Colors.white,
                           ),
                         );
@@ -114,29 +117,42 @@ class OrderWidget extends StatelessWidget {
                         },
                       );
                     },
-                    child: Image.network(
-                      order.imageTwo ?? '',
-                      fit: BoxFit.cover,
-                      loadingBuilder: (context, child, loadingProgress) {
-                        if (loadingProgress == null) return child;
-                        return Shimmer.fromColors(
-                          baseColor: Colors.red,
-                          highlightColor: Colors.yellow,
-                          child: Container(
-                            color: Colors.white,
-                          ),
-                        );
-                      },
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.broken_image,
-                          size: 50,
-                          color: Colors.grey,
-                        );
-                      },
+                    child: ClipRRect(
+                      borderRadius:
+                          BorderRadius.circular(12.0), // جعل الصورة بحواف ناعمة
+                      child: Image.network(
+                        order.imageTwo ?? '',
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        height: double.infinity,
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Shimmer.fromColors(
+                            baseColor: Colors.grey.shade300,
+                            highlightColor: Colors.grey.shade100,
+                            child: Container(
+                              width: double.infinity,
+                              height: double.infinity,
+                              color: Colors.white,
+                            ),
+                          );
+                        },
+                        errorBuilder: (context, error, stackTrace) {
+                          return Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Colors.grey.shade200,
+                            child: const Icon(
+                              Icons.broken_image,
+                              size: 50,
+                              color: Colors.grey,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),

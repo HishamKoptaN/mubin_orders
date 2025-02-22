@@ -82,9 +82,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
               emit(
                 OrdersState.filePicked(
-                    file: file!,
-                    fileType: fileType,
-                    imageSelection: imageSelection),
+                  file: file!,
+                  fileType: fileType,
+                  imageSelection: imageSelection,
+                ),
               );
             } catch (e) {
               emit(
@@ -170,7 +171,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           actions: [
             IconsOutlineButton(
               onPressed: () async {
-                file = await pickImageCamera();
+                XFile? file = await pickMedia(
+                  fileType: fileType,
+                  source: ImageSource.camera,
+                );
                 Navigator.of(context).pop(file);
               },
               text: t.camera,
@@ -181,11 +185,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             ),
             IconsOutlineButton(
               onPressed: () async {
-                if (fileType == FileType.image) {
-                  file = await pickImageGallery();
-                } else if (fileType == FileType.video) {
-                  file = await pickVideoGallery();
-                }
+                XFile? file = await pickMedia(
+                  fileType: fileType,
+                  source: ImageSource.gallery,
+                );
                 Navigator.of(context).pop(file);
               },
               text: t.gallery,
@@ -200,41 +203,18 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     );
   }
 
-  Future<void> pickVideo() async {
-    XFile? videoFile = await imagePicker.pickVideo(
-      source: ImageSource.camera,
-    );
-    if (videoFile != null) {
-      videoFile = videoFile;
-    }
-  }
-
-  Future<XFile?> pickVideoGallery() async {
-    XFile? videoFile = await imagePicker.pickVideo(
-      source: ImageSource.gallery,
-    );
-    if (videoFile != null) {
-      return videoFile;
-    }
-    return null;
-  }
-
-  Future<XFile?> pickImageCamera() async {
-    XFile? imageFile = await imagePicker.pickImage(
-      source: ImageSource.camera,
-    );
-    if (imageFile != null) {
-      return imageFile;
-    }
-    return null;
-  }
-
-  Future<XFile?> pickImageGallery() async {
-    XFile? imageFile = await imagePicker.pickImage(
-      source: ImageSource.gallery,
-    );
-    if (imageFile != null) {
-      return imageFile;
+  Future<XFile?> pickMedia({
+    required FileType fileType,
+    required ImageSource source,
+  }) async {
+    if (fileType == FileType.image) {
+      return await imagePicker.pickImage(
+        source: source,
+      );
+    } else if (fileType == FileType.video) {
+      return await imagePicker.pickVideo(
+        source: source,
+      );
     }
     return null;
   }
@@ -265,3 +245,43 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     }
   }
 }
+
+  // Future<XFile?> pickVideoCamera() async {
+  //   XFile? videoFile = await imagePicker.pickVideo(
+  //     source: ImageSource.camera,
+  //   );
+  //   if (videoFile != null) {
+  //     return videoFile;
+  //   }
+  //   return null;
+  // }
+
+  // Future<XFile?> pickVideoGallery() async {
+  //   XFile? videoFile = await imagePicker.pickVideo(
+  //     source: ImageSource.gallery,
+  //   );
+  //   if (videoFile != null) {
+  //     return videoFile;
+  //   }
+  //   return null;
+  // }
+
+  // Future<XFile?> pickImageCamera() async {
+  //   XFile? imageFile = await imagePicker.pickImage(
+  //     source: ImageSource.camera,
+  //   );
+  //   if (imageFile != null) {
+  //     return imageFile;
+  //   }
+  //   return null;
+  // }
+
+  // Future<XFile?> pickImageGallery() async {
+  //   XFile? imageFile = await imagePicker.pickImage(
+  //     source: ImageSource.gallery,
+  //   );
+  //   if (imageFile != null) {
+  //     return imageFile;
+  //   }
+  //   return null;
+  // }
