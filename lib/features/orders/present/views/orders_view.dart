@@ -33,53 +33,38 @@ class _OrdersViewState extends State<OrdersView> {
           builder: (context, state) {
             return state.maybeWhen(
               orElse: () {
-                return Column(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: Column(
+                return ListView.builder(
+                  itemCount: OrdersSingletone
+                          .instance.ordersResModel?.orders?.length ??
+                      10,
+                  itemBuilder: (context, index) {
+                    final order = OrdersSingletone
+                        .instance.ordersResModel?.orders?[index];
+                    return Expanded(
+                      child: Stack(
                         children: [
-                          Expanded(
-                            flex: 7,
-                            child: ListView.builder(
-                              itemCount: OrdersSingletone.instance
-                                      .ordersResModel?.orders?.length ??
-                                  10,
-                              itemBuilder: (context, index) {
-                                final order = OrdersSingletone
-                                    .instance.ordersResModel?.orders?[index];
-                                return Expanded(
-                                  child: Stack(
-                                    children: [
-                                      Container(
-                                        height: height / 3,
-                                        decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.grey,
-                                          ),
-                                          borderRadius: const BorderRadius.all(
-                                            Radius.circular(15),
-                                          ),
-                                        ),
-                                        child: Card(
-                                            semanticContainer: true,
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            child: OrderWidget(
-                                              order: order ?? Order(),
-                                            ),
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
+                          Container(
+                            height: height / 3,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.grey,
+                              ),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(15),
+                              ),
+                            ),
+                            child: Card(
+                              semanticContainer: true,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: OrderWidget(
+                                order: order ?? Order(),
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    );
+                  },
                 );
               },
               loading: () {

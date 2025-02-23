@@ -47,9 +47,10 @@ class _LoginViewState extends State<LoginView> {
         listener: (context, state) {
           state.mapOrNull(
             success: (data) {
-              Navigator.pushNamed(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
                 HomeView.routeName,
+                (route) => false,
               );
             },
             linkSent: (data) {
@@ -73,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
         },
         builder: (context, state) {
           return Scaffold(
-            backgroundColor:  AppColors.white,
+            backgroundColor: AppColors.white,
             body: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(20),

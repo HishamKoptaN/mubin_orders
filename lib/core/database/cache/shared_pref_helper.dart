@@ -140,9 +140,6 @@ class SharedPrefHelper {
       key: key,
       value: value,
     );
-    await DioFactory.setTokenIntoHeaderAfterLogin(
-      token: value,
-    );
   }
 
   //! Gets an String value from FlutterSecureStorage with given [key].

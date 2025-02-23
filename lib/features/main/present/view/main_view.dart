@@ -23,22 +23,17 @@ class MainView extends StatelessWidget {
           )..add(
               const MainEvent.check(),
             ),
-          child:BlocBuilder<MainBloc, MainState>(
-              builder: (context, state) {
-                return state.maybeWhen(
-                  logedIn: () => 
-                   HomeView(),
-                  logedOut: () =>
-                   const LoginView(),
-                  //  HomeView(),
-                  orElse: () => const CustomCircularProgress(),
-                );
-              },
-            ),
+          child: BlocBuilder<MainBloc, MainState>(
+            builder: (context, state) {
+              return state.maybeWhen(
+                logedIn: () => HomeView(),
+                logedOut: () => const LoginView(),
+                orElse: () => const CustomCircularProgress(),
+              );
+            },
+          ),
         ),
       ),
     );
   }
 }
-
-

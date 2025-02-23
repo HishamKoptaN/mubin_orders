@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/database/cache/shared_pref_helper.dart';
 import '../../../../../core/database/cache/shared_pref_keys.dart';
+import '../../../../../core/networking/dio_factory.dart';
 import '../../../../../core/single_tone/user_singleton.dart';
 import '../../../../../core/errors/api_error_model.dart';
 import '../../../../../core/errors/firebase_failures.dart';
@@ -44,40 +45,40 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 );
               },
               (userCredential) async {
-                emit(
-                  const LoginState.success(),
-                );
                 await userCredential.user?.getIdToken().then(
                   (idToken) async {
                     log(idToken!);
-                        final res = await loginUseCase.authToken(
-                          loginReqBodyModel: const LoginReqBodyModel().copyWith(
-                            idToken: idToken,
+                    final res = await loginUseCase.authToken(
+                      loginReqBodyModel: const LoginReqBodyModel().copyWith(
+                        idToken: idToken,
+                      ),
+                    );
+                    await res.when(
+                      success: (
+                        res,
+                      ) async {
+                        UserDataSingleton.instance.user = res;
+                        await SharedPrefHelper.setSecuredString(
+                          key: SharedPrefKeys.userToken,
+                          value: res?.token ?? '',
+                        );
+                        await DioFactory.setTokenIntoHeaderAfterLogin(
+                          token: res?.token ?? '',
+                        );
+                        emit(
+                          const LoginState.success(),
+                        );
+                      },
+                      failure: (
+                        apiErrorModel,
+                      ) async {
+                        emit(
+                          LoginState.failure(
+                            apiErrorModel: apiErrorModel,
                           ),
                         );
-                        await res.when(
-                          success: (
-                            res,
-                          ) async {
-                            UserDataSingleton.instance.user = res;
-                            await SharedPrefHelper.setSecuredString(
-                              key: SharedPrefKeys.userToken,
-                              value: res?.token ?? '1|x26Tvl0KcpyWhvoT37PkMMFXA28sRd8tX7dOvRIH44a143b3',
-                            );
-                            emit(
-                              const LoginState.success(),
-                            );
-                          },
-                          failure: (
-                            apiErrorModel,
-                          ) async {
-                            emit(
-                              LoginState.failure(
-                                apiErrorModel: apiErrorModel,
-                              ),
-                            );
-                          },
-                        );
+                      },
+                    );
                   },
                 );
               },
