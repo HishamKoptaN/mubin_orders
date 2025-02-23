@@ -2,7 +2,7 @@ name: Distribute APKs via Firebase
 on:
     workflow_run:
       workflows:
-        - Build Flutter APKs
+        - Build APKs
       types:
         - completed
 jobs:
