@@ -57,14 +57,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.11.0"
-  awesome_notifications:
-    dependency: "direct main"
-    description:
-      name: awesome_notifications
-      sha256: d051ffb694a53da216ff13d02c8ec645d75320048262f7e6b3c1d95a4f54c902
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.10.0"
   bloc:
     dependency: transitive
     description:
@@ -369,22 +361,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
-  device_info_plus:
-    dependency: transitive
-    description:
-      name: device_info_plus
-      sha256: "72d146c6d7098689ff5c5f66bcf593ac11efc530095385356e131070333e64da"
-      url: "https://pub.dev"
-    source: hosted
-    version: "11.3.0"
-  device_info_plus_platform_interface:
-    dependency: transitive
-    description:
-      name: device_info_plus_platform_interface
-      sha256: "0b04e02b30791224b31969eb1b50d723498f402971bff3630bca2ba839bd1ed2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "7.0.2"
   dio:
     dependency: "direct main"
     description:
@@ -1133,46 +1109,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
-  local_auth:
-    dependency: "direct main"
-    description:
-      name: local_auth
-      sha256: "434d854cf478f17f12ab29a76a02b3067f86a63a6d6c4eb8fbfdcfe4879c1b7b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.0"
-  local_auth_android:
-    dependency: transitive
-    description:
-      name: local_auth_android
-      sha256: "6763aaf8965f21822624cb2fd3c03d2a8b3791037b5efb0fe4b13e110f5afc92"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.46"
-  local_auth_darwin:
-    dependency: transitive
-    description:
-      name: local_auth_darwin
-      sha256: "630996cd7b7f28f5ab92432c4b35d055dd03a747bc319e5ffbb3c4806a3e50d2"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.4.3"
-  local_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: local_auth_platform_interface
-      sha256: "1b842ff177a7068442eae093b64abe3592f816afd2a533c0ebcdbe40f9d2075a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.10"
-  local_auth_windows:
-    dependency: transitive
-    description:
-      name: local_auth_windows
-      sha256: bc4e66a29b0fdf751aafbec923b5bed7ad6ed3614875d8151afe2578520b2ab5
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.11"
   location:
     dependency: "direct main"
     description:
@@ -1557,14 +1493,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.0"
-  screenshot:
-    dependency: "direct main"
-    description:
-      name: screenshot
-      sha256: "63817697a7835e6ce82add4228e15d233b74d42975c143ad8cfe07009fab866b"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   share_plus:
     dependency: "direct main"
     description:
@@ -1762,14 +1690,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.0"
-  staggered_grid_view_flutter:
-    dependency: "direct main"
-    description:
-      name: staggered_grid_view_flutter
-      sha256: d46b27d1b57344945edf9eadbd5ee03a667a6599fd87e79f9a2d5e717e6accf3
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.4"
   stream_channel:
     dependency: transitive
     description:
@@ -1802,14 +1722,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.0+3"
-  tbib_file_uploader:
-    dependency: "direct main"
-    description:
-      name: tbib_file_uploader
-      sha256: "958ec5bc59e0c862150495fc3e205876c7c0714e559d99c94661e825b979d724"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.3"
   term_glyph:
     dependency: transitive
     description:
@@ -1850,14 +1762,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.2"
-  upload_largest_files:
-    dependency: "direct main"
-    description:
-      name: upload_largest_files
-      sha256: "0cd0d35f0643b309771669eabac8a795adb19eb0a2807a2ac441cf4d2cdf4f37"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.3"
   url_launcher:
     dependency: "direct main"
     description:
@@ -2019,7 +1923,7 @@ packages:
     source: hosted
     version: "14.3.0"
   wakelock_plus:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: wakelock_plus
       sha256: "36c88af0b930121941345306d259ec4cc4ecca3b151c02e3a9e71aede83c615e"
@@ -2074,14 +1978,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.10.1"
-  win32_registry:
-    dependency: transitive
-    description:
-      name: win32_registry
-      sha256: "21ec76dfc731550fd3e2ce7a33a9ea90b828fdf19a5c3bcf556fa992cfa99852"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.1.5"
   xdg_directories:
     dependency: transitive
     description:
