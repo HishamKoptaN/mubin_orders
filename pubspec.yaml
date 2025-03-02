@@ -86,7 +86,6 @@ flutter:
   assets:
     - assets/
     - assets/icons/
-    # /mbean_logo_circale.png
 flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils
@@ -94,5 +93,3 @@ flutter_assets:
   field_prefix: null
 flutter_intl:
   enabled: false
-
-# The following section is specific to Flutter.
