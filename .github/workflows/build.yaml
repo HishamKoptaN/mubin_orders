@@ -39,24 +39,3 @@ jobs:
       #! 5. بناء نسخ الاندرويد
       - name: بناء نسخ الاندرويد
         run: flutter build apk --split-per-abi
-      #! 6. رفع النسخ كـ Artifacts
-      - name: رفع النسخ كـ Artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: APKs
-          path: |
-            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-      #! 7. رفع النسخ إلى GitHub Releases
-      - name: رفع النسخ إلى GitHub Releases
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v1.0.40
-          name: Flutter APK Release
-          artifacts: |
-            build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
-          allowUpdates: true
-          skipIfReleaseExists: false
-          generateReleaseNotes: false
-          makeLatest: true
-    
