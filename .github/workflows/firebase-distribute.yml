@@ -10,18 +10,21 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      #! 1. تحميل Artifact من Workflow البناء
-      - name: تنزيل APKs من Workflow البناء
-        uses: actions/download-artifact@v4
-        with:
-          name: APKs
-          path: build/app/outputs/flutter-apk/
       #! 2. توزيع النسخ عبر Firebase
       - name: 🚀 armeabi-v7a
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
-          appId: ${{ secrets.FIREBASE_APP_ID }}
+          appId: ${{ secrets.FIREBASE_Dash_ID }}
           serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
           groups: armeabi-v7a
           file: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
           releaseNotes: "armeabi-v7a"
+      - name: 🚀 توزيع arm64-v8a
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{ secrets.FIREBASE_Dash_ID }}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+          groups: arm64-v8a
+          file: build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+          releaseNotes: "تم البناء والتوزيع تلقائيًا"
+    

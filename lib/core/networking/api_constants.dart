@@ -1,10 +1,8 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://m-api.aquan.website/api/";
-  static const String apiAuthBaseUrl = "https://m-api.aquan.website/auth/";
-
+  static const String apiBaseUrl = "https://mapi.aquan.website/api/";
+  static const String apiAuthBaseUrl = "https://mapi.aquan.website/auth/";
   static const String check = "check";
   static const String orders = "orders";
-
   static const String authToken = "auth-token";
   static const String login = "login";
   static const String notifications = "notifications";

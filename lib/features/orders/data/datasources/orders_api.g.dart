@@ -10,7 +10,7 @@ part of 'orders_api.dart';
 
 class _OrdersApi implements OrdersApi {
   _OrdersApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://m-api.aquan.website/api/';
+    baseUrl ??= 'https://mapi.aquan.website/api/';
   }
 
   final Dio _dio;
