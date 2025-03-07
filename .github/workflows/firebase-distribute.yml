@@ -12,7 +12,7 @@ jobs:
     steps:
       #! 1. تحميل Artifact من Workflow البناء
       - name: تنزيل APKs من Workflow البناء
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: APKs
           path: build/app/outputs/flutter-apk/
