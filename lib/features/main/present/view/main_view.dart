@@ -20,6 +20,7 @@ class MainView extends StatelessWidget {
         child: BlocProvider(
           create: (context) => MainBloc(
             auth: getIt(),
+            mainUseCasess: getIt(),
           )..add(
               const MainEvent.check(),
             ),

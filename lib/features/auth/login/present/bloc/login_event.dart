@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../data/models/firabase_login_req_body_model.dart';
-import '../../data/models/reset_pass_req_body_model.dart';
 part 'login_event.freezed.dart';
 
 @freezed

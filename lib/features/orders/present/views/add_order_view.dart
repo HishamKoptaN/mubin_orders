@@ -7,8 +7,9 @@ import '../bloc/orders_state.dart';
 import '../../../../core/widgets/text_field.dart';
 
 class AddOrderView extends StatefulWidget {
-  const AddOrderView({super.key});
-
+  const AddOrderView({
+    super.key,
+  });
   @override
   State<AddOrderView> createState() => _AddOrderViewState();
 }

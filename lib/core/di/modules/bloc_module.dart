@@ -10,6 +10,7 @@ class BlocModule extends DIModule {
       ..registerLazySingleton<MainBloc>(
         () => MainBloc(
           auth: getIt(),
+          mainUseCasess: getIt(),
         ),
       )
       //! Login
@@ -20,11 +21,12 @@ class BlocModule extends DIModule {
           firebaseAuth: getIt(),
         ),
       )
-       //! Login
+      //! Login
       ..registerLazySingleton<OrdersBloc>(
         () => OrdersBloc(
-          getOrdersUseCase: getIt(),createOrderUseCase:getIt(),
+          getOrdersUseCase: getIt(),
+          createOrderUseCase: getIt(),
         ),
-      ) ;
+      );
   }
 }

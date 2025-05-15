@@ -10,7 +10,7 @@ part of 'login_api.dart';
 
 class _LoginApi implements LoginApi {
   _LoginApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.aquan.website/auth/';
+    baseUrl ??= 'https://mapi.live90.fr/auth/';
   }
 
   final Dio _dio;

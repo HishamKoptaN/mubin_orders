@@ -2,7 +2,6 @@ import 'package:mubin_orders/core/all_imports.dart';
 import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
-import '../../../../../core/widgets/image_item_shimmer.dart';
 import '../../../data/models/orders_res_model.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';

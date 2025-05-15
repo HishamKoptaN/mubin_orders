@@ -10,7 +10,7 @@ part of 'main_api.dart';
 
 class _MainApi implements MainApi {
   _MainApi(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://mapi.aquan.website/auth/';
+    baseUrl ??= 'https://mapi.live90.fr/auth/';
   }
 
   final Dio _dio;

@@ -1,15 +1,15 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../domain/usecases/main_use_casees.dart';
 import 'main_event.dart';
 import 'main_state.dart';
 
 class MainBloc extends Bloc<MainEvent, MainState> {
   final FirebaseAuth auth;
-
+  MainUseCasess mainUseCasess;
   MainBloc({
     required this.auth,
+    required this.mainUseCasess,
   }) : super(
           const MainState.initial(),
         ) {
@@ -20,13 +20,26 @@ class MainBloc extends Bloc<MainEvent, MainState> {
             emit(
               const MainState.loading(),
             );
-            User? user = FirebaseAuth.instance.currentUser;
-            String? idToken = await user?.getIdToken();
-            if (idToken != null && idToken.isNotEmpty) {
-              log(idToken);
-              emit(
-                const MainState.logedIn(),
-              );
+            if (isUserLoggedIn()) {
+              try {
+                final res = await mainUseCasess.check();
+                await res!.when(
+                  success: (res) async {
+                    emit(
+                      const MainState.logedIn(),
+                    );
+                  },
+                  failure: (apiErrorModel) async {
+                    emit(
+                      const MainState.logedOut(),
+                    );
+                  },
+                );
+              } catch (e) {
+                emit(
+                  const MainState.logedOut(),
+                );
+              }
             } else {
               emit(
                 const MainState.logedOut(),
@@ -36,5 +49,9 @@ class MainBloc extends Bloc<MainEvent, MainState> {
         );
       },
     );
+  }
+  bool isUserLoggedIn() {
+    final user = FirebaseAuth.instance.currentUser;
+    return user != null;
   }
 }

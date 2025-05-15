@@ -40,29 +40,27 @@ class _OrdersViewState extends State<OrdersView> {
                   itemBuilder: (context, index) {
                     final order = OrdersSingletone
                         .instance.ordersResModel?.orders?[index];
-                    return Expanded(
-                      child: Stack(
-                        children: [
-                          Container(
-                            height: height / 3,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                color: Colors.grey,
-                              ),
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(15),
-                              ),
+                    return Stack(
+                      children: [
+                        Container(
+                          height: height / 3,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
                             ),
-                            child: Card(
-                              semanticContainer: true,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: OrderWidget(
-                                order: order ?? Order(),
-                              ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(15),
                             ),
                           ),
-                        ],
-                      ),
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: OrderWidget(
+                              order: order ?? Order(),
+                            ),
+                          ),
+                        ),
+                      ],
                     );
                   },
                 );
