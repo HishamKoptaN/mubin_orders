@@ -8,7 +8,6 @@ import '../bloc/orders_state.dart';
 import 'build_shimmer_order_placeholder.dart';
 import 'widgets/mobile_widget.dart';
 
-
 class OrdersView extends StatefulWidget {
   const OrdersView({
     super.key,
@@ -69,8 +68,8 @@ class _OrdersViewState extends State<OrdersView> {
                   context,
                   i,
                 ) {
-                  final order = orders?[1];
                   if (i < orders!.length) {
+                    final order = orders[i];
                     return Stack(
                       children: [
                         Container(

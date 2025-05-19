@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../data/models/add_order_req_model.dart';
@@ -11,6 +10,7 @@ import 'orders_state.dart';
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   OrdersUseCase ordersUseCase;
   List<Order>? allOrders;
+  Meta? meta;
   AddOrderReqModel addOrderReqModel = AddOrderReqModel();
   OrdersBloc({
     required this.ordersUseCase,
@@ -31,13 +31,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   res,
                 ) async {
                   allOrders = res?.orders ?? [];
-                  emit(
-                    OrdersState.loaded(
-                      orders: allOrders ?? [],
-                      hasMore: false,
-                      addOrderReqModel: addOrderReqModel,
-                      uploadingProgress: null,
-                    ),
+                  meta = res?.meta ?? Meta();
+
+                  emitCustomLoaded(
+                    emit: emit,
                   );
                 },
                 failure: (
@@ -47,6 +44,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                     OrdersState.getOrdersfailure(
                       apiErrorModel: apiErrorModel,
                     ),
+                  );
+                  emitCustomLoaded(
+                    emit: emit,
                   );
                 },
               );
@@ -58,6 +58,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   ),
                 ),
               );
+              emitCustomLoaded(
+                emit: emit,
+              );
             }
           },
           updateData: (
@@ -65,13 +68,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           ) async {
             try {
               this.addOrderReqModel = addOrderReqModel;
-              emit(
-                OrdersState.loaded(
-                  orders: allOrders ?? [],
-                  hasMore: false,
-                  addOrderReqModel: this.addOrderReqModel,
-                  uploadingProgress: null,
-                ),
+              emitCustomLoaded(
+                emit: emit,
               );
             } catch (e) {
               emit(
@@ -81,13 +79,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   ),
                 ),
               );
-              emit(
-                OrdersState.loaded(
-                  orders: allOrders ?? [],
-                  hasMore: false,
-                  addOrderReqModel: this.addOrderReqModel,
-                  uploadingProgress: null,
-                ),
+              emitCustomLoaded(
+                emit: emit,
               );
             }
           },
@@ -134,7 +127,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                       const OrdersState.success(),
                     );
                     emitCustomLoaded(
-                      emit,
+                      emit: emit,
                     );
                   },
                   failure: (
@@ -145,7 +138,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                         apiErrorModel: apiErrorModel,
                       ),
                     );
-                    emitCustomLoaded(emit);
+                    emitCustomLoaded(
+                      emit: emit,
+                    );
                   },
                 );
               } catch (e, s) {
@@ -159,7 +154,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                     ),
                   ),
                 );
-                emitCustomLoaded(emit);
+                emitCustomLoaded(
+                  emit: emit,
+                );
               }
             } else {
               emit(
@@ -169,7 +166,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   ),
                 ),
               );
-              emitCustomLoaded(emit);
+              emitCustomLoaded(
+                emit: emit,
+              );
             }
           },
         );
@@ -177,11 +176,13 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     );
   }
 
-  void emitCustomLoaded(Emitter<OrdersState> emit) {
-    return emit(
+  void emitCustomLoaded({
+    required Emitter<OrdersState> emit,
+  }) {
+    emit(
       OrdersState.loaded(
         orders: allOrders ?? [],
-        hasMore: false,
+        hasMore: meta?.hasNextPage ?? false,
         addOrderReqModel: addOrderReqModel,
         uploadingProgress: null,
       ),
