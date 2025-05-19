@@ -4,15 +4,18 @@ import 'core/app_observer.dart';
 import 'core/database/cache/shared_pref_helper.dart';
 import 'core/database/cache/shared_pref_keys.dart';
 import 'core/helper_functions/on_generate_routes.dart';
+import 'features/login/present/bloc/login_bloc.dart';
 import 'features/main/present/view/main_view.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Injection.inject();
+  configureDependencies();
+
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
         key: SharedPrefKeys.languageCode,
@@ -22,6 +25,9 @@ Future<void> main() async {
   runApp(
     MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => getIt<LoginBloc>(),
+        ),
         BlocProvider(
           create: (context) => getIt<OrdersBloc>(),
         )

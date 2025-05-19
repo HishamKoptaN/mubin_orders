@@ -5,7 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
 import '../../core/gloabal_widgets/settings_tab.dart';
-import '../auth/login/present/view/login_view.dart';
+import '../login/present/views/login_view.dart';
 import '../language/view/language_view.dart';
 import 'my_drawer_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';

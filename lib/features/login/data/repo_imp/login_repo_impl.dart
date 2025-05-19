@@ -1,17 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../../../core/models/user_data.dart';
-import '../../../../../core/networking/api_result.dart';
-import '../../../../../core/networking/network_info.dart';
-import '../../../../../core/errors/api_error_handler.dart';
-import '../../../../../core/errors/exceptions.dart';
-import '../../../../../core/errors/firebase_failures.dart';
+import '../../../../core/models/user_data.dart';
+import '../../../../core/networking/api_result.dart';
+import '../../../../core/networking/network_info.dart';
+import '../../../../core/errors/api_error_handler.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/errors/firebase_failures.dart';
 import '../../domain/repo/login_repo.dart';
 import '../data_sources/login_api.dart';
 import '../models/firabase_login_req_body_model.dart';
 import '../models/login_req_body_model.dart';
-import '../models/verify_phone_otp_req_body_model.dart';
+import 'package:injectable/injectable.dart' show LazySingleton;
 
+@LazySingleton(
+  as: LoginRepo,
+)
 class LoginRepoImpl implements LoginRepo {
   LoginRemDataSrc loginRemDataSrc;
   LoginApi loginApi;

@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import '../../../../../core/models/user_data.dart';
-import '../../../../../core/networking/api_constants.dart';
-import '../../../../../core/errors/exceptions.dart';
+import '../../../../core/models/user_data.dart';
+import '../../../../core/networking/api_constants.dart';
+import '../../../../core/errors/exceptions.dart';
 import '../models/firabase_login_req_body_model.dart';
 import '../models/login_req_body_model.dart';
 part 'login_api.g.dart';

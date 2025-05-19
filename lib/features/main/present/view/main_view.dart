@@ -1,5 +1,5 @@
 import '../../../../core/widgets/custom_circular_progress.dart';
-import '../../../auth/login/present/view/login_view.dart';
+import '../../../login/present/views/login_view.dart';
 import '../../../home/home_view.dart';
 import '../bloc/main_bloc.dart';
 import '../bloc/main_event.dart';

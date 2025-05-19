@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mubin_orders/features/home/home_view.dart';
-import '../../features/auth/login/present/views/sign_in_view.dart';
+import '../../features/login/present/views/sign_in_view.dart';
 import '../../features/main/present/view/mobile_layout.dart';
 import '../../features/main/present/view/main_view.dart';
 import '../../features/orders/present/views/orders_view.dart';

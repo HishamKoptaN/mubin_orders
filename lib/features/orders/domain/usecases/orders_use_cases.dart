@@ -3,7 +3,9 @@ import '../../../../../core/networking/api_result.dart';
 import '../../data/models/add_order_req_model.dart';
 import '../../data/models/orders_res_model.dart';
 import '../repo/orders_repo.dart';
+import 'package:injectable/injectable.dart' show LazySingleton;
 
+@LazySingleton()
 class OrdersUseCase {
   final OrdersRepo ordersRepo;
   OrdersUseCase({

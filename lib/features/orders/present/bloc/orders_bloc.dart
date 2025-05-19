@@ -6,7 +6,9 @@ import '../../data/models/orders_res_model.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
+import 'package:injectable/injectable.dart' show Injectable;
 
+@Injectable()
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   OrdersUseCase ordersUseCase;
   List<Order>? allOrders;

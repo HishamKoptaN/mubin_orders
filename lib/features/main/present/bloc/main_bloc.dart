@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../domain/usecases/main_use_casees.dart';
 import 'main_event.dart';
 import 'main_state.dart';
+import 'package:injectable/injectable.dart' show Injectable;
+
+@Injectable()
 
 class MainBloc extends Bloc<MainEvent, MainState> {
   final FirebaseAuth auth;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../../../../core/utils/app_colors.dart';
-import '../../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
 
 class DontHaveAnAccountWidget extends StatelessWidget {
   const DontHaveAnAccountWidget({
@@ -8,7 +8,9 @@ class DontHaveAnAccountWidget extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return GestureDetector(
       onTap: () {
         // Navigator.pushReplacementNamed(

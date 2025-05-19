@@ -46,29 +46,29 @@ Map<String, dynamic> _$$MetaImplToJson(_$MetaImpl instance) =>
 
 _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
       id: (json['id'] as num?)?.toInt(),
-      createdAt: json['created_at'] as String?,
+      clientId: (json['client_id'] as num?)?.toInt(),
+      place: json['place'] as String?,
+      video: json['video'] as String?,
+      imageOne: json['image_one'] as String?,
+      imageTwo: json['image_two'] as String?,
       updatedAt: json['updated_at'] as String?,
       latitude: json['latitude'] as String?,
       longitude: json['longitude'] as String?,
-      imageOne: json['image_one'] as String?,
-      imageTwo: json['image_two'] as String?,
-      video: json['video'] as String?,
-      place: json['place'] as String?,
       branchId: (json['branch_id'] as num?)?.toInt(),
-      clientId: (json['client_id'] as num?)?.toInt(),
+      createdAt: json['created_at'] as String?,
     );
 
 Map<String, dynamic> _$$OrderImplToJson(_$OrderImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'created_at': instance.createdAt,
+      'client_id': instance.clientId,
+      'place': instance.place,
+      'video': instance.video,
+      'image_one': instance.imageOne,
+      'image_two': instance.imageTwo,
       'updated_at': instance.updatedAt,
       'latitude': instance.latitude,
       'longitude': instance.longitude,
-      'image_one': instance.imageOne,
-      'image_two': instance.imageTwo,
-      'video': instance.video,
-      'place': instance.place,
       'branch_id': instance.branchId,
-      'client_id': instance.clientId,
+      'created_at': instance.createdAt,
     };

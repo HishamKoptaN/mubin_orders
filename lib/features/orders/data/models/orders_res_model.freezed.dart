@@ -526,26 +526,26 @@ Order _$OrderFromJson(Map<String, dynamic> json) {
 mixin _$Order {
   @JsonKey(name: "id")
   int? get id => throw _privateConstructorUsedError;
-  @JsonKey(name: "created_at")
-  String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: "client_id")
+  int? get clientId => throw _privateConstructorUsedError;
+  @JsonKey(name: "place")
+  String? get place => throw _privateConstructorUsedError;
+  @JsonKey(name: "video")
+  String? get video => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_one")
+  String? get imageOne => throw _privateConstructorUsedError;
+  @JsonKey(name: "image_two")
+  String? get imageTwo => throw _privateConstructorUsedError;
   @JsonKey(name: "updated_at")
   String? get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: "latitude")
   String? get latitude => throw _privateConstructorUsedError;
   @JsonKey(name: "longitude")
   String? get longitude => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_one")
-  String? get imageOne => throw _privateConstructorUsedError;
-  @JsonKey(name: "image_two")
-  String? get imageTwo => throw _privateConstructorUsedError;
-  @JsonKey(name: "video")
-  String? get video => throw _privateConstructorUsedError;
-  @JsonKey(name: "place")
-  String? get place => throw _privateConstructorUsedError;
   @JsonKey(name: "branch_id")
   int? get branchId => throw _privateConstructorUsedError;
-  @JsonKey(name: "client_id")
-  int? get clientId => throw _privateConstructorUsedError;
+  @JsonKey(name: "created_at")
+  String? get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this Order to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -563,16 +563,16 @@ abstract class $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "client_id") int? clientId,
+      @JsonKey(name: "place") String? place,
+      @JsonKey(name: "video") String? video,
+      @JsonKey(name: "image_one") String? imageOne,
+      @JsonKey(name: "image_two") String? imageTwo,
       @JsonKey(name: "updated_at") String? updatedAt,
       @JsonKey(name: "latitude") String? latitude,
       @JsonKey(name: "longitude") String? longitude,
-      @JsonKey(name: "image_one") String? imageOne,
-      @JsonKey(name: "image_two") String? imageTwo,
-      @JsonKey(name: "video") String? video,
-      @JsonKey(name: "place") String? place,
       @JsonKey(name: "branch_id") int? branchId,
-      @JsonKey(name: "client_id") int? clientId});
+      @JsonKey(name: "created_at") String? createdAt});
 }
 
 /// @nodoc
@@ -591,25 +591,41 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   @override
   $Res call({
     Object? id = freezed,
-    Object? createdAt = freezed,
+    Object? clientId = freezed,
+    Object? place = freezed,
+    Object? video = freezed,
+    Object? imageOne = freezed,
+    Object? imageTwo = freezed,
     Object? updatedAt = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
-    Object? imageOne = freezed,
-    Object? imageTwo = freezed,
-    Object? video = freezed,
-    Object? place = freezed,
     Object? branchId = freezed,
-    Object? clientId = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      clientId: freezed == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      place: freezed == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageOne: freezed == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageTwo: freezed == imageTwo
+          ? _value.imageTwo
+          : imageTwo // ignore: cast_nullable_to_non_nullable
               as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
@@ -623,30 +639,14 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageOne: freezed == imageOne
-          ? _value.imageOne
-          : imageOne // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageTwo: freezed == imageTwo
-          ? _value.imageTwo
-          : imageTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as String?,
-      place: freezed == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String?,
       branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -660,16 +660,16 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: "id") int? id,
-      @JsonKey(name: "created_at") String? createdAt,
+      @JsonKey(name: "client_id") int? clientId,
+      @JsonKey(name: "place") String? place,
+      @JsonKey(name: "video") String? video,
+      @JsonKey(name: "image_one") String? imageOne,
+      @JsonKey(name: "image_two") String? imageTwo,
       @JsonKey(name: "updated_at") String? updatedAt,
       @JsonKey(name: "latitude") String? latitude,
       @JsonKey(name: "longitude") String? longitude,
-      @JsonKey(name: "image_one") String? imageOne,
-      @JsonKey(name: "image_two") String? imageTwo,
-      @JsonKey(name: "video") String? video,
-      @JsonKey(name: "place") String? place,
       @JsonKey(name: "branch_id") int? branchId,
-      @JsonKey(name: "client_id") int? clientId});
+      @JsonKey(name: "created_at") String? createdAt});
 }
 
 /// @nodoc
@@ -686,25 +686,41 @@ class __$$OrderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? createdAt = freezed,
+    Object? clientId = freezed,
+    Object? place = freezed,
+    Object? video = freezed,
+    Object? imageOne = freezed,
+    Object? imageTwo = freezed,
     Object? updatedAt = freezed,
     Object? latitude = freezed,
     Object? longitude = freezed,
-    Object? imageOne = freezed,
-    Object? imageTwo = freezed,
-    Object? video = freezed,
-    Object? place = freezed,
     Object? branchId = freezed,
-    Object? clientId = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_$OrderImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int?,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
+      clientId: freezed == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      place: freezed == place
+          ? _value.place
+          : place // ignore: cast_nullable_to_non_nullable
+              as String?,
+      video: freezed == video
+          ? _value.video
+          : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageOne: freezed == imageOne
+          ? _value.imageOne
+          : imageOne // ignore: cast_nullable_to_non_nullable
+              as String?,
+      imageTwo: freezed == imageTwo
+          ? _value.imageTwo
+          : imageTwo // ignore: cast_nullable_to_non_nullable
               as String?,
       updatedAt: freezed == updatedAt
           ? _value.updatedAt
@@ -718,30 +734,14 @@ class __$$OrderImplCopyWithImpl<$Res>
           ? _value.longitude
           : longitude // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageOne: freezed == imageOne
-          ? _value.imageOne
-          : imageOne // ignore: cast_nullable_to_non_nullable
-              as String?,
-      imageTwo: freezed == imageTwo
-          ? _value.imageTwo
-          : imageTwo // ignore: cast_nullable_to_non_nullable
-              as String?,
-      video: freezed == video
-          ? _value.video
-          : video // ignore: cast_nullable_to_non_nullable
-              as String?,
-      place: freezed == place
-          ? _value.place
-          : place // ignore: cast_nullable_to_non_nullable
-              as String?,
       branchId: freezed == branchId
           ? _value.branchId
           : branchId // ignore: cast_nullable_to_non_nullable
               as int?,
-      clientId: freezed == clientId
-          ? _value.clientId
-          : clientId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -751,16 +751,16 @@ class __$$OrderImplCopyWithImpl<$Res>
 class _$OrderImpl implements _Order {
   const _$OrderImpl(
       {@JsonKey(name: "id") this.id,
-      @JsonKey(name: "created_at") this.createdAt,
+      @JsonKey(name: "client_id") this.clientId,
+      @JsonKey(name: "place") this.place,
+      @JsonKey(name: "video") this.video,
+      @JsonKey(name: "image_one") this.imageOne,
+      @JsonKey(name: "image_two") this.imageTwo,
       @JsonKey(name: "updated_at") this.updatedAt,
       @JsonKey(name: "latitude") this.latitude,
       @JsonKey(name: "longitude") this.longitude,
-      @JsonKey(name: "image_one") this.imageOne,
-      @JsonKey(name: "image_two") this.imageTwo,
-      @JsonKey(name: "video") this.video,
-      @JsonKey(name: "place") this.place,
       @JsonKey(name: "branch_id") this.branchId,
-      @JsonKey(name: "client_id") this.clientId});
+      @JsonKey(name: "created_at") this.createdAt});
 
   factory _$OrderImpl.fromJson(Map<String, dynamic> json) =>
       _$$OrderImplFromJson(json);
@@ -769,8 +769,20 @@ class _$OrderImpl implements _Order {
   @JsonKey(name: "id")
   final int? id;
   @override
-  @JsonKey(name: "created_at")
-  final String? createdAt;
+  @JsonKey(name: "client_id")
+  final int? clientId;
+  @override
+  @JsonKey(name: "place")
+  final String? place;
+  @override
+  @JsonKey(name: "video")
+  final String? video;
+  @override
+  @JsonKey(name: "image_one")
+  final String? imageOne;
+  @override
+  @JsonKey(name: "image_two")
+  final String? imageTwo;
   @override
   @JsonKey(name: "updated_at")
   final String? updatedAt;
@@ -781,27 +793,15 @@ class _$OrderImpl implements _Order {
   @JsonKey(name: "longitude")
   final String? longitude;
   @override
-  @JsonKey(name: "image_one")
-  final String? imageOne;
-  @override
-  @JsonKey(name: "image_two")
-  final String? imageTwo;
-  @override
-  @JsonKey(name: "video")
-  final String? video;
-  @override
-  @JsonKey(name: "place")
-  final String? place;
-  @override
   @JsonKey(name: "branch_id")
   final int? branchId;
   @override
-  @JsonKey(name: "client_id")
-  final int? clientId;
+  @JsonKey(name: "created_at")
+  final String? createdAt;
 
   @override
   String toString() {
-    return 'Order(id: $id, createdAt: $createdAt, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, imageOne: $imageOne, imageTwo: $imageTwo, video: $video, place: $place, branchId: $branchId, clientId: $clientId)';
+    return 'Order(id: $id, clientId: $clientId, place: $place, video: $video, imageOne: $imageOne, imageTwo: $imageTwo, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, branchId: $branchId, createdAt: $createdAt)';
   }
 
   @override
@@ -810,41 +810,30 @@ class _$OrderImpl implements _Order {
         (other.runtimeType == runtimeType &&
             other is _$OrderImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt) &&
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId) &&
+            (identical(other.place, place) || other.place == place) &&
+            (identical(other.video, video) || other.video == video) &&
+            (identical(other.imageOne, imageOne) ||
+                other.imageOne == imageOne) &&
+            (identical(other.imageTwo, imageTwo) ||
+                other.imageTwo == imageTwo) &&
             (identical(other.updatedAt, updatedAt) ||
                 other.updatedAt == updatedAt) &&
             (identical(other.latitude, latitude) ||
                 other.latitude == latitude) &&
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
-            (identical(other.imageOne, imageOne) ||
-                other.imageOne == imageOne) &&
-            (identical(other.imageTwo, imageTwo) ||
-                other.imageTwo == imageTwo) &&
-            (identical(other.video, video) || other.video == video) &&
-            (identical(other.place, place) || other.place == place) &&
             (identical(other.branchId, branchId) ||
                 other.branchId == branchId) &&
-            (identical(other.clientId, clientId) ||
-                other.clientId == clientId));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      createdAt,
-      updatedAt,
-      latitude,
-      longitude,
-      imageOne,
-      imageTwo,
-      video,
-      place,
-      branchId,
-      clientId);
+  int get hashCode => Object.hash(runtimeType, id, clientId, place, video,
+      imageOne, imageTwo, updatedAt, latitude, longitude, branchId, createdAt);
 
   /// Create a copy of Order
   /// with the given fields replaced by the non-null parameter values.
@@ -865,16 +854,16 @@ class _$OrderImpl implements _Order {
 abstract class _Order implements Order {
   const factory _Order(
       {@JsonKey(name: "id") final int? id,
-      @JsonKey(name: "created_at") final String? createdAt,
+      @JsonKey(name: "client_id") final int? clientId,
+      @JsonKey(name: "place") final String? place,
+      @JsonKey(name: "video") final String? video,
+      @JsonKey(name: "image_one") final String? imageOne,
+      @JsonKey(name: "image_two") final String? imageTwo,
       @JsonKey(name: "updated_at") final String? updatedAt,
       @JsonKey(name: "latitude") final String? latitude,
       @JsonKey(name: "longitude") final String? longitude,
-      @JsonKey(name: "image_one") final String? imageOne,
-      @JsonKey(name: "image_two") final String? imageTwo,
-      @JsonKey(name: "video") final String? video,
-      @JsonKey(name: "place") final String? place,
       @JsonKey(name: "branch_id") final int? branchId,
-      @JsonKey(name: "client_id") final int? clientId}) = _$OrderImpl;
+      @JsonKey(name: "created_at") final String? createdAt}) = _$OrderImpl;
 
   factory _Order.fromJson(Map<String, dynamic> json) = _$OrderImpl.fromJson;
 
@@ -882,8 +871,20 @@ abstract class _Order implements Order {
   @JsonKey(name: "id")
   int? get id;
   @override
-  @JsonKey(name: "created_at")
-  String? get createdAt;
+  @JsonKey(name: "client_id")
+  int? get clientId;
+  @override
+  @JsonKey(name: "place")
+  String? get place;
+  @override
+  @JsonKey(name: "video")
+  String? get video;
+  @override
+  @JsonKey(name: "image_one")
+  String? get imageOne;
+  @override
+  @JsonKey(name: "image_two")
+  String? get imageTwo;
   @override
   @JsonKey(name: "updated_at")
   String? get updatedAt;
@@ -894,23 +895,11 @@ abstract class _Order implements Order {
   @JsonKey(name: "longitude")
   String? get longitude;
   @override
-  @JsonKey(name: "image_one")
-  String? get imageOne;
-  @override
-  @JsonKey(name: "image_two")
-  String? get imageTwo;
-  @override
-  @JsonKey(name: "video")
-  String? get video;
-  @override
-  @JsonKey(name: "place")
-  String? get place;
-  @override
   @JsonKey(name: "branch_id")
   int? get branchId;
   @override
-  @JsonKey(name: "client_id")
-  int? get clientId;
+  @JsonKey(name: "created_at")
+  String? get createdAt;
 
   /// Create a copy of Order
   /// with the given fields replaced by the non-null parameter values.

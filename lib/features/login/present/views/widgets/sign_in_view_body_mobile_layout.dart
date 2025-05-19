@@ -1,12 +1,12 @@
-import '../../../../../../core/all_imports.dart';
-import '../../../../../../core/utils/app_colors.dart';
-import '../../../../../../core/utils/app_text_styles.dart';
-import '../../../../../../core/helper_functions/validator.dart';
-import '../../../../../../core/widgets/custom_button.dart';
-import '../../../../../../core/widgets/custom_circular_progress.dart';
-import '../../../../../../core/widgets/custom_logo_image.dart';
-import '../../../../../../core/widgets/snacke_bar.dart';
-import '../../../../../main/present/view/main_view.dart';
+import '../../../../../core/all_imports.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/helper_functions/validator.dart';
+import '../../../../../core/widgets/custom_button.dart';
+import '../../../../../core/widgets/custom_circular_progress.dart';
+import '../../../../../core/widgets/custom_logo_image.dart';
+import '../../../../../core/widgets/snacke_bar.dart';
+import '../../../../main/present/view/main_view.dart';
 import '../../../data/models/firabase_login_req_body_model.dart';
 import '../../bloc/login_bloc.dart';
 import '../../bloc/login_event.dart';
@@ -32,7 +32,9 @@ class _SigninViewBodyMobileLayoutState
   bool? validated;
   final Validator validator = Validator();
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     return BlocConsumer<LoginBloc, LoginState>(
       listener: (context, state) {
         state.mapOrNull(

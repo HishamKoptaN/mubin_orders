@@ -6,7 +6,11 @@ import '../../domain/repo/orders_repo.dart';
 import 'dart:async';
 import '../datasources/orders_api.dart';
 import '../models/orders_res_model.dart';
+import 'package:injectable/injectable.dart' show Injectable;
 
+@Injectable(
+  as: OrdersRepo,
+)
 class OrdersRepoImpl implements OrdersRepo {
   final OrdersApi postsApi;
   OrdersRepoImpl({

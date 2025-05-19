@@ -1,25 +1,24 @@
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/database/cache/shared_pref_helper.dart';
-import '../../../../../core/database/cache/shared_pref_keys.dart';
-import '../../../../../core/networking/dio_factory.dart';
-import '../../../../../core/single_tone/user_singleton.dart';
-import '../../../../../core/errors/api_error_model.dart';
-import '../../../../../core/errors/firebase_failures.dart';
+import '../../../../core/database/cache/shared_pref_helper.dart';
+import '../../../../core/database/cache/shared_pref_keys.dart';
+import '../../../../core/networking/dio_factory.dart';
+import '../../../../core/single_tone/user_singleton.dart';
+import '../../../../core/errors/api_error_model.dart';
+import '../../../../core/errors/firebase_failures.dart';
 import '../../data/models/login_req_body_model.dart';
-import '../../domain/use_cases/fire_login_use_case.dart';
-import '../../domain/use_cases/auth_token_use_case.dart';
+import '../../domain/use_cases/login_use_cases.dart';
 import 'login_event.dart';
 import 'login_state.dart';
+import 'package:injectable/injectable.dart' show LazySingleton;
 
+@LazySingleton()
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final FirebaseLoginUseCase firebaseLoginUseCase;
-  final LoginUseCase loginUseCase;
+  final LoginUseCases loginUseCases;
   final FirebaseAuth firebaseAuth;
   LoginBloc({
-    required this.firebaseLoginUseCase,
-    required this.loginUseCase,
+    required this.loginUseCases,
     required this.firebaseAuth,
   }) : super(const LoginState.initial()) {
     on<LoginEvent>(
@@ -31,7 +30,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             emit(
               const LoginState.loading(),
             );
-            final result = await firebaseLoginUseCase.firebaseLogin(
+            final result = await loginUseCases.firebaseLogin(
               firabaseLoginReqBodyModel: firabaseLoginReqBodyModel,
             );
             await result.fold(
@@ -48,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 await userCredential.user?.getIdToken().then(
                   (idToken) async {
                     log(idToken!);
-                    final res = await loginUseCase.authToken(
+                    final res = await loginUseCases.authToken(
                       loginReqBodyModel: const LoginReqBodyModel().copyWith(
                         idToken: idToken,
                       ),
