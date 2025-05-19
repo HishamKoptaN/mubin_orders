@@ -24,8 +24,7 @@ class BlocModule extends DIModule {
       //! Login
       ..registerLazySingleton<OrdersBloc>(
         () => OrdersBloc(
-          getOrdersUseCase: getIt(),
-          createOrderUseCase: getIt(),
+          ordersUseCase: getIt(),
         ),
       );
   }

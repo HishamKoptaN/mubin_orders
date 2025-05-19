@@ -1,8 +1,9 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:mubin_orders/features/orders/data/models/add_order_req_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
 import '../../domain/repo/orders_repo.dart';
+import 'dart:async';
 import '../datasources/orders_api.dart';
 import '../models/orders_res_model.dart';
 
@@ -29,24 +30,18 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<Order?>> createOrder({
-    required String clientId,
-    required String placeName,
-    required File video,
-    required File imageOne,
-    required File imageTwo,
-    required String latitude,
-    required String longitude,
+    required AddOrderReqModel addOrderReqModel,
     required ProgressCallback? onSendProgress,
   }) async {
     try {
       final res = await postsApi.createOrder(
-        clientId: clientId,
-        placeName: placeName,
-        video: video,
-        imageOne: imageOne,
-        imageTwo: imageTwo,
-        latitude: latitude,
-        longitude: longitude,
+        clientId: addOrderReqModel.clientId ?? '0',
+        placeName: addOrderReqModel.placeName ?? '',
+        video: addOrderReqModel.video!,
+        imageOne: addOrderReqModel.imageOne!,
+        imageTwo: addOrderReqModel.imageTwo!,
+        latitude: addOrderReqModel.latitude ?? '0.0',
+        longitude: addOrderReqModel.longitude ?? '0.0',
         onSendProgress: onSendProgress,
       );
       return ApiResult.success(

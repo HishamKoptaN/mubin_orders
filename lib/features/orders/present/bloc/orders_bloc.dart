@@ -1,27 +1,20 @@
-import 'dart:async';
-import 'package:image_picker/image_picker.dart';
-import 'package:location/location.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
-import '../../../../core/single_tone/orders_single_tone.dart';
+import '../../data/models/add_order_req_model.dart';
 import 'package:location/location.dart' as loc;
-import '../../../../core/utils/app_colors.dart';
 import '../../data/models/location_model.dart';
 import '../../data/models/orders_res_model.dart';
 import '../../domain/usecases/orders_use_cases.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:location/location.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
-import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  GetOrdersUseCase getOrdersUseCase;
-  CreateOrderUseCase createOrderUseCase;
-
-  final ImagePicker imagePicker = ImagePicker();
+  OrdersUseCase ordersUseCase;
+  List<Order>? allOrders;
+  AddOrderReqModel addOrderReqModel = AddOrderReqModel();
   OrdersBloc({
-    required this.getOrdersUseCase,
-    required this.createOrderUseCase,
+    required this.ordersUseCase,
   }) : super(
           const OrdersState.initial(),
         ) {
@@ -33,17 +26,19 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               const OrdersState.loading(),
             );
             try {
-              final res = await getOrdersUseCase.getOrders();
+              final res = await ordersUseCase.getOrders();
               await res.when(
                 success: (
                   res,
                 ) async {
-                  OrdersSingletone.instance.addOrders(
-                    newOrders: res?.orders ?? [],
-                    newMeta: res?.meta,
-                  );
+                  allOrders = res?.orders ?? [];
                   emit(
-                    const OrdersState.initial(),
+                    OrdersState.loaded(
+                      orders: allOrders ?? [],
+                      hasMore: false,
+                      addOrderReqModel: addOrderReqModel,
+                      uploadingProgress: null,
+                    ),
                   );
                 },
                 failure: (
@@ -66,89 +61,122 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
               );
             }
           },
-          pickFile: (
-            context,
-            fileType,
-            imageSelection,
+          updateData: (
+            addOrderReqModel,
           ) async {
-            emit(
-              const OrdersState.loading(),
-            );
             try {
-              XFile? file = await selectFilesPath(
-                context: context,
-                fileType: fileType,
-                imageSelection: imageSelection,
-              );
+              this.addOrderReqModel = addOrderReqModel;
               emit(
-                OrdersState.filePicked(
-                  file: file!,
-                  fileType: fileType,
-                  imageSelection: imageSelection,
+                OrdersState.loaded(
+                  orders: allOrders ?? [],
+                  hasMore: false,
+                  addOrderReqModel: this.addOrderReqModel,
+                  uploadingProgress: '',
                 ),
               );
             } catch (e) {
               emit(
-                OrdersState.pickFileFailure(
+                OrdersState.failure(
                   apiErrorModel: ApiErrorModel(
                     error: e.toString(),
                   ),
+                ),
+              );
+              emit(
+                OrdersState.loaded(
+                  orders: allOrders ?? [],
+                  hasMore: false,
+                  addOrderReqModel: this.addOrderReqModel,
+                  uploadingProgress: '',
                 ),
               );
             }
           },
-          createOrder: (
-            clientId,
-            placeName,
-            video,
-            imageOne,
-            imageTwo,
-          ) async {
-            LocationModel? locationData = await getCurrentLocation();
-            try {
-              final result = await createOrderUseCase.createOrder(
-                clientId: clientId,
-                placeName: placeName,
-                video: video,
-                imageOne: imageOne,
-                imageTwo: imageTwo,
-                latitude: locationData?.latitude.toString() ?? '0.0',
-                longitude: locationData?.longitude.toString() ?? '0.0',
-                onSendProgress: (sent, total) {
-                  String? uploadProgress;
-                  uploadProgress = "${((sent / total) * 100).toInt()}%";
-                  emit(
-                    OrdersState.uploading(
-                      progress: uploadProgress,
+          createOrder: () async {
+            if (addOrderReqModel.isComplete) {
+              try {
+                emit(
+                  OrdersState.loaded(
+                    orders: allOrders ?? [],
+                    hasMore: false,
+                    addOrderReqModel: addOrderReqModel,
+                    uploadingProgress: "1",
+                  ),
+                );
+                debugPrint("📦 Files:");
+                debugPrint("📸 imageOne: ${addOrderReqModel.imageOne?.path}");
+                debugPrint("📸 imageTwo: ${addOrderReqModel.imageTwo?.path}");
+                debugPrint("🎥 video: ${addOrderReqModel.video?.path}");
+                debugPrint("🧍 clientId: ${addOrderReqModel.clientId}");
+                LocationModel? locationData = await getCurrentLocation();
+                addOrderReqModel = addOrderReqModel.copyWith(
+                  longitude: locationData?.longitude?.toString(),
+                  latitude: locationData?.latitude?.toString(),
+                );
+                final result = await ordersUseCase.createOrder(
+                  addOrderReqModel: addOrderReqModel,
+                  onSendProgress: (
+                    sent,
+                    total,
+                  ) {
+                    String? uploadProgress =
+                        "${((sent / total) * 100).toInt()}%" ?? '0';
+                    emit(
+                      OrdersState.loaded(
+                        orders: allOrders ?? [],
+                        hasMore: false,
+                        addOrderReqModel: addOrderReqModel,
+                        uploadingProgress: uploadProgress,
+                      ),
+                    );
+                  },
+                );
+                await result.when(
+                  success: (
+                    order,
+                  ) async {
+                    allOrders = [
+                      order!,
+                      ...?allOrders,
+                    ];
+                    emit(
+                      const OrdersState.success(),
+                    );
+                    emitCustomLoaded(emit);
+                  },
+                  failure: (
+                    apiErrorModel,
+                  ) async {
+                    emit(
+                      OrdersState.failure(
+                        apiErrorModel: apiErrorModel,
+                      ),
+                    );
+                    emitCustomLoaded(emit);
+                  },
+                );
+              } catch (e, s) {
+                debugPrint(
+                  "❌ Exception in createOrder: $e\n$s",
+                );
+                emit(
+                  OrdersState.failure(
+                    apiErrorModel: ApiErrorModel(
+                      error: e.toString(),
                     ),
-                  );
-                },
-              );
-              await result.when(
-                success: (order) async {
-                  OrdersSingletone.instance.addSingleOrder(
-                    newOrder: order ?? Order(),
-                  );
-                  emit(
-                    const OrdersState.success(),
-                  );
-                },
-                failure: (apiErrorModel) async {
-                  emit(
-                    OrdersState.createOrderFailure(
-                      apiErrorModel: apiErrorModel,
-                    ),
-                  );
-                },
-              );
-            } catch (e) {
+                  ),
+                );
+                emitCustomLoaded(emit);
+              }
+            } else {
               emit(
-                OrdersState.createOrderFailure(
+                OrdersState.failure(
                   apiErrorModel: ApiErrorModel(
-                    error: e.toString(),
+                    error: "قم بملئ جميع الحقول",
                   ),
                 ),
               );
+              emitCustomLoaded(emit);
             }
           },
         );
@@ -156,67 +184,15 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
     );
   }
 
-  Future<XFile?> selectFilesPath({
-    required BuildContext context,
-    required FileType fileType,
-    required ImageSelection? imageSelection,
-  }) async {
-    final t = AppLocalizations.of(context)!;
-    return await showDialog<XFile>(
-      context: context,
-      builder: (BuildContext context) {
-        XFile? file;
-        return AlertDialog(
-          content: Text(t.select_files),
-          actions: [
-            IconsOutlineButton(
-              onPressed: () async {
-                XFile? file = await pickMedia(
-                  fileType: fileType,
-                  source: ImageSource.camera,
-                );
-                Navigator.of(context).pop(file);
-              },
-              text: t.camera,
-              iconData: CupertinoIcons.camera_fill,
-              textStyle: const TextStyle(color: Colors.white),
-              color: AppColors.greenColor,
-              iconColor: Colors.white,
-            ),
-            IconsOutlineButton(
-              onPressed: () async {
-                XFile? file = await pickMedia(
-                  fileType: fileType,
-                  source: ImageSource.gallery,
-                );
-                Navigator.of(context).pop(file);
-              },
-              text: t.gallery,
-              iconData: CupertinoIcons.photo_on_rectangle,
-              color: AppColors.greenColor,
-              textStyle: const TextStyle(color: Colors.white),
-              iconColor: Colors.white,
-            ),
-          ],
-        );
-      },
+  void emitCustomLoaded(Emitter<OrdersState> emit) {
+    return emit(
+      OrdersState.loaded(
+        orders: allOrders ?? [],
+        hasMore: false,
+        addOrderReqModel: addOrderReqModel,
+        uploadingProgress: null,
+      ),
     );
-  }
-
-  Future<XFile?> pickMedia({
-    required FileType fileType,
-    required ImageSource source,
-  }) async {
-    if (fileType == FileType.image) {
-      return await imagePicker.pickImage(
-        source: source,
-      );
-    } else if (fileType == FileType.video) {
-      return await imagePicker.pickVideo(
-        source: source,
-      );
-    }
-    return null;
   }
 
   Future<LocationModel?> getCurrentLocation() async {
@@ -229,7 +205,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           return LocationModel(latitude: 0.0, longitude: 0.0);
         }
       }
-
       loc.PermissionStatus permissionGranted = await location.hasPermission();
       if (permissionGranted == PermissionStatus.denied) {
         permissionGranted = await location.requestPermission();
@@ -237,11 +212,13 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
           return LocationModel(latitude: 0.0, longitude: 0.0);
         }
       }
-
       var locationData = await location.getLocation();
       return LocationModel.fromLocationData(locationData);
     } catch (e) {
-      return LocationModel(latitude: 0.0, longitude: 0.0);
+      return LocationModel(
+        latitude: 0.0,
+        longitude: 0.0,
+      );
     }
   }
 }

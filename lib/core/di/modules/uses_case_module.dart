@@ -22,13 +22,9 @@ class UseCaseModule extends DIModule {
         () => FirebaseLoginUseCase(
           loginRepo: getIt(),
         ),
-      )  ..registerLazySingleton(
-        () => GetOrdersUseCase(
-          ordersRepo: getIt(),
-        ),
       )
-       ..registerLazySingleton(
-        () => CreateOrderUseCase(
+      ..registerLazySingleton(
+        () => OrdersUseCase(
           ordersRepo: getIt(),
         ),
       );

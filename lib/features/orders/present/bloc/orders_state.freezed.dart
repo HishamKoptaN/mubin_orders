@@ -21,13 +21,11 @@ mixin _$OrdersState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,13 +33,11 @@ mixin _$OrdersState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,13 +45,11 @@ mixin _$OrdersState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -64,11 +58,9 @@ mixin _$OrdersState {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,11 +68,9 @@ mixin _$OrdersState {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -88,11 +78,9 @@ mixin _$OrdersState {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -163,13 +151,11 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return initial();
   }
@@ -180,13 +166,11 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return initial?.call();
   }
@@ -197,13 +181,11 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -218,11 +200,9 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
     return initial(this);
   }
@@ -233,11 +213,9 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -248,11 +226,9 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -310,13 +286,11 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return loading();
   }
@@ -327,13 +301,11 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return loading?.call();
   }
@@ -344,13 +316,11 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -365,11 +335,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
     return loading(this);
   }
@@ -380,11 +348,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -395,11 +361,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -457,13 +421,11 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return success();
   }
@@ -474,13 +436,11 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return success?.call();
   }
@@ -491,13 +451,11 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -512,11 +470,9 @@ class _$SuccessImpl implements _Success {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
     return success(this);
   }
@@ -527,11 +483,9 @@ class _$SuccessImpl implements _Success {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -542,11 +496,9 @@ class _$SuccessImpl implements _Success {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -561,20 +513,26 @@ abstract class _Success implements OrdersState {
 }
 
 /// @nodoc
-abstract class _$$ImagePickedImplCopyWith<$Res> {
-  factory _$$ImagePickedImplCopyWith(
-          _$ImagePickedImpl value, $Res Function(_$ImagePickedImpl) then) =
-      __$$ImagePickedImplCopyWithImpl<$Res>;
+abstract class _$$LoadedImplCopyWith<$Res> {
+  factory _$$LoadedImplCopyWith(
+          _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
+      __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({XFile file, FileType fileType, ImageSelection? imageSelection});
+  $Res call(
+      {List<Order>? orders,
+      bool? hasMore,
+      AddOrderReqModel? addOrderReqModel,
+      String? uploadingProgress});
+
+  $AddOrderReqModelCopyWith<$Res>? get addOrderReqModel;
 }
 
 /// @nodoc
-class __$$ImagePickedImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$ImagePickedImpl>
-    implements _$$ImagePickedImplCopyWith<$Res> {
-  __$$ImagePickedImplCopyWithImpl(
-      _$ImagePickedImpl _value, $Res Function(_$ImagePickedImpl) _then)
+class __$$LoadedImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$LoadedImpl>
+    implements _$$LoadedImplCopyWith<$Res> {
+  __$$LoadedImplCopyWithImpl(
+      _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersState
@@ -582,67 +540,106 @@ class __$$ImagePickedImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? file = null,
-    Object? fileType = null,
-    Object? imageSelection = freezed,
+    Object? orders = freezed,
+    Object? hasMore = freezed,
+    Object? addOrderReqModel = freezed,
+    Object? uploadingProgress = freezed,
   }) {
-    return _then(_$ImagePickedImpl(
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as XFile,
-      fileType: null == fileType
-          ? _value.fileType
-          : fileType // ignore: cast_nullable_to_non_nullable
-              as FileType,
-      imageSelection: freezed == imageSelection
-          ? _value.imageSelection
-          : imageSelection // ignore: cast_nullable_to_non_nullable
-              as ImageSelection?,
+    return _then(_$LoadedImpl(
+      orders: freezed == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<Order>?,
+      hasMore: freezed == hasMore
+          ? _value.hasMore
+          : hasMore // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      addOrderReqModel: freezed == addOrderReqModel
+          ? _value.addOrderReqModel
+          : addOrderReqModel // ignore: cast_nullable_to_non_nullable
+              as AddOrderReqModel?,
+      uploadingProgress: freezed == uploadingProgress
+          ? _value.uploadingProgress
+          : uploadingProgress // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
+  }
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddOrderReqModelCopyWith<$Res>? get addOrderReqModel {
+    if (_value.addOrderReqModel == null) {
+      return null;
+    }
+
+    return $AddOrderReqModelCopyWith<$Res>(_value.addOrderReqModel!, (value) {
+      return _then(_value.copyWith(addOrderReqModel: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$ImagePickedImpl implements _ImagePicked {
-  const _$ImagePickedImpl(
-      {required this.file, required this.fileType, this.imageSelection});
+class _$LoadedImpl implements _Loaded {
+  const _$LoadedImpl(
+      {required final List<Order>? orders,
+      required this.hasMore,
+      required this.addOrderReqModel,
+      required this.uploadingProgress})
+      : _orders = orders;
+
+  final List<Order>? _orders;
+  @override
+  List<Order>? get orders {
+    final value = _orders;
+    if (value == null) return null;
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
-  final XFile file;
+  final bool? hasMore;
   @override
-  final FileType fileType;
+  final AddOrderReqModel? addOrderReqModel;
   @override
-  final ImageSelection? imageSelection;
+  final String? uploadingProgress;
 
   @override
   String toString() {
-    return 'OrdersState.filePicked(file: $file, fileType: $fileType, imageSelection: $imageSelection)';
+    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, addOrderReqModel: $addOrderReqModel, uploadingProgress: $uploadingProgress)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ImagePickedImpl &&
-            (identical(other.file, file) || other.file == file) &&
-            (identical(other.fileType, fileType) ||
-                other.fileType == fileType) &&
-            (identical(other.imageSelection, imageSelection) ||
-                other.imageSelection == imageSelection));
+            other is _$LoadedImpl &&
+            const DeepCollectionEquality().equals(other._orders, _orders) &&
+            (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
+            (identical(other.addOrderReqModel, addOrderReqModel) ||
+                other.addOrderReqModel == addOrderReqModel) &&
+            (identical(other.uploadingProgress, uploadingProgress) ||
+                other.uploadingProgress == uploadingProgress));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, file, fileType, imageSelection);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_orders),
+      hasMore,
+      addOrderReqModel,
+      uploadingProgress);
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ImagePickedImplCopyWith<_$ImagePickedImpl> get copyWith =>
-      __$$ImagePickedImplCopyWithImpl<_$ImagePickedImpl>(this, _$identity);
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
+      __$$LoadedImplCopyWithImpl<_$LoadedImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -650,15 +647,13 @@ class _$ImagePickedImpl implements _ImagePicked {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return filePicked(file, fileType, imageSelection);
+    return loaded(orders, hasMore, addOrderReqModel, uploadingProgress);
   }
 
   @override
@@ -667,15 +662,13 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return filePicked?.call(file, fileType, imageSelection);
+    return loaded?.call(orders, hasMore, addOrderReqModel, uploadingProgress);
   }
 
   @override
@@ -684,17 +677,15 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
-    if (filePicked != null) {
-      return filePicked(file, fileType, imageSelection);
+    if (loaded != null) {
+      return loaded(orders, hasMore, addOrderReqModel, uploadingProgress);
     }
     return orElse();
   }
@@ -705,13 +696,11 @@ class _$ImagePickedImpl implements _ImagePicked {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
-    return filePicked(this);
+    return loaded(this);
   }
 
   @override
@@ -720,13 +709,11 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
-    return filePicked?.call(this);
+    return loaded?.call(this);
   }
 
   @override
@@ -735,217 +722,34 @@ class _$ImagePickedImpl implements _ImagePicked {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (filePicked != null) {
-      return filePicked(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
 }
 
-abstract class _ImagePicked implements OrdersState {
-  const factory _ImagePicked(
-      {required final XFile file,
-      required final FileType fileType,
-      final ImageSelection? imageSelection}) = _$ImagePickedImpl;
+abstract class _Loaded implements OrdersState {
+  const factory _Loaded(
+      {required final List<Order>? orders,
+      required final bool? hasMore,
+      required final AddOrderReqModel? addOrderReqModel,
+      required final String? uploadingProgress}) = _$LoadedImpl;
 
-  XFile get file;
-  FileType get fileType;
-  ImageSelection? get imageSelection;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ImagePickedImplCopyWith<_$ImagePickedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UploadingImplCopyWith<$Res> {
-  factory _$$UploadingImplCopyWith(
-          _$UploadingImpl value, $Res Function(_$UploadingImpl) then) =
-      __$$UploadingImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String progress});
-}
-
-/// @nodoc
-class __$$UploadingImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$UploadingImpl>
-    implements _$$UploadingImplCopyWith<$Res> {
-  __$$UploadingImplCopyWithImpl(
-      _$UploadingImpl _value, $Res Function(_$UploadingImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? progress = null,
-  }) {
-    return _then(_$UploadingImpl(
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$UploadingImpl implements _Uploading {
-  const _$UploadingImpl({required this.progress});
-
-  @override
-  final String progress;
-
-  @override
-  String toString() {
-    return 'OrdersState.uploading(progress: $progress)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UploadingImpl &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, progress);
+  List<Order>? get orders;
+  bool? get hasMore;
+  AddOrderReqModel? get addOrderReqModel;
+  String? get uploadingProgress;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UploadingImplCopyWith<_$UploadingImpl> get copyWith =>
-      __$$UploadingImplCopyWithImpl<_$UploadingImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
-  }) {
-    return uploading(progress);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
-  }) {
-    return uploading?.call(progress);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
-    required TResult orElse(),
-  }) {
-    if (uploading != null) {
-      return uploading(progress);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
-  }) {
-    return uploading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
-  }) {
-    return uploading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
-    required TResult orElse(),
-  }) {
-    if (uploading != null) {
-      return uploading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Uploading implements OrdersState {
-  const factory _Uploading({required final String progress}) = _$UploadingImpl;
-
-  String get progress;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UploadingImplCopyWith<_$UploadingImpl> get copyWith =>
+  _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1022,13 +826,11 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
     return getOrdersfailure(apiErrorModel);
   }
@@ -1039,13 +841,11 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
     return getOrdersfailure?.call(apiErrorModel);
   }
@@ -1056,13 +856,11 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (getOrdersfailure != null) {
@@ -1077,11 +875,9 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
     return getOrdersfailure(this);
   }
@@ -1092,11 +888,9 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
     return getOrdersfailure?.call(this);
   }
@@ -1107,11 +901,9 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
     if (getOrdersfailure != null) {
@@ -1135,20 +927,20 @@ abstract class _GetOrdersFailure implements OrdersState {
 }
 
 /// @nodoc
-abstract class _$$PickFileailureImplCopyWith<$Res> {
-  factory _$$PickFileailureImplCopyWith(_$PickFileailureImpl value,
-          $Res Function(_$PickFileailureImpl) then) =
-      __$$PickFileailureImplCopyWithImpl<$Res>;
+abstract class _$$FailureImplCopyWith<$Res> {
+  factory _$$FailureImplCopyWith(
+          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
+      __$$FailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ApiErrorModel apiErrorModel});
 }
 
 /// @nodoc
-class __$$PickFileailureImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$PickFileailureImpl>
-    implements _$$PickFileailureImplCopyWith<$Res> {
-  __$$PickFileailureImplCopyWithImpl(
-      _$PickFileailureImpl _value, $Res Function(_$PickFileailureImpl) _then)
+class __$$FailureImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$FailureImpl>
+    implements _$$FailureImplCopyWith<$Res> {
+  __$$FailureImplCopyWithImpl(
+      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of OrdersState
@@ -1158,7 +950,7 @@ class __$$PickFileailureImplCopyWithImpl<$Res>
   $Res call({
     Object? apiErrorModel = null,
   }) {
-    return _then(_$PickFileailureImpl(
+    return _then(_$FailureImpl(
       apiErrorModel: null == apiErrorModel
           ? _value.apiErrorModel
           : apiErrorModel // ignore: cast_nullable_to_non_nullable
@@ -1169,22 +961,22 @@ class __$$PickFileailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$PickFileailureImpl implements _PickFileailure {
-  const _$PickFileailureImpl({required this.apiErrorModel});
+class _$FailureImpl implements _Failure {
+  const _$FailureImpl({required this.apiErrorModel});
 
   @override
   final ApiErrorModel apiErrorModel;
 
   @override
   String toString() {
-    return 'OrdersState.pickFileFailure(apiErrorModel: $apiErrorModel)';
+    return 'OrdersState.failure(apiErrorModel: $apiErrorModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PickFileailureImpl &&
+            other is _$FailureImpl &&
             (identical(other.apiErrorModel, apiErrorModel) ||
                 other.apiErrorModel == apiErrorModel));
   }
@@ -1197,9 +989,8 @@ class _$PickFileailureImpl implements _PickFileailure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PickFileailureImplCopyWith<_$PickFileailureImpl> get copyWith =>
-      __$$PickFileailureImplCopyWithImpl<_$PickFileailureImpl>(
-          this, _$identity);
+  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1207,15 +998,13 @@ class _$PickFileailureImpl implements _PickFileailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
+    required TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+        loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
+    required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return pickFileFailure(apiErrorModel);
+    return failure(apiErrorModel);
   }
 
   @override
@@ -1224,15 +1013,13 @@ class _$PickFileailureImpl implements _PickFileailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
+    TResult? Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return pickFileFailure?.call(apiErrorModel);
+    return failure?.call(apiErrorModel);
   }
 
   @override
@@ -1241,17 +1028,15 @@ class _$PickFileailureImpl implements _PickFileailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
+    TResult Function(List<Order>? orders, bool? hasMore,
+            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+        loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
+    TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
-    if (pickFileFailure != null) {
-      return pickFileFailure(apiErrorModel);
+    if (failure != null) {
+      return failure(apiErrorModel);
     }
     return orElse();
   }
@@ -1262,13 +1047,11 @@ class _$PickFileailureImpl implements _PickFileailure {
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadInProgress value) loading,
     required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
+    required TResult Function(_Loaded value) loaded,
     required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
+    required TResult Function(_Failure value) failure,
   }) {
-    return pickFileFailure(this);
+    return failure(this);
   }
 
   @override
@@ -1277,13 +1060,11 @@ class _$PickFileailureImpl implements _PickFileailure {
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadInProgress value)? loading,
     TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
+    TResult? Function(_Loaded value)? loaded,
     TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult? Function(_Failure value)? failure,
   }) {
-    return pickFileFailure?.call(this);
+    return failure?.call(this);
   }
 
   @override
@@ -1292,214 +1073,27 @@ class _$PickFileailureImpl implements _PickFileailure {
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadInProgress value)? loading,
     TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
+    TResult Function(_Loaded value)? loaded,
     TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
+    TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (pickFileFailure != null) {
-      return pickFileFailure(this);
+    if (failure != null) {
+      return failure(this);
     }
     return orElse();
   }
 }
 
-abstract class _PickFileailure implements OrdersState {
-  const factory _PickFileailure({required final ApiErrorModel apiErrorModel}) =
-      _$PickFileailureImpl;
+abstract class _Failure implements OrdersState {
+  const factory _Failure({required final ApiErrorModel apiErrorModel}) =
+      _$FailureImpl;
 
   ApiErrorModel get apiErrorModel;
 
   /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PickFileailureImplCopyWith<_$PickFileailureImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$CreateOrderFailureImplCopyWith<$Res> {
-  factory _$$CreateOrderFailureImplCopyWith(_$CreateOrderFailureImpl value,
-          $Res Function(_$CreateOrderFailureImpl) then) =
-      __$$CreateOrderFailureImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ApiErrorModel apiErrorModel});
-}
-
-/// @nodoc
-class __$$CreateOrderFailureImplCopyWithImpl<$Res>
-    extends _$OrdersStateCopyWithImpl<$Res, _$CreateOrderFailureImpl>
-    implements _$$CreateOrderFailureImplCopyWith<$Res> {
-  __$$CreateOrderFailureImplCopyWithImpl(_$CreateOrderFailureImpl _value,
-      $Res Function(_$CreateOrderFailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? apiErrorModel = null,
-  }) {
-    return _then(_$CreateOrderFailureImpl(
-      apiErrorModel: null == apiErrorModel
-          ? _value.apiErrorModel
-          : apiErrorModel // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$CreateOrderFailureImpl implements _CreateOrderFailure {
-  const _$CreateOrderFailureImpl({required this.apiErrorModel});
-
-  @override
-  final ApiErrorModel apiErrorModel;
-
-  @override
-  String toString() {
-    return 'OrdersState.createOrderFailure(apiErrorModel: $apiErrorModel)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateOrderFailureImpl &&
-            (identical(other.apiErrorModel, apiErrorModel) ||
-                other.apiErrorModel == apiErrorModel));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, apiErrorModel);
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$CreateOrderFailureImplCopyWith<_$CreateOrderFailureImpl> get copyWith =>
-      __$$CreateOrderFailureImplCopyWithImpl<_$CreateOrderFailureImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)
-        filePicked,
-    required TResult Function(String progress) uploading,
-    required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
-    required TResult Function(ApiErrorModel apiErrorModel) pickFileFailure,
-    required TResult Function(ApiErrorModel apiErrorModel) createOrderFailure,
-  }) {
-    return createOrderFailure(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult? Function(String progress)? uploading,
-    TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult? Function(ApiErrorModel apiErrorModel)? createOrderFailure,
-  }) {
-    return createOrderFailure?.call(apiErrorModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function(
-            XFile file, FileType fileType, ImageSelection? imageSelection)?
-        filePicked,
-    TResult Function(String progress)? uploading,
-    TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
-    TResult Function(ApiErrorModel apiErrorModel)? pickFileFailure,
-    TResult Function(ApiErrorModel apiErrorModel)? createOrderFailure,
-    required TResult orElse(),
-  }) {
-    if (createOrderFailure != null) {
-      return createOrderFailure(apiErrorModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_LoadInProgress value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_ImagePicked value) filePicked,
-    required TResult Function(_Uploading value) uploading,
-    required TResult Function(_GetOrdersFailure value) getOrdersfailure,
-    required TResult Function(_PickFileailure value) pickFileFailure,
-    required TResult Function(_CreateOrderFailure value) createOrderFailure,
-  }) {
-    return createOrderFailure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_LoadInProgress value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_ImagePicked value)? filePicked,
-    TResult? Function(_Uploading value)? uploading,
-    TResult? Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult? Function(_PickFileailure value)? pickFileFailure,
-    TResult? Function(_CreateOrderFailure value)? createOrderFailure,
-  }) {
-    return createOrderFailure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_LoadInProgress value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_ImagePicked value)? filePicked,
-    TResult Function(_Uploading value)? uploading,
-    TResult Function(_GetOrdersFailure value)? getOrdersfailure,
-    TResult Function(_PickFileailure value)? pickFileFailure,
-    TResult Function(_CreateOrderFailure value)? createOrderFailure,
-    required TResult orElse(),
-  }) {
-    if (createOrderFailure != null) {
-      return createOrderFailure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _CreateOrderFailure implements OrdersState {
-  const factory _CreateOrderFailure(
-      {required final ApiErrorModel apiErrorModel}) = _$CreateOrderFailureImpl;
-
-  ApiErrorModel get apiErrorModel;
-
-  /// Create a copy of OrdersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CreateOrderFailureImplCopyWith<_$CreateOrderFailureImpl> get copyWith =>
+  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
