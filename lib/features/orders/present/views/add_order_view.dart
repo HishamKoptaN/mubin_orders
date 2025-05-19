@@ -4,10 +4,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../data/models/add_order_req_model.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
 import '../../../../core/widgets/text_field.dart';
+import 'package:location/location.dart';
 
 class AddOrderView extends StatefulWidget {
   const AddOrderView({
@@ -34,9 +36,13 @@ class _AddOrderViewState extends State<AddOrderView> {
     final t = AppLocalizations.of(context)!;
     final XFile? picked = await showDialog<XFile>(
       context: context,
-      builder: (BuildContext context) {
+      builder: (
+        BuildContext context,
+      ) {
         return AlertDialog(
-          content: Text(t.select_files),
+          content: Text(
+            t.select_files,
+          ),
           actions: [
             IconsOutlineButton(
               onPressed: () async {
@@ -44,12 +50,16 @@ class _AddOrderViewState extends State<AddOrderView> {
                   fileType: fileType,
                   source: ImageSource.camera,
                 );
-                Navigator.of(context).pop(xFile);
+                Navigator.of(context).pop(
+                  xFile,
+                );
               },
               text: t.camera,
               iconData: CupertinoIcons.camera_fill,
               color: AppColors.greenColor,
-              textStyle: const TextStyle(color: Colors.white),
+              textStyle: const TextStyle(
+                color: Colors.white,
+              ),
               iconColor: Colors.white,
             ),
             IconsOutlineButton(
@@ -63,7 +73,9 @@ class _AddOrderViewState extends State<AddOrderView> {
               text: t.gallery,
               iconData: CupertinoIcons.photo_on_rectangle,
               color: AppColors.greenColor,
-              textStyle: const TextStyle(color: Colors.white),
+              textStyle: const TextStyle(
+                color: Colors.white,
+              ),
               iconColor: Colors.white,
             ),
           ],
@@ -71,7 +83,9 @@ class _AddOrderViewState extends State<AddOrderView> {
       },
     );
     if (picked != null) {
-      return File(picked.path);
+      return File(
+        picked.path,
+      );
     }
     return null;
   }
@@ -90,6 +104,38 @@ class _AddOrderViewState extends State<AddOrderView> {
       );
     }
     return null;
+  }
+
+  Future<void> getAndDispatchLocation({
+    required BuildContext context,
+    required AddOrderReqModel addOrderReqModel,
+  }) async {
+    try {
+      final Location location = Location();
+      //! تحقق من تفعيل خدمة الموقع
+      bool serviceEnabled = await location.serviceEnabled();
+      if (!serviceEnabled) {
+        serviceEnabled = await location.requestService();
+        if (!serviceEnabled) return;
+      }
+      //! تحقق من الصلاحيات
+      PermissionStatus permissionGranted = await location.hasPermission();
+      if (permissionGranted == PermissionStatus.denied) {
+        permissionGranted = await location.requestPermission();
+        if (permissionGranted != PermissionStatus.granted) return;
+      }
+      final locationData = await location.getLocation();
+      context.read<OrdersBloc>().add(
+            OrdersEvent.updateData(
+              addOrderReqModel: addOrderReqModel.copyWith(
+                latitude: locationData.latitude?.toString(),
+                longitude: locationData.longitude?.toString(),
+              ),
+            ),
+          );
+    } catch (e) {
+      debugPrint("❌ فشل في جلب الإحداثيات: $e");
+    }
   }
 
   @override
@@ -150,6 +196,8 @@ class _AddOrderViewState extends State<AddOrderView> {
             double? parsedProgress = double.tryParse(
               uploadingProgress ?? '',
             );
+            clientIdController.text = addOrderReqModel?.clientId ?? '';
+            placeNameController.text = addOrderReqModel?.placeName ?? '';
             videoController.text = addOrderReqModel?.video?.path ?? '';
             imageOneController.text = addOrderReqModel?.imageOne?.path ?? '';
             imageTwoController.text = addOrderReqModel?.imageTwo?.path ?? '';
@@ -253,6 +301,10 @@ class _AddOrderViewState extends State<AddOrderView> {
                   ),
                   GestureDetector(
                     onTap: () async {
+                      await getAndDispatchLocation(
+                        context: context,
+                        addOrderReqModel: addOrderReqModel!,
+                      );
                       context.read<OrdersBloc>().add(
                             OrdersEvent.createOrder(),
                           );
@@ -275,7 +327,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                       ),
                     ),
                   ),
-                  if (parsedProgress != null)
+                  if (uploadingProgress != null)
                     Center(
                       child: Column(
                         children: [
@@ -284,7 +336,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                             color: Colors.green,
                           ),
                           Text(
-                            uploadingProgress ?? 'uploadingProgress',
+                            uploadingProgress,
                           )
                         ],
                       ),

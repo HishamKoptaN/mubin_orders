@@ -1,11 +1,10 @@
+import 'dart:developer';
+
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../data/models/add_order_req_model.dart';
-import 'package:location/location.dart' as loc;
-import '../../data/models/location_model.dart';
 import '../../data/models/orders_res_model.dart';
 import '../../domain/usecases/orders_use_cases.dart';
-import 'package:location/location.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
 
@@ -71,7 +70,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   orders: allOrders ?? [],
                   hasMore: false,
                   addOrderReqModel: this.addOrderReqModel,
-                  uploadingProgress: '',
+                  uploadingProgress: null,
                 ),
               );
             } catch (e) {
@@ -87,7 +86,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   orders: allOrders ?? [],
                   hasMore: false,
                   addOrderReqModel: this.addOrderReqModel,
-                  uploadingProgress: '',
+                  uploadingProgress: null,
                 ),
               );
             }
@@ -103,16 +102,6 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                     uploadingProgress: "1",
                   ),
                 );
-                debugPrint("📦 Files:");
-                debugPrint("📸 imageOne: ${addOrderReqModel.imageOne?.path}");
-                debugPrint("📸 imageTwo: ${addOrderReqModel.imageTwo?.path}");
-                debugPrint("🎥 video: ${addOrderReqModel.video?.path}");
-                debugPrint("🧍 clientId: ${addOrderReqModel.clientId}");
-                LocationModel? locationData = await getCurrentLocation();
-                addOrderReqModel = addOrderReqModel.copyWith(
-                  longitude: locationData?.longitude?.toString(),
-                  latitude: locationData?.latitude?.toString(),
-                );
                 final result = await ordersUseCase.createOrder(
                   addOrderReqModel: addOrderReqModel,
                   onSendProgress: (
@@ -120,7 +109,8 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                     total,
                   ) {
                     String? uploadProgress =
-                        "${((sent / total) * 100).toInt()}%" ?? '0';
+                        "${((sent / total) * 100).toInt()}%";
+                    log(uploadProgress);
                     emit(
                       OrdersState.loaded(
                         orders: allOrders ?? [],
@@ -135,6 +125,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   success: (
                     order,
                   ) async {
+                    addOrderReqModel = AddOrderReqModel.empty();
                     allOrders = [
                       order!,
                       ...?allOrders,
@@ -142,7 +133,9 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                     emit(
                       const OrdersState.success(),
                     );
-                    emitCustomLoaded(emit);
+                    emitCustomLoaded(
+                      emit,
+                    );
                   },
                   failure: (
                     apiErrorModel,
@@ -193,32 +186,5 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         uploadingProgress: null,
       ),
     );
-  }
-
-  Future<LocationModel?> getCurrentLocation() async {
-    try {
-      final loc.Location location = loc.Location();
-      bool serviceEnabled = await location.serviceEnabled();
-      if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) {
-          return LocationModel(latitude: 0.0, longitude: 0.0);
-        }
-      }
-      loc.PermissionStatus permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied) {
-        permissionGranted = await location.requestPermission();
-        if (permissionGranted != PermissionStatus.granted) {
-          return LocationModel(latitude: 0.0, longitude: 0.0);
-        }
-      }
-      var locationData = await location.getLocation();
-      return LocationModel.fromLocationData(locationData);
-    } catch (e) {
-      return LocationModel(
-        latitude: 0.0,
-        longitude: 0.0,
-      );
-    }
   }
 }
