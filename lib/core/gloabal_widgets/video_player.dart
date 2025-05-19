@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPlayerView extends StatefulWidget {
@@ -38,7 +39,15 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                     aspectRatio: _controller.value.aspectRatio,
                     child: VideoPlayer(_controller),
                   )
-                : const CircularProgressIndicator(),
+                : Shimmer.fromColors(
+                    baseColor: Colors.grey.shade300,
+                    highlightColor: Colors.grey.shade100,
+                    child: Container(
+                      width: double.infinity,
+                      height: 250,
+                      color: Colors.white,
+                    ),
+                  ),
           ),
           Align(
             alignment: Alignment.bottomCenter,

@@ -19,13 +19,19 @@ class _VideoWidgetState extends State<VideoWidget> {
   void initState() {
     super.initState();
     _controller = VideoPlayerController.network(widget.videoUrl)
-      ..initialize().then((_) {
-        if (mounted) setState(() {});
-      }).catchError((error) {
-        setState(() {
-          _isError = true;
-        });
-      });
+      ..initialize().then(
+        (_) {
+          if (mounted) setState(() {});
+        },
+      ).catchError(
+        (error) {
+          setState(
+            () {
+              _isError = true;
+            },
+          );
+        },
+      );
   }
 
   @override
