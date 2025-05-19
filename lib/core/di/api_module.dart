@@ -2,6 +2,8 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import '../database/cache/shared_pref_helper.dart';
+import '../database/cache/shared_pref_keys.dart';
 import '../networking/api_constants.dart';
 
 @module
@@ -125,6 +127,8 @@ class LoggingInterceptor extends Interceptor {
 @lazySingleton
 class TokenStorage {
   Future<String?> getToken() async {
-    return await null;
+    return await SharedPrefHelper.getSecuredString(
+      key: SharedPrefKeys.userToken,
+    );
   }
 }

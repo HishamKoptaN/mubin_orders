@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/database/cache/shared_pref_helper.dart';
 import '../../../../core/database/cache/shared_pref_keys.dart';
-import '../../../../core/networking/dio_factory.dart';
+import '../../../../core/di/api_module.dart';
+import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/single_tone/user_singleton.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../../../core/errors/firebase_failures.dart';
@@ -61,9 +62,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                           key: SharedPrefKeys.userToken,
                           value: res?.token ?? '',
                         );
-                        await DioFactory.setTokenIntoHeaderAfterLogin(
-                          token: res?.token ?? '',
-                        );
+                        await getIt<AuthInterceptor>().updateToken();
                         emit(
                           const LoginState.success(),
                         );
