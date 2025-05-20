@@ -44,54 +44,38 @@ class _HomeViewState extends State<HomeView> {
       ),
       drawer: const MyDrawer(),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: Colors.grey, 
-              width: 1,
+        padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
+        child: PhysicalModel(
+          color: Colors.white,
+          elevation: 8,
+          shadowColor: Colors.black.withOpacity(0.2),
+          borderRadius: BorderRadius.circular(20),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: BottomNavigationBar(
+              currentIndex: _currentIndex,
+              onTap: (index) {
+                setState(
+                  () {
+                    _currentIndex = index;
+                  },
+                );
+              },
+              backgroundColor: Colors.white,
+              selectedItemColor: Colors.green,
+              unselectedItemColor: Colors.grey,
+              type: BottomNavigationBarType.fixed,
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home, size: 28.sp),
+                  label: t.home_title,
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add_circle, size: 28.sp),
+                  label: t.add_order,
+                ),
+              ],
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey,
-                blurRadius: 6,
-                spreadRadius: 2,
-                offset: Offset(0, 3),
-              ),
-            ],
-          ),
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex,
-            onTap: (index) {
-              setState(
-                () {
-                  _currentIndex = index;
-                },
-              );
-            },
-            selectedItemColor: Colors.green,
-            unselectedItemColor: Colors.grey,
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.home,
-                  size: 30.sp,
-                  color: Colors.black,
-                ),
-                label: t.home_title,
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.add_circle,
-                  size: 30.sp,
-                  color: Colors.black,
-                ),
-                backgroundColor: Colors.green,
-                label: t.add_order,
-              ),
-            ],
           ),
         ),
       ),

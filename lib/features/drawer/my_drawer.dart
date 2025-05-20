@@ -15,7 +15,9 @@ class MyDrawer extends StatelessWidget {
     super.key,
   });
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+    BuildContext context,
+  ) {
     final t = AppLocalizations.of(context)!;
     return SafeArea(
       child: Drawer(

@@ -205,7 +205,7 @@ class _AddOrderViewState extends State<AddOrderView> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MyTextField(
+                  CustomTextField(
                     controller: clientIdController,
                     onChanged: (
                       v,
@@ -221,8 +221,17 @@ class _AddOrderViewState extends State<AddOrderView> {
                     maxLines: 2,
                     labelText: t.client_id,
                     hint: t.client_id,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (
+                      v,
+                    ) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'مطلوب';
+                      }
+                      return null;
+                    },
                   ),
-                  MyTextField(
+                  CustomTextField(
                     controller: placeNameController,
                     onChanged: (
                       v,
@@ -238,8 +247,17 @@ class _AddOrderViewState extends State<AddOrderView> {
                     maxLines: 2,
                     labelText: t.place_hint,
                     hint: t.place_hint,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (
+                      v,
+                    ) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'مطلوب';
+                      }
+                      return null;
+                    },
                   ),
-                  MyTextField(
+                  CustomTextField(
                     controller: videoController,
                     maxLines: 2,
                     onTap: () async {
@@ -254,14 +272,22 @@ class _AddOrderViewState extends State<AddOrderView> {
                             ),
                           );
                     },
+                    readOnly: true,
                     labelText: t.add_video,
                     hint: t.add_video,
                     suffixIcon: Icons.cloud_upload,
-                    keyboardType: TextInputType.none,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (
+                      v,
+                    ) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'مطلوب';
+                      }
+                      return null;
+                    },
                   ),
-                  MyTextField(
+                  CustomTextField(
                     controller: imageOneController,
-                    maxLines: 2,
                     onTap: () async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
@@ -274,14 +300,23 @@ class _AddOrderViewState extends State<AddOrderView> {
                             ),
                           );
                     },
+                    maxLines: 2,
+                    readOnly: true,
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
-                    keyboardType: TextInputType.none,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (
+                      v,
+                    ) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'مطلوب';
+                      }
+                      return null;
+                    },
                   ),
-                  MyTextField(
+                  CustomTextField(
                     controller: imageTwoController,
-                    maxLines: 2,
                     onTap: () async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
@@ -294,10 +329,20 @@ class _AddOrderViewState extends State<AddOrderView> {
                             ),
                           );
                     },
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (
+                      v,
+                    ) {
+                      if (v == null || v.trim().isEmpty) {
+                        return 'مطلوب';
+                      }
+                      return null;
+                    },
+                    maxLines: 2,
+                    readOnly: true,
                     suffixIcon: Icons.cloud_upload,
                     labelText: t.add_picure,
                     hint: t.add_picure,
-                    keyboardType: TextInputType.none,
                   ),
                   GestureDetector(
                     onTap: () async {
