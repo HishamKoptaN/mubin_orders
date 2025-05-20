@@ -17,114 +17,119 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    return Drawer(
-      width: 250.w,
-      backgroundColor: Colors.white,
-      child: SizedBox(
-        height: 70,
-        child: SingleChildScrollView(
-          child: GetBuilder<MyDrawerController>(
-            init: MyDrawerController(),
-            builder: (cnr) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Gap(25.h,),
-                  SettingsTabWidget(
-                    title: t.change_language,
-                    icon: FontAwesomeIcons.language,
-                    onTap: () => {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const ChangeLanguage(),
-                        ),
-                      )
-                    },
-                  ),
-                  SettingsTabWidget(
-                    title: t.log_out,
-                    icon: FontAwesomeIcons.signOut,
-                    onTap: () => {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            title: Center(
-                              child: Text(
-                                t.log_out,
-                                style: const TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: Drawer(
+        width: 250.w,
+        backgroundColor: Colors.white,
+        child: SizedBox(
+          height: 70,
+          child: SingleChildScrollView(
+            child: GetBuilder<MyDrawerController>(
+              init: MyDrawerController(),
+              builder: (cnr) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Gap(
+                      25.h,
+                    ),
+                    SettingsTabWidget(
+                      title: t.change_language,
+                      icon: FontAwesomeIcons.language,
+                      onTap: () => {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const ChangeLanguage(),
+                          ),
+                        )
+                      },
+                    ),
+                    SettingsTabWidget(
+                      title: t.log_out,
+                      icon: FontAwesomeIcons.signOut,
+                      onTap: () => {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              title: Center(
+                                child: Text(
+                                  t.log_out,
+                                  style: const TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                            ),
-                            content: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  t.are_you_sure,
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 20),
-                                const Divider(thickness: 1),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Expanded(
-                                      child: TextButton(
-                                        onPressed: () async {
-                                            await FirebaseAuth.instance.signOut();
-                                          Navigator.of(context)
-                                              .pushAndRemoveUntil(
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const LoginView(),
+                              content: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    t.are_you_sure,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 20),
+                                  const Divider(thickness: 1),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Expanded(
+                                        child: TextButton(
+                                          onPressed: () async {
+                                            await FirebaseAuth.instance
+                                                .signOut();
+                                            Navigator.of(context)
+                                                .pushAndRemoveUntil(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const LoginView(),
+                                              ),
+                                              (route) => false,
+                                            );
+                                          },
+                                          child: Text(
+                                            t.log_out,
+                                            style: const TextStyle(
+                                              color: Colors.blue,
                                             ),
-                                            (route) => false,
-                                          );
-                                        },
-                                        child: Text(
-                                          t.log_out,
-                                          style: const TextStyle(
-                                            color: Colors.blue,
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: 1,
-                                      color: Colors.grey,
-                                    ),
-                                    Expanded(
-                                      child: TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          t.close,
-                                          style: const TextStyle(
-                                            color: Colors.black,
+                                      Container(
+                                        height: 40,
+                                        width: 1,
+                                        color: Colors.grey,
+                                      ),
+                                      Expanded(
+                                        child: TextButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            t.close,
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                    },
-                  )
-                ],
-              );
-            },
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      },
+                    )
+                  ],
+                );
+              },
+            ),
           ),
         ),
       ),
