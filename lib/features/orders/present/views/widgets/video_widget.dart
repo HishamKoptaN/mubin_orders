@@ -2,10 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
 
+import '../../../../../core/gloabal_widgets/video_player.dart';
+
 class VideoWidget extends StatefulWidget {
   final String videoUrl;
+  final String thumbnailUrl; // ✅ thumbnail
 
-  const VideoWidget({Key? key, required this.videoUrl}) : super(key: key);
+  const VideoWidget({
+    Key? key,
+    required this.videoUrl,
+    required this.thumbnailUrl,
+  }) : super(key: key);
 
   @override
   _VideoWidgetState createState() => _VideoWidgetState();
@@ -13,7 +20,8 @@ class VideoWidget extends StatefulWidget {
 
 class _VideoWidgetState extends State<VideoWidget> {
   late VideoPlayerController _controller;
-  bool _isError = false; // لتتبع حالة الخطأ في تحميل الفيديو
+  bool _isError = false;
+  bool _isPlaying = false;
 
   @override
   void initState() {
@@ -25,11 +33,9 @@ class _VideoWidgetState extends State<VideoWidget> {
         },
       ).catchError(
         (error) {
-          setState(
-            () {
-              _isError = true;
-            },
-          );
+          setState(() {
+            _isError = true;
+          });
         },
       );
   }
@@ -37,27 +43,48 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(12.0), // زوايا ناعمة للفيديو
+      borderRadius: BorderRadius.circular(12.0),
       child: AspectRatio(
         aspectRatio: _controller.value.isInitialized
             ? _controller.value.aspectRatio
-            : _controller.value.aspectRatio, // عرض افتراضي عند التحميل
+            : 16 / 9,
         child: _isError
-            ? _buildErrorWidget() // عرض ويدجت الخطأ عند الفشل
-            : _controller.value.isInitialized
-                ? Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      VideoPlayer(_controller),
-                      const Icon(
-                        Icons.play_circle_fill_outlined,
-                        color: Colors.red,
-                        size: 50,
-                      ),
-                    ],
-                  )
-                : _buildLoadingWidget(), // عرض تأثير التحميل عند انتظار الفيديو
+            ? _buildErrorWidget()
+            : _isPlaying
+                ? VideoPlayer(_controller)
+                : _buildThumbnail(),
       ),
+    );
+  }
+
+  Widget _buildThumbnail() {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Image.network(
+          widget.thumbnailUrl,
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return _buildLoadingWidget();
+          },
+          errorBuilder: (context, error, stackTrace) => _buildErrorWidget(),
+        ),
+        IconButton(
+          icon: const Icon(Icons.play_circle_fill, size: 60, color: Colors.red),
+          onPressed: () {
+            Navigator.pushNamed(
+              context,
+              VideoPlayerView.routeName,
+              arguments: {
+                'video_url': widget.videoUrl,
+              },
+            );
+          },
+        ),
+      ],
     );
   }
 
@@ -71,7 +98,6 @@ class _VideoWidgetState extends State<VideoWidget> {
     );
   }
 
-  /// ويدجت الخطأ عند فشل تحميل الفيديو
   Widget _buildErrorWidget() {
     return Container(
       color: Colors.grey.shade200,

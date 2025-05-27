@@ -6,14 +6,13 @@ import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
 import 'build_shimmer_order_placeholder.dart';
-import 'widgets/mobile_widget.dart';
+import 'widgets/order_widget.dart';
 
 class OrdersView extends StatefulWidget {
   const OrdersView({
     super.key,
   });
   static const String routeName = "OrdersView";
-
   @override
   State<OrdersView> createState() => _OrdersViewState();
 }
@@ -30,11 +29,9 @@ class _OrdersViewState extends State<OrdersView> {
       _onScroll,
     );
   }
-
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent) {
-      print("Reached the end of the list");
     }
   }
 

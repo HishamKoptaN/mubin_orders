@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../core/database/cache/shared_pref_helper.dart';
 import '../../../core/database/cache/shared_pref_keys.dart';
 import '../../../core/widgets/Layouts/app_layout.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../main.dart';
 import '../bloc/language_bloc.dart';
 

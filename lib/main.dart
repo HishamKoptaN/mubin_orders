@@ -8,14 +8,13 @@ import 'features/login/present/bloc/login_bloc.dart';
 import 'features/main/present/view/main_view.dart';
 import 'features/orders/present/bloc/orders_bloc.dart';
 import 'firebase_options.dart';
-
+import 'l10n/app_localizations.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureDependencies();
-
   await ScreenUtil.ensureScreenSize();
   String locale = await SharedPrefHelper.getString(
         key: SharedPrefKeys.languageCode,

@@ -2,6 +2,7 @@ import 'package:mubin_orders/core/all_imports.dart';
 import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
+import '../../../../../l10n/app_localizations.dart';
 import '../../../data/models/orders_res_model.dart';
 import 'image_preview.dart';
 import 'video_widget.dart';
@@ -13,7 +14,6 @@ class OrderWidget extends StatelessWidget {
   });
   final Order order;
   static const String routeName = "OrderWidget";
-
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -52,19 +52,9 @@ class OrderWidget extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: GestureDetector(
-                    onTap: () async {
-                      Navigator.pushNamed(
-                        context,
-                        VideoPlayerView.routeName,
-                        arguments: {
-                          'video_url': order.video ?? '',
-                        },
-                      );
-                    },
-                    child: VideoWidget(
-                      videoUrl: order.video ?? '',
-                    ),
+                  child: VideoWidget(
+                    videoUrl: order.video ?? '',
+                    thumbnailUrl: order.thumbnailUrl ?? '',
                   ),
                 ),
                 Expanded(
@@ -117,8 +107,7 @@ class OrderWidget extends StatelessWidget {
                       );
                     },
                     child: ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(12.0), // جعل الصورة بحواف ناعمة
+                      borderRadius: BorderRadius.circular(12.0),
                       child: Image.network(
                         order.imageTwo ?? '',
                         fit: BoxFit.cover,

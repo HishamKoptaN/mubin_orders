@@ -532,6 +532,8 @@ mixin _$Order {
   String? get place => throw _privateConstructorUsedError;
   @JsonKey(name: "video")
   String? get video => throw _privateConstructorUsedError;
+  @JsonKey(name: "thumbnail_url")
+  String? get thumbnailUrl => throw _privateConstructorUsedError;
   @JsonKey(name: "image_one")
   String? get imageOne => throw _privateConstructorUsedError;
   @JsonKey(name: "image_two")
@@ -566,6 +568,7 @@ abstract class $OrderCopyWith<$Res> {
       @JsonKey(name: "client_id") int? clientId,
       @JsonKey(name: "place") String? place,
       @JsonKey(name: "video") String? video,
+      @JsonKey(name: "thumbnail_url") String? thumbnailUrl,
       @JsonKey(name: "image_one") String? imageOne,
       @JsonKey(name: "image_two") String? imageTwo,
       @JsonKey(name: "updated_at") String? updatedAt,
@@ -594,6 +597,7 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
     Object? clientId = freezed,
     Object? place = freezed,
     Object? video = freezed,
+    Object? thumbnailUrl = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? updatedAt = freezed,
@@ -618,6 +622,10 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -663,6 +671,7 @@ abstract class _$$OrderImplCopyWith<$Res> implements $OrderCopyWith<$Res> {
       @JsonKey(name: "client_id") int? clientId,
       @JsonKey(name: "place") String? place,
       @JsonKey(name: "video") String? video,
+      @JsonKey(name: "thumbnail_url") String? thumbnailUrl,
       @JsonKey(name: "image_one") String? imageOne,
       @JsonKey(name: "image_two") String? imageTwo,
       @JsonKey(name: "updated_at") String? updatedAt,
@@ -689,6 +698,7 @@ class __$$OrderImplCopyWithImpl<$Res>
     Object? clientId = freezed,
     Object? place = freezed,
     Object? video = freezed,
+    Object? thumbnailUrl = freezed,
     Object? imageOne = freezed,
     Object? imageTwo = freezed,
     Object? updatedAt = freezed,
@@ -713,6 +723,10 @@ class __$$OrderImplCopyWithImpl<$Res>
       video: freezed == video
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
+              as String?,
+      thumbnailUrl: freezed == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String?,
       imageOne: freezed == imageOne
           ? _value.imageOne
@@ -754,6 +768,7 @@ class _$OrderImpl implements _Order {
       @JsonKey(name: "client_id") this.clientId,
       @JsonKey(name: "place") this.place,
       @JsonKey(name: "video") this.video,
+      @JsonKey(name: "thumbnail_url") this.thumbnailUrl,
       @JsonKey(name: "image_one") this.imageOne,
       @JsonKey(name: "image_two") this.imageTwo,
       @JsonKey(name: "updated_at") this.updatedAt,
@@ -778,6 +793,9 @@ class _$OrderImpl implements _Order {
   @JsonKey(name: "video")
   final String? video;
   @override
+  @JsonKey(name: "thumbnail_url")
+  final String? thumbnailUrl;
+  @override
   @JsonKey(name: "image_one")
   final String? imageOne;
   @override
@@ -801,7 +819,7 @@ class _$OrderImpl implements _Order {
 
   @override
   String toString() {
-    return 'Order(id: $id, clientId: $clientId, place: $place, video: $video, imageOne: $imageOne, imageTwo: $imageTwo, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, branchId: $branchId, createdAt: $createdAt)';
+    return 'Order(id: $id, clientId: $clientId, place: $place, video: $video, thumbnailUrl: $thumbnailUrl, imageOne: $imageOne, imageTwo: $imageTwo, updatedAt: $updatedAt, latitude: $latitude, longitude: $longitude, branchId: $branchId, createdAt: $createdAt)';
   }
 
   @override
@@ -814,6 +832,8 @@ class _$OrderImpl implements _Order {
                 other.clientId == clientId) &&
             (identical(other.place, place) || other.place == place) &&
             (identical(other.video, video) || other.video == video) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
             (identical(other.imageOne, imageOne) ||
                 other.imageOne == imageOne) &&
             (identical(other.imageTwo, imageTwo) ||
@@ -832,8 +852,20 @@ class _$OrderImpl implements _Order {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, clientId, place, video,
-      imageOne, imageTwo, updatedAt, latitude, longitude, branchId, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      clientId,
+      place,
+      video,
+      thumbnailUrl,
+      imageOne,
+      imageTwo,
+      updatedAt,
+      latitude,
+      longitude,
+      branchId,
+      createdAt);
 
   /// Create a copy of Order
   /// with the given fields replaced by the non-null parameter values.
@@ -857,6 +889,7 @@ abstract class _Order implements Order {
       @JsonKey(name: "client_id") final int? clientId,
       @JsonKey(name: "place") final String? place,
       @JsonKey(name: "video") final String? video,
+      @JsonKey(name: "thumbnail_url") final String? thumbnailUrl,
       @JsonKey(name: "image_one") final String? imageOne,
       @JsonKey(name: "image_two") final String? imageTwo,
       @JsonKey(name: "updated_at") final String? updatedAt,
@@ -879,6 +912,9 @@ abstract class _Order implements Order {
   @override
   @JsonKey(name: "video")
   String? get video;
+  @override
+  @JsonKey(name: "thumbnail_url")
+  String? get thumbnailUrl;
   @override
   @JsonKey(name: "image_one")
   String? get imageOne;

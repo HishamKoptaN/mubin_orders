@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../data/models/add_order_req_model.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';

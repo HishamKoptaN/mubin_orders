@@ -49,10 +49,10 @@ _i174.GetIt init(
   final injectionModule = _$InjectionModule();
   final apiModule = _$ApiModule();
   gh.singleton<_i804.LoggingInterceptor>(() => _i804.LoggingInterceptor());
+  gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.lazySingleton<_i161.InternetConnection>(
       () => injectionModule.connectionChecker);
   gh.lazySingleton<_i59.FirebaseAuth>(() => injectionModule.firebaseAuth);
-  gh.lazySingleton<_i804.TokenStorage>(() => _i804.TokenStorage());
   gh.singleton<_i804.AuthInterceptor>(
       () => _i804.AuthInterceptor(gh<_i804.TokenStorage>()));
   gh.lazySingleton<_i59.LoginRemDataSrc>(

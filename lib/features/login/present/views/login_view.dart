@@ -11,12 +11,12 @@ import '../../../../core/widgets/custom_logo_image.dart';
 import '../../../../core/widgets/custom_password_form_field.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/snacke_bar.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../home/home_view.dart';
 import '../../data/models/firabase_login_req_body_model.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_event.dart';
 import '../bloc/login_state.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({

@@ -34,6 +34,7 @@ class Order with _$Order {
     @JsonKey(name: "client_id") int? clientId,
     @JsonKey(name: "place") String? place,
     @JsonKey(name: "video") String? video,
+    @JsonKey(name: "thumbnail_url") String? thumbnailUrl,
     @JsonKey(name: "image_one") String? imageOne,
     @JsonKey(name: "image_two") String? imageTwo,
     @JsonKey(name: "updated_at") String? updatedAt,

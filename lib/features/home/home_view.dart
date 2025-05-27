@@ -1,4 +1,5 @@
 import 'package:mubin_orders/core/all_imports.dart';
+import '../../l10n/app_localizations.dart';
 import '../orders/present/views/add_order_view.dart';
 import '../drawer/my_drawer.dart';
 import '../orders/present/views/orders_view.dart';
