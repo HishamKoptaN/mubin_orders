@@ -22,7 +22,7 @@ mixin _$OrdersState {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -34,7 +34,7 @@ mixin _$OrdersState {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -46,7 +46,7 @@ mixin _$OrdersState {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -152,7 +152,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -167,7 +167,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -182,7 +182,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -287,7 +287,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -302,7 +302,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -317,7 +317,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -422,7 +422,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -437,7 +437,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -452,7 +452,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -521,10 +521,10 @@ abstract class _$$LoadedImplCopyWith<$Res> {
   $Res call(
       {List<Order>? orders,
       bool? hasMore,
-      AddOrderReqModel? addOrderReqModel,
+      AddOrderReq? addOrderReq,
       String? uploadingProgress});
 
-  $AddOrderReqModelCopyWith<$Res>? get addOrderReqModel;
+  $AddOrderReqCopyWith<$Res>? get addOrderReq;
 }
 
 /// @nodoc
@@ -542,7 +542,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
   $Res call({
     Object? orders = freezed,
     Object? hasMore = freezed,
-    Object? addOrderReqModel = freezed,
+    Object? addOrderReq = freezed,
     Object? uploadingProgress = freezed,
   }) {
     return _then(_$LoadedImpl(
@@ -554,10 +554,10 @@ class __$$LoadedImplCopyWithImpl<$Res>
           ? _value.hasMore
           : hasMore // ignore: cast_nullable_to_non_nullable
               as bool?,
-      addOrderReqModel: freezed == addOrderReqModel
-          ? _value.addOrderReqModel
-          : addOrderReqModel // ignore: cast_nullable_to_non_nullable
-              as AddOrderReqModel?,
+      addOrderReq: freezed == addOrderReq
+          ? _value.addOrderReq
+          : addOrderReq // ignore: cast_nullable_to_non_nullable
+              as AddOrderReq?,
       uploadingProgress: freezed == uploadingProgress
           ? _value.uploadingProgress
           : uploadingProgress // ignore: cast_nullable_to_non_nullable
@@ -569,13 +569,13 @@ class __$$LoadedImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AddOrderReqModelCopyWith<$Res>? get addOrderReqModel {
-    if (_value.addOrderReqModel == null) {
+  $AddOrderReqCopyWith<$Res>? get addOrderReq {
+    if (_value.addOrderReq == null) {
       return null;
     }
 
-    return $AddOrderReqModelCopyWith<$Res>(_value.addOrderReqModel!, (value) {
-      return _then(_value.copyWith(addOrderReqModel: value));
+    return $AddOrderReqCopyWith<$Res>(_value.addOrderReq!, (value) {
+      return _then(_value.copyWith(addOrderReq: value));
     });
   }
 }
@@ -586,7 +586,7 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl(
       {required final List<Order>? orders,
       required this.hasMore,
-      required this.addOrderReqModel,
+      required this.addOrderReq,
       required this.uploadingProgress})
       : _orders = orders;
 
@@ -603,13 +603,13 @@ class _$LoadedImpl implements _Loaded {
   @override
   final bool? hasMore;
   @override
-  final AddOrderReqModel? addOrderReqModel;
+  final AddOrderReq? addOrderReq;
   @override
   final String? uploadingProgress;
 
   @override
   String toString() {
-    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, addOrderReqModel: $addOrderReqModel, uploadingProgress: $uploadingProgress)';
+    return 'OrdersState.loaded(orders: $orders, hasMore: $hasMore, addOrderReq: $addOrderReq, uploadingProgress: $uploadingProgress)';
   }
 
   @override
@@ -619,8 +619,8 @@ class _$LoadedImpl implements _Loaded {
             other is _$LoadedImpl &&
             const DeepCollectionEquality().equals(other._orders, _orders) &&
             (identical(other.hasMore, hasMore) || other.hasMore == hasMore) &&
-            (identical(other.addOrderReqModel, addOrderReqModel) ||
-                other.addOrderReqModel == addOrderReqModel) &&
+            (identical(other.addOrderReq, addOrderReq) ||
+                other.addOrderReq == addOrderReq) &&
             (identical(other.uploadingProgress, uploadingProgress) ||
                 other.uploadingProgress == uploadingProgress));
   }
@@ -630,7 +630,7 @@ class _$LoadedImpl implements _Loaded {
       runtimeType,
       const DeepCollectionEquality().hash(_orders),
       hasMore,
-      addOrderReqModel,
+      addOrderReq,
       uploadingProgress);
 
   /// Create a copy of OrdersState
@@ -648,12 +648,12 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
   }) {
-    return loaded(orders, hasMore, addOrderReqModel, uploadingProgress);
+    return loaded(orders, hasMore, addOrderReq, uploadingProgress);
   }
 
   @override
@@ -663,12 +663,12 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
   }) {
-    return loaded?.call(orders, hasMore, addOrderReqModel, uploadingProgress);
+    return loaded?.call(orders, hasMore, addOrderReq, uploadingProgress);
   }
 
   @override
@@ -678,14 +678,14 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(orders, hasMore, addOrderReqModel, uploadingProgress);
+      return loaded(orders, hasMore, addOrderReq, uploadingProgress);
     }
     return orElse();
   }
@@ -738,12 +738,12 @@ abstract class _Loaded implements OrdersState {
   const factory _Loaded(
       {required final List<Order>? orders,
       required final bool? hasMore,
-      required final AddOrderReqModel? addOrderReqModel,
+      required final AddOrderReq? addOrderReq,
       required final String? uploadingProgress}) = _$LoadedImpl;
 
   List<Order>? get orders;
   bool? get hasMore;
-  AddOrderReqModel? get addOrderReqModel;
+  AddOrderReq? get addOrderReq;
   String? get uploadingProgress;
 
   /// Create a copy of OrdersState
@@ -827,7 +827,7 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -842,7 +842,7 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -857,7 +857,7 @@ class _$GetOrdersFailureImpl implements _GetOrdersFailure {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,
@@ -999,7 +999,7 @@ class _$FailureImpl implements _Failure {
     required TResult Function() loading,
     required TResult Function() success,
     required TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)
+            AddOrderReq? addOrderReq, String? uploadingProgress)
         loaded,
     required TResult Function(ApiErrorModel apiErrorModel) getOrdersfailure,
     required TResult Function(ApiErrorModel apiErrorModel) failure,
@@ -1014,7 +1014,7 @@ class _$FailureImpl implements _Failure {
     TResult? Function()? loading,
     TResult? Function()? success,
     TResult? Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult? Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult? Function(ApiErrorModel apiErrorModel)? failure,
@@ -1029,7 +1029,7 @@ class _$FailureImpl implements _Failure {
     TResult Function()? loading,
     TResult Function()? success,
     TResult Function(List<Order>? orders, bool? hasMore,
-            AddOrderReqModel? addOrderReqModel, String? uploadingProgress)?
+            AddOrderReq? addOrderReq, String? uploadingProgress)?
         loaded,
     TResult Function(ApiErrorModel apiErrorModel)? getOrdersfailure,
     TResult Function(ApiErrorModel apiErrorModel)? failure,

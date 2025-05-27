@@ -6,6 +6,7 @@ import '../../../../core/all_imports.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../data/models/add_order_req_model.dart';
+import '../../domain/entities/add_order_req.dart';
 import '../bloc/orders_bloc.dart';
 import '../bloc/orders_event.dart';
 import '../bloc/orders_state.dart';
@@ -22,7 +23,7 @@ class AddOrderView extends StatefulWidget {
 
 class _AddOrderViewState extends State<AddOrderView> {
   final ImagePicker imagePicker = ImagePicker();
-  final TextEditingController clientIdController = TextEditingController();
+  final TextEditingController clientNumberController = TextEditingController();
   final TextEditingController placeNameController = TextEditingController();
   XFile? video;
   XFile? imageOne;
@@ -109,7 +110,7 @@ class _AddOrderViewState extends State<AddOrderView> {
 
   Future<void> getAndDispatchLocation({
     required BuildContext context,
-    required AddOrderReqModel addOrderReqModel,
+    required AddOrderReq addOrderReq,
   }) async {
     try {
       final Location location = Location();
@@ -128,7 +129,7 @@ class _AddOrderViewState extends State<AddOrderView> {
       final locationData = await location.getLocation();
       context.read<OrdersBloc>().add(
             OrdersEvent.updateData(
-              addOrderReqModel: addOrderReqModel.copyWith(
+              addOrderReq: addOrderReq.copyWith(
                 latitude: locationData.latitude?.toString(),
                 longitude: locationData.longitude?.toString(),
               ),
@@ -191,37 +192,37 @@ class _AddOrderViewState extends State<AddOrderView> {
           loaded: (
             orders,
             hasMore,
-            addOrderReqModel,
+            addOrderReq,
             uploadingProgress,
           ) {
             double? parsedProgress = double.tryParse(
               uploadingProgress ?? '',
             );
-            clientIdController.text = addOrderReqModel?.clientId ?? '';
-            placeNameController.text = addOrderReqModel?.placeName ?? '';
-            videoController.text = addOrderReqModel?.video?.path ?? '';
-            imageOneController.text = addOrderReqModel?.imageOne?.path ?? '';
-            imageTwoController.text = addOrderReqModel?.imageTwo?.path ?? '';
+            clientNumberController.text = addOrderReq?.clientNumber ?? '';
+            placeNameController.text = addOrderReq?.placeName ?? '';
+            videoController.text = addOrderReq?.video?.path ?? '';
+            imageOneController.text = addOrderReq?.imageOne?.path ?? '';
+            imageTwoController.text = addOrderReq?.imageTwo?.path ?? '';
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CustomTextField(
-                    controller: clientIdController,
+                    controller: clientNumberController,
                     onChanged: (
                       v,
                     ) async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
-                              addOrderReqModel: addOrderReqModel!.copyWith(
-                                clientId: v,
+                              addOrderReq: addOrderReq!.copyWith(
+                                clientNumber: v,
                               ),
                             ),
                           );
                     },
                     maxLines: 2,
-                    labelText: t.client_id,
-                    hint: t.client_id,
+                    labelText: t.order_number,
+                    hint: t.order_number,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (
                       v,
@@ -239,7 +240,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     ) async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
-                              addOrderReqModel: addOrderReqModel!.copyWith(
+                              addOrderReq: addOrderReq!.copyWith(
                                 placeName: v,
                               ),
                             ),
@@ -264,7 +265,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     onTap: () async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
-                              addOrderReqModel: addOrderReqModel!.copyWith(
+                              addOrderReq: addOrderReq!.copyWith(
                                 video: await selectFilesPath(
                                   context: context,
                                   fileType: FileType.video,
@@ -292,7 +293,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     onTap: () async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
-                              addOrderReqModel: addOrderReqModel!.copyWith(
+                              addOrderReq: addOrderReq!.copyWith(
                                 imageOne: await selectFilesPath(
                                   context: context,
                                   fileType: FileType.image,
@@ -321,7 +322,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     onTap: () async {
                       context.read<OrdersBloc>().add(
                             OrdersEvent.updateData(
-                              addOrderReqModel: addOrderReqModel!.copyWith(
+                              addOrderReq: addOrderReq!.copyWith(
                                 imageTwo: await selectFilesPath(
                                   context: context,
                                   fileType: FileType.image,
@@ -349,7 +350,7 @@ class _AddOrderViewState extends State<AddOrderView> {
                     onTap: () async {
                       await getAndDispatchLocation(
                         context: context,
-                        addOrderReqModel: addOrderReqModel!,
+                        addOrderReq: addOrderReq!,
                       );
                       context.read<OrdersBloc>().add(
                             OrdersEvent.createOrder(),
@@ -362,14 +363,18 @@ class _AddOrderViewState extends State<AddOrderView> {
                         color: Colors.green,
                       ),
                       child: Center(
-                        child: Text(
-                          t.add,
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                        child: uploadingProgress == null
+                            ? Text(
+                                t.add_order,
+                                style: TextStyle(
+                                  fontSize: 20.sp,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            : CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
                       ),
                     ),
                   ),

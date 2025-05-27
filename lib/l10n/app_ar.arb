@@ -9,6 +9,7 @@
     "add_order": "اضافة طلب",
     "order_place": "المكان",
     "order_id": "معرف الطلب",    
+    "order_number": "رقم الامر",    
 	"client_id":"المعرف الخاص بالعميل",
     "enter_order_id": "ادخل رقم الطلب",
     "place_hint": "مدرسه/مسجد/قريه",

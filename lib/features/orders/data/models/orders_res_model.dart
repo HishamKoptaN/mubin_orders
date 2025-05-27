@@ -31,7 +31,7 @@ class Meta with _$Meta {
 class Order with _$Order {
   const factory Order({
     @JsonKey(name: "id") int? id,
-    @JsonKey(name: "client_id") int? clientId,
+    @JsonKey(name: "order_number") String? orderNumber,
     @JsonKey(name: "place") String? place,
     @JsonKey(name: "video") String? video,
     @JsonKey(name: "thumbnail_url") String? thumbnailUrl,

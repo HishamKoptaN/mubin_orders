@@ -25,7 +25,7 @@ abstract class OrdersApi {
   )
   @MultiPart()
   Future<Order> createOrder({
-    @Part(name: 'client_id') required String clientId,
+    @Part(name: 'client_number') required String clientId,
     @Part(name: 'place') required String placeName,
     @Part(name: 'video') required File video,
     @Part(name: 'image_one') required File imageOne,

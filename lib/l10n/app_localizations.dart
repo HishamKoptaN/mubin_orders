@@ -140,6 +140,12 @@ abstract class AppLocalizations {
   /// **'Order Id'**
   String get order_id;
 
+  /// No description provided for @order_number.
+  ///
+  /// In en, this message translates to:
+  /// **'Order number'**
+  String get order_number;
+
   /// No description provided for @client_id.
   ///
   /// In en, this message translates to:

@@ -30,6 +30,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get order_id => 'معرف الطلب';
 
   @override
+  String get order_number => 'رقم الامر';
+
+  @override
   String get client_id => 'المعرف الخاص بالعميل';
 
   @override

@@ -1,8 +1,8 @@
 import 'dart:developer';
 import '../../../../core/all_imports.dart';
 import '../../../../core/errors/api_error_model.dart';
-import '../../data/models/add_order_req_model.dart';
 import '../../data/models/orders_res_model.dart';
+import '../../domain/entities/add_order_req.dart';
 import '../../domain/usecases/orders_use_cases.dart';
 import 'orders_event.dart';
 import 'orders_state.dart';
@@ -13,7 +13,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
   OrdersUseCase ordersUseCase;
   List<Order>? allOrders;
   Meta? meta;
-  AddOrderReqModel addOrderReqModel = AddOrderReqModel();
+  AddOrderReq addOrderReq = AddOrderReq();
   OrdersBloc({
     required this.ordersUseCase,
   }) : super(
@@ -66,10 +66,10 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             }
           },
           updateData: (
-            addOrderReqModel,
+            addOrderReq,
           ) async {
             try {
-              this.addOrderReqModel = addOrderReqModel;
+              this.addOrderReq = addOrderReq;
               emitCustomLoaded(
                 emit: emit,
               );
@@ -87,18 +87,18 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
             }
           },
           createOrder: () async {
-            if (addOrderReqModel.isComplete) {
+            if (addOrderReq.isComplete) {
               try {
                 emit(
                   OrdersState.loaded(
                     orders: allOrders ?? [],
                     hasMore: false,
-                    addOrderReqModel: addOrderReqModel,
+                    addOrderReq: addOrderReq,
                     uploadingProgress: "1",
                   ),
                 );
                 final result = await ordersUseCase.createOrder(
-                  addOrderReqModel: addOrderReqModel,
+                  addOrderReq: addOrderReq,
                   onSendProgress: (
                     sent,
                     total,
@@ -110,7 +110,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                       OrdersState.loaded(
                         orders: allOrders ?? [],
                         hasMore: false,
-                        addOrderReqModel: addOrderReqModel,
+                        addOrderReq: addOrderReq,
                         uploadingProgress: uploadProgress,
                       ),
                     );
@@ -120,7 +120,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
                   success: (
                     order,
                   ) async {
-                    addOrderReqModel = AddOrderReqModel.empty();
+                    addOrderReq = AddOrderReq.empty();
                     allOrders = [
                       order!,
                       ...?allOrders,
@@ -185,7 +185,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
       OrdersState.loaded(
         orders: allOrders ?? [],
         hasMore: meta?.hasNextPage ?? false,
-        addOrderReqModel: addOrderReqModel,
+        addOrderReq: addOrderReq,
         uploadingProgress: null,
       ),
     );

@@ -46,7 +46,7 @@ Map<String, dynamic> _$$MetaImplToJson(_$MetaImpl instance) =>
 
 _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
       id: (json['id'] as num?)?.toInt(),
-      clientId: (json['client_id'] as num?)?.toInt(),
+      orderNumber: json['order_number'] as String?,
       place: json['place'] as String?,
       video: json['video'] as String?,
       thumbnailUrl: json['thumbnail_url'] as String?,
@@ -62,7 +62,7 @@ _$OrderImpl _$$OrderImplFromJson(Map<String, dynamic> json) => _$OrderImpl(
 Map<String, dynamic> _$$OrderImplToJson(_$OrderImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'client_id': instance.clientId,
+      'order_number': instance.orderNumber,
       'place': instance.place,
       'video': instance.video,
       'thumbnail_url': instance.thumbnailUrl,

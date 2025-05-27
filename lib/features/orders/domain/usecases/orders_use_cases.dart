@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../data/models/add_order_req_model.dart';
 import '../../data/models/orders_res_model.dart';
+import '../entities/add_order_req.dart';
 import '../repo/orders_repo.dart';
 import 'package:injectable/injectable.dart' show LazySingleton;
 
@@ -16,11 +17,11 @@ class OrdersUseCase {
   }
 
   Future<ApiResult<Order?>> createOrder({
-    required AddOrderReqModel addOrderReqModel,
+    required AddOrderReq addOrderReq,
     required ProgressCallback? onSendProgress,
   }) async {
     return await ordersRepo.createOrder(
-      addOrderReqModel: addOrderReqModel,
+      addOrderReq: addOrderReq,
       onSendProgress: onSendProgress,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:mubin_orders/features/orders/data/models/add_order_req_model.dart';
 import '../../../../../core/networking/api_result.dart';
 import '../../../../core/errors/api_error_handler.dart';
+import '../../domain/entities/add_order_req.dart';
 import '../../domain/repo/orders_repo.dart';
 import 'dart:async';
 import '../datasources/orders_api.dart';
@@ -34,18 +34,18 @@ class OrdersRepoImpl implements OrdersRepo {
 
   @override
   Future<ApiResult<Order?>> createOrder({
-    required AddOrderReqModel addOrderReqModel,
+    required AddOrderReq addOrderReq,
     required ProgressCallback? onSendProgress,
   }) async {
     try {
       final res = await postsApi.createOrder(
-        clientId: addOrderReqModel.clientId ?? '0',
-        placeName: addOrderReqModel.placeName ?? '',
-        video: addOrderReqModel.video!,
-        imageOne: addOrderReqModel.imageOne!,
-        imageTwo: addOrderReqModel.imageTwo!,
-        latitude: addOrderReqModel.latitude ?? '0.0',
-        longitude: addOrderReqModel.longitude ?? '0.0',
+        clientId: addOrderReq.clientNumber ?? '0',
+        placeName: addOrderReq.placeName ?? '',
+        video: addOrderReq.video!,
+        imageOne: addOrderReq.imageOne!,
+        imageTwo: addOrderReq.imageTwo!,
+        latitude: addOrderReq.latitude ?? '0.0',
+        longitude: addOrderReq.longitude ?? '0.0',
         onSendProgress: onSendProgress,
       );
       return ApiResult.success(

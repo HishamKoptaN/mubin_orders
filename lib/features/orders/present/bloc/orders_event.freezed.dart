@@ -19,21 +19,21 @@ mixin _$OrdersEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getOrders,
-    required TResult Function(AddOrderReqModel addOrderReqModel) updateData,
+    required TResult Function(AddOrderReq addOrderReq) updateData,
     required TResult Function() createOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getOrders,
-    TResult? Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult? Function(AddOrderReq addOrderReq)? updateData,
     TResult? Function()? createOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getOrders,
-    TResult Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult Function(AddOrderReq addOrderReq)? updateData,
     TResult Function()? createOrder,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getOrders,
-    required TResult Function(AddOrderReqModel addOrderReqModel) updateData,
+    required TResult Function(AddOrderReq addOrderReq) updateData,
     required TResult Function() createOrder,
   }) {
     return getOrders();
@@ -135,7 +135,7 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getOrders,
-    TResult? Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult? Function(AddOrderReq addOrderReq)? updateData,
     TResult? Function()? createOrder,
   }) {
     return getOrders?.call();
@@ -145,7 +145,7 @@ class _$GetOrdersImpl implements _GetOrders {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getOrders,
-    TResult Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult Function(AddOrderReq addOrderReq)? updateData,
     TResult Function()? createOrder,
     required TResult orElse(),
   }) {
@@ -200,9 +200,9 @@ abstract class _$$UpdateDataImplCopyWith<$Res> {
           _$UpdateDataImpl value, $Res Function(_$UpdateDataImpl) then) =
       __$$UpdateDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({AddOrderReqModel addOrderReqModel});
+  $Res call({AddOrderReq addOrderReq});
 
-  $AddOrderReqModelCopyWith<$Res> get addOrderReqModel;
+  $AddOrderReqCopyWith<$Res> get addOrderReq;
 }
 
 /// @nodoc
@@ -218,13 +218,13 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? addOrderReqModel = null,
+    Object? addOrderReq = null,
   }) {
     return _then(_$UpdateDataImpl(
-      addOrderReqModel: null == addOrderReqModel
-          ? _value.addOrderReqModel
-          : addOrderReqModel // ignore: cast_nullable_to_non_nullable
-              as AddOrderReqModel,
+      addOrderReq: null == addOrderReq
+          ? _value.addOrderReq
+          : addOrderReq // ignore: cast_nullable_to_non_nullable
+              as AddOrderReq,
     ));
   }
 
@@ -232,9 +232,9 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $AddOrderReqModelCopyWith<$Res> get addOrderReqModel {
-    return $AddOrderReqModelCopyWith<$Res>(_value.addOrderReqModel, (value) {
-      return _then(_value.copyWith(addOrderReqModel: value));
+  $AddOrderReqCopyWith<$Res> get addOrderReq {
+    return $AddOrderReqCopyWith<$Res>(_value.addOrderReq, (value) {
+      return _then(_value.copyWith(addOrderReq: value));
     });
   }
 }
@@ -242,14 +242,14 @@ class __$$UpdateDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdateDataImpl implements _UpdateData {
-  const _$UpdateDataImpl({required this.addOrderReqModel});
+  const _$UpdateDataImpl({required this.addOrderReq});
 
   @override
-  final AddOrderReqModel addOrderReqModel;
+  final AddOrderReq addOrderReq;
 
   @override
   String toString() {
-    return 'OrdersEvent.updateData(addOrderReqModel: $addOrderReqModel)';
+    return 'OrdersEvent.updateData(addOrderReq: $addOrderReq)';
   }
 
   @override
@@ -257,12 +257,12 @@ class _$UpdateDataImpl implements _UpdateData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdateDataImpl &&
-            (identical(other.addOrderReqModel, addOrderReqModel) ||
-                other.addOrderReqModel == addOrderReqModel));
+            (identical(other.addOrderReq, addOrderReq) ||
+                other.addOrderReq == addOrderReq));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, addOrderReqModel);
+  int get hashCode => Object.hash(runtimeType, addOrderReq);
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -276,32 +276,32 @@ class _$UpdateDataImpl implements _UpdateData {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getOrders,
-    required TResult Function(AddOrderReqModel addOrderReqModel) updateData,
+    required TResult Function(AddOrderReq addOrderReq) updateData,
     required TResult Function() createOrder,
   }) {
-    return updateData(addOrderReqModel);
+    return updateData(addOrderReq);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getOrders,
-    TResult? Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult? Function(AddOrderReq addOrderReq)? updateData,
     TResult? Function()? createOrder,
   }) {
-    return updateData?.call(addOrderReqModel);
+    return updateData?.call(addOrderReq);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getOrders,
-    TResult Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult Function(AddOrderReq addOrderReq)? updateData,
     TResult Function()? createOrder,
     required TResult orElse(),
   }) {
     if (updateData != null) {
-      return updateData(addOrderReqModel);
+      return updateData(addOrderReq);
     }
     return orElse();
   }
@@ -342,10 +342,10 @@ class _$UpdateDataImpl implements _UpdateData {
 }
 
 abstract class _UpdateData implements OrdersEvent {
-  const factory _UpdateData(
-      {required final AddOrderReqModel addOrderReqModel}) = _$UpdateDataImpl;
+  const factory _UpdateData({required final AddOrderReq addOrderReq}) =
+      _$UpdateDataImpl;
 
-  AddOrderReqModel get addOrderReqModel;
+  AddOrderReq get addOrderReq;
 
   /// Create a copy of OrdersEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -396,7 +396,7 @@ class _$CreateOrderImpl implements _CreateOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() getOrders,
-    required TResult Function(AddOrderReqModel addOrderReqModel) updateData,
+    required TResult Function(AddOrderReq addOrderReq) updateData,
     required TResult Function() createOrder,
   }) {
     return createOrder();
@@ -406,7 +406,7 @@ class _$CreateOrderImpl implements _CreateOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? getOrders,
-    TResult? Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult? Function(AddOrderReq addOrderReq)? updateData,
     TResult? Function()? createOrder,
   }) {
     return createOrder?.call();
@@ -416,7 +416,7 @@ class _$CreateOrderImpl implements _CreateOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? getOrders,
-    TResult Function(AddOrderReqModel addOrderReqModel)? updateData,
+    TResult Function(AddOrderReq addOrderReq)? updateData,
     TResult Function()? createOrder,
     required TResult orElse(),
   }) {

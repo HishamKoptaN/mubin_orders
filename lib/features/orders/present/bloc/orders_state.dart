@@ -1,9 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:image_picker/image_picker.dart';
 import '../../../../core/errors/api_error_model.dart';
 import '../../data/models/add_order_req_model.dart';
 import '../../data/models/orders_res_model.dart';
-import 'orders_event.dart';
+import '../../domain/entities/add_order_req.dart';
 part 'orders_state.freezed.dart';
 
 @freezed
@@ -14,7 +13,7 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.loaded({
     required List<Order>? orders,
     required bool? hasMore,
-    required AddOrderReqModel? addOrderReqModel,
+    required AddOrderReq? addOrderReq,
     required String? uploadingProgress,
   }) = _Loaded;
   const factory OrdersState.getOrdersfailure({

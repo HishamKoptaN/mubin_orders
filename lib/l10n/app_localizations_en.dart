@@ -30,6 +30,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get order_id => 'Order Id';
 
   @override
+  String get order_number => 'Order number';
+
+  @override
   String get client_id => 'Client id';
 
   @override

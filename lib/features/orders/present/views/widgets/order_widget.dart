@@ -1,5 +1,4 @@
 import 'package:mubin_orders/core/all_imports.dart';
-import 'package:mubin_orders/core/gloabal_widgets/video_player.dart';
 import 'package:shimmer/shimmer.dart';
 import '../../../../../core/gloabal_widgets/gloabal_widgets.dart';
 import '../../../../../l10n/app_localizations.dart';
@@ -29,7 +28,7 @@ class OrderWidget extends StatelessWidget {
                 Expanded(
                   flex: 1,
                   child: MyText(
-                    fieldName: '${t.order_id}: ${order.id.toString()}',
+                    fieldName: '${t.order_number}: ${order.orderNumber.toString()}',
                     color: Colors.blue,
                     fontSize: 15.sp,
                   ),
