@@ -10,31 +10,24 @@ jobs:
     steps:
       - name: التحقق من الكود
         uses: actions/checkout@v4
-
       - name: إعداد JDK
         uses: actions/setup-java@v3
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - name: إعداد فلاتر
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.0.0'
           channel: stable
-
       - name: Upgrade Flutter
         run: flutter upgrade
-
       - name: تحميل التبعيات
         run: flutter pub get
-
       - name: تنظيف المشروع
         run: flutter clean
-
       - name: بناء نسخ الاندرويد
         run: flutter build apk --split-per-abi
-
       - name: 🚀 توزيع armeabi-v7a
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
@@ -43,7 +36,6 @@ jobs:
           groups: armeabi-v7a
           file: build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
           releaseNotes: "armeabi-v7a build & distributed"
-
       - name: 🚀 توزيع arm64-v8a
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
